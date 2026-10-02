@@ -1,4 +1,4 @@
-MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 36
+MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 37
 Blocco coordinamento v0.11: ATTIVO su gateway e Mac personale, verificato.
 
 STATO OPERATIVO
@@ -19,18 +19,33 @@ BACKUP E ROLLBACK
 - Gateway: /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002
   (rollback: ADMIN_REQUEST_rollback_gateway.txt via Telegram).
 
-PROSSIMO PASSO
-1. Aprire una chat nuova (o ricaricare il connettore) e provare una
-   work_session reale: open, lock su una cartella, scrittura, chiusura.
-2. Con quella sessione rimuovere i file temporanei rimasti (vedi sotto).
-3. Poi: coordinamento nell'agent VPS, prove di lavoro reale, riavvio Mac.
+VERIFICA CLIENT 03/10/2026: work_session, work_lock, write/read/rollback
+da chat nuova OK; installer e launcher v0.11 rimossi da workspace/.tmp
+(shell 5 min, lock workspace); nessuna sessione/lock/shell attivi.
+
+PIANO APPROVATO PER SOSTITUIRE DESKTOP COMMANDER
+- Decisioni: progetti dentro la workspace (workspace/progetti, clone nuovi,
+  La Marruca esistente non toccata); rete della shell solo GitHub, su richiesta.
+1. v0.12 Mac (IN CORSO, cartella coordination_v012/):
+   FATTO: delete_path, copy_file, read_binary, upload_file (staging privato,
+   sha256, rollback); proxy CONNECT GitHub-only nell'agent
+   (enable_full_shell network='github'); policy seatbelt con sola porta
+   loopback del proxy; git dei Command Line Tools; catalogo 29 strumenti;
+   selftest UID5000 mac_v012_selftest.py (simulato su Linux: OK).
+   Test: 83/83 OK su Python 3.9.
+   DA FARE: build installer Mac v0.12 (derivato da quello v0.11 r1, logica
+   invariata, timeout selftest 90 s), test installer, aggiornamento catalogo
+   gateway (admin_request), LEGGIMI, poi installazione locale con sudo.
+2. Coordinamento nell'agent VPS.
+3. Prova di riavvio del Mac.
 
 PROBLEMI RESIDUI
 - Le chat con catalogo vecchio non possono piu scrivere sul Mac.
 - Nel registro le voci delle operazioni work_session/work_lock non riportano
   l'id di sessione (lo riportano gli eventi session_open/lock_acquire): solo audit.
-- File temporanei: installer e launcher in workspace/.tmp del Mac, copia in
-  /Users/babo/MCPAndreaCoordV011_20261002, script in workspace VPS, helper in /opt.
+- File temporanei: copia in /Users/babo/MCPAndreaCoordV011_20261002,
+  script in workspace VPS, helper in /opt. (workspace/.tmp pulita)
+- Manca uno strumento per eliminare file: arriva con v0.12 (delete_path).
 - Journal di rollback Mac: operazioni dei collaudi su file rimossi (innocue).
 - Sessioni = token per client cooperanti; altri programmi non rispettano i lock.
 
