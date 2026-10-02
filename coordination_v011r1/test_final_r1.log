@@ -1,0 +1,103 @@
+test_audit_failure_does_not_mask_result (test_work_core.AgentCore.test_audit_failure_does_not_mask_result) ... work audit failed request_id=73a88382c2a94083863604307b940a00
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-Main-py/a32d2fbd-49b4-5438-8710-0073fb5223fc/scratchpad/ck/coordination_v011r1/mac_agent.py", line 248, in dispatch
+    try:self.work_sessions.audit(identity,op,ok,rid)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+BlockingIOError
+ok
+test_authenticated_write_read_rollback_and_legacy_write_refused (test_work_core.AgentCore.test_authenticated_write_read_rollback_and_legacy_write_refused) ... ok
+test_close_cancels_search_and_releases_locks (test_work_core.AgentCore.test_close_cancels_search_and_releases_locks) ... ok
+test_durable_audit_contains_session_id_not_secret (test_work_core.AgentCore.test_durable_audit_contains_session_id_not_secret) ... ok
+test_expiry_reaps_before_accepting_new_lock (test_work_core.AgentCore.test_expiry_reaps_before_accepting_new_lock) ... ok
+test_foreign_disable_refused_close_revokes_own_shell (test_work_core.AgentCore.test_foreign_disable_refused_close_revokes_own_shell) ... ok
+test_search_results_private_between_same_oauth_chats (test_work_core.AgentCore.test_search_results_private_between_same_oauth_chats) ... ok
+test_shell_requires_whole_workspace_lock_and_separate_identity (test_work_core.AgentCore.test_shell_requires_whole_workspace_lock_and_separate_identity) ... ok
+test_schema_additive_and_idempotent (test_work_core.Schema.test_schema_additive_and_idempotent) ... ok
+test_case_and_unicode_alias_overlap (test_work_core.SessionCore.test_case_and_unicode_alias_overlap) ... ok
+test_corrupt_store_and_symlink_fail_closed (test_work_core.SessionCore.test_corrupt_store_and_symlink_fail_closed) ... ok
+test_foreign_lock_release_refused_and_renew_bounded (test_work_core.SessionCore.test_foreign_lock_release_refused_and_renew_bounded) ... ok
+test_lock_expiry_and_clock_rollback (test_work_core.SessionCore.test_lock_expiry_and_clock_rollback) ... ok
+test_move_checks_both_paths_and_reentrant_provider (test_work_core.SessionCore.test_move_checks_both_paths_and_reentrant_provider) ... ok
+test_outside_and_symlink_locks_refused (test_work_core.SessionCore.test_outside_and_symlink_locks_refused) ... ok
+test_prefix_overlap_and_component_boundary (test_work_core.SessionCore.test_prefix_overlap_and_component_boundary) ... ok
+test_read_only_transaction_does_not_rewrite_state (test_work_core.SessionCore.test_read_only_transaction_does_not_rewrite_state) ... ok
+test_restart_preserves_lock_and_no_plain_tokens (test_work_core.SessionCore.test_restart_preserves_lock_and_no_plain_tokens) ... ok
+test_same_oauth_distinct_sessions_cannot_impersonate (test_work_core.SessionCore.test_same_oauth_distinct_sessions_cannot_impersonate) ... ok
+test_session_expiry_and_reboot (test_work_core.SessionCore.test_session_expiry_and_reboot) ... ok
+test_write_requires_lock_and_rollback_is_protected (test_work_core.SessionCore.test_write_requires_lock_and_rollback_is_protected) ... ok
+test_glob (test_search.Schema.test_glob) ... ok
+test_tools_unique_and_machines (test_search.Schema.test_tools_unique_and_machines) ... ok
+test_active_search_blocks_writes (test_search.Searches.test_active_search_blocks_writes) ... ok
+test_binary_and_large_skip (test_search.Searches.test_binary_and_large_skip) ... ok
+test_cancel_before_worker_starts_releases_guard (test_search.Searches.test_cancel_before_worker_starts_releases_guard) ... ok
+test_capacity_and_expiration (test_search.Searches.test_capacity_and_expiration) ... ok
+test_depth_truncation_does_not_stop_siblings (test_search.Searches.test_depth_truncation_does_not_stop_siblings) ... ok
+test_disconnect_cancels_and_clears (test_search.Searches.test_disconnect_cancels_and_clears) ... ok
+test_entry_budget (test_search.Searches.test_entry_budget) ... ok
+test_existing_exclusive_lock_blocks_search (test_search.Searches.test_existing_exclusive_lock_blocks_search) ... ok
+test_filename_glob_and_filter (test_search.Searches.test_filename_glob_and_filter) ... ok
+test_filename_replaced_with_link_before_read (test_search.Searches.test_filename_replaced_with_link_before_read) ... ok
+test_hidden_and_protected (test_search.Searches.test_hidden_and_protected) ... ok
+test_limit_results (test_search.Searches.test_limit_results) ... ok
+test_links_and_special_files_not_read (test_search.Searches.test_links_and_special_files_not_read) ... ok
+test_literal_punctuation (test_search.Searches.test_literal_punctuation) ... ok
+test_no_outside_traversal (test_search.Searches.test_no_outside_traversal) ... ok
+test_owner_isolation (test_search.Searches.test_owner_isolation) ... ok
+test_page_stability (test_search.Searches.test_page_stability) ... ok
+test_pagination_validation (test_search.Searches.test_pagination_validation) ... ok
+test_read_budget (test_search.Searches.test_read_budget) ... ok
+test_regular_read_detects_change (test_search.Searches.test_regular_read_detects_change) ... ok
+test_response_budget_and_long_line (test_search.Searches.test_response_budget_and_long_line) ... ok
+test_root_replaced (test_search.Searches.test_root_replaced) ... ok
+test_symlink_requested_directory (test_search.Searches.test_symlink_requested_directory) ... ok
+test_text_casefold_and_context (test_search.Searches.test_text_casefold_and_context) ... ok
+test_timeout (test_search.Searches.test_timeout) ... ok
+test_validation (test_search.Searches.test_validation) ... ok
+test_launcher_passes_exact_source_to_root_bootstrap (test_mac_activation.MacUpgrade.test_launcher_passes_exact_source_to_root_bootstrap) ... ok
+test_other_dedicated_process_blocks_stop (test_mac_activation.MacUpgrade.test_other_dedicated_process_blocks_stop) ... ok
+test_package_matches_tested_agent_and_dependencies (test_mac_activation.MacUpgrade.test_package_matches_tested_agent_and_dependencies) ... ok
+test_plist_change_refused_before_any_stop (test_mac_activation.MacUpgrade.test_plist_change_refused_before_any_stop) ... ok
+test_restore_prevalidation_does_not_modify_files (test_mac_activation.MacUpgrade.test_restore_prevalidation_does_not_modify_files) ... ok
+test_root_bootstrap_does_not_overwrite_different_installer (test_mac_activation.MacUpgrade.test_root_bootstrap_does_not_overwrite_different_installer) ... ok
+test_wrong_uid_refused (test_mac_activation.MacUpgrade.test_wrong_uid_refused) ... ok
+test_zombies_are_not_live_workers (test_mac_activation.MacUpgrade.test_zombies_are_not_live_workers) ... ok
+test_already_unloaded_daemon_needs_no_bootout (test_mac_activation.RestartRecovery.test_already_unloaded_daemon_needs_no_bootout) ... ok
+test_delayed_bootout_waits_for_job_and_processes (test_mac_activation.RestartRecovery.test_delayed_bootout_waits_for_job_and_processes) ... ok
+test_existing_backup_is_never_reused (test_mac_activation.RestartRecovery.test_existing_backup_is_never_reused) ... ok
+test_intact_original_sources_can_pass_with_service_offline (test_mac_activation.RestartRecovery.test_intact_original_sources_can_pass_with_service_offline) ... ok
+test_loaded_without_pid_is_stopped_when_account_idle (test_mac_activation.RestartRecovery.test_loaded_without_pid_is_stopped_when_account_idle) ... ok
+test_new_modules_absent_before_and_removed_on_rollback (test_mac_activation.RestartRecovery.test_new_modules_absent_before_and_removed_on_rollback) ... ok
+test_only_explicit_missing_service_counts_as_unloaded (test_mac_activation.RestartRecovery.test_only_explicit_missing_service_counts_as_unloaded) ... ok
+test_partial_write_failure_restores_original_before_starting (test_mac_activation.RestartRecovery.test_partial_write_failure_restores_original_before_starting) ... ok
+test_probe_failure_prevents_bootout (test_mac_activation.RestartRecovery.test_probe_failure_prevents_bootout) ... ok
+test_reconnect_failure_restores_original_and_restarts_old_version (test_mac_activation.RestartRecovery.test_reconnect_failure_restores_original_and_restarts_old_version) ... ok
+test_reconnect_requires_fresh_correct_uid_version_and_pid (test_mac_activation.RestartRecovery.test_reconnect_requires_fresh_correct_uid_version_and_pid) ... ok
+test_service_pid_is_parsed (test_mac_activation.RestartRecovery.test_service_pid_is_parsed) ... ok
+test_start_refuses_loaded_service (test_mac_activation.RestartRecovery.test_start_refuses_loaded_service) ... ok
+test_stop_timeout_does_not_claim_success (test_mac_activation.RestartRecovery.test_stop_timeout_does_not_claim_success) ... ok
+test_successful_recovery_installs_and_verifies_connection (test_mac_activation.RestartRecovery.test_successful_recovery_installs_and_verifies_connection) ... {
+  "status": "active",
+  "checks": [
+    "passed"
+  ],
+  "uid": 5000
+}
+ok
+test_unloaded_job_with_lingering_process_waits (test_mac_activation.RestartRecovery.test_unloaded_job_with_lingering_process_waits) ... ok
+test_apply_failure_rolls_back (test_gateway_activation.GatewayActivation.test_apply_failure_rolls_back) ... ok
+test_check_pins_live_sources_and_imports_new_catalog (test_gateway_activation.GatewayActivation.test_check_pins_live_sources_and_imports_new_catalog) ... ok
+test_existing_backup_blocks_apply (test_gateway_activation.GatewayActivation.test_existing_backup_blocks_apply) ... ok
+test_install_then_rollback_restores_exact_bytes_and_removes_new_module (test_gateway_activation.GatewayActivation.test_install_then_rollback_restores_exact_bytes_and_removes_new_module) ... ok
+
+----------------------------------------------------------------------
+Ran 77 tests in 0.362s
+
+OK

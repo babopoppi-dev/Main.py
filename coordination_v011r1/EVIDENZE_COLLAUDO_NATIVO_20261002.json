@@ -1,0 +1,70 @@
+{
+ "date": "2026-10-02",
+ "machine": "mac_mio",
+ "channel": "MCP Andrea (no Desktop Commander)",
+ "environment": {
+  "os": "macOS-12.7.6-x86_64",
+  "python": "3.9.6",
+  "uid": 5000,
+  "context": "isolated seatbelt shell of agent 0.10-personal-search-1, workspace .tmp/coord_v011r1_native",
+  "operational_agent_replaced": false,
+  "rental_mac_touched": false
+ },
+ "transfer": {
+  "method": "write_file (journaled) of 15 sources; shasum -a 256 on Mac",
+  "result": "15/15 hashes match; test_work_core.py and native_probe.py carry literal U+00E9 / E+U+0301 instead of escapes (same Python strings)",
+  "mac_hashes": {
+   "work_sessions.py": "707604271f3570ec6f03a42e68c19430200623cfad341691fef620522b0f0f67",
+   "mac_agent.py": "f099f621d41b17f834105393c3161cc5428681f8ddf22b07dcdafb542e6d0104",
+   "work_schema.py": "9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9",
+   "test_work_core.py(literal chars)": "8041d203ba7a9950ef39987ad432f33124a05155f777abf0eeef19c30dc3c8f6",
+   "native_probe.py(literal chars)": "3de66f01d604e981e8d3fa555d5fee52853a0cf15027565bd8ff95871bfa9c7e"
+  }
+ },
+ "findings_before_fix": {
+  "sysctl_binary_in_sandbox": "/usr/sbin/sysctl: Operation not permitted (seatbelt allows only /bin,/usr/bin exec)",
+  "sysctlbyname_in_sandbox": "kern.bootsessionuuid and kern.boottime readable (sysctl-read allowed)",
+  "CLOCK_MONOTONIC_RAW": "available on Python 3.9.6"
+ },
+ "native_probe": {
+  "boot_identity_stable": true,
+  "clock_raw_delta_s": 0.292,
+  "volume_case_insensitive": true,
+  "checks": {
+   "nfd_case_alias_conflict": "ok",
+   "locked_write": "ok",
+   "foreign_write_refused": "ok",
+   "foreign_rollback_refused": "ok",
+   "no_rewrite_on_read": "ok",
+   "state_mode_0600": "ok",
+   "no_token_in_state": "ok",
+   "restart_keeps_session": "ok",
+   "restart_keeps_lock": "ok",
+   "rollback_own": "ok",
+   "close_releases_lock": "ok",
+   "closed_session_refused": "ok"
+  },
+  "all_ok": true
+ },
+ "native_unittest_test_work_core": {
+  "ran": 21,
+  "passed": 20,
+  "errors": 1,
+  "error": "test_move_checks_both_paths_and_reentrant_provider: os.link PermissionError [Errno 1] from seatbelt rule (deny file-link) of the test shell; the lock conflict assertion before the link passed. The agent itself runs unsandboxed; the installer preflight re-runs this suite as UID5000 outside the seatbelt.",
+  "expected_log_line": "work audit failed request_id=... (deliberate BlockingIOError in test_audit_failure_does_not_mask_result)"
+ },
+ "cleanup": {
+  "removed": [
+   "workspace/.tmp/coord_v011r1_native",
+   "workspace/.tmp/coordprobe-n60zibx1",
+   "workspace/Library (Python bytecode cache created at 00:06 by the first test run, HOME=workspace)"
+  ],
+  "workspace_after": [
+   ".tmp (only pre-existing xcrun_db)"
+  ],
+  "shell": "disabled",
+  "active_locks": [],
+  "journal_note": "16 write_file operations remain in the agent rollback journal; their files were removed, so those rollbacks would now refuse (conflict)."
+ },
+ "other_sessions_seen": "chatgpt:QZR97poU743om5w8iL58i68w polled who_is_working only (read-only) during the test; no locks or shell held by others."
+}

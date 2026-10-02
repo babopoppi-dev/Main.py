@@ -1,0 +1,75 @@
+MCP ANDREA — COORDINAMENTO v0.11 r1: COLLAUDO NATIVO E ATTIVAZIONE PREPARATA
+02/10/2026. NON INSTALLATO. Nessun servizio Mac o VPS modificato.
+coordination_v011/ resta intatto come evidenza della versione precedente.
+
+CORREZIONI RISPETTO A v0.11 (solo il blocco di coordinamento)
+1. work_sessions.boot_identity su macOS: kern.bootsessionuuid via sysctlbyname
+   (prima: binario /usr/sbin/sysctl + kern.boottime). kern.boottime viene spostato
+   dai passi di orologio (NTP) e avrebbe invalidato tutte le sessioni; il binario
+   sysctl e inoltre vietato nel seatbelt (verificato sul Mac).
+2. work_sessions.transaction scrive state.json solo se lo stato cambia. Prima il
+   watchdog (ogni 0,5 s) e ogni lettura facevano write+fsync continui.
+3. mac_agent.dispatch: un errore dell'audit durevole viene registrato nel log ma
+   non sostituisce piu l'esito della richiesta (una scrittura riuscita poteva
+   risultare fallita e venire ripetuta). VERSION 0.11-personal-work-2.
+Aggiunti 2 test (49 in tutto per core + ricerca).
+
+COLLAUDO NATIVO (Mac personale, UID5000, area .tmp, agent 0.10.1 non sostituito)
+- macOS 12.7.6 Intel, Python 3.9.6, volume case-insensitive.
+- 15/15 sorgenti verificati con SHA256 sul Mac.
+- native_probe.py: 12/12 controlli OK con orologio, boot id e filesystem reali.
+- test_work_core: 20/21 OK. L'unico errore e os.link negato dalla regola
+  (deny file-link) della shell di prova, non dal coordinamento. Il preflight
+  dell'installer ripete la suite come UID5000 fuori dal seatbelt.
+- Pulizia completata, shell disattivata, nessun lock. Dettagli:
+  EVIDENZE_COLLAUDO_NATIVO_20261002.json.
+
+TEST LOCALI: test_final_r1.log, 77/77 OK
+(core+dispatcher 21, ricerca 28, installer Mac 24, script gateway 4).
+
+ATTIVAZIONE PREPARATA (ordine obbligatorio; nulla eseguito)
+Passo 1, gateway VPS, solo catalogo (cg_tools.py + nuovo work_schema.py):
+  upgrade_gateway_coordination_v011r1_20261002.py
+  sha256 e090ae3604e3cf2dde98fbb87277d7a9925fb8f508fd80306682b9e9be6abc55
+  a) admin_request con ADMIN_REQUEST_1_deposito_e_check_gateway.txt
+     (deposita lo script, ne verifica l'hash, esegue --check). Approvazione Telegram.
+  b) admin_request con ADMIN_REQUEST_2_apply_gateway.txt. Approvazione Telegram.
+     --apply: verifica hash live (cg_tools a6a9f4fa..., cg_mcp f8a86b9a...),
+     VPS e mac_mio inattivi, importa il nuovo catalogo fuori da /opt, backup in
+     /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002,
+     riavvia SOLO central-mcp-gateway-test.service, verifica catalogo e
+     riconnessione di vps e mac_mio; rollback automatico se un controllo fallisce.
+  Additivo: con il Mac ancora 0.10.1 nulla cambia per i client esistenti.
+  Rollback manuale: ADMIN_REQUEST_rollback_gateway.txt (Telegram).
+Passo 2, ricaricare il catalogo strumenti nei client (Claude/ChatGPT) e
+  verificare che work_session e work_lock compaiano.
+Passo 3, Mac personale, procedura locale (sudo di Andrea, NON Telegram):
+  copiare upgrade_mac_coordination_v011r1_20261002.py in
+  /Users/babo/MCPAndreaCoordV011_20261002/ (proprietario babo, non scrivibile da
+  altri) e aprire Attiva_Coordinamento_MCP_Andrea.command.
+  sha256 installer ed1ad0b9db2f5f82e519000623fbe2f23905e22284852febc971f143f140d97b
+  --check senza privilegi, poi --apply con sudo: verifica plist, UID5000 non
+  admin, hash live (mac_agent a0431388..., 12 dipendenze), preflight UID5000
+  (test_work_core + test_search) fuori dal seatbelt, backup in
+  /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002, stop del solo
+  daemon, installazione di mac_agent.py, work_sessions.py, work_schema.py,
+  selftest UID5000 (mac_coordination_selftest.py) e riconnessione come
+  0.11-personal-work-2. Errore -> ripristino automatico 0.10.1.
+  Rollback manuale: stesso installer con --rollback (sudo locale).
+  Backup precedente intatto: /Library/MCPAndreaMacMioV09/backup/search_v010_20261002.
+Passo 4, verifica tramite MCP Andrea: list_machines (agent_version,
+  coordination_version 0.11.0), una work_session con lock su una cartella di
+  prova, scrittura, rifiuto da seconda sessione, rollback, chiusura, nessun lock.
+  Solo dopo questa verifica l'attivazione si puo dire conclusa.
+
+EFFETTO DOPO IL PASSO 3
+Sul Mac scritture, rollback, ricerche e shell richiedono work_session_id e
+work_session_token; la shell richiede il lock dell'intera workspace. Letture e
+sw_vers restano senza sessione. Client non aggiornati ricevono PermissionError.
+
+LIMITI INVARIATI
+- Sessioni = capacita esplicite per client cooperanti, non ID chat certificati.
+- Altri editor o connettori che scrivono direttamente non rispettano i lock.
+- Coordinamento non integrato nell'agent VPS (passo successivo separato).
+- Le dimensioni massime accettate da admin_request per il deposito (~21 KB)
+  non sono documentate: se rifiutato, dividere il deposito in parti.

@@ -1,0 +1,1 @@
+echo "e090ae3604e3cf2dde98fbb87277d7a9925fb8f508fd80306682b9e9be6abc55  /opt/central-mcp-gateway/upgrade_gateway_coordination_v011r1_20261002.py" | sha256sum -c - && /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_gateway_coordination_v011r1_20261002.py --rollback
