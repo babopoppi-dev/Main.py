@@ -1,0 +1,61 @@
+{
+ "date": "2026-10-02/03",
+ "result": "ACTIVE on gateway and mac_mio; verified via MCP Andrea",
+ "gateway": {
+  "admin_requests": {
+   "deposit": "a8b0f69d2a074f2882801b402cbb5a8a exit0",
+   "check": "292dd24fb61b4d07b7c6fbba26119874 exit0 helper_sha256 2204193c45aa44afed384b0e4f49376b705e712809a68922818e597aea3607e5 catalog_tools 25",
+   "apply": "c2af4db3b74d4608bfc5531ab269d651 activation_scheduled",
+   "receipt_read": "e697a6357d2c44c98567568f63d7cb70"
+  },
+  "receipt": {
+   "status": "active",
+   "checks": [
+    "catalog with work tools",
+    "vps baseline",
+    "vps and mac_mio idle"
+   ],
+   "catalog_tools": 25,
+   "backup": "/opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002",
+   "hashes": {
+    "cg_tools.py": "8282e608be40003e9475dc789ddf7d90e8676aa88776d9f8b3923b33087d02a1",
+    "work_schema.py": "9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9"
+   },
+   "agents_touched": false
+  }
+ },
+ "mac": {
+  "method": "installer deposited by MCP Andrea write_file into workspace/.tmp, copied by Andrea with local sudo to /Users/babo/MCPAndreaCoordV011_20261002, run locally",
+  "installer_sha256": "622d1d676e91a2b57e4089b84f617173862cc92953026077a8c45672bd3f7291",
+  "launcher_sha256": "6d389845e7c818777b376669938deda7b3314c70e080a6fc5300d8fe45412adb",
+  "failed_attempts_before_fix": "2x preflight 'dedicated account busy' (no change made): /usr/sbin/distnoted agent (UID5000, ppid 1) started by macOS on demand; installer now tolerates exactly that process",
+  "list_machines": {
+   "agent_version": "0.11-personal-work-2",
+   "coordination_version": "0.11.0",
+   "work_session_required": true,
+   "capabilities_added": [
+    "work_lock",
+    "work_session"
+   ]
+  },
+  "selftest_audit": "who_is_working.recent_work_operations shows selftest A/B: unauthenticated and unlocked create_directory refused, lock acquire, foreign descendant lock refused, write ok, foreign write and rollback refused, search private, sw_vers, rollbacks, sessions closed",
+  "live_checks_from_old_catalog": {
+   "write_file without session": "PermissionError: valid work session credentials required",
+   "get_file_info": "ok",
+   "sw_vers": "ok macOS 12.7.6"
+  },
+  "state_after": {
+   "work_sessions": [],
+   "work_locks": [],
+   "shell_enabled": false
+  },
+  "backup": "/Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002 (created by installer)"
+ },
+ "not_verified_here": "work_session/work_lock calls from a client: this chat's tool catalog predates the gateway update",
+ "leftovers": [
+  "mac workspace/.tmp: installer + launcher (removal now needs a work session)",
+  "/Users/babo/MCPAndreaCoordV011_20261002 (installer copy)",
+  "vps workspace: upgrade_gateway script copy",
+  "/opt gateway helper script (root, 0555)"
+ ]
+}

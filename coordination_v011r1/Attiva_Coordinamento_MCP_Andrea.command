@@ -5,7 +5,7 @@ print 'In caso di errore ripristina automaticamente la versione 0.10.1.'
 print 'Quando richiesta, inserisci la password di accesso del tuo Mac personale.'
 /usr/bin/python3 -I -B -c 'import os,stat,hashlib,sys
 path='"'"'/Users/babo/MCPAndreaCoordV011_20261002/upgrade_mac_coordination_v011r1_20261002.py'"'"'
-expected='"'"'ed1ad0b9db2f5f82e519000623fbe2f23905e22284852febc971f143f140d97b'"'"'
+expected='"'"'622d1d676e91a2b57e4089b84f617173862cc92953026077a8c45672bd3f7291'"'"'
 fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
 with os.fdopen(fd,'"'"'rb'"'"') as f:
  st=os.fstat(f.fileno())
@@ -22,7 +22,7 @@ exec(compile(raw,path,'"'"'exec'"'"'),context)
 if [[ $? == 0 ]]; then
   /usr/bin/sudo /usr/bin/python3 -I -B -c 'import os,stat,hashlib,sys
 path='"'"'/Users/babo/MCPAndreaCoordV011_20261002/upgrade_mac_coordination_v011r1_20261002.py'"'"'
-expected='"'"'ed1ad0b9db2f5f82e519000623fbe2f23905e22284852febc971f143f140d97b'"'"'
+expected='"'"'622d1d676e91a2b57e4089b84f617173862cc92953026077a8c45672bd3f7291'"'"'
 fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
 with os.fdopen(fd,'"'"'rb'"'"') as f:
  st=os.fstat(f.fileno())

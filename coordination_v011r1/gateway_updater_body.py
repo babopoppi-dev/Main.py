@@ -22,9 +22,9 @@ def validate():
 
 def load_package():
     global PAYLOAD
-    raw=json.loads(zlib.decompress(base64.b64decode(PACKAGE,validate=True)))
-    PAYLOAD={n:base64.b64decode(b,validate=True) for n,b in raw.items()}
-    if set(PAYLOAD)!=set(ORIGINAL):raise RuntimeError('unexpected payload')
+    PAYLOAD={n:src.encode() for n,src in SOURCES.items()}
+    if set(PAYLOAD)!=set(ORIGINAL) or {n:sha(b) for n,b in PAYLOAD.items()}!=PAYLOAD_SHA:
+        raise RuntimeError('unexpected payload')
     for name,data in PAYLOAD.items():compile(data,name,'exec')
 
 
@@ -77,14 +77,22 @@ def install(manifest):
 
 def main(action):
     load_package()
-    if os.getuid()!=0:raise RuntimeError('run through admin_request after Telegram approval')
-    os.umask(0o077)
-    fd=os.open('/run/mcp-andrea-coordination-gateway.lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)
+    if os.getuid()!=0 or os.geteuid()!=0 or Path(__file__).resolve()!=SELF:
+        raise RuntimeError('installed root helper required; run through admin_request after Telegram approval')
+    trusted_directory(BASE);own=sha(read(SELF));os.umask(0o077)
+    fd=os.open('/run/lock/mcp-andrea-files-maintenance.lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)
     try:
         fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
         if action=='--check':
-            result=validate();result['catalog_tools']=preflight();print(json.dumps(result,indent=2));return
+            result=validate();result['catalog_tools']=preflight();result['helper_sha256']=own
+            print(json.dumps(result,indent=2));return
         if action=='--apply':
+            # Detach from the approval runner before the gateway restarts.
+            validate();preflight()
+            run(['systemd-run','--unit=central-mcp-coordination-v011r1-20261002','--on-active=5s','--collect',
+                 PYTHON,'-I','-B',str(SELF),'--activate'])
+            record('activation_scheduled');print(json.dumps({'status':'activation_scheduled','receipt':str(RECEIPT)}));return
+        if action=='--activate':
             validate();count=preflight();validate()
             manifest=backup();installed=False
             try:

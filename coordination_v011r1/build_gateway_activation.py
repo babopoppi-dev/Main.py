@@ -19,7 +19,12 @@ deps={'cg_mcp.py':'f8a86b9a8424f9e6a0bc335f2951c8e9233750b62e1181379d9c6be3ebb04
       'search_schema.py':hashlib.sha256((prev/'search_schema.py').read_bytes()).hexdigest()}
 assert hashlib.sha256((P.parent/'shell_v08'/'cg_mcp.py').read_bytes()).hexdigest()==deps['cg_mcp.py']
 for n in ('file_schema.py','search_schema.py'):assert (P/n).read_bytes()==(prev/n).read_bytes(),n
-package=base64.b64encode(zlib.compress(json.dumps({n:base64.b64encode((P/n).read_bytes()).decode() for n in names}).encode(),9)).decode()
+sources={}
+for n in names:
+    text=(P/n).read_text()
+    assert "'''" not in text and '\\' not in text and 'MCPEOF' not in text,n
+    sources[n]=text
+payload_sha={n:hashlib.sha256((P/n).read_bytes()).hexdigest() for n in names}
 STAMP='coordination_v011r1_20261002'
 header='''#!/usr/bin/env python3
 """Gateway catalog activation for coordination v0.11 r1. Telegram-approved admin_request only."""
@@ -33,7 +38,7 @@ GATEWAY='central-mcp-gateway-test.service'
 PYTHON='/usr/bin/python3'
 PAYLOAD={}
 '''%{'s':STAMP}
-header+='ORIGINAL='+repr(original)+'\nDEPENDENCIES='+repr(deps)+'\nPACKAGE='+repr(package)+'\n'
+header+='ORIGINAL='+repr(original)+'\nDEPENDENCIES='+repr(deps)+'\nPAYLOAD_SHA='+repr(payload_sha)+'\nSOURCES={\n'+''.join(repr(n)+": r'''"+t+"''',\n" for n,t in sources.items())+'}\n'
 source=(P/'upgrade_vps_template.py').read_text()
 reuse={'sha','trusted_directory','read','digest','atomic','record','run','rpc','call','backup','restore'}
 functions='\n\n'.join(ast.get_source_segment(source,node) for node in ast.parse(source).body if isinstance(node,ast.FunctionDef) and node.name in reuse)
@@ -41,14 +46,15 @@ target=P/('upgrade_gateway_'+STAMP+'.py')
 target.write_text(header+'\n\n'+functions+'\n\n'+(P/'gateway_updater_body.py').read_text())
 compile(target.read_bytes(),str(target),'exec')
 data=target.read_bytes();digest=hashlib.sha256(data).hexdigest()
-b64=base64.b64encode(data).decode()
 remote='/opt/central-mcp-gateway/'+target.name
-deposit=('set -e; test ! -e '+remote+'; umask 022; '
-         "printf %s '"+b64+"' | base64 -d > "+remote+'.tmp; '
-         'echo "'+digest+'  '+remote+'.tmp" | sha256sum -c -; '
-         'chown root:root '+remote+'.tmp; chmod 0500 '+remote+'.tmp; mv '+remote+'.tmp '+remote+'; '
-         '/usr/bin/python3 -I -B '+remote+' --check')
-(P/'ADMIN_REQUEST_1_deposito_e_check_gateway.txt').write_text(deposit+'\n')
-(P/'ADMIN_REQUEST_2_apply_gateway.txt').write_text('echo "'+digest+'  '+remote+'" | sha256sum -c - && /usr/bin/python3 -I -B '+remote+' --apply\n')
-(P/'ADMIN_REQUEST_rollback_gateway.txt').write_text('echo "'+digest+'  '+remote+'" | sha256sum -c - && /usr/bin/python3 -I -B '+remote+' --rollback\n')
+staging='/var/lib/central-mcp-vps-agent-test/workspace/'+target.name
+cmds={'ADMIN_REQUEST_1_deposito_gateway.txt':'install -o root -g root -m 0555 '+staging+' '+remote,
+      'ADMIN_REQUEST_2_check_gateway.txt':'/usr/bin/python3 -I -B '+remote+' --check',
+      'ADMIN_REQUEST_3_apply_gateway.txt':'/usr/bin/python3 -I -B '+remote+' --apply',
+      'ADMIN_REQUEST_rollback_gateway.txt':'/usr/bin/python3 -I -B '+remote+' --rollback'}
+import re
+for name,cmd in cmds.items():
+    assert re.fullmatch(r"[A-Za-z0-9_./:=@%+, -]+",cmd) and len(cmd)<=3000,cmd
+    (P/name).write_text(cmd+'\n')
+deposit=cmds['ADMIN_REQUEST_1_deposito_gateway.txt']
 print(json.dumps({'file':target.name,'sha256':digest,'deposit_command_bytes':len(deposit),'original':original},indent=2))

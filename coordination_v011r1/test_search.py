@@ -36,10 +36,10 @@ class Searches(unittest.IsolatedAsyncioTestCase):
         return await self.search.dispatch('get_more_search_results',{'search_id':j['id']},OWNER)
 
     async def test_text_casefold_and_context(self):
-        (self.root/'code.py').write_text('prima\nNEEDLE utf8 è\ndopo\n')
+        (self.root/'code.py').write_text('prima\nNEEDLE utf8 '+chr(0xe8)+'\ndopo\n')
         r=await self.finish(await self.start())
         self.assertEqual(r['status'],'completed');self.assertEqual(r['results'][0]['line'],2)
-        self.assertEqual(r['results'][0]['text'],'prima\nNEEDLE utf8 è\ndopo')
+        self.assertEqual(r['results'][0]['text'],'prima\nNEEDLE utf8 '+chr(0xe8)+'\ndopo')
 
     async def test_filename_glob_and_filter(self):
         for n in ('User.py','user.js','test.txt'):(self.root/n).write_text('')
@@ -78,7 +78,7 @@ class Searches(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(r['skipped']['protected_or_changed_path'],1)
 
     async def test_binary_and_large_skip(self):
-        (self.root/'null').write_bytes(b'needle\0');(self.root/'bad').write_bytes(b'needle\xff')
+        (self.root/'null').write_bytes(b'needle\0');(self.root/'bad').write_bytes(b'needle'+bytes([255]))
         (self.root/'big').write_bytes(b'a'*(self.search.FILE_BYTES+1))
         r=await self.finish(await self.start())
         self.assertEqual(r['total_results'],0);self.assertEqual(r['skipped']['binary_file'],2)
@@ -119,7 +119,7 @@ class Searches(unittest.IsolatedAsyncioTestCase):
 
     async def test_response_budget_and_long_line(self):
         self.search.RESULT_BYTES=9000
-        (self.root/'big').write_text(('needle'+'è'*4000+'\n')*10)
+        (self.root/'big').write_text(('needle'+chr(0xe8)*4000+'\n')*10)
         r=await self.finish(await self.start(context_lines=0))
         self.assertIn('result_bytes',r['limits_reached'])
         self.assertTrue(r['results'][0]['text_truncated'])

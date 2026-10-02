@@ -73,3 +73,27 @@ LIMITI INVARIATI
 - Coordinamento non integrato nell'agent VPS (passo successivo separato).
 - Le dimensioni massime accettate da admin_request per il deposito (~21 KB)
   non sono documentate: se rifiutato, dividere il deposito in parti.
+
+AGGIORNAMENTO 03/10/2026 — ATTIVAZIONE ESEGUITA E VERIFICATA
+(La sezione "ATTIVAZIONE PREPARATA" sopra descrive il piano; queste sono le
+modifiche reali rispetto a quel piano.)
+- Gateway: admin_request accetta max 3000 caratteri, senza shell. Lo script
+  e stato depositato con write_file nella workspace VPS, verificato con
+  sha256sum e copiato con install (Telegram). --check e --apply (Telegram);
+  --apply pianifica --activate in un job systemd separato. Ricevuta: active,
+  25 strumenti, backup /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002.
+  Script finale sha256 2204193c45aa44afed384b0e4f49376b705e712809a68922818e597aea3607e5.
+- Mac: gli allegati della chat non si scaricavano. Installer ricostruito in
+  testo semplice (dipendenze lette da code/ con hash verificato), depositato
+  via MCP Andrea in workspace/.tmp, copiato da Andrea con sudo locale.
+  Due controlli preliminari falliti senza modifiche ('dedicated account busy'
+  per /usr/sbin/distnoted agent avviato da macOS): l'installer ora tollera solo
+  quel processo (ppid 1, percorso e argomenti esatti).
+  Installer finale sha256 622d1d676e91a2b57e4089b84f617173862cc92953026077a8c45672bd3f7291,
+  launcher 6d389845e7c818777b376669938deda7b3314c70e080a6fc5300d8fe45412adb.
+- Verifica: list_machines mac_mio 0.11-personal-work-2, coordination 0.11.0;
+  selftest UID5000 nel registro durevole; write_file senza sessione rifiutato,
+  letture e sw_vers ok; nessuna sessione, lock o shell attivi.
+- Test locali: 79/79 (test_final_r1.log). Evidenze: EVIDENZE_ATTIVAZIONE_20261003.json.
+- Non ancora provato: work_session/work_lock da un client con catalogo nuovo
+  (serve una chat nuova o il ricaricamento del connettore).

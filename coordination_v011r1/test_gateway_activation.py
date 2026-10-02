@@ -46,11 +46,18 @@ class GatewayActivation(unittest.TestCase):
         self.assertEqual((self.base/'cg_tools.py').read_bytes(),before)
         self.assertFalse((self.base/'work_schema.py').exists())
     def test_apply_failure_rolls_back(self):
-        with patch.object(g,'validate'),patch.object(g,'restart'),patch.object(g,'smoke',side_effect=RuntimeError('boom')),patch.object(g.os,'getuid',return_value=0):
-            with self.assertRaisesRegex(RuntimeError,'boom'):g.main('--apply')
+        with patch.object(g,'validate'),patch.object(g,'restart'),patch.object(g,'smoke',side_effect=RuntimeError('boom')),patch.object(g.os,'getuid',return_value=0),patch.object(g,'SELF',Path(g.__file__).resolve()):
+            with self.assertRaisesRegex(RuntimeError,'boom'):g.main('--activate')
         self.assertEqual(hashlib.sha256((self.base/'cg_tools.py').read_bytes()).hexdigest(),g.ORIGINAL['cg_tools.py'])
         self.assertFalse((self.base/'work_schema.py').exists())
         self.assertIn('rolled_back',(self.base/'receipt.json').read_text())
+    def test_apply_only_schedules_detached_activation(self):
+        with patch.object(g,'validate'),patch.object(g,'preflight',return_value=20),patch.object(g,'SELF',Path(g.__file__).resolve()),patch.object(g,'run') as run,patch.object(g,'install') as install:
+            g.main('--apply')
+        argv=run.call_args.args[0]
+        self.assertEqual(argv[0],'systemd-run');self.assertEqual(argv[-1],'--activate');install.assert_not_called()
+        self.assertIn('activation_scheduled',(self.base/'receipt.json').read_text())
+
     def test_existing_backup_blocks_apply(self):
         (self.base/'backups'/'pre').mkdir()
         with self.assertRaisesRegex(RuntimeError,'backup already exists'):g.validate()

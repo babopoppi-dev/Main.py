@@ -11,7 +11,56 @@ PYTHON='/usr/bin/python3'
 PAYLOAD={}
 ORIGINAL={'cg_tools.py': 'a6a9f4fa6ce5569fdb7622b957765e8ca1adb052f941b5e750406987e527c519', 'work_schema.py': None}
 DEPENDENCIES={'cg_mcp.py': 'f8a86b9a8424f9e6a0bc335f2951c8e9233750b62e1181379d9c6be3ebb04171', 'file_schema.py': '06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d'}
-PACKAGE='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'
+PAYLOAD_SHA={'cg_tools.py': '8282e608be40003e9475dc789ddf7d90e8676aa88776d9f8b3923b33087d02a1', 'work_schema.py': '9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9'}
+SOURCES={
+'cg_tools.py': r'''TOOLS=[{'name': 'list_machines', 'description': 'List registered machines and online status.', 'inputSchema': {'type': 'object', 'properties': {}, 'additionalProperties': False}}, {'name': 'shell_exec', 'description': 'Execute a command. VPS arbitrary commands need a temporary isolated-shell lease; network is disabled and access is limited to its workspace. Long commands return a session_id; poll shell_session read. Baseline status commands work without enabling.', 'inputSchema': {'type': 'object', 'required': ['machine', 'command'], 'properties': {'machine': {'type': 'string'}, 'command': {'type': 'string'}, 'cwd': {'type': 'string'}, 'timeout': {'type': 'number'}}}}, {'name': 'shell_session', 'description': 'Manage an isolated PTY: start/send/read/stop. Session belongs to its OAuth authorization. VPS allows one active workspace session; disable/expiry stops descendants. Read may return has_more.', 'inputSchema': {'type': 'object', 'required': ['machine', 'action'], 'properties': {'machine': {'type': 'string'}, 'action': {'type': 'string'}, 'session_id': {'type': 'string'}, 'command': {'type': 'string'}, 'data': {'type': 'string'}}}}, {'name': 'read_file', 'description': 'Read file through agent.', 'inputSchema': {'type': 'object', 'required': ['machine', 'path'], 'properties': {'machine': {'type': 'string'}, 'path': {'type': 'string'}, 'max_bytes': {'type': 'integer'}}}}, {'name': 'write_file', 'description': 'Write file with rollback operation id.', 'inputSchema': {'type': 'object', 'required': ['machine', 'path', 'content'], 'properties': {'machine': {'type': 'string'}, 'path': {'type': 'string'}, 'content': {'type': 'string'}}}}, {'name': 'rollback_file', 'description': 'Rollback write operation.', 'inputSchema': {'type': 'object', 'required': ['machine', 'operation_id'], 'properties': {'machine': {'type': 'string'}, 'operation_id': {'type': 'string'}}}}, {'name': 'enable_full_shell', 'description': 'Acquire a temporary shell lease for the authenticated authorization. Available only on machines with verified containment; VPS shell is workspace-only and offline. Multiple chats can share the same authorization.', 'inputSchema': {'type': 'object', 'required': ['machine', 'minutes'], 'properties': {'machine': {'type': 'string'}, 'minutes': {'type': 'integer', 'minimum': 1, 'maximum': 240}}}}, {'name': 'disable_full_shell', 'description': 'Disable temporary shell access and terminate its active sessions and descendants.', 'inputSchema': {'type': 'object', 'required': ['machine'], 'properties': {'machine': {'type': 'string'}}}}, {'name': 'who_is_working', 'description': 'Show active cross-session locks and recent operations on a Mac.', 'inputSchema': {'type': 'object', 'required': ['machine'], 'properties': {'machine': {'type': 'string'}}}}, {'name': 'xcode_list', 'description': 'List the Xcode container and simulators on a Mac.', 'inputSchema': {'type': 'object', 'required': ['machine'], 'properties': {'machine': {'type': 'string'}, 'project': {'type': 'string'}, 'workspace': {'type': 'string'}}}}, {'name': 'xcode_build', 'description': 'Build an Xcode project on a Mac (validated parameters; operation=test for the QA suite).', 'inputSchema': {'type': 'object', 'required': ['machine', 'scheme', 'configuration', 'destination'], 'properties': {'machine': {'type': 'string'}, 'project': {'type': 'string'}, 'workspace': {'type': 'string'}, 'scheme': {'type': 'string'}, 'configuration': {'type': 'string'}, 'destination': {'type': 'string'}, 'operation': {'type': 'string'}, 'action': {'type': 'string'}, 'job_id': {'type': 'string'}, 'result_name': {'type': 'string'}}}}, {'name': 'xcode_test', 'description': 'Run the fixed La Marruca QA tests on a Mac (start/status/artifacts).', 'inputSchema': {'type': 'object', 'required': ['machine', 'project', 'scheme', 'configuration', 'destination'], 'properties': {'machine': {'type': 'string'}, 'project': {'type': 'string'}, 'scheme': {'type': 'string'}, 'configuration': {'type': 'string'}, 'destination': {'type': 'string'}, 'action': {'type': 'string'}, 'job_id': {'type': 'string'}, 'result_name': {'type': 'string'}}}}, {'name': 'admin_request', 'description': 'Request execution of an administrator (root) command on the VPS. The exact command is sent to Andrea on Telegram; it runs only after he approves. Returns a request_id: poll admin_result.', 'inputSchema': {'type': 'object', 'required': ['command', 'reason'], 'properties': {'command': {'type': 'string'}, 'reason': {'type': 'string'}}}}, {'name': 'admin_result', 'description': 'Get status/output of an admin_request (waiting, done, rejected, expired, error).', 'inputSchema': {'type': 'object', 'required': ['request_id'], 'properties': {'request_id': {'type': 'string'}}}}]
+NAMES={x["name"] for x in TOOLS}
+
+from file_schema import install_schema
+TOOLS=install_schema(TOOLS)
+NAMES={x['name'] for x in TOOLS}
+
+from search_schema import SEARCH_TOOLS, SEARCH_NAMES
+TOOLS = [t for t in TOOLS if t['name'] not in SEARCH_NAMES] + SEARCH_TOOLS
+NAMES = {t['name'] for t in TOOLS}
+
+from work_schema import install_schema as install_work_schema
+TOOLS = install_work_schema(TOOLS)
+NAMES = {t["name"] for t in TOOLS}
+''',
+'work_schema.py': r'''"""Explicit work sessions, separate from terminal session IDs."""
+import copy
+
+AUTH = {'work_session_id': {'type':'string','pattern':'^[a-f0-9]{32}$'},
+        'work_session_token': {'type':'string','minLength':43,'maxLength':43}}
+MACHINE = {'type':'string','enum':['mac_mio','vps','mac_noleggio']}
+MINUTES = {'type':'integer','minimum':1,'maximum':240}
+WORK_TOOLS = [
+ {'name':'work_session','description':'Open, renew or close a logical work session. Open once per chat; retain the returned id and capability token privately. Closing cancels its searches and shell before releasing locks. Distinct chats must not share the token.',
+  'inputSchema':{'type':'object','additionalProperties':False,'required':['machine','action'],
+   'properties':{'machine':MACHINE,'action':{'type':'string','enum':['open','renew','close']},
+                 'label':{'type':'string','minLength':1,'maxLength':80},'minutes':MINUTES,**AUTH}}},
+ {'name':'work_lock','description':'Acquire, renew or release a durable exclusive path reservation. Acquire a covering lock before writes; a whole-workspace lock is required for the isolated shell. Conflicts name the owning work session. No lock stealing.',
+  'inputSchema':{'type':'object','additionalProperties':False,'required':['machine','action','work_session_id','work_session_token'],
+   'properties':{'machine':MACHINE,'action':{'type':'string','enum':['acquire','renew','release']},
+                 'path':{'type':'string'},'lock_id':{'type':'string','pattern':'^[a-f0-9]{32}$'},
+                 'minutes':MINUTES,**AUTH}}}
+]
+WORK_NAMES = {t['name'] for t in WORK_TOOLS}
+SCOPED = {'read_file','read_multiple_files','write_file','edit_block','create_directory',
+          'move_file','get_file_info','list_directory','rollback_file','shell_exec','shell_session',
+          'enable_full_shell','disable_full_shell','start_search','get_more_search_results','stop_search'}
+
+
+def install_schema(tools):
+    result = copy.deepcopy([t for t in tools if t['name'] not in WORK_NAMES])
+    for t in result:
+        if t['name'] in SCOPED:
+            t['inputSchema']['properties'].update(copy.deepcopy(AUTH))
+            t['description'] += ' If the selected machine advertises coordination_version, supply work_session_id and work_session_token for writes, searches and shell operations. Read-only calls remain available without them.'
+    return result + copy.deepcopy(WORK_TOOLS)
+''',
+}
 
 
 def sha(data):return hashlib.sha256(data).hexdigest()
@@ -127,9 +176,9 @@ def validate():
 
 def load_package():
     global PAYLOAD
-    raw=json.loads(zlib.decompress(base64.b64decode(PACKAGE,validate=True)))
-    PAYLOAD={n:base64.b64decode(b,validate=True) for n,b in raw.items()}
-    if set(PAYLOAD)!=set(ORIGINAL):raise RuntimeError('unexpected payload')
+    PAYLOAD={n:src.encode() for n,src in SOURCES.items()}
+    if set(PAYLOAD)!=set(ORIGINAL) or {n:sha(b) for n,b in PAYLOAD.items()}!=PAYLOAD_SHA:
+        raise RuntimeError('unexpected payload')
     for name,data in PAYLOAD.items():compile(data,name,'exec')
 
 
@@ -182,14 +231,22 @@ def install(manifest):
 
 def main(action):
     load_package()
-    if os.getuid()!=0:raise RuntimeError('run through admin_request after Telegram approval')
-    os.umask(0o077)
-    fd=os.open('/run/mcp-andrea-coordination-gateway.lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)
+    if os.getuid()!=0 or os.geteuid()!=0 or Path(__file__).resolve()!=SELF:
+        raise RuntimeError('installed root helper required; run through admin_request after Telegram approval')
+    trusted_directory(BASE);own=sha(read(SELF));os.umask(0o077)
+    fd=os.open('/run/lock/mcp-andrea-files-maintenance.lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)
     try:
         fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
         if action=='--check':
-            result=validate();result['catalog_tools']=preflight();print(json.dumps(result,indent=2));return
+            result=validate();result['catalog_tools']=preflight();result['helper_sha256']=own
+            print(json.dumps(result,indent=2));return
         if action=='--apply':
+            # Detach from the approval runner before the gateway restarts.
+            validate();preflight()
+            run(['systemd-run','--unit=central-mcp-coordination-v011r1-20261002','--on-active=5s','--collect',
+                 PYTHON,'-I','-B',str(SELF),'--activate'])
+            record('activation_scheduled');print(json.dumps({'status':'activation_scheduled','receipt':str(RECEIPT)}));return
+        if action=='--activate':
             validate();count=preflight();validate()
             manifest=backup();installed=False
             try:

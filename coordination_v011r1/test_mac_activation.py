@@ -34,11 +34,15 @@ class MacUpgrade(unittest.TestCase):
                     self.assertEqual(context.get('APPROVED_SOURCE'),source if action=='--apply' else None)
 
     def test_package_matches_tested_agent_and_dependencies(self):
-        u.load_package()
+        here=Path(__file__).parent
+        with patch.object(u,'BASE',here),patch.object(u,'read',side_effect=lambda p,owner=0:Path(p).read_bytes()):
+            u.load_package()
         for n,b in u.PAYLOAD.items():
-            self.assertEqual(b,(Path(__file__).parent/n).read_bytes())
+            self.assertEqual(b,(here/n).read_bytes())
             self.assertEqual(b,u.TESTS[n])
         for n,h in u.DEPENDENCIES.items():self.assertEqual(u.sha(u.TESTS[n]),h)
+        with patch.object(u,'BASE',here),patch.object(u,'read',side_effect=lambda p,owner=0:b'changed' if Path(p).name=='file_tools.py' else Path(p).read_bytes()):
+            with self.assertRaisesRegex(RuntimeError,'live dependency changed'):u.load_package()
 
     def test_plist_change_refused_before_any_stop(self):
         with patch.object(u.sys,'platform','darwin'),patch.object(u,'run',side_effect=[
@@ -50,12 +54,19 @@ class MacUpgrade(unittest.TestCase):
             with self.assertRaises(RuntimeError):u.identity()
 
     def test_other_dedicated_process_blocks_stop(self):
-        with patch.object(u,'service_state',return_value={'loaded':True,'pid':1}),patch.object(u,'active_pid',return_value=1),patch.object(u,'run',return_value=types.SimpleNamespace(stdout='5000 1 S\n5000 2 S\n')) as run:
+        with patch.object(u,'service_state',return_value={'loaded':True,'pid':1}),patch.object(u,'active_pid',return_value=1),patch.object(u,'run',return_value=types.SimpleNamespace(stdout='5000 1 1 S /usr/bin/python3 agent\n5000 2 1 S /bin/sh\n')) as run:
             with self.assertRaises(RuntimeError):u.stop_daemon()
             self.assertFalse(any(c.args[0][0]=='/bin/launchctl' for c in run.call_args_list))
 
+    def test_only_launchd_distnoted_is_tolerated(self):
+        with patch.object(u,'run',return_value=types.SimpleNamespace(stdout='5000 7 1 S /usr/sbin/distnoted agent\n')):
+            u.no_other_processes()
+        for row in ('5000 7 9 S /usr/sbin/distnoted agent\n','5000 7 1 S /tmp/distnoted agent\n','5000 7 1 S /usr/sbin/distnoted agent extra\n'):
+            with patch.object(u,'run',return_value=types.SimpleNamespace(stdout=row)):
+                with self.assertRaises(RuntimeError):u.no_other_processes()
+
     def test_zombies_are_not_live_workers(self):
-        with patch.object(u,'run',return_value=types.SimpleNamespace(stdout='5000 1 S\n5000 2 Z\n501 3 S\n')):
+        with patch.object(u,'run',return_value=types.SimpleNamespace(stdout='5000 1 1 S python agent\n5000 2 1 Z (sh)\n501 3 1 S other\n5000 4 1 S /usr/sbin/distnoted agent\n')):
             u.no_other_processes(1)
 
     def test_root_bootstrap_does_not_overwrite_different_installer(self):

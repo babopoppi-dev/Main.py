@@ -17,14 +17,18 @@ names=['mac_agent.py','work_sessions.py','work_schema.py']
 dependencies=['file_tools.py','file_schema.py','search_tools.py','search_schema.py','agent_shell.py',
               'shell_common.py','mac_guard.py','mac_clock.py','mac_policy.py','mac_child.py',
               'mac_watchdog.py','mac_shell.py']
-tests=names+dependencies+['test_work_core.py','test_search.py','mac_coordination_selftest.py']
+tests=names+dependencies+['test_work_core.py','test_search.py','mac_coordination_selftest.py','cg_tools.py']
 before={'mac_agent.py':live/'mac_agent_before.py'}
 original={n:hashlib.sha256(before[n].read_bytes()).hexdigest() if n in before else None for n in names}
 deps={n:hashlib.sha256((live/n).read_bytes()).hexdigest() for n in dependencies}
 for n in dependencies:assert (P/n).read_bytes()==(live/n).read_bytes(),n
-payload={n:base64.b64encode((P/n).read_bytes()).decode() for n in names}
-testdata={n:base64.b64encode((P/n).read_bytes()).decode() for n in tests}
-package=base64.b64encode(zlib.compress(json.dumps({'payload':payload,'tests':testdata}).encode(),9)).decode()
+carried=[n for n in tests if n not in dependencies]
+sources={}
+for n in carried:
+    text=(P/n).read_text()
+    assert text.isascii() and "'''" not in text and not text.endswith('\\'),n
+    sources[n]=text
+source_sha={n:hashlib.sha256((P/n).read_bytes()).hexdigest() for n in carried}
 STAMP='coordination_v011r1_20261002'
 header='''#!/usr/bin/env python3
 """Hash-pinned local update of only the central personal-Mac agent: coordination v0.11 r1."""
@@ -47,7 +51,7 @@ NEW_VERSION='0.11-personal-work-2'
 PAYLOAD={}
 TESTS={}
 '''%{'s':STAMP}
-header+='ORIGINAL='+repr(original)+'\nDEPENDENCIES='+repr(deps)+'\nTEST_NAMES='+repr(tests)+'\nPACKAGE='+repr(package)+'\n'
+header+='ORIGINAL='+repr(original)+'\nDEPENDENCIES='+repr(deps)+'\nTEST_NAMES='+repr(tests)+'\nSOURCE_SHA='+repr(source_sha)+'\nSOURCES={\n'+''.join(repr(n)+": r'''"+t+"''',\n" for n,t in sources.items())+'}\n'
 source=(P/'upgrade_vps_template.py').read_text()
 reuse={'sha','trusted_directory','read','digest','atomic','record','run','backup','restore'}
 functions='\n\n'.join(ast.get_source_segment(source,node) for node in ast.parse(source).body if isinstance(node,ast.FunctionDef) and node.name in reuse)
@@ -68,7 +72,35 @@ body=body[:start]+'''def prepare_backup():
 
 
 '''+body[end:]
+start=body.index('def load_package():');end=body.index('def child(')
+body=body[:start]+"""def load_package():
+    global PAYLOAD,TESTS
+    carried={n:src.encode() for n,src in SOURCES.items()}
+    if {n:sha(b) for n,b in carried.items()}!=SOURCE_SHA:raise RuntimeError('unexpected embedded sources')
+    PAYLOAD={n:carried[n] for n in ORIGINAL}
+    # Unchanged dependencies come from the live, hash-pinned installation.
+    TESTS={n:carried[n] if n in carried else read(BASE/n) for n in TEST_NAMES}
+    for n,h in DEPENDENCIES.items():
+        if sha(TESTS[n])!=h:raise RuntimeError('live dependency changed: '+n)
+    for name,data in {**PAYLOAD,**TESTS}.items():compile(data,name,'exec')
+
+
+"""+body[end:]
 swap("['test_search','test_mac_agent']","['test_work_core','test_search']")
+old_nop=body[body.index('def no_other_processes('):body.index('def service_state(')]
+body=body.replace(old_nop,"""def no_other_processes(daemon_pid=None):
+    text=run(['/bin/ps','-axo','uid=,pid=,ppid=,stat=,args=']).stdout
+    pids=set()
+    for row in text.splitlines():
+        p=row.split(None,4)
+        if len(p)<4 or p[0]!='5000' or p[3].startswith('Z'):continue
+        # macOS starts this per-user notification agent on demand from launchd.
+        if p[2]=='1' and len(p)==5 and p[4].strip()=='/usr/sbin/distnoted agent':continue
+        pids.add(int(p[1]))
+    if pids!=(set() if daemon_pid is None else {daemon_pid}):raise RuntimeError('dedicated account busy')
+
+
+""")
 swap("TEST_CODE/'mac_search_selftest.py'","TEST_CODE/'mac_coordination_selftest.py'")
 swap("'search smoke failed: '","'coordination smoke failed: '")
 target=P/('upgrade_mac_'+STAMP+'.py')

@@ -47,8 +47,8 @@ class SessionCore(unittest.TestCase):
             with self.assertRaises(PermissionError):self.lock(self.b,p)
         self.lock(self.b,self.work/'apple')
     def test_case_and_unicode_alias_overlap(self):
-        self.lock(self.a,self.work/'Caf\u00e9')
-        with self.assertRaises(PermissionError):self.lock(self.b,self.work/'CAFE\u0301'/'x')
+        self.lock(self.a,self.work/('Caf'+chr(0xe9)))
+        with self.assertRaises(PermissionError):self.lock(self.b,self.work/('CAFE'+chr(0x301))/'x')
     def test_write_requires_lock_and_rollback_is_protected(self):
         p=str(self.work/'a')
         with self.assertRaises(PermissionError):self.f.write_file(p,'bad',session_id=self.ident(self.a))

@@ -1,55 +1,42 @@
-MCP ANDREA — STATO 02/10/2026 (Europe/Rome), checkpoint versione 35
-Blocco: coordinamento v0.11. Collaudo nativo eseguito, attivazione PREPARATA,
-NON eseguita. Ultima istruzione: completare solo questo blocco, poi fermarsi.
+MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 36
+Blocco coordinamento v0.11: ATTIVO su gateway e Mac personale, verificato.
 
-STATO OPERATIVO (invariato)
-- Mac personale: agent 0.10-personal-search-1, ricerca 0.10.1, UID5000,
-  /Library/MCPAndreaMacMioV09, workspace /Users/Shared/MCPAndreaMacMio/workspace.
-- VPS e gateway: nessuna modifica. Nessuna admin_request inviata in questo blocco.
-- Mac a noleggio in pausa, non toccato. Desktop Commander non usato.
-- Fine lavori: shell Mac disattivata, nessun lock, area temporanea rimossa
-  (workspace contiene solo .tmp con il preesistente xcrun_db).
+STATO OPERATIVO
+- Gateway: catalogo 25 strumenti con work_session e work_lock (ricevuta active).
+  Agent VPS non modificato (coordinamento non integrato sul VPS).
+- Mac personale: agent 0.11-personal-work-2, coordination_version 0.11.0,
+  ricerca 0.10.1, UID5000, /Library/MCPAndreaMacMioV09.
+  Scritture, rollback, ricerche e shell richiedono work_session_id e
+  work_session_token; la shell richiede il lock dell'intera workspace.
+  Letture e sw_vers senza sessione.
+- Fine lavori: nessuna sessione, lock o shell attivi. Mac a noleggio non toccato.
+  Desktop Commander non usato.
 
-FATTO IN QUESTO BLOCCO
-- Revisione del codice coordination_v011 e verifica manifest (integro).
-- Correzioni r1 (coordination_v011r1/): boot id macOS stabile via
-  kern.bootsessionuuid/sysctlbyname; nessuna scrittura+fsync di state.json nei
-  controlli di sola lettura (watchdog 0,5 s); errore di audit non maschera piu
-  l'esito della richiesta. Agent proposto: 0.11-personal-work-2.
-- Collaudo nativo su mac_mio come UID5000 tramite MCP Andrea, nella shell
-  isolata: 15/15 hash, sonda nativa 12/12, test_work_core 20/21 (unico errore:
-  os.link vietato dal seatbelt della shell di prova, non dal coordinamento).
-- Attivazione preparata con backup, rollback automatico e manuale:
-  gateway via admin_request+Telegram (2 richieste), Mac via procedura locale sudo.
-- Test locali 77/77 (core, ricerca, installer Mac, script gateway).
+BACKUP E ROLLBACK
+- Mac: /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002
+  (rollback: installer --rollback con sudo locale). Backup precedente intatto:
+  /Library/MCPAndreaMacMioV09/backup/search_v010_20261002.
+- Gateway: /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002
+  (rollback: ADMIN_REQUEST_rollback_gateway.txt via Telegram).
 
-MANCANTE / PROSSIMO PASSO (solo su richiesta esplicita)
-1. Gateway: admin_request 1 (deposito+check) e 2 (apply), approvazioni Telegram.
-2. Ricaricare il catalogo strumenti nei client.
-3. Mac: Attiva_Coordinamento_MCP_Andrea.command, procedura locale con sudo.
-4. Verifica effettiva via MCP Andrea; solo allora dichiarare l'attivazione.
-5. Poi: coordinamento nell'agent VPS, prove con Claude e lavoro reale, riavvio Mac.
-Dettagli e hash: coordination_v011r1/LEGGIMI.txt.
+PROSSIMO PASSO
+1. Aprire una chat nuova (o ricaricare il connettore) e provare una
+   work_session reale: open, lock su una cartella, scrittura, chiusura.
+2. Con quella sessione rimuovere i file temporanei rimasti (vedi sotto).
+3. Poi: coordinamento nell'agent VPS, prove di lavoro reale, riavvio Mac.
 
-PROBLEMI RESIDUI / LIMITI
-- Dopo il passo 3 i client non aggiornati non potranno piu scrivere sul Mac.
-- Sessioni = token per client cooperanti, non ID chat certificati; altri
-  programmi che scrivono direttamente non rispettano i lock.
-- Il deposito gateway via admin_request e ~21 KB: limite non documentato.
-- Nel journal di rollback del Mac restano 16 operazioni write_file del
-  collaudo, su file ormai rimossi (rollback rifiutato per conflitto, innocuo).
-- Durante il collaudo un client chatgpt:QZR97... ha solo letto who_is_working.
+PROBLEMI RESIDUI
+- Le chat con catalogo vecchio non possono piu scrivere sul Mac.
+- Nel registro le voci delle operazioni work_session/work_lock non riportano
+  l'id di sessione (lo riportano gli eventi session_open/lock_acquire): solo audit.
+- File temporanei: installer e launcher in workspace/.tmp del Mac, copia in
+  /Users/babo/MCPAndreaCoordV011_20261002, script in workspace VPS, helper in /opt.
+- Journal di rollback Mac: operazioni dei collaudi su file rimossi (innocue).
+- Sessioni = token per client cooperanti; altri programmi non rispettano i lock.
 
-BACKUP
-- Mac esistente: /Library/MCPAndreaMacMioV09/backup/search_v010_20261002 (intatto).
-- Previsti all'attivazione: /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002
-  e /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002.
-- Stato precedente: STORICO_prima_collaudo_nativo_v011_20261002.txt.
-
-VINCOLI
-- VPS: ogni comando amministrativo solo con admin_request e approvazione Telegram.
-- Mac: nessun sudo remoto; l'approvazione VPS non vale per il Mac.
-- Non toccare Bitcoin, La Marruca, LiDAR, credenziali, Mac a noleggio.
-- Non iniziare l'installer del nuovo Mac senza richiesta esplicita.
-- Accesso progetti, rete, amministrazione Mac via Telegram, gestione processi:
-  attivita successive, non iniziate.
+VINCOLI INVARIATI
+- VPS: comandi amministrativi solo con admin_request e approvazione Telegram.
+- Mac: amministrazione solo con procedura locale. Non toccare Bitcoin,
+  La Marruca, LiDAR, credenziali, Mac a noleggio. Nessun installer del nuovo Mac.
+Dettagli: coordination_v011r1/LEGGIMI.txt; stato precedente:
+STORICO_prima_attivazione_v011_20261003.txt.
