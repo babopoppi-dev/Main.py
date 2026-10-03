@@ -1,5 +1,5 @@
 MCP ANDREA — STATO 03/10/2026 pomeriggio (Europe/Rome) — branch claude/mcp-andrea-v0-12-verify-35k9tm
-Linea attiva: v0.12 p2 (cartella coordination_v012p2/); p3 pronta in coordination_v012p3/. Stato precedente: STORICO_prima_v012p2_20261003.txt.
+Linea attiva: v0.12 p3 (cartella coordination_v012p3/, sopra la p2 di coordination_v012p2/). Stato precedente: STORICO_prima_v012p2_20261003.txt.
 
 ATTIVO E VERIFICATO
 - VPS 0.12-vps-2 (file_tools corretto, id di sessione nel registro). Ricevuta active, 7 controlli
@@ -36,23 +36,26 @@ VERIFICA network='packages' su mac_mio (03/10, superata)
   Non ispezionato ne cancellato in questa chat: da togliere a mano o con delete_path dopo
   averlo guardato. Possibile ritocco: PIP_NO_CACHE_DIR=1 / PIP_CACHE_DIR in .tmp nel profilo shell.
 
-p3 PRONTA, NON INSTALLATA (cartella coordination_v012p3/, istruzioni in LEGGIMI.txt)
-Amministrazione del Mac via Telegram riportata sopra la p2: agent 0.12-personal-3 (solo
-mac_agent.py modificato + admin_schema.py e mac_admin_client.py nuovi), helper root separato
-con bot Telegram NUOVO dedicato al Mac (identico a mac_v012), catalogo gateway 31 strumenti.
-Installer Mac 34f2f867... (base p2b fecdbab5), gateway 30c77113... (base p2 43c63ff8).
-Test 162/162 con Python 3.9.23 e 3.11 (TEST_v012p3.log).
+p3 ATTIVA (03/10, cartella coordination_v012p3/, dettagli in LEGGIMI.txt)
+- Mac 0.12-personal-3 (installer 34f2f867..., commit de0dfd7, ATTIVAZIONE_V012P3_MCP_COMPLETATA):
+  ricevuta active, helper root 0.12-mac-admin-1 (pid 87312), bot Telegram dedicato
+  @Mcpmacandrea2bot (token solo sul Mac). list_machines: capabilities con mac_admin_request/result.
+  Il primo lancio si era fermato prima del collaudo (nessuna ricevuta, agent intatto); il
+  secondo e andato a buon fine.
+- Gateway p3 via admin_request G1-G4 (script 30c77113..., hash verificato sul VPS): ricevuta
+  active, catalogo 31, controlli "catalog p3", "vps baseline", "vps and mac_mio idle".
+  Backup /opt/central-mcp-gateway/backups/pre_v012p3_20261003. Agent VPS non toccato.
 
 PROSSIMI PASSI
-1. Andrea: creare il bot Telegram del Mac (@BotFather /newbot) e attivare la p3 sul Mac
-   (comandi in coordination_v012p3/LEGGIMI.txt, punto 1). Esito atteso ATTIVAZIONE_V012P3_MCP_COMPLETATA.
-2. Gateway p3 via admin_request: ADMIN_REQUEST_G1, G1b (hash 30c77113...), G2, G3, G4.
-3. Chat NUOVA (catalogo 31): verifica dal vivo di mac_admin_request (LEGGIMI punto 3).
-4. Poi collaudo di parita con Desktop Commander e spegnimento di DC.
-5. Rimozione di workspace/Library/Caches e dei residui preflight v012p2 elencati sopra.
+1. Chat NUOVA (catalogo 31): verifica dal vivo di mac_admin_request (LEGGIMI punto 3):
+   work_session su mac_mio, "/usr/bin/id" approvato sul bot del Mac -> done uid=0; comando
+   sensibile ("/bin/ls /Users/Shared") con doppia conferma; uno rifiutato -> rejected; senza
+   sessione -> rifiutato; poi chiusura e who_is_working pulito.
+2. Con l'helper: rimuovere i residui preflight v012p2 (elencati sopra) e workspace/Library/Caches.
+3. Poi collaudo di parita con Desktop Commander e spegnimento di DC.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
 
-ROLLBACK p3 (dopo l'attivazione)
+ROLLBACK p3
 - Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p3_20261003.py --rollback
 - Gateway: admin_request coordination_v012p3/ADMIN_REQUEST_G_rollback_gateway.txt
 
