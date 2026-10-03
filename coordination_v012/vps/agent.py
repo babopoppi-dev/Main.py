@@ -16,7 +16,9 @@ from pathlib import Path
 
 import aiohttp
 from file_tools import FileTools
-from file_schema import FILE_NAMES
+from file_schema import FILE_NAMES as CATALOG_FILE_NAMES
+# Route the v0.12 file tools whether the shared catalog module is v0.11 or v0.12.
+FILE_NAMES = CATALOG_FILE_NAMES | {'delete_path', 'copy_file', 'read_binary', 'upload_file'}
 from search_tools import SearchTools, SEARCH_NAMES
 from isolated_shell import IsolatedShell
 from work_sessions import WorkSessions, MUTATIONS

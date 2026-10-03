@@ -22,16 +22,22 @@ payload_src = {'agent.py': V / 'agent.py', 'file_tools.py': P / 'file_tools.py',
 original = {n: LIVE.get(n) for n in payload_src}
 assert original['work_sessions.py'] is None and original['upload_tools.py'] is None
 assert original['agent.py'] == hashlib.sha256((V / 'agent_live.py').read_bytes()).hexdigest(), 'transcription differs'
-deps = {n: LIVE[n] for n in ('file_schema.py', 'search_schema.py', 'isolated_shell.py', 'work_schema.py',
-                             'cg_tools.py', 'cg_mcp.py', 'cg_agents.py')}
-# Catalog modules shared with the gateway must already be at v0.12.
+# Catalog modules shared with the gateway may be v0.11 (live today) or v0.12
+# (after the gateway activation): the VPS agent works with both.
+LIVE11 = json.loads((V / 'live_hashes.json').read_text())['_v011']
+deps = {n: LIVE[n] for n in ('search_schema.py', 'isolated_shell.py', 'cg_mcp.py', 'cg_agents.py')}
 for n in ('file_schema.py', 'work_schema.py', 'cg_tools.py'):
-    assert deps[n] == hashlib.sha256((P / n).read_bytes()).hexdigest(), n
+    v012 = hashlib.sha256((P / n).read_bytes()).hexdigest()
+    assert LIVE[n] == v012, n
+    deps[n] = [LIVE11[n], v012]
 assert deps['isolated_shell.py'] == hashlib.sha256((P / 'shell_common.py').read_bytes()).hexdigest()
 assert deps['search_schema.py'] == hashlib.sha256((P / 'search_schema.py').read_bytes()).hexdigest()
+# The preflight imports the v0.12 catalog copies carried here, so it is the
+# same suite whatever catalog version is live.
 tests_src = {'test_search.py': P / 'test_search.py', 'test_files_v012.py': P / 'test_files_v012.py',
-             'test_vps_agent.py': V / 'test_vps_agent.py'}
-live_deps = ['file_schema.py', 'search_schema.py', 'isolated_shell.py', 'work_schema.py', 'cg_tools.py']
+             'test_vps_agent.py': V / 'test_vps_agent.py', 'file_schema.py': P / 'file_schema.py',
+             'work_schema.py': P / 'work_schema.py', 'cg_tools.py': P / 'cg_tools.py'}
+live_deps = ['search_schema.py', 'isolated_shell.py']
 test_names = sorted(list(payload_src) + live_deps + list(tests_src))
 sources = {}
 for n, path in {**payload_src, **tests_src}.items():
@@ -56,6 +62,11 @@ def swap(old, new):
     logic = logic.replace(old, new)
 
 
+swap("""    for name,expected in {**ORIGINAL,**DEPENDENCIES}.items():
+        if digest(BASE/name)!=expected:raise RuntimeError('live source changed: '+name)""",
+     """    for name,expected in {**ORIGINAL,**DEPENDENCIES}.items():
+        if digest(BASE/name) not in (expected if isinstance(expected,list) else [expected]):
+            raise RuntimeError('live source changed: '+name)""")
 swap("""    if state.get('active_locks') or state.get('shell_enabled'):
         raise RuntimeError('VPS busy; active locks or shell authorization present')""",
      """    if state.get('active_locks') or state.get('shell_enabled') or state.get('work_locks') or state.get('work_sessions'):
@@ -72,7 +83,9 @@ swap("""            if machine['online'] and (not expect_search or machine['meta
      """            if machine['online'] and (machine['meta'].get('coordination_version')=='0.11.0')==expect_new:return""")
 cut('def smoke():', 'def load_package():', '''def smoke():
     names={t['name'] for t in rpc('tools/list',{})['tools']}
-    if not {'work_session','work_lock','delete_path','copy_file','upload_file'}<=names:raise RuntimeError('v0.12 catalog missing')
+    if not {'work_session','work_lock'}<=names:raise RuntimeError('work tools missing from catalog')
+    # The new file tools are exercised only once the gateway exposes them.
+    new={'delete_path','copy_file','read_binary','upload_file'}<=names
     checks=[];operations=[];sessions=[]
     folder=str(WORK/('vps_v012_live_'+uuid.uuid4().hex))
     def scall(s,name,**args):
@@ -99,16 +112,17 @@ cut('def smoke():', 'def load_package():', '''def smoke():
             time.sleep(.1);result=scall(a,'get_more_search_results',search_id=sid)
         if result['status']!='completed' or result['total_results']!=1:raise RuntimeError('live search mismatch')
         checks.append('search with session')
-        data=b'\\x00\\x01v012'
-        up=scall(a,'upload_file',action='begin',path=folder+'/bin',size=len(data),sha256=hashlib.sha256(data).hexdigest())
-        scall(a,'upload_file',action='chunk',upload_id=up['upload_id'],offset=0,data=base64.b64encode(data).decode())
-        operations.append(scall(a,'upload_file',action='commit',upload_id=up['upload_id'])['operation_id'])
-        if call('read_binary',machine='vps',path=folder+'/bin')['sha256']!=hashlib.sha256(data).hexdigest():
-            raise RuntimeError('binary round trip mismatch')
-        operations.append(scall(a,'copy_file',source=path,destination=folder+'/copy.txt')['operation_id'])
-        removed=scall(a,'delete_path',path=folder+'/copy.txt')
-        scall(a,'rollback_file',operation_id=removed['operation_id'])
-        checks.append('upload, read_binary, copy, delete and rollback')
+        if new:
+          data=b'\\x00\\x01v012'
+          up=scall(a,'upload_file',action='begin',path=folder+'/bin',size=len(data),sha256=hashlib.sha256(data).hexdigest())
+          scall(a,'upload_file',action='chunk',upload_id=up['upload_id'],offset=0,data=base64.b64encode(data).decode())
+          operations.append(scall(a,'upload_file',action='commit',upload_id=up['upload_id'])['operation_id'])
+          if call('read_binary',machine='vps',path=folder+'/bin')['sha256']!=hashlib.sha256(data).hexdigest():
+              raise RuntimeError('binary round trip mismatch')
+          operations.append(scall(a,'copy_file',source=path,destination=folder+'/copy.txt')['operation_id'])
+          removed=scall(a,'delete_path',path=folder+'/copy.txt')
+          scall(a,'rollback_file',operation_id=removed['operation_id'])
+          checks.append('upload, read_binary, copy, delete and rollback')
         if call('shell_exec',machine='vps',command='uname -a')['exit_code']!=0:raise RuntimeError('baseline status failed')
         checks.append('baseline status without session')
     finally:

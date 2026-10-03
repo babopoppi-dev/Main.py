@@ -1,5 +1,5 @@
 {
-  "_note": "Live VPS hashes from admin_request 0e41967a (03/10/2026). file_schema, work_schema and cg_tools are pinned at their gateway v0.12 values (live before gateway activation: 06e579c3..., 9204940d..., 8282e608...).",
+  "_note": "Live VPS hashes from admin_request 0e41967a (03/10/2026). file_schema, work_schema and cg_tools: v0.12 values here, v0.11 (live before the gateway activation) under _v011; the VPS installer accepts both.",
   "agent.py": "a6a9573ed8faf425d9e81897c2c7aaf7b07cd0a6a4d3470d4475ad3354b22ea2",
   "file_tools.py": "8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e",
   "search_tools.py": "ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b",
@@ -11,5 +11,10 @@
   "cg_agents.py": "7e891890ccb076aa06404fdcd481668a3e4aa780e104acb7230448f79e5fe6a1",
   "file_schema.py": "a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4",
   "work_schema.py": "40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df",
-  "cg_tools.py": "515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567"
+  "cg_tools.py": "515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567",
+  "_v011": {
+    "file_schema.py": "06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb",
+    "work_schema.py": "9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9",
+    "cg_tools.py": "8282e608be40003e9475dc789ddf7d90e8676aa88776d9f8b3923b33087d02a1"
+  }
 }
