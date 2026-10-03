@@ -117,7 +117,16 @@ DIAGNOSI REPL PYTHON (03/10 sera, sessione 93db6d66..., chiusa e pulita)
 - Correzione proposta (p4, mac_policy.py): (allow file-ioctl (literal <pty della sessione>)),
   piu dimensione 80x24 impostata sul PTY in mac_shell.py. Da confermare prima con prova locale.
 
-p5 PRONTA, NON INSTALLATA (04/10, cartella coordination_v012p5/, dettagli in LEGGIMI.txt)
+p5 ATTIVA (04/10, cartella coordination_v012p5/, dettagli in LEGGIMI.txt)
+- ATTIVAZIONE_V012P5_MCP_COMPLETATA; list_machines: 0.12-personal-5, project_roots
+  rw ~/Developer/MCPAndrea, ro ~/Developer, projects_error null.
+- Verifica dal vivo: write in MCPAndrea senza lock rifiutata; write in Developer rifiutata
+  (read-only project root); con lock: write + read + rollback ok. Shell con cwd MCPAndrea:
+  cat, python3, git init + commit ok; negati: mkdir x_bitcoin_x, mkdir LaMarruca, scrittura
+  in Developer, Documents, Desktop, ~/.ssh, ~/LaMarrucaDevicePrep; Developer leggibile.
+  File creati da mcp_andrea: ACL ereditate per mcp_andrea e per Andrea (lettura/scrittura).
+  Chiusura: demo rimossa, file annullato, MCPAndrea vuota, who_is_working pulito.
+- Uso: per la shell servono lock su workspace E su ~/Developer/MCPAndrea.
 - Punto E deciso da Andrea: ~/Developer ro, ~/Developer/MCPAndrea rw, file + shell.
   ~/Developer non esisteva (ls via helper): l'installer crea le cartelle e le ACL.
 - Agent 0.12-personal-5, installer 04da8f94 (commit 3912101).
@@ -141,6 +150,9 @@ PROSSIMI PASSI
    reali (E, rinviato): senza questi MCP non copre l'uso tipico di DC (start_process sui progetti).
 2. Pulizia: cartelle di prova del collaudo, workspace/Library/Caches.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
+
+ROLLBACK p5
+- Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p5_20261004.py --rollback
 
 ROLLBACK p4
 - Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p4_20261004.py --rollback
