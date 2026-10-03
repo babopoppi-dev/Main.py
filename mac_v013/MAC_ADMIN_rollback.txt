@@ -1,0 +1,1 @@
+/usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v013_20261003.py --rollback

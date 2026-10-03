@@ -1,0 +1,41 @@
+MCP ANDREA v0.13 (Mac) — SVILUPPATO E TESTATO, NON INSTALLATO (03/10/2026)
+Prerequisito: v0.12 attiva (agent 0.12-personal-admin-1 e helper Telegram).
+Si installa SENZA procedura locale: tre mac_admin_request approvate sul bot del Mac.
+
+E. PROGETTI REALI (solo il meccanismo; elenco vuoto finche non decidi)
+- Radici da /Library/MCPAndreaMacMioV09/code/projects.json (root, non scrivibile da altri):
+  {"version":1,"roots":[{"path":"/Users/babo/...","mode":"ro"|"rw"}],"exclude":[...]}
+  File assente = nessun progetto (stato dopo l'installazione).
+- rw: nel motore principale -> scritture solo con work_session e work_lock.
+  ro: motore separato, ogni modifica rifiutata; ricerca consentita.
+- Solo percorsi sotto /Users (non Shared), senza symlink, senza sovrapposizioni.
+- Sempre esclusi: componenti che contengono bitcoin, marruca, lidar, keychain,
+  .ssh, .gnupg, .aws, .config, Library, .Trash (pre-scansione a 3 livelli +
+  controllo su ogni percorso richiesto). La shell resta confinata alla workspace.
+- Configurazione errata: l'agent parte comunque, senza progetti, e mostra
+  projects_error in list_machines.
+- Per attivare servono anche le ACL per l'utente mcp_andrea sui percorsi scelti
+  (comandi chmod +a via mac_admin_request) e un riavvio dell'agent.
+
+G. PROCESSI, LIVELLO 1 (nessun indebolimento del contenimento)
+- process_list: processi dell'utente dedicato con ruolo (agent, shell_session,
+  shell_process, ...), senza sessione.
+- process_stop: TERM/INT/KILL solo a discendenti della propria sessione shell
+  in corso, solo dalla work_session che detiene la shell; mai l'agent.
+- Piu processi lunghi: dentro una shell_session, ciascuno con output su file
+  della workspace (read_file).
+
+FILE E HASH
+  upgrade_mac_v013_20261003.py  0d44f7d189b4258b106853953d87263568b235cf69bf39bcf0f175f3cb9b4ed8
+  mac_agent.py (0.13-personal-projects-1) 0b0e43d4c446e58506f804634eb3324592056beb10cf0264a1c173fcdea639e5
+Verifica live: mac_agent 0.12 (be237fab...), 16 dipendenze, plist, UID 5000.
+
+ATTIVAZIONE (dopo v0.12 e dopo il catalogo gateway v0.13)
+mac_admin_request, in ordine (timeout 900 per --apply):
+  MAC_ADMIN_1_download.txt  curl al commit fissato (comando sensibile: doppia conferma)
+  MAC_ADMIN_2_check.txt     deve stampare installer_sha256 = 0d44f7d1...
+  MAC_ADMIN_3_apply.txt     preflight UID 5000 (106 test), backup
+                            /Library/MCPAndreaMacMioV09/backup/v013_20261003, stop/riavvio
+                            del solo agent, selftest, rollback automatico alla 0.12
+Rollback: MAC_ADMIN_rollback.txt.
+TEST: ../TEST_v013.log

@@ -1,0 +1,5 @@
+GATEWAY v0.13 — solo catalogo (29 strumenti: + process_list, process_stop).
+Prerequisito: gateway v0.12 attivo. cg_tools.py + nuovo process_schema.py.
+Script upgrade_gateway_v013_20261003.py sha256 bf067666e1972167d792328ae2b9c8080888014a355487d780d5b0b676f432d1
+admin_request (Telegram): ADMIN_REQUEST_1_download_gateway.txt, _2_check, _3_apply;
+rollback: ADMIN_REQUEST_rollback_gateway.txt. Backup .../backups/pre_v013_20261003.

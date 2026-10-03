@@ -1,0 +1,1 @@
+/usr/bin/curl -fsS --proto =https --max-time 60 -o /Library/MCPAndreaMacMioV09/upgrade_v013_20261003.py https://raw.githubusercontent.com/babopoppi-dev/Main.py/COMMIT/mac_v013/upgrade_mac_v013_20261003.py

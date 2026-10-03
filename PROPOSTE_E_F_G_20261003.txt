@@ -56,3 +56,7 @@ Decisione richiesta: livello 1 soltanto, oppure anche livello 2.
 
 ORDINE PROPOSTO DOPO LE DECISIONI
 v0.13 Mac = E + G livello 1; poi F (con collaudo nativo del seatbelt) come v0.14.
+
+AGGIORNAMENTO 03/10/2026: il meccanismo di E (elenco vuoto) e G livello 1 sono
+sviluppati e testati in mac_v013/ e gateway_v013/ (non installati). Restano da
+decidere: elenco cartelle e modalita (E), lista domini (F), livello 2 di G.
