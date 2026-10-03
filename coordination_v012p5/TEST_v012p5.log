@@ -1,0 +1,8 @@
+== Python 3.10.20
+Ran 170 tests in 5.547s
+OK
+== Python 3.11.15
+Ran 170 tests in 5.592s
+OK
+== preflight simulation (29 embedded files, live folder rebuilt from p4, hashes verified)
+Ran 139 tests: OK with python3.10 and python3.11; syntax checked for Python 3.9
