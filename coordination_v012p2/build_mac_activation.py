@@ -15,8 +15,8 @@ P = Path(__file__).resolve().parent
 PREVIOUS = P / 'live_r1' / 'upgrade_mac_v012_20261003.py'
 assert hashlib.sha256(PREVIOUS.read_bytes()).hexdigest() == \
     '2ceaaf845f09107d2b09ea47905ed70f204f72263bd462e1f484df8989cc8147'
-STAMP = 'v012p2_20261003'
-FOLDER = '/Users/babo/MCPAndreaV012p2'
+STAMP = 'v012p2b_20261003'
+FOLDER = '/Users/babo/MCPAndreaV012p2b'
 OLD_VERSION, NEW_VERSION = '0.12-personal-1', '0.12-personal-2'
 
 previous = PREVIOUS.read_text()
@@ -120,7 +120,7 @@ print 'Quando richiesta, inserisci la password di accesso del tuo Mac personale.
 if [[ $? == 0 ]]; then
   /usr/bin/sudo ''' + invocation + ''' --apply
   if [[ $? == 0 ]]; then
-    print 'ATTIVAZIONE_V012P2_MCP_COMPLETATA. Torna nella chat e scrivi Fatto.'
+    print 'ATTIVAZIONE_V012P2B_MCP_COMPLETATA. Torna nella chat e scrivi Fatto.'
   else
     print 'Attivazione non completata. Lascia questa finestra aperta e torna nella chat.'
   fi
@@ -129,7 +129,7 @@ else
 fi
 read -r '?Premi Invio per chiudere questa finestra...'
 '''
-(P / 'Attiva_MCP_Andrea_v012p2.command').write_text(launcher)
+(P / 'Attiva_MCP_Andrea_v012p2b.command').write_text(launcher)
 print(json.dumps({'file': target.name, 'sha256': digest, 'bytes': target.stat().st_size, 'remote': remote,
                   'launcher_sha256': hashlib.sha256(launcher.encode()).hexdigest(),
                   'changed': changed, 'dependencies': dependencies}, indent=2))

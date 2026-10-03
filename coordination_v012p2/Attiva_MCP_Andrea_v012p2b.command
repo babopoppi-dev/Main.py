@@ -6,8 +6,8 @@ print 'Crea un backup, collauda come utente non amministratore e riavvia il solo
 print 'In caso di errore ripristina automaticamente la versione 0.12-personal-1.'
 print 'Quando richiesta, inserisci la password di accesso del tuo Mac personale.'
 /usr/bin/python3 -I -B -c 'import os,stat,hashlib,sys
-path='"'"'/Users/babo/MCPAndreaV012p2/upgrade_mac_v012p2_20261003.py'"'"'
-expected='"'"'098400b38c84cd93450d6452a9a946f23a07aaf2fbdac35891ece70fc46c09dd'"'"'
+path='"'"'/Users/babo/MCPAndreaV012p2b/upgrade_mac_v012p2b_20261003.py'"'"'
+expected='"'"'fecdbab5a4fe1318c8e73b7d928e7dc0e9fa81f3e96b0e993d94c4025a74e3a2'"'"'
 fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
 with os.fdopen(fd,'"'"'rb'"'"') as f:
  st=os.fstat(f.fileno())
@@ -23,8 +23,8 @@ exec(compile(raw,path,'"'"'exec'"'"'),context)
 ' --check
 if [[ $? == 0 ]]; then
   /usr/bin/sudo /usr/bin/python3 -I -B -c 'import os,stat,hashlib,sys
-path='"'"'/Users/babo/MCPAndreaV012p2/upgrade_mac_v012p2_20261003.py'"'"'
-expected='"'"'098400b38c84cd93450d6452a9a946f23a07aaf2fbdac35891ece70fc46c09dd'"'"'
+path='"'"'/Users/babo/MCPAndreaV012p2b/upgrade_mac_v012p2b_20261003.py'"'"'
+expected='"'"'fecdbab5a4fe1318c8e73b7d928e7dc0e9fa81f3e96b0e993d94c4025a74e3a2'"'"'
 fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
 with os.fdopen(fd,'"'"'rb'"'"') as f:
  st=os.fstat(f.fileno())
@@ -39,7 +39,7 @@ if action=='"'"'--apply'"'"':context['"'"'APPROVED_SOURCE'"'"']=raw
 exec(compile(raw,path,'"'"'exec'"'"'),context)
 ' --apply
   if [[ $? == 0 ]]; then
-    print 'ATTIVAZIONE_V012P2_MCP_COMPLETATA. Torna nella chat e scrivi Fatto.'
+    print 'ATTIVAZIONE_V012P2B_MCP_COMPLETATA. Torna nella chat e scrivi Fatto.'
   else
     print 'Attivazione non completata. Lascia questa finestra aperta e torna nella chat.'
   fi

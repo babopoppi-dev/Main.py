@@ -11,16 +11,16 @@ import tempfile
 import types
 import unittest
 from unittest.mock import patch
-import upgrade_mac_v012p2_20261003 as u
+import upgrade_mac_v012p2b_20261003 as u
 
 
 class MacUpgrade(unittest.TestCase):
     def test_launcher_passes_exact_source_to_root_bootstrap(self):
-        tokens=shlex.split((Path(__file__).parent/'Attiva_MCP_Andrea_v012p2.command').read_text())
+        tokens=shlex.split((Path(__file__).parent/'Attiva_MCP_Andrea_v012p2b.command').read_text())
         loaders=[tokens[i+1] for i,t in enumerate(tokens) if t=='-c']
         self.assertEqual(len(loaders),2)
         self.assertEqual(loaders[0],loaders[1])
-        source=(Path(__file__).parent/'upgrade_mac_v012p2_20261003.py').read_bytes()
+        source=(Path(__file__).parent/'upgrade_mac_v012p2b_20261003.py').read_bytes()
         execute=builtins.exec
         for action in ('--check','--apply'):
             with self.subTest(action=action),tempfile.TemporaryFile() as f:

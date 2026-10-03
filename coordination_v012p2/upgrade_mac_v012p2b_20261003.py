@@ -4,11 +4,11 @@ import base64,contextlib,fcntl,hashlib,json,os,plistlib,re,stat,subprocess,sys,t
 from pathlib import Path
 ROOT=Path('/Library/MCPAndreaMacMioV09')
 BASE=ROOT/'code'
-SELF=ROOT/'upgrade_v012p2_20261003.py'
-BACKUP=ROOT/'backup/v012p2_20261003'
-RECEIPT=ROOT/'v012p2_20261003_receipt.json'
-TEST_CODE=ROOT/'preflight-v012p2_20261003'
-TEST_DATA=Path('/Users/Shared/MCPAndreaMacMio/preflight-v012p2_20261003')
+SELF=ROOT/'upgrade_v012p2b_20261003.py'
+BACKUP=ROOT/'backup/v012p2b_20261003'
+RECEIPT=ROOT/'v012p2b_20261003_receipt.json'
+TEST_CODE=ROOT/'preflight-v012p2b_20261003'
+TEST_DATA=Path('/Users/Shared/MCPAndreaMacMio/preflight-v012p2b_20261003')
 GUARD=ROOT/'state/operations/guard'
 LABEL='it.andreababini.mcp-mac-mio-v09'
 PLIST=Path('/Library/LaunchDaemons')/(LABEL+'.plist')
@@ -24,7 +24,7 @@ SYSTEM_AGENTS=frozenset({'/usr/sbin/distnoted agent','/usr/sbin/cfprefsd agent',
 ORIGINAL={'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'mac_agent.py': 'c3db14ba1fea17a0b6240d59ebac071750af4629bc1f6e5466bb94c4b66f594c', 'mac_child.py': 'f5b37188587c1459633d4eefb3ebc250798609272b83b4472247cca3b125b5bd', 'mac_shell.py': '5ebae9f1e668a6b7f9801d5014ff66deef308ceea4ec6acfa22b2c6839606534', 'net_proxy.py': 'a9ae31721b4eef732ce5cab4dfc15836224d5f7f5d33b3cd527ca3361ed8822e'}
 DEPENDENCIES={'agent_shell.py': 'd62822814d97c52468ca8aad4a43fa1bf8e424b8cd8200ac88ea4e2c9c33e21c', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'mac_clock.py': '6553b061c51e2da286296231538796dd086404b1dbacca37bd9299e2628dae07', 'mac_guard.py': '8d3f7afe80daae81e8f3a3471229423d14777eb84358a3f57621e74149dc57bc', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_watchdog.py': '66dc9cbe74dd74931979200a9eda4032461a31c1687f5a2ca64a4441f21c4c99', 'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'shell_common.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861'}
 TEST_NAMES=['file_tools.py', 'mac_agent.py', 'mac_child.py', 'mac_shell.py', 'net_proxy.py', 'agent_shell.py', 'file_schema.py', 'mac_clock.py', 'mac_guard.py', 'mac_policy.py', 'mac_watchdog.py', 'search_schema.py', 'search_tools.py', 'shell_common.py', 'upload_tools.py', 'work_schema.py', 'work_sessions.py', 'test_work_core.py', 'test_search.py', 'test_v012.py', 'test_files_v012.py', 'mac_v012_selftest.py', 'cg_tools.py']
-SOURCE_SHA={'file_tools.py': '002d2382b7670e6a9a468facbb951c1f9a20431c70fbba2d8c370fffea5c24cc', 'mac_agent.py': '2063b597142d9a7bb6fe11aa1ccc36e8940601c9ff2d87286269a3b181040f85', 'mac_child.py': '24d7c1701eeab38885fbf51ea7b3bb0d368ebe102c1740c97c95efa6c6f8de1e', 'mac_shell.py': '79c8595ddf87e1076b64b782a0a366de5d7c30de89b1b697c99581e1e6de9c14', 'net_proxy.py': '550deb2441af4fbbd3b89ed7e8204339e439e1049c98ca2a01e6e73c50bfd48c', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': 'cab24eee0012e8218188c133ebdfb44d7670263cbd70fc53e3392eeea4a9e8e5', 'test_files_v012.py': 'b23873ec8879851d36d6032a8fe025833934896582d66b0c45dee983ef951068', 'mac_v012_selftest.py': '7784859a8e44a4030e58109f822701de123c6d6ed590307e25a10d3c4403f774', 'cg_tools.py': '0df2f955e3de20a5fb13565fcb347c52c8c738963f8c418de0873dc0c123fbd1'}
+SOURCE_SHA={'file_tools.py': '002d2382b7670e6a9a468facbb951c1f9a20431c70fbba2d8c370fffea5c24cc', 'mac_agent.py': '2063b597142d9a7bb6fe11aa1ccc36e8940601c9ff2d87286269a3b181040f85', 'mac_child.py': '24d7c1701eeab38885fbf51ea7b3bb0d368ebe102c1740c97c95efa6c6f8de1e', 'mac_shell.py': '79c8595ddf87e1076b64b782a0a366de5d7c30de89b1b697c99581e1e6de9c14', 'net_proxy.py': '550deb2441af4fbbd3b89ed7e8204339e439e1049c98ca2a01e6e73c50bfd48c', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': 'cab24eee0012e8218188c133ebdfb44d7670263cbd70fc53e3392eeea4a9e8e5', 'test_files_v012.py': 'b23873ec8879851d36d6032a8fe025833934896582d66b0c45dee983ef951068', 'mac_v012_selftest.py': '0b10373a80a0b785d3f80a4b64e82e3d5f796c7ec043489d1a8fc0d247a62d66', 'cg_tools.py': '0df2f955e3de20a5fb13565fcb347c52c8c738963f8c418de0873dc0c123fbd1'}
 SOURCES={
 'file_tools.py': r'''"""Bounded POSIX file tools, Python 3.9, durable rollback, no shell execution.
 
@@ -3052,9 +3052,16 @@ async def main():
         listed = await call('shell_session', a, action='list')
         assert sum(x['running'] for x in listed['sessions']) == 2, listed
         await call('shell_session', a, action='stop', session_id=s1['session_id'])
-        await asyncio.sleep(.5)
-        r2 = await call('shell_session', a, action='read', session_id=s2['session_id'])
-        assert r2['running'] and 'CONCURRENT_OK' in r2['output'], r2
+        # A seatbelt shell needs ~1.5-2 s on the Mac before its first output: wait for it.
+        seen, end = '', time.monotonic() + 15
+        while time.monotonic() < end:
+            r2 = await call('shell_session', a, action='read', session_id=s2['session_id'])
+            seen += r2['output']
+            assert r2['running'], r2
+            if 'CONCURRENT_OK' in seen:
+                break
+            await asyncio.sleep(.25)
+        assert 'CONCURRENT_OK' in seen, (seen, r2)
         procs = await call('shell_session', a, action='processes')
         assert procs['processes'], procs
         await call('disable_full_shell', a)

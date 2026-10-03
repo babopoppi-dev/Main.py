@@ -176,9 +176,16 @@ async def main():
         listed = await call('shell_session', a, action='list')
         assert sum(x['running'] for x in listed['sessions']) == 2, listed
         await call('shell_session', a, action='stop', session_id=s1['session_id'])
-        await asyncio.sleep(.5)
-        r2 = await call('shell_session', a, action='read', session_id=s2['session_id'])
-        assert r2['running'] and 'CONCURRENT_OK' in r2['output'], r2
+        # A seatbelt shell needs ~1.5-2 s on the Mac before its first output: wait for it.
+        seen, end = '', time.monotonic() + 15
+        while time.monotonic() < end:
+            r2 = await call('shell_session', a, action='read', session_id=s2['session_id'])
+            seen += r2['output']
+            assert r2['running'], r2
+            if 'CONCURRENT_OK' in seen:
+                break
+            await asyncio.sleep(.25)
+        assert 'CONCURRENT_OK' in seen, (seen, r2)
         procs = await call('shell_session', a, action='processes')
         assert procs['processes'], procs
         await call('disable_full_shell', a)
