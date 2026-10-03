@@ -19,7 +19,7 @@ from mac_agent import Dispatcher, WORK, CODE
 from mac_guard import require_identity, stop_dedicated_children
 from net_proxy import GitHubProxy
 
-PROBE = r'''
+PROBE = r"""
 import base64, os, socket, sys
 port = int(sys.argv[1]); token = sys.argv[2]
 def attempt(addr):
@@ -37,7 +37,7 @@ else:
     print('PROXY', s.recv(64).split(b'\r\n')[0].decode())
 d = attempt(('1.1.1.1', 443))
 print('DIRECT', d if isinstance(d, str) else 'open')
-'''
+"""
 
 
 def sandboxed(command, cwd, proxy=None, timeout=30):
