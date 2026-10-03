@@ -117,7 +117,11 @@ DIAGNOSI REPL PYTHON (03/10 sera, sessione 93db6d66..., chiusa e pulita)
 - Correzione proposta (p4, mac_policy.py): (allow file-ioctl (literal <pty della sessione>)),
   piu dimensione 80x24 impostata sul PTY in mac_shell.py. Da confermare prima con prova locale.
 
-p4 PRONTA, NON INSTALLATA (04/10, cartella coordination_v012p4/, dettagli in LEGGIMI.txt)
+p4 ATTIVA (04/10, cartella coordination_v012p4/, dettagli in LEGGIMI.txt)
+- ATTIVAZIONE_V012P4_MCP_COMPLETATA; list_machines: mac_mio 0.12-personal-4.
+- Verifica dal vivo: stty size -> 24 80; python3 -i -> >>>, 6*7 -> 42, isatty True; exit pulito.
+  Protezioni invariate: /Users/babo e /etc/hosts negati, curl example.com rifiutato (rete chiusa).
+  Chiusura: shell spenta, lock rilasciato, sessione chiusa, who_is_working pulito.
 - Diagnosi REPL confermata sul Mac con sandbox-exec (deny file-ioctl -> bloccato; allow sul solo
   /dev/ttysNNN -> >>> e 42). Correzione: ioctl sul solo PTY della sessione + PTY 80x24.
 - Agent 0.12-personal-4, installer c22b98ad (commit 4bb3e6a), solo agent; helper non toccato.
@@ -131,6 +135,9 @@ PROSSIMI PASSI
    reali (E, rinviato): senza questi MCP non copre l'uso tipico di DC (start_process sui progetti).
 2. Pulizia: cartelle di prova del collaudo, workspace/Library/Caches.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
+
+ROLLBACK p4
+- Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p4_20261004.py --rollback
 
 ROLLBACK p3
 - Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p3_20261003.py --rollback
