@@ -1,0 +1,11 @@
+CORREZIONE dello script VPS v0.12 dell'altra sessione (coordination_v012, commit e146726e,
+sha e628db4c...). Il suo preflight falliva (00:27 UTC e 10:49 UTC): test_vps_agent.py
+inseriva /opt/central-mcp-gateway DAVANTI alla copia di prova, quindi provava l'agent
+live vecchio ("unsupported operation: work_session"). Nessun modulo live era stato toccato.
+Unica modifica: ordine del sys.path nel test incorporato + il suo hash in SOURCE_SHA.
+Simulazione fedele (moduli live accanto): originale 12 errori, corretto 57/57 OK.
+Script corretto: upgrade_vps_v012_20261003.py
+sha256 fcf8e9b4a9c5a19bcbd9c50b8e0b1e0e30076e958c92829f039a783a0b2826bb
+Passi (admin_request): rimozione delle cartelle di preflight rimaste, download al commit
+fissato in /opt (stesso nome: lo script verifica il proprio percorso), sha256sum, --apply,
+ricevuta dopo ~90 s.
