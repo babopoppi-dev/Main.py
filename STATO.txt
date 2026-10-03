@@ -1,6 +1,7 @@
-MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 38
+MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 39
 Blocco coordinamento v0.11: ATTIVO su gateway e Mac personale, verificato.
-Blocco v0.12 (sostituzione Desktop Commander): pronto, in attesa di Andrea.
+Blocco v0.12 (sostituzione Desktop Commander): pronto per gateway, VPS e Mac;
+attivazione gateway avviata (check OK), --apply in attesa del via di Andrea.
 
 STATO OPERATIVO
 - Gateway: catalogo 25 strumenti con work_session e work_lock (ricevuta active).
@@ -27,26 +28,24 @@ da chat nuova OK; installer e launcher v0.11 rimossi da workspace/.tmp
 PIANO APPROVATO PER SOSTITUIRE DESKTOP COMMANDER
 - Decisioni: progetti dentro la workspace (workspace/progetti, clone nuovi,
   La Marruca esistente non toccata); rete della shell solo GitHub, su richiesta.
-1. v0.12 Mac + catalogo gateway: PRONTA, IN ATTESA DI ANDREA (03/10/2026).
-   Dettagli e procedura: coordination_v012/LEGGIMI.txt.
-   - Gateway: script depositato in workspace VPS, sha256 verificato
-     (a10e73e2...). Servono 5 approvazioni Telegram (hash, install, check,
-     apply, ricevuta).
-   - Mac: un comando nel Terminale scarica installer e launcher da GitHub
-     (commit a41f6558), verifica gli hash e avvia il launcher (password).
-   - Poi verifica in una chat nuova.
-   Test 113+7 OK; proxy GitHub provato davvero (clone OK, pypi rifiutato).
-2. Coordinamento nell'agent VPS: IN ATTESA. Il sorgente dell'agent VPS
-   (/opt/central-mcp-gateway/agent.py) non e nel repository: serve una
-   admin_request 'cat' (Telegram) per leggerlo prima di progettare.
-3. Prova di riavvio del Mac: dopo l'installazione v0.12 (manuale).
+- Tutto in coordination_v012/ (procedura completa: LEGGIMI.txt).
+1. Gateway catalogo v0.12 (29 strumenti): install in /opt FATTO, --check
+   FATTO (check_passed, 29). --apply IN ATTESA: il controllo automatico dei
+   permessi di Claude Code lo ha bloccato; serve il via esplicito di Andrea.
+2. Agent VPS v0.12 (sessioni, lock, nuovi strumenti, shell offline): codice,
+   installer e test PRONTI (16 test, smoke reale contro l'agent). Sorgente
+   live letto e verificato (a6a9573e). Download installer in workspace VPS
+   via admin_request curl (commit a1d98356). Attivazione dopo il gateway.
+3. Mac v0.12: installer 2ceaaf84 pronto; comando Terminale nel LEGGIMI
+   (scarica dal commit a1d98356, verifica hash, avvia launcher). Dopo il VPS.
+4. Verifica in chat nuova, poi prova di riavvio del Mac.
 
-STANDBY PER DOMATTINA (in ordine)
- a) admin_request gateway 0-4 (Telegram) -> catalogo 29 strumenti.
- b) comando Terminale sul Mac -> agent 0.12-personal-1.
- c) chat nuova: verifica strumenti nuovi e rete GitHub.
- d) admin_request: cat /opt/central-mcp-gateway/agent.py (per il VPS).
- e) riavvio del Mac e verifica che l'agent torni da solo.
+STANDBY (in ordine)
+ a) gateway --apply (ADMIN_REQUEST_3) + ricevuta (ADMIN_REQUEST_4).
+ b) VPS: verifica hash del download (295b226d...), V1 install, V2 apply,
+    V3 ricevuta.
+ c) Mac: comando Terminale (password).
+ d) chat nuova: verifica; poi riavvio Mac.
 
 PROBLEMI RESIDUI
 - Le chat con catalogo vecchio non possono piu scrivere sul Mac.

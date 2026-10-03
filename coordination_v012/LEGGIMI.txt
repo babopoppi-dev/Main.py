@@ -1,9 +1,9 @@
-MCP ANDREA v0.12 — PREPARATA, NON INSTALLATA (03/10/2026)
+MCP ANDREA v0.12 — PREPARATA; IN CORSO DI ATTIVAZIONE (03/10/2026)
 Obiettivo: sostituire Desktop Commander. Decisioni di Andrea: progetti dentro
 la workspace (workspace/progetti, clone nuovi; La Marruca esistente non si
 tocca); rete della shell solo GitHub e solo su richiesta.
 
-COSA CAMBIA (solo Mac personale + catalogo gateway; VPS agent e Mac a noleggio no)
+COSA CAMBIA (Mac personale, catalogo gateway e agent VPS; Mac a noleggio no)
 - delete_path: elimina file o cartella (max 500 voci, 64 MiB, niente link) con
   rollback durevole che ricrea cartelle, contenuti e permessi.
 - copy_file: copia file o cartella (no sovrascrittura, max 500 voci, 64 MiB),
@@ -24,8 +24,8 @@ COSA CAMBIA (solo Mac personale + catalogo gateway; VPS agent e Mac a noleggio n
 - Catalogo: 29 strumenti (25 + 4).
 
 VERIFICHE FATTE QUI
-- Test: 113 lato Mac su Python 3.9 (core 21, ricerca 28, v0.12 37, installer 27)
-  + 7 gateway. Preflight dell'installer simulato dai sorgenti incorporati: 86 OK.
+- Test: 113 lato Mac su Python 3.9 (core 21, ricerca 28, v0.12 Mac + file 37,
+  installer 27) + 7 gateway + 16 VPS (agent 11, installer 5) su Python 3.12. Preflight dell'installer simulato dai sorgenti incorporati: 86 OK.
 - Selftest UID5000 eseguito su Linux con proxy reale (seatbelt emulato): OK.
 - Proxy reale da questo ambiente: git ls-remote e git clone da github.com OK,
   raw.githubusercontent.com 200, pypi.org rifiutato 403.
@@ -37,13 +37,23 @@ VERIFICHE FATTE QUI
   non bloccante).
 
 FILE
-- upgrade_mac_v012_20261003.py      sha256 b717509b281238bd3ebb0462449678c1c94f85792f56587d3970120884790a8a
-- Attiva_MCP_Andrea_v012.command    sha256 31a6cb537bfab9fac429bbe31858cf8d6c6a48218b1a415113ab8933d11972d6
+- upgrade_mac_v012_20261003.py      sha256 2ceaaf845f09107d2b09ea47905ed70f204f72263bd462e1f484df8989cc8147
+- Attiva_MCP_Andrea_v012.command    sha256 16423be58fd399f06d0647f1686bfcf86866b9425f1ba27bad95683959c94b3e
 - upgrade_gateway_v012_20261003.py  sha256 a10e73e20f79c2365eeb16a8ea4562ec899d99c7c0b5509024344625c6e87520
   (gia depositato e verificato: /var/lib/central-mcp-vps-agent-test/workspace/)
-- Commit con installer e launcher: a41f65582abe7760d86d1104fd24581fbde815e8
+- Commit con installer e launcher: a1d98356693bbe122275cf93b580d6c835c3993b
 
-PROCEDURA (ordine obbligatorio: prima il gateway, poi il Mac; mai insieme)
+STATO DELL'ATTIVAZIONE (03/10/2026)
+- Gateway: passo 1 (install in /opt) FATTO; passo 2 --check FATTO
+  (check_passed, catalog_tools 29, helper a10e73e2...). Passo 3 --apply:
+  bloccato dal controllo automatico dei permessi di Claude Code; serve il via
+  di Andrea in chat (oppure lancia lui la admin_request).
+- VPS: agent v0.12 pronto (vps/), installer vps/upgrade_vps_v012_20261003.py
+  sha256 295b226dce6e5c238097094baa5cfd6bd7e3ab2f8ed309280a1b34d38dacd8af.
+  Deposito in workspace VPS via admin_request curl dal commit a1d98356.
+  Richiede PRIMA il gateway v0.12 (file_schema/work_schema/cg_tools fissati).
+
+PROCEDURA (ordine obbligatorio: gateway, poi VPS, poi Mac; mai insieme)
 Prima di iniziare: nessuna sessione/lock/shell attiva (who_is_working).
 
 A. Gateway, via admin_request (Claude invia, Andrea approva su Telegram):
@@ -55,11 +65,19 @@ A. Gateway, via admin_request (Claude invia, Andrea approva su Telegram):
    Rollback: ADMIN_REQUEST_rollback_gateway.txt. Backup:
    /opt/central-mcp-gateway/backups/pre_v012_20261003.
 
+A2. VPS, via admin_request (dopo A):
+   V1) vps/ADMIN_REQUEST_V1_installa_script.txt (install in /opt, root 0555)
+   V2) vps/ADMIN_REQUEST_V2_attiva.txt -> activation_scheduled; il job
+       separato fa preflight come utente agent, backup, stop agent, install,
+       restart agent+gateway, smoke con sessioni; errore = rollback automatico
+   V3) dopo ~90 s vps/ADMIN_REQUEST_V3_ricevuta.txt -> status active
+   Rollback: vps/ADMIN_REQUEST_V_rollback.txt.
+
 B. Mac personale, Andrea nel Terminale (nessun file da copiare a mano; scarica
    da GitHub al commit fissato, verifica gli hash, poi avvia il launcher che
    chiede la password e riverifica l'hash dell'installer):
 
-mkdir -p /Users/babo/MCPAndreaV012_20261003 && cd /Users/babo/MCPAndreaV012_20261003 && curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/a41f65582abe7760d86d1104fd24581fbde815e8/coordination_v012/upgrade_mac_v012_20261003.py && curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/a41f65582abe7760d86d1104fd24581fbde815e8/coordination_v012/Attiva_MCP_Andrea_v012.command && printf '%s  %s\n%s  %s\n' b717509b281238bd3ebb0462449678c1c94f85792f56587d3970120884790a8a upgrade_mac_v012_20261003.py 31a6cb537bfab9fac429bbe31858cf8d6c6a48218b1a415113ab8933d11972d6 Attiva_MCP_Andrea_v012.command | shasum -a 256 -c && zsh Attiva_MCP_Andrea_v012.command
+mkdir -p /Users/babo/MCPAndreaV012_20261003 && cd /Users/babo/MCPAndreaV012_20261003 && curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/a1d98356693bbe122275cf93b580d6c835c3993b/coordination_v012/upgrade_mac_v012_20261003.py && curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/a1d98356693bbe122275cf93b580d6c835c3993b/coordination_v012/Attiva_MCP_Andrea_v012.command && printf '%s  %s\n%s  %s\n' 2ceaaf845f09107d2b09ea47905ed70f204f72263bd462e1f484df8989cc8147 upgrade_mac_v012_20261003.py 16423be58fd399f06d0647f1686bfcf86866b9425f1ba27bad95683959c94b3e Attiva_MCP_Andrea_v012.command | shasum -a 256 -c && zsh Attiva_MCP_Andrea_v012.command
 
    Esito atteso: ATTIVAZIONE_V012_MCP_COMPLETATA. Errore: ripristino automatico
    0.11. Rollback manuale: stesso installer con --rollback (sudo locale).
