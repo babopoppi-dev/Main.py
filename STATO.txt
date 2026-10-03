@@ -81,9 +81,39 @@ PULIZIA RESIDUI VIA HELPER (03/10 sera)
   v010/v010r2, v012, v012p2b, v012p3, in /Library/MCPAndreaMacMioV09 e /Users/Shared/MCPAndreaMacMio):
   non toccate, da valutare solo se si vuole una pulizia piu ampia.
 
+COLLAUDO DI PARITA CON DESKTOP COMMANDER (03/10 sera, stesso Mac)
+- DC 0.2.52 riacceso da Andrea nel Terminale: npx -y @wonderwhy-er/desktop-commander@0.2.52 remote
+  (device MBP-di-Andrea.station af9e6e0f...). Config DC: allowedDirectories [] (tutto il disco come
+  babo), telemetria attiva; uso storico: start_process 2632, read_file 902, write_file 370, edit_block 239.
+- MCP: sessione 0bfe820e..., lock sul workspace, shell 30 min rete none. Cartelle di prova:
+  DC /Users/Shared/ParityDC_20261003, MCP workspace/parity_20261003.
+- UGUALI su entrambi: create_directory annidata; write_file rewrite+append (UTF-8 àèì €);
+  edit_block singolo; edit_block con 4 occorrenze -> rifiutato e file invariato; read_file
+  offset/length e offset negativo; get_file_info (85 B, 4 righe); move_file in sottocartella;
+  list_directory; read_multiple_files con file mancante (errore per singolo file); ricerca
+  contenuto (2 risultati, stesse righe); comando breve (python3 c.py); processo lungo
+  letto a pezzi fino a FINE; prompt senza a capo + read da shell; terminazione processi.
+- DIFFERENZE MCP (non bloccanti): output con \r\n (PTY); id -un -> 5000 invece del nome;
+  edit_block non dice quante occorrenze ha trovato; nessun list_searches; niente Excel/PDF/DOCX,
+  niente lettura URL; niente kill di processi non propri; /etc/hosts non leggibile dalla shell.
+- DIFETTO MCP: REPL Python interattivo (python3 -i, anche -u o -S, code.interact) si blocca dopo
+  il banner, prima del prompt >>> (percorso readline/tty dentro seatbelt). Shell e input()
+  da stdin funzionano. Aggiramento verificato: python3 -u -c 'import code; code.interact()' 2>&1 | cat
+  (prompt >>>, risposta 42). Da correggere o documentare.
+- xcode_list su mac_mio -> "unsupported operation": strumenti Xcode non disponibili sul Mac personale.
+- Confinamento MCP verificato: read_file /etc/hosts -> fuori dalle radici; dalla shell
+  /Users/babo e scrittura in /Users/Shared -> Operation not permitted.
+- Chiusura: shell spenta (0 sessioni), sessione chiusa, who_is_working pulito; DC list_sessions vuoto.
+- Rimasti (piccoli, da togliere): /Users/Shared/ParityDC_20261003 (DC) e
+  workspace/parity_20261003 (MCP, rollback persistenti disponibili). Non cancellati: la chat
+  non ha il permesso di cancellare.
+- DC ancora acceso nel Terminale di Andrea: NON spento, in attesa di decisione.
+
 PROSSIMI PASSI
-1. Collaudo di parita con Desktop Commander e spegnimento di DC.
-2. (Facoltativo) workspace/Library/Caches; eventuale ritocco PIP_NO_CACHE_DIR nel profilo shell.
+1. Decidere lo spegnimento di DC (Ctrl+C nel Terminale; poi eventualmente revoca del device su
+   mcp.desktopcommander.app). Prima valutare: REPL Python, Xcode su mac_mio, accesso ai progetti
+   reali (E, rinviato): senza questi MCP non copre l'uso tipico di DC (start_process sui progetti).
+2. Pulizia: cartelle di prova del collaudo, workspace/Library/Caches.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
 
 ROLLBACK p3
