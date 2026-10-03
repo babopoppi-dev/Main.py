@@ -263,6 +263,17 @@ def load_package():
     for name,data in {**PAYLOAD,**TESTS}.items():compile(data,name,'exec')
 
 
+def maintenance_lock(fd,action):
+    # Detached activations wait for each other (gateway and VPS agent share the
+    # lock) instead of failing; interactive actions never wait.
+    end=time.monotonic()+(240 if action=='--activate' else 0)
+    while True:
+        try:fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB);return
+        except BlockingIOError:
+            if time.monotonic()>=end:raise RuntimeError('another maintenance is running; retry later')
+            time.sleep(2)
+
+
 def main(action):
     if os.getuid()!=0 or os.geteuid()!=0 or Path(__file__).resolve()!=SELF:raise RuntimeError('installed root helper required')
     trusted_directory(BASE);read(SELF);load_package();os.umask(0o077)
@@ -270,7 +281,8 @@ def main(action):
     st=os.fstat(lock)
     if not stat.S_ISREG(st.st_mode) or st.st_uid!=0 or st.st_nlink!=1 or st.st_mode&0o077:
         os.close(lock);raise RuntimeError('unsafe maintenance lock')
-    fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    try:maintenance_lock(lock,action)
+    except BaseException:os.close(lock);raise
     try:
         if action=='--check':
             validate();print(json.dumps({'check_passed':True,'helper_sha256':sha(read(SELF)),'version':VERSION,'gateway_touched':False}));return

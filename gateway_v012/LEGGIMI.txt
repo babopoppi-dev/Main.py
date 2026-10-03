@@ -1,0 +1,13 @@
+GATEWAY v0.12 — solo catalogo (27 strumenti: + mac_admin_request, mac_admin_result).
+cg_tools.py + nuovo admin_schema.py; cg_mcp.py invariato (inoltra all'agent mac_mio).
+Script: upgrade_gateway_v012_20261003.py
+sha256 e3555b10a75e5c8143e378c1cb9745b12c4a209cc02958349ee04a5993d4d66c
+Comandi admin_request (Telegram, in ordine): ADMIN_REQUEST_1_download_gateway.txt
+(scarica dal repository al commit fissato), _2_check (verifica hash live e stampa
+l'hash dello script: deve coincidere), _3_apply (pianifica --activate in un job
+systemd separato: backup /opt/central-mcp-gateway/backups/pre_v012_20261003,
+riavvio del solo gateway, verifica catalogo, rollback automatico).
+Rollback: ADMIN_REQUEST_rollback_gateway.txt. Attende il lock di manutenzione
+condiviso con l'installer VPS (max 4 minuti) invece di fallire.
+Se il VPS non raggiunge GitHub: depositare lo script con write_file nella
+workspace VPS e usare install -o root -g root -m 0555 <workspace>/<file> /opt/central-mcp-gateway/<file>.

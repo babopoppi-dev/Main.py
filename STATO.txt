@@ -1,42 +1,49 @@
-MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 36
-Blocco coordinamento v0.11: ATTIVO su gateway e Mac personale, verificato.
+MCP ANDREA — STATO 03/10/2026 (Europe/Rome), dopo il checkpoint v36
+Riferimento: repository babopoppi-dev/Main.py, branch claude/mcp-andrea-coordination-test-1bgkfu
+(checkpoint v36 importato integralmente; nessuna credenziale trovata).
+ATTENZIONE: il repository e PUBBLICO (nessun segreto, ma contiene nomi host e percorsi).
 
-STATO OPERATIVO
-- Gateway: catalogo 25 strumenti con work_session e work_lock (ricevuta active).
-  Agent VPS non modificato (coordinamento non integrato sul VPS).
-- Mac personale: agent 0.11-personal-work-2, coordination_version 0.11.0,
-  ricerca 0.10.1, UID5000, /Library/MCPAndreaMacMioV09.
-  Scritture, rollback, ricerche e shell richiedono work_session_id e
-  work_session_token; la shell richiede il lock dell'intera workspace.
-  Letture e sw_vers senza sessione.
-- Fine lavori: nessuna sessione, lock o shell attivi. Mac a noleggio non toccato.
-  Desktop Commander non usato.
+STATO OPERATIVO (invariato rispetto alla v36, verificato)
+- Gateway: 25 strumenti, coordinamento v0.11 attivo. Agent VPS senza coordinamento.
+- Mac personale: agent 0.11-personal-work-2, coordination 0.11.0, ricerca 0.10.1, UID 5000.
+- Nessuna sessione, lock o shell attivi. Mac a noleggio non toccato. Desktop Commander non usato.
 
-BACKUP E ROLLBACK
-- Mac: /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002
-  (rollback: installer --rollback con sudo locale). Backup precedente intatto:
-  /Library/MCPAndreaMacMioV09/backup/search_v010_20261002.
-- Gateway: /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002
-  (rollback: ADMIN_REQUEST_rollback_gateway.txt via Telegram).
+COMPLETATO E VERIFICATO
+A. Coordinamento v0.11 chiuso: work_session + lock su workspace/.tmp, scrittura,
+   lettura, rollback ok; sessione chiusa, nessun lock; in .tmp resta solo xcrun_db
+   (installer e launcher erano gia stati rimossi alle 01:07). EVIDENZE_A_20261003.json.
 
-PROSSIMO PASSO
-1. Aprire una chat nuova (o ricaricare il connettore) e provare una
-   work_session reale: open, lock su una cartella, scrittura, chiusura.
-2. Con quella sessione rimuovere i file temporanei rimasti (vedi sotto).
-3. Poi: coordinamento nell'agent VPS, prove di lavoro reale, riavvio Mac.
+PRONTO, IN STANDBY (sviluppato e testato, NON installato) — TEST_v012.log: 155/155
+B+C. mac_v012/: agent 0.12 (id sessione nel registro, installer tollerante solo
+   verso agent di sistema macOS verificati), amministrazione del Mac via Telegram
+   con helper root e bot dedicato. Attivazione: procedura locale (mac_v012/LEGGIMI.txt).
+C. gateway_v012/: catalogo con mac_admin_request/mac_admin_result (admin_request).
+D. vps_v012/: coordinamento nell'agent VPS (admin_request).
+E, F, G: proposte in PROPOSTE_E_F_G_20261003.txt (servono decisioni).
+
+SEQUENZA DI ATTIVAZIONE
+1. Mac (locale): bot @BotFather; git clone in ~/MCPAndreaRepo; zsh .../Attiva_MCP_Andrea_v012.command
+2. "sono disponibile" -> 6 admin_request in ordine: gateway download/check/apply,
+   VPS download/check/apply (si attendono a vicenda sul lock di manutenzione).
+3. Chat nuova (catalogo 27 strumenti): verifica list_machines (mac 0.12, vps 0.12),
+   work_session su VPS, mac_admin_request di prova (/usr/bin/id) approvata dal bot Mac.
+
+BACKUP
+- Esistenti: Mac /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002 e
+  search_v010_20261002; gateway /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002.
+- Previsti: Mac .../backup/v012_20261003; gateway .../backups/pre_v012_20261003;
+  VPS .../backups/pre_vps_v012_20261003.
 
 PROBLEMI RESIDUI
-- Le chat con catalogo vecchio non possono piu scrivere sul Mac.
-- Nel registro le voci delle operazioni work_session/work_lock non riportano
-  l'id di sessione (lo riportano gli eventi session_open/lock_acquire): solo audit.
-- File temporanei: installer e launcher in workspace/.tmp del Mac, copia in
-  /Users/babo/MCPAndreaCoordV011_20261002, script in workspace VPS, helper in /opt.
-- Journal di rollback Mac: operazioni dei collaudi su file rimossi (innocue).
+- Non verificato che il VPS raggiunga raw.githubusercontent.com (alternativa
+  documentata: write_file + install).
+- Le chat con catalogo vecchio non vedranno mac_admin_* e, dopo D, non potranno
+  scrivere sul VPS senza work_session.
+- Alle 02:20 un'altra sessione ("v0.12 cartella progetti") ha creato
+  workspace/progetti sul Mac: lavori in parallelo da chiarire.
+- who_is_working restituisce molti dati (costo in crediti).
 - Sessioni = token per client cooperanti; altri programmi non rispettano i lock.
 
-VINCOLI INVARIATI
-- VPS: comandi amministrativi solo con admin_request e approvazione Telegram.
-- Mac: amministrazione solo con procedura locale. Non toccare Bitcoin,
-  La Marruca, LiDAR, credenziali, Mac a noleggio. Nessun installer del nuovo Mac.
-Dettagli: coordination_v011r1/LEGGIMI.txt; stato precedente:
-STORICO_prima_attivazione_v011_20261003.txt.
+VINCOLI INVARIATI: VPS solo admin_request+Telegram; Mac admin solo locale finche
+C non e attivo; non toccare Bitcoin, La Marruca, LiDAR, credenziali, Mac a noleggio.
+Stato precedente: STORICO_prima_v012_20261003.txt.

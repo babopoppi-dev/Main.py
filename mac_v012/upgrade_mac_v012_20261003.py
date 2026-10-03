@@ -2064,10 +2064,11 @@ def main(action):
         fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
         if action=='--apply':
             check_sources()
+            # Interactive pairing first: a failure here leaves nothing to clean up.
+            admin_conf=telegram_setup()
             try:preflight()
             except Exception as e:
                 record('preflight_failed',reason=str(e)[:1200],live_modules_modified=False);raise
-            admin_conf=telegram_setup()
             check_sources()
             stopped=False;installed=False
             try:

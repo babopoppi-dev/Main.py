@@ -270,6 +270,17 @@ def install(manifest):
         atomic(BASE/name,data,meta['mode'],meta['uid'],meta['gid'])
 
 
+def maintenance_lock(fd,action):
+    # Detached activations wait for each other (gateway and VPS agent share the
+    # lock) instead of failing; interactive actions never wait.
+    end=time.monotonic()+(240 if action=='--activate' else 0)
+    while True:
+        try:fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB);return
+        except BlockingIOError:
+            if time.monotonic()>=end:raise RuntimeError('another maintenance is running; retry later')
+            time.sleep(2)
+
+
 def main(action):
     load_package()
     if os.getuid()!=0 or os.geteuid()!=0 or Path(__file__).resolve()!=SELF:
@@ -277,7 +288,7 @@ def main(action):
     trusted_directory(BASE);own=sha(read(SELF));os.umask(0o077)
     fd=os.open('/run/lock/mcp-andrea-files-maintenance.lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)
     try:
-        fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        maintenance_lock(fd,action)
         if action=='--check':
             result=validate();result['catalog_tools']=preflight();result['helper_sha256']=own
             print(json.dumps(result,indent=2));return

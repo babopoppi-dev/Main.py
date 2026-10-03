@@ -1,0 +1,42 @@
+MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 36
+Blocco coordinamento v0.11: ATTIVO su gateway e Mac personale, verificato.
+
+STATO OPERATIVO
+- Gateway: catalogo 25 strumenti con work_session e work_lock (ricevuta active).
+  Agent VPS non modificato (coordinamento non integrato sul VPS).
+- Mac personale: agent 0.11-personal-work-2, coordination_version 0.11.0,
+  ricerca 0.10.1, UID5000, /Library/MCPAndreaMacMioV09.
+  Scritture, rollback, ricerche e shell richiedono work_session_id e
+  work_session_token; la shell richiede il lock dell'intera workspace.
+  Letture e sw_vers senza sessione.
+- Fine lavori: nessuna sessione, lock o shell attivi. Mac a noleggio non toccato.
+  Desktop Commander non usato.
+
+BACKUP E ROLLBACK
+- Mac: /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002
+  (rollback: installer --rollback con sudo locale). Backup precedente intatto:
+  /Library/MCPAndreaMacMioV09/backup/search_v010_20261002.
+- Gateway: /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002
+  (rollback: ADMIN_REQUEST_rollback_gateway.txt via Telegram).
+
+PROSSIMO PASSO
+1. Aprire una chat nuova (o ricaricare il connettore) e provare una
+   work_session reale: open, lock su una cartella, scrittura, chiusura.
+2. Con quella sessione rimuovere i file temporanei rimasti (vedi sotto).
+3. Poi: coordinamento nell'agent VPS, prove di lavoro reale, riavvio Mac.
+
+PROBLEMI RESIDUI
+- Le chat con catalogo vecchio non possono piu scrivere sul Mac.
+- Nel registro le voci delle operazioni work_session/work_lock non riportano
+  l'id di sessione (lo riportano gli eventi session_open/lock_acquire): solo audit.
+- File temporanei: installer e launcher in workspace/.tmp del Mac, copia in
+  /Users/babo/MCPAndreaCoordV011_20261002, script in workspace VPS, helper in /opt.
+- Journal di rollback Mac: operazioni dei collaudi su file rimossi (innocue).
+- Sessioni = token per client cooperanti; altri programmi non rispettano i lock.
+
+VINCOLI INVARIATI
+- VPS: comandi amministrativi solo con admin_request e approvazione Telegram.
+- Mac: amministrazione solo con procedura locale. Non toccare Bitcoin,
+  La Marruca, LiDAR, credenziali, Mac a noleggio. Nessun installer del nuovo Mac.
+Dettagli: coordination_v011r1/LEGGIMI.txt; stato precedente:
+STORICO_prima_attivazione_v011_20261003.txt.

@@ -1,0 +1,7 @@
+{"punto": "A - chiusura coordinamento v0.11", "data": "2026-10-03T00:31Z",
+ "work_session": {"id": "4ab738eaddf64a00a6e526e6e6c07982", "label": "A chiusura v0.11 verifica tmp"},
+ "lock": {"id": "8fb6056af7034518ba5596a3d7376fec", "path": "/Users/Shared/MCPAndreaMacMio/workspace/.tmp"},
+ "write_file": {"path": ".tmp/verifica_A_20261003.txt", "bytes": 40, "operation_id": "2af1cd8021e04cfeaf2c8afdc9f81694"},
+ "read_file": "contenuto identico", "rollback_file": {"rolled_back": true, "persistent": true},
+ "dopo": {".tmp": ["xcrun_db"], "work_sessions": [], "work_locks": [], "shell_enabled": false},
+ "nota": "upgrade_mac_coordination_v011r1_20261002.py e Attiva_Coordinamento_MCP_Andrea.command erano gia stati rimossi da .tmp alle 01:07 (sessione 352affa0..., shell). Alle 02:20 una sessione 'v0.12 cartella progetti' (6f19141c...) ha creato workspace/progetti (vuota)."}

@@ -1,3 +1,4 @@
+import os
 import base64
 import contextlib
 import json
@@ -96,5 +97,19 @@ class Deployment(unittest.TestCase):
             self.assertEqual(b,(Path(__file__).parent/n).read_bytes())
             self.assertEqual(b,generated.TESTS[n])
 
+
+class MaintenanceLock(unittest.TestCase):
+    def test_activation_waits_interactive_fails(self):
+        import fcntl,tempfile
+        with tempfile.NamedTemporaryFile() as f:
+            holder=os.open(f.name,os.O_RDWR);fcntl.flock(holder,fcntl.LOCK_EX)
+            fd=os.open(f.name,os.O_RDWR)
+            try:
+                with self.assertRaisesRegex(RuntimeError,'another maintenance'):u.maintenance_lock(fd,'--check')
+                ticks=iter([0,10,20,30])
+                def sleep(_):
+                    if next(ticks)==20:fcntl.flock(holder,fcntl.LOCK_UN)
+                with patch.object(u.time,'sleep',side_effect=sleep):u.maintenance_lock(fd,'--activate')
+            finally:os.close(fd);os.close(holder)
 
 if __name__=='__main__':unittest.main(verbosity=2)

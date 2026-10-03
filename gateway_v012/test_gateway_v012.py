@@ -62,4 +62,18 @@ class GatewayActivation(unittest.TestCase):
         (self.base/'backups'/'pre').mkdir()
         with self.assertRaisesRegex(RuntimeError,'backup already exists'):g.validate()
 
+class MaintenanceLock(unittest.TestCase):
+    def test_activation_waits_interactive_fails(self):
+        import fcntl,tempfile
+        with tempfile.NamedTemporaryFile() as f:
+            holder=os.open(f.name,os.O_RDWR);fcntl.flock(holder,fcntl.LOCK_EX)
+            fd=os.open(f.name,os.O_RDWR)
+            try:
+                with self.assertRaisesRegex(RuntimeError,'another maintenance'):g.maintenance_lock(fd,'--check')
+                ticks=iter([0,10,20,30])
+                def sleep(_):
+                    if next(ticks)==20:fcntl.flock(holder,fcntl.LOCK_UN)
+                with patch.object(g.time,'sleep',side_effect=sleep):g.maintenance_lock(fd,'--activate')
+            finally:os.close(fd);os.close(holder)
+
 if __name__=='__main__':unittest.main()

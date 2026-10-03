@@ -1,0 +1,58 @@
+MCP ANDREA — PROPOSTE IN STANDBY (punti E, F, G) — 03/10/2026
+Nessun codice installato. Servono le decisioni indicate; poi sviluppo come v0.13,
+installabile via mac_admin_request (Telegram) una volta attivo il punto C.
+
+E. ACCESSO CONTROLLATO AI PROGETTI REALI SUL MAC
+Le righe "cartelle autorizzate" nel messaggio erano vuote: questa e la proposta.
+Proposta (da confermare o correggere, un percorso per riga):
+  /Users/babo/Developer/MCPAndrea        lettura e scrittura
+  /Users/babo/Developer                  sola lettura
+Escluse sempre, anche se dentro un percorso autorizzato: Bitcoin, La Marruca,
+LiDAR, .ssh, Library, Keychains, .Trash, qualunque cartella con credenziali.
+Come funzionerebbe:
+- L'agent gira come utente dedicato UID 5000, che oggi NON puo leggere la tua home.
+  Servono ACL macOS mirate (chmod +a "mcp_andrea allow ...") solo sui percorsi
+  scelti: lettura (list,search,readattr...) o lettura/scrittura. Le ACL si applicano
+  via mac_admin_request (Telegram, un comando alla volta) e si revocano allo stesso modo.
+- Nell'agent: nuove radici con modalita ro/rw da un file di configurazione
+  root-owned; scritture solo su radici rw e solo con work_session e work_lock
+  (lo stesso coordinamento v0.11); la shell resta confinata alla workspace.
+- Evitare Desktop, Documenti e Download: sono protetti da TCC e richiederebbero
+  "Accesso completo al disco" per python3 (sconsigliato).
+Decisioni richieste: elenco percorsi e modalita; conferma esclusioni.
+
+F. RETE CONTROLLATA PER LA SHELL
+Le righe "domini consentiti" erano vuote: questa e la proposta.
+Proposta: github.com, codeload.github.com, objects.githubusercontent.com,
+  pypi.org, files.pythonhosted.org, registry.npmjs.org. Tutto il resto bloccato.
+Come funzionerebbe:
+- Il seatbelt non filtra per nome di dominio: la shell continua a non avere rete
+  diretta; viene consentita SOLO la connessione a un proxy locale (127.0.0.1)
+  avviato dall'agent durante la sessione shell.
+- Il proxy accetta solo CONNECT verso i domini in lista, porta 443, risolve il DNS
+  da se e rifiuta indirizzi privati/locali (niente accesso alla LAN o al Mac stesso).
+- Variabili HTTPS_PROXY/HTTP_PROXY impostate nella shell (git, pip, npm le usano).
+- Rete attiva solo se richiesta esplicitamente all'abilitazione della shell
+  (enable_full_shell network=true) e registrata nel registro con l'id di sessione.
+- Collaudo nativo sul Mac prima dell'attivazione (il profilo seatbelt cambia).
+Decisioni richieste: lista domini; conferma che la rete sia opt-in per sessione.
+
+G. GESTIONE GENERALE DEI PROCESSI
+Situazione attuale: una sola sessione shell attiva per volta; quando termina,
+l'agent chiude TUTTI i processi dell'utente dedicato (garanzia contro processi
+staccati). Elenco e stop esistono gia a livello di sessione (shell_session read/stop).
+Proposta in due livelli:
+1. Senza cambiare la garanzia (consigliato come primo passo):
+   - process_list: processi dell'utente dedicato (pid, ppid, tempo, comando),
+     sola lettura, senza sessione.
+   - process_stop: segnale TERM/KILL a un pid dell'utente dedicato, solo dal
+     titolare della shell e mai all'agent.
+   - processi lunghi multipli dentro UNA sessione supervisore, ciascuno con il
+     proprio file di output nella workspace (leggibile con read_file).
+2. Piu sessioni shell contemporanee (fino a 4) con chiusura per gruppo di
+   processi invece che per utente: piu comodo, ma indebolisce la garanzia
+   attuale (un processo che cambia gruppo potrebbe sopravvivere alla sessione).
+Decisione richiesta: livello 1 soltanto, oppure anche livello 2.
+
+ORDINE PROPOSTO DOPO LE DECISIONI
+v0.13 Mac = E + G livello 1; poi F (con collaudo nativo del seatbelt) come v0.14.

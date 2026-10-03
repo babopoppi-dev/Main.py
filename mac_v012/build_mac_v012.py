@@ -104,7 +104,7 @@ body=body.replace(old_nop,"""def no_other_processes(daemon_pid=None):
 """)
 swap("TEST_CODE/'mac_search_selftest.py'","TEST_CODE/'mac_coordination_selftest.py'")
 swap("'search smoke failed: '","'coordination smoke failed: '")
-swap("            check_sources()\n            stopped=False;installed=False","            admin_conf=telegram_setup()\n            check_sources()\n            stopped=False;installed=False")
+swap("        if action=='--apply':\n            check_sources()\n            try:preflight()","        if action=='--apply':\n            check_sources()\n            # Interactive pairing first: a failure here leaves nothing to clean up.\n            admin_conf=telegram_setup()\n            try:preflight()")
 swap("                raise\n        elif action=='--rollback':\n            with workspace_guard():","                raise\n            admin_phase(admin_conf)\n        elif action=='--rollback':\n            admin_remove()\n            with workspace_guard():")
 swap("                record('active',version=NEW_VERSION,","                record('agent_active',version=NEW_VERSION,")
 assert body.count('\n\nif __name__==')==1

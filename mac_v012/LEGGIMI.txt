@@ -1,0 +1,53 @@
+MCP ANDREA v0.12 — SVILUPPATO E TESTATO, NON INSTALLATO (03/10/2026)
+Contiene i punti B, C (Mac) e, nelle cartelle sorelle, gateway_v012 e vps_v012 (D).
+
+B. RIFINITURE COORDINAMENTO (mac_agent.py 0.12-personal-admin-1)
+- Il registro durevole riporta l'id di sessione anche per work_session e
+  work_lock (anche per i tentativi rifiutati di una sessione autenticata;
+  i tentativi non autenticati restano anonimi). Test dedicati.
+- Installer: tollera solo agent di sistema macOS avviati da launchd (ppid 1)
+  con percorso e argomenti esatti, verificando l'immagine reale del processo
+  dal kernel (proc_pidpath): distnoted agent, cfprefsd agent, trustd --agent,
+  secinitd, lsd, containermanagerd. Qualsiasi altro processo UID 5000 blocca.
+
+C. AMMINISTRAZIONE DEL MAC VIA TELEGRAM
+- Nuovi strumenti: mac_admin_request (richiede work_session) e mac_admin_result.
+- L'agent (UID 5000) scrive soltanto la richiesta in /Library/MCPAndreaMacAdmin/outbox.
+- Un helper root separato (LaunchDaemon it.andreababini.mcp-mac-admin) con un
+  bot Telegram NUOVO e dedicato al Mac (token solo sul Mac, root 0600) mostra il
+  comando esatto, l'hash, il motivo e la sessione. Esegue come root solo dopo
+  "Approva"; i comandi sensibili (rm, launchctl, chmod, sudo, curl, git, /Users/,
+  Bitcoin, La Marruca, LiDAR, ...) chiedono la seconda conferma. Nessuna lista
+  pre-autorizzata. Scadenza 10 minuti, esecuzione una sola volta (claim durevole),
+  niente shell: percorso assoluto, caratteri [A-Za-z0-9_./:=@%+, -], max 3000,
+  timeout 1-900 s, output max 20000 caratteri. Solo chi ha fatto la richiesta
+  legge il risultato. Massimo 3 richieste in attesa.
+- L'approvazione del VPS NON vale per il Mac (bot e token diversi).
+
+FILE E HASH (sha256)
+  upgrade_mac_v012_20261003.py   bbfc67c0cfb78dd07382e0f2a47bb3941b9c0196501a55381633c2ca90e62d3b
+  Attiva_MCP_Andrea_v012.command 1d9d4309fc6489aaed677360c9302aa0e20b5bf9467ffe8cb677ae458ace9c76
+  mac_admin_helper.py            fcf391cf59ef593eec4869ac6a793360532f1f758fcafb213b3946f0b6ef5932
+  mac_agent.py                   be237fab0a3d23209f32e186a8bcc206ab878f67abb5638a8138c413f56c760a
+L'installer verifica: hash del launcher sull'installer, hash di mac_agent live
+(f099f621..., 0.11-personal-work-2), 14 dipendenze live, plist, UID 5000 non admin.
+
+ATTIVAZIONE MAC (procedura locale, sudo di Andrea)
+1. Telegram: @BotFather -> /newbot -> nome a scelta (es. MCP Andrea Mac) -> copia il token.
+2. Terminale del Mac (una volta sola):
+   git clone -b claude/mcp-andrea-coordination-test-1bgkfu https://github.com/babopoppi-dev/Main.py.git ~/MCPAndreaRepo
+   (le volte successive: git -C ~/MCPAndreaRepo pull)
+3. zsh ~/MCPAndreaRepo/mac_v012/Attiva_MCP_Andrea_v012.command
+   Controlla che l'hash stampato sia bbfc67c0...62d3b; password del Mac; incolla il
+   token (non si vede); nella chat del nuovo bot premi Avvia e invia il codice a 6
+   cifre mostrato. Esito atteso: ATTIVAZIONE_MCP_V012_COMPLETATA.
+Sequenza interna: --check senza privilegi; con sudo: abbinamento Telegram,
+preflight UID 5000 (99 test), backup /Library/MCPAndreaMacMioV09/backup/v012_20261003,
+stop del solo agent, installazione, selftest UID 5000, riconnessione 0.12,
+poi helper root e verifica del suo battito. Errore sull'agent -> ripristino
+automatico della 0.11; errore sul solo helper -> helper rimosso, agent 0.12 resta.
+Rollback manuale: sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012_20261003.py --rollback
+(rimuove l'helper e ripristina l'agent 0.11; la configurazione Telegram resta in
+/Library/MCPAndreaMacAdmin/conf).
+
+TEST: ../TEST_v012.log (Mac 99/99 con Python 3.9; gateway 6/6; VPS 50/50).

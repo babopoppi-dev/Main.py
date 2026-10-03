@@ -1,0 +1,10 @@
+TEST v0.12 — 2026-10-03T00:55:03Z
+mac_v012 (Python 3.9, come sul Mac):
+Ran 99 tests in 1.402s
+OK
+gateway_v012:
+Ran 6 tests in 0.068s
+OK
+vps_v012 (aiohttp):
+Ran 50 tests in 0.386s
+OK

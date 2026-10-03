@@ -1,0 +1,14 @@
+AGENT VPS v0.12 (punto D) — coordinamento 0.11 come sul Mac.
+agent.py 0.12-vps-work-1 (sha256 9c93d321...) + work_sessions.py (identico al Mac).
+Scritture, rollback, ricerche e shell richiedono work_session e work_lock; letture
+e "uname -a" no. Audit con id di sessione. Rollback del vecchio journal solo con
+lock sul percorso. Gateway non toccato (catalogo gia pronto dalla v0.11).
+Script: upgrade_vps_v012_20261003.py
+sha256 8c9da8a9f71673b9b0fbfc7f6778d0568b488aa203f5ecbe44155d5350c3cd92
+Comandi admin_request (Telegram): _1_download_vps, _2_check_vps (stampa l'hash),
+_3_apply_vps (job systemd separato: preflight come UID 997 con 50 test, backup
+/opt/central-mcp-gateway/backups/pre_vps_v012_20261003, stop/riavvio del solo
+agent VPS, collaudo live con due sessioni, rollback automatico).
+Rollback: ADMIN_REQUEST_rollback_vps.txt.
+Effetto: i client con catalogo vecchio non potranno piu scrivere sul VPS senza
+work_session (come gia avviene sul Mac).
