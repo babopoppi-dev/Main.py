@@ -31,3 +31,8 @@ COLLAUDO NATIVO OBBLIGATORIO prima di dire F concluso (shell con network=true):
    un repository pubblico; pip download di un pacchetto. Se trustd non basta per
    curl/git, si corregge il profilo (rischio previsto, rollback MAC_ADMIN_rollback.txt).
 TEST: ../TEST_v014.log
+
+SHA256 (commit 4b3d2de0f696a9153dc72486e40da6e3d8824b84):
+60ad29a65ab7c90c3458745d662da4dbdaf357b9a0403ffdf9f029cf6baf564e mac_v014/upgrade_mac_v014_20261003.py
+c0b30236202906a35c4e3de8b7d49ae483a5730b7a1c6afb0e0d4af9422eae51 gateway_v014/upgrade_gateway_v014_20261003.py
+cc30a45f4a0cebf9bfafd707f0a5888780a176b1deee73dfc9812098f2ceaf75 mac_v014/configura_mac.py

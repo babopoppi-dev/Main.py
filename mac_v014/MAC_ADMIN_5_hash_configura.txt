@@ -1,0 +1,1 @@
+/usr/bin/shasum -a 256 /Library/MCPAndreaMacMioV09/configura_mac.py
