@@ -1,0 +1,40 @@
+MCP ANDREA v0.12 p4 — PYTHON INTERATTIVO NELLA SHELL DEL MAC (04/10/2026)
+Sviluppata e testata, NON installata. Sopra la p3 attiva (Mac 0.12-personal-3, gateway p3).
+
+COSA CAMBIA (solo l'agent del Mac; gateway, VPS e helper Telegram invariati)
+- mac_policy.py: (allow file-ioctl (literal <PTY della sessione>)). Prima il profilo seatbelt
+  negava ogni ioctl sul terminale e la readline di macOS (libedit) bloccava python3 -i prima
+  del prompt >>>. Diagnosi confermata sul Mac il 04/10 con sandbox-exec: deny file-ioctl ->
+  bloccato; deny + allow sul solo /dev/ttysNNN -> >>> e 6*7 = 42.
+- mac_shell.py: il PTY riceve dimensione 80x24 (come un terminale vero / Desktop Commander).
+- mac_agent.py: versione 0.12-personal-4.
+- Selftest UID 5000 durante l'installazione: nuovo controllo "interactive python3 -i REPL
+  answers in the shell" (avvia python3 -i nella shell vera, invia 6*7, attende 42).
+
+FILE E HASH (sha256, commit 4bb3e6a66bcd35bff6323b56d96db9c973dd38b8)
+  upgrade_mac_v012p4_20261004.py      c22b98ad07c47add369c38b69c7dab21c146cea8248eaf5bf8d6be3a39043665
+  Attiva_MCP_Andrea_v012p4.command    3176300fa130fb6af9be242cb708d44a02f0caeb88d5caa84ca2a51c10fb4a61
+Builder: build_mac_activation.py (stato live: installer p3 34f2f867; logica: installer p2b
+fecdbab5, senza abbinamento Telegram). Build deterministica.
+
+TEST: TEST_v012p4.log — 148/148 con Python 3.10 e 3.11; simulazione del preflight con i
+27 file incorporati e la cartella live ricostruita dalla p3 (hash verificati): 121/121.
+
+ATTIVAZIONE (Mac, locale, sudo di Andrea) — nel Terminale:
+  mkdir -p ~/MCPAndreaV012p4 && cd ~/MCPAndreaV012p4
+  curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/4bb3e6a66bcd35bff6323b56d96db9c973dd38b8/coordination_v012p4/upgrade_mac_v012p4_20261004.py
+  curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/4bb3e6a66bcd35bff6323b56d96db9c973dd38b8/coordination_v012p4/Attiva_MCP_Andrea_v012p4.command
+  zsh Attiva_MCP_Andrea_v012p4.command
+Hash stampato atteso c22b98ad...043665; password del Mac. Esito: ATTIVAZIONE_V012P4_MCP_COMPLETATA.
+Sequenza: --check senza privilegi; con sudo: preflight UID 5000 (121 test), backup
+/Library/MCPAndreaMacMioV09/backup/v012p4_20261004, stop del solo agent, installazione,
+selftest UID 5000 (con REPL), riconnessione 0.12-personal-4. Errore -> ripristino automatico
+della 0.12-personal-3. L'helper Telegram non viene fermato ne modificato.
+
+VERIFICA DAL VIVO (chat nuova non necessaria: il catalogo non cambia)
+work_session + lock sul workspace + enable_full_shell su mac_mio; shell_session start
+"python3 -i"; send "6*7\n" -> 42; send "exit()\n"; stty size -> "24 80"; chiusura pulita.
+
+ROLLBACK
+- Mac: sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p4_20261004.py --rollback
+       (torna alla 0.12-personal-3; helper Telegram intatto)

@@ -117,6 +117,14 @@ DIAGNOSI REPL PYTHON (03/10 sera, sessione 93db6d66..., chiusa e pulita)
 - Correzione proposta (p4, mac_policy.py): (allow file-ioctl (literal <pty della sessione>)),
   piu dimensione 80x24 impostata sul PTY in mac_shell.py. Da confermare prima con prova locale.
 
+p4 PRONTA, NON INSTALLATA (04/10, cartella coordination_v012p4/, dettagli in LEGGIMI.txt)
+- Diagnosi REPL confermata sul Mac con sandbox-exec (deny file-ioctl -> bloccato; allow sul solo
+  /dev/ttysNNN -> >>> e 42). Correzione: ioctl sul solo PTY della sessione + PTY 80x24.
+- Agent 0.12-personal-4, installer c22b98ad (commit 4bb3e6a), solo agent; helper non toccato.
+- Desktop Commander SPENTO da Andrea (Ctrl+C) il 04/10 durante la prova.
+- Xcode su mac_mio: non e un difetto, l'agent personale non ha mai avuto gli strumenti xcode_*
+  (previsti sul Mac a noleggio). Decisione di Andrea: servono le build anche qui?
+
 PROSSIMI PASSI
 1. Decidere lo spegnimento di DC (Ctrl+C nel Terminale; poi eventualmente revoca del device su
    mcp.desktopcommander.app). Prima valutare: REPL Python, Xcode su mac_mio, accesso ai progetti
