@@ -20,11 +20,27 @@ Upload commit con cartella padre mancante lasciava un record 'prepared' che bloc
 scritture e la shell. Recupero manuale (Andrea, sudo) + correzione in p2. Dettagli:
 VERIFICA_PIANO_C_v012_20261003.txt.
 
+VERIFICA network='packages' su mac_mio (03/10, superata)
+- list_machines: mac_mio 0.12-personal-2, vps 0.12-vps-2; profilo 'packages' nel catalogo
+  (github + pypi.org, files.pythonhosted.org, registry.npmjs.org).
+- work_session + lock sull'intero workspace + enable_full_shell network='packages' (30 min).
+- pip download --no-deps six -> six-1.17.0-py2.py3-none-any.whl (11050 B, sha256 4721f391...3274).
+- npm non installato sul Mac: registry provato con curl https://registry.npmjs.org/left-pad/latest
+  -> JSON 1.3.0 ricevuto.
+- git ls-remote https://github.com/babopoppi-dev/Main.py -> ok (HEAD f5abf18).
+- curl https://example.com -> rifiutato (CONNECT 403; who_is_working: refused reason=host).
+  curl --noproxy diretto -> host non risolvibile (nessuna uscita fuori dal proxy).
+- Pulizia: shell spenta (0 sessioni), delete_path .tmp/pip (op e90f6af2..., rollback persistente),
+  lock rilasciato, sessione chiusa; who_is_working: nessun lock/sessione, shell_network disabled.
+- Residuo: pip ha creato workspace/Library/Caches (HOME = workspace; prima del test non c'era).
+  Non ispezionato ne cancellato in questa chat: da togliere a mano o con delete_path dopo
+  averlo guardato. Possibile ritocco: PIP_NO_CACHE_DIR=1 / PIP_CACHE_DIR in .tmp nel profilo shell.
+
 PROSSIMI PASSI
-1. Chat NUOVA (catalogo p2): verifica di enable_full_shell network='packages' (pip/npm).
-2. Punto C su p2 (= p3): amministrazione del Mac via Telegram (bot dedicato, helper root),
+1. Punto C su p2 (= p3): amministrazione del Mac via Telegram (bot dedicato, helper root),
    lavoro di riserva in mac_v012/ da riportare sopra la p2. Poi collaudo di parita con
    Desktop Commander e spegnimento di DC.
+2. Rimozione di workspace/Library/Caches e dei residui preflight v012p2 elencati sopra.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
 
 ROLLBACK p2
