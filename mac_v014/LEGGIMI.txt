@@ -1,0 +1,33 @@
+MCP ANDREA v0.14 (Mac) — PUNTO F: RETE CONTROLLATA PER LA SHELL
+SVILUPPATO E TESTATO, NON INSTALLATO (03/10/2026). Prerequisito: v0.13 attiva.
+
+FUNZIONAMENTO
+- Senza /Library/MCPAndreaMacMioV09/code/network.json la shell resta offline
+  esattamente come oggi (stato dopo l'installazione).
+- Con l'elenco domini: enable_full_shell(network=true) avvia, solo per quella
+  shell, un proxy nell'agent su 127.0.0.1 (porta casuale, password casuale).
+  Il seatbelt consente UNA sola connessione in uscita: localhost su quella porta
+  (+ trustd e portachiavi di sistema per verificare i certificati TLS).
+  Il proxy accetta solo CONNECT autenticati verso un dominio ESATTO in elenco,
+  porta 443, risolve il DNS da se e rifiuta indirizzi non pubblici (LAN,
+  loopback, link-local, 169.254.169.254, multicast). Nessun altro traffico.
+- Variabili HTTPS_PROXY/HTTP_PROXY/ALL_PROXY passate via ambiente (non argomenti).
+- Proxy fermato alla disattivazione o alla scadenza della shell; ultime 20
+  connessioni in who_is_working (network_log). Configurazione errata: agent
+  attivo, rete spenta, errore in list_machines (network_error).
+
+FILE E HASH: vedi SHA in fondo (aggiornati dal build).
+ATTIVAZIONE (dopo v0.13, via Telegram):
+1. gateway_v014: 3 admin_request (download/check/apply) -> enable_full_shell con "network".
+2. MAC_ADMIN_1_download / _2_check / _3_apply (timeout 900): agent 0.14.
+3. Strumento di configurazione: MAC_ADMIN_4_download_configura.txt, poi
+   /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/configura_mac.py rete <domini> (piano)
+   e lo stesso con --applica (scrive network.json, riavvia il solo agent).
+   Lo stesso strumento gestisce E: progetti /percorso:ro|rw [--applica]
+   (valida, applica/revoca ACL solo per mcp_andrea, riavvia l'agent).
+COLLAUDO NATIVO OBBLIGATORIO prima di dire F concluso (shell con network=true):
+   curl -sSI https://github.com -> 200/301; curl https://example.com -> 403 dal proxy;
+   curl --noproxy '*' https://github.com -> bloccato dal seatbelt; git ls-remote verso
+   un repository pubblico; pip download di un pacchetto. Se trustd non basta per
+   curl/git, si corregge il profilo (rischio previsto, rollback MAC_ADMIN_rollback.txt).
+TEST: ../TEST_v014.log

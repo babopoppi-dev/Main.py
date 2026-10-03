@@ -60,3 +60,6 @@ v0.13 Mac = E + G livello 1; poi F (con collaudo nativo del seatbelt) come v0.14
 AGGIORNAMENTO 03/10/2026: il meccanismo di E (elenco vuoto) e G livello 1 sono
 sviluppati e testati in mac_v013/ e gateway_v013/ (non installati). Restano da
 decidere: elenco cartelle e modalita (E), lista domini (F), livello 2 di G.
+AGGIORNAMENTO (piu tardi): anche il meccanismo di F e sviluppato e testato in
+mac_v014/ e gateway_v014/ con lista domini vuota; configura_mac.py applichera
+le decisioni su E (cartelle, ACL) e F (domini) via Telegram.

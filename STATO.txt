@@ -23,7 +23,11 @@ E+G. mac_v013/ + gateway_v013/: meccanismo progetti ro/rw (elenco VUOTO) e
    process_list/process_stop (livello 1). Si installa via mac_admin_request dopo
    la v0.12 (TEST_v013.log: 112/112). Elenco cartelle, ACL e livello 2 di G
    restano da decidere: PROPOSTE_E_F_G_20261003.txt.
-F: solo proposta (serve la lista domini e un collaudo nativo del seatbelt).
+F. mac_v014/ + gateway_v014/: proxy con lista domini (VUOTA = shell offline),
+   opzione network su enable_full_shell, strumento configura_mac.py per E e F
+   (TEST_v014.log: 131/131). Serve collaudo nativo dopo l'attivazione.
+Revisione di sicurezza dell'helper v0.12 fatta: hash installer Mac ora
+   959296e2c58fa96fc029ec247d4dd7430fc28252afb14379f5ed32579cdbab68.
 
 SEQUENZA DI ATTIVAZIONE
 1. Mac (locale): bot @BotFather; git clone in ~/MCPAndreaRepo; zsh .../Attiva_MCP_Andrea_v012.command
@@ -31,7 +35,8 @@ SEQUENZA DI ATTIVAZIONE
    VPS download/check/apply (si attendono a vicenda sul lock di manutenzione).
 3. Chat nuova (catalogo 27 strumenti): verifica list_machines (mac 0.12, vps 0.12),
    work_session su VPS, mac_admin_request di prova (/usr/bin/id) approvata dal bot Mac.
-4. Facoltativo, dopo il 3: gateway v0.13 (3 admin_request) e Mac v0.13 (3 mac_admin_request).
+4. Facoltativo, dopo il 3: v0.13 e poi v0.14 (per ciascuna 3 admin_request gateway e
+   3 mac_admin_request Mac); poi configura_mac.py con le tue decisioni su E e F.
 
 BACKUP
 - Esistenti: Mac /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002 e
