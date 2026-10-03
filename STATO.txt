@@ -117,6 +117,12 @@ DIAGNOSI REPL PYTHON (03/10 sera, sessione 93db6d66..., chiusa e pulita)
 - Correzione proposta (p4, mac_policy.py): (allow file-ioctl (literal <pty della sessione>)),
   piu dimensione 80x24 impostata sul PTY in mac_shell.py. Da confermare prima con prova locale.
 
+p5 PRONTA, NON INSTALLATA (04/10, cartella coordination_v012p5/, dettagli in LEGGIMI.txt)
+- Punto E deciso da Andrea: ~/Developer ro, ~/Developer/MCPAndrea rw, file + shell.
+  ~/Developer non esisteva (ls via helper): l'installer crea le cartelle e le ACL.
+- Agent 0.12-personal-5, installer 04da8f94 (commit 3912101).
+- Xcode su mac_mio: ancora da decidere (non e un difetto).
+
 p4 ATTIVA (04/10, cartella coordination_v012p4/, dettagli in LEGGIMI.txt)
 - ATTIVAZIONE_V012P4_MCP_COMPLETATA; list_machines: mac_mio 0.12-personal-4.
 - Verifica dal vivo: stty size -> 24 80; python3 -i -> >>>, 6*7 -> 42, isatty True; exit pulito.

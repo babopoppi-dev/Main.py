@@ -1,0 +1,40 @@
+MCP ANDREA v0.12 p5 — PROGETTI REALI, PUNTO E (04/10/2026)
+Sviluppata e testata, NON installata. Sopra la p4 attiva (Mac 0.12-personal-4).
+
+DECISIONE DI ANDREA (04/10): ~/Developer in sola lettura, ~/Developer/MCPAndrea in lettura e
+scrittura, sempre esclusi Bitcoin, La Marruca, LiDAR, .ssh, Library, portachiavi; file + shell.
+~/Developer non esisteva: l'installer crea le due cartelle (proprietario Andrea, 0755).
+
+COSA CAMBIA (solo il Mac; gateway, VPS e helper Telegram invariati)
+- mac_projects.py (nuovo, da mac_v013 revisionato): configurazione root
+  /Library/MCPAndreaMacMioV09/code/projects.json; una radice rw puo stare dentro una ro
+  (il motore ro la esclude); nomi vietati in ogni percorso; pre-scansione a 3 livelli.
+- mac_agent.py: rw nel motore principale (sessione + lock + rollback); ro motore separato,
+  solo lettura e ricerca; mai mescolati in una chiamata; list_machines mostra project_roots e
+  projects_error. Configurazione errata -> agent senza progetti, errore visibile.
+- Shell: cwd ammessa anche nelle radici progetto; seatbelt legge ro+rw, scrive ed esegue solo
+  rw; divieti (cartelle escluse + regex sui nomi vietati) in fondo al profilo; per accendere la
+  shell servono lock su workspace E su ogni radice rw; git: safe.directory=* (repo di Andrea).
+- Installer: prima di fermare l'agent crea le cartelle, ACL per mcp_andrea (traversata della
+  home; lettura su Developer; lettura/scrittura ereditabile su MCPAndrea; Andrea pieno accesso
+  ai file creati da mcp_andrea) e scrive projects.json. Errore li -> agent non toccato.
+- Selftest UID 5000: scrittura+rollback in MCPAndrea, scrittura rifiutata in Developer, shell
+  in MCPAndrea (crea/legge/cancella), mkdir "x_bitcoin_x" negata, Documents negata, Developer
+  leggibile ma non scrivibile; oltre a tutti i controlli p4 (REPL compreso).
+
+FILE E HASH (sha256, commit 391210140aa79e518828778a1e64cc983b5d120e)
+  upgrade_mac_v012p5_20261004.py      04da8f941733a37555738167249621da47b030055cfd33334f7e7627a7d2af8d
+  Attiva_MCP_Andrea_v012p5.command    193ae377a64da291d64065a1e6560ece950294404324aa2d79fbcb4fbc52629d
+TEST: TEST_v012p5.log — 170/170 con Python 3.10 e 3.11; preflight simulato 139/139.
+
+ATTIVAZIONE (Mac, locale, sudo di Andrea) — nel Terminale:
+  mkdir -p ~/MCPAndreaV012p5 && cd ~/MCPAndreaV012p5
+  curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/391210140aa79e518828778a1e64cc983b5d120e/coordination_v012p5/upgrade_mac_v012p5_20261004.py
+  curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/391210140aa79e518828778a1e64cc983b5d120e/coordination_v012p5/Attiva_MCP_Andrea_v012p5.command
+  zsh Attiva_MCP_Andrea_v012p5.command
+Hash atteso 04da8f94...7af8d. Esito: ATTIVAZIONE_V012P5_MCP_COMPLETATA.
+
+ROLLBACK
+- Mac: sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p5_20261004.py --rollback
+  (torna alla 0.12-personal-4, toglie projects.json e le voci ACL esplicite; le cartelle
+  ~/Developer e MCPAndrea restano. Voci ACL ereditate su file creati da MCP possono restare.)
