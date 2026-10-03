@@ -1,0 +1,10 @@
+{"scopo": "verifica nativa (macOS 12.7.6, Python 3.9.6, UID 5000, dentro il seatbelt) delle API usate da helper, client e installer v0.12",
+ "work_session": "8281e4fb5fe1463d9e4740f51d4058dc", "lock": "workspace intera", "shell": "5 minuti, poi disattivata",
+ "risultato": {"python": "3.9.6",
+   "dir_fd": {"open": true, "rename": true, "unlink": true, "stat": true, "mkdir": true},
+   "ops": {"listdir_fd": ["x.json"], "mode": "0o640", "nlink": 1},
+   "nofollow": "symlink bloccato (errno 62 ELOOP)",
+   "proc_pidpath_self": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python",
+   "plist": true, "ssl": true, "getpass": true},
+ "pulizia": "script rimosso con rollback_file, shell disattivata, lock rilasciato, sessione chiusa; in .tmp resta solo xcrun_db",
+ "nota": "/usr/bin/python3 e uno shim: l'immagine reale e Python.app dei CommandLineTools (rilevante per eventuali controlli via proc_pidpath)."}
