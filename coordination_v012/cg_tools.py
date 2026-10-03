@@ -16,5 +16,7 @@ NAMES = {t["name"] for t in TOOLS}
 # v0.12: optional GitHub-only network for the Mac shell lease.
 for _t in TOOLS:
     if _t['name'] == 'enable_full_shell':
-        _t['inputSchema']['properties']['network'] = {'type': 'string', 'enum': ['none', 'github'], 'default': 'none'}
-        _t['description'] += " On mac_mio, network='github' lets the shell reach only GitHub over HTTPS through the agent proxy; default 'none'."
+        _t['inputSchema']['properties']['network'] = {'type': 'string', 'enum': ['none', 'github', 'packages'], 'default': 'none'}
+        _t['description'] += " On mac_mio, network='github' lets the shell reach only GitHub over HTTPS through the agent proxy; 'packages' adds pypi and the npm registry; default 'none'."
+    if _t['name'] == 'shell_session':
+        _t['description'] += " Actions: start, send, read, stop, list (this session's processes), processes (uid5000 inventory, mac_mio). On mac_mio up to 4 processes run concurrently in one lease."

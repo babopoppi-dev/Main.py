@@ -15,10 +15,10 @@ GATEWAY='central-mcp-gateway-test.service'
 PAYLOAD={}
 TESTS={}
 ORIGINAL={'agent.py': 'a6a9573ed8faf425d9e81897c2c7aaf7b07cd0a6a4d3470d4475ad3354b22ea2', 'file_tools.py': '8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e', 'search_tools.py': 'ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b', 'work_sessions.py': None, 'upload_tools.py': None}
-DEPENDENCIES={'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d', 'isolated_shell.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'cg_mcp.py': 'f8a86b9a8424f9e6a0bc335f2951c8e9233750b62e1181379d9c6be3ebb04171', 'cg_agents.py': '7e891890ccb076aa06404fdcd481668a3e4aa780e104acb7230448f79e5fe6a1', 'file_schema.py': ['06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4'], 'work_schema.py': ['9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9', '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df'], 'cg_tools.py': ['8282e608be40003e9475dc789ddf7d90e8676aa88776d9f8b3923b33087d02a1', '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567']}
+DEPENDENCIES={'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d', 'isolated_shell.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'cg_mcp.py': 'f8a86b9a8424f9e6a0bc335f2951c8e9233750b62e1181379d9c6be3ebb04171', 'cg_agents.py': '7e891890ccb076aa06404fdcd481668a3e4aa780e104acb7230448f79e5fe6a1', 'file_schema.py': ['06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4'], 'work_schema.py': ['9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9', '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df'], 'cg_tools.py': ['8282e608be40003e9475dc789ddf7d90e8676aa88776d9f8b3923b33087d02a1', '0df2f955e3de20a5fb13565fcb347c52c8c738963f8c418de0873dc0c123fbd1']}
 LIVE_TEST_DEPS=['search_schema.py', 'isolated_shell.py']
 TEST_NAMES=['agent.py', 'cg_tools.py', 'file_schema.py', 'file_tools.py', 'isolated_shell.py', 'search_schema.py', 'search_tools.py', 'test_files_v012.py', 'test_search.py', 'test_vps_agent.py', 'upload_tools.py', 'work_schema.py', 'work_sessions.py']
-SOURCE_SHA={'agent.py': 'e305c73e8d574edf8eb894e883043f14968f30680c9d404f83121cc330793324', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_files_v012.py': 'e206d7c2e86e3afdb39340bcd62ec586177c307a00817c0f46710963f374a53e', 'test_vps_agent.py': 'bf4a41fbbab5e76367436f6723c9e5a9739cfa1f20b0c7e45b68b46665ed8d47', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'cg_tools.py': '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567'}
+SOURCE_SHA={'agent.py': '33a0d864a215f6c2b54c55a9e431c3ddfce789811a8e9cbfb167d8e618ccb62e', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_files_v012.py': 'e206d7c2e86e3afdb39340bcd62ec586177c307a00817c0f46710963f374a53e', 'test_vps_agent.py': 'e98beb3a97c486210f970f8173cba53bf80494a7a7adcee8b2c6dad2a97dc6e7', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'cg_tools.py': '0df2f955e3de20a5fb13565fcb347c52c8c738963f8c418de0873dc0c123fbd1'}
 SOURCES={
 'agent.py': r'''#!/usr/bin/env python3
 """VPS agent v0.12: explicit work sessions and locks, reversible file tools."""
@@ -333,6 +333,10 @@ async def dispatch(op, args, caller=None, request_id=None):
                 identity = WORK.authenticate(caller, work_id, work_token)
         if op in WORK_NAMES:
             result = await work_call(op, args, caller)
+            # Successful session/lock calls are recorded under their session.
+            sid = result.get('work_session_id') if op == 'work_session' and isinstance(result, dict) else work_id
+            if isinstance(sid, str):
+                identity = 'work:' + sid
         elif op in SEARCH_NAMES:
             result = await SEARCH.dispatch(op, args, identity)
         elif op == 'upload_file':
@@ -2651,6 +2655,13 @@ class VpsAgent(unittest.IsolatedAsyncioTestCase):
         for n in ('work_session', 'work_lock', 'delete_path', 'copy_file', 'read_binary', 'upload_file'):
             self.assertIn(n, meta['capabilities'])
 
+    async def test_session_and_lock_operations_audited_with_session_id(self):
+        await self.lock(self.a)
+        recent = (await self.call('who_is_working', {}))['recent_work_operations']
+        ops = [(x['operation'], x['work_session_id']) for x in recent if 'request_id' in x]
+        self.assertIn(('work_lock', self.a['work_session_id']), ops)
+        self.assertIn(('work_session', self.b['work_session_id']), ops)
+
     async def test_legacy_rollback_requires_lock(self):
         op = uuid.uuid4().hex; target = WORKDIR / ('legacy' + op)
         (agent.OPS_ROOT / op).mkdir(mode=0o700)
@@ -2773,8 +2784,10 @@ NAMES = {t["name"] for t in TOOLS}
 # v0.12: optional GitHub-only network for the Mac shell lease.
 for _t in TOOLS:
     if _t['name'] == 'enable_full_shell':
-        _t['inputSchema']['properties']['network'] = {'type': 'string', 'enum': ['none', 'github'], 'default': 'none'}
-        _t['description'] += " On mac_mio, network='github' lets the shell reach only GitHub over HTTPS through the agent proxy; default 'none'."
+        _t['inputSchema']['properties']['network'] = {'type': 'string', 'enum': ['none', 'github', 'packages'], 'default': 'none'}
+        _t['description'] += " On mac_mio, network='github' lets the shell reach only GitHub over HTTPS through the agent proxy; 'packages' adds pypi and the npm registry; default 'none'."
+    if _t['name'] == 'shell_session':
+        _t['description'] += " Actions: start, send, read, stop, list (this session's processes), processes (uid5000 inventory, mac_mio). On mac_mio up to 4 processes run concurrently in one lease."
 ''',
 }
 

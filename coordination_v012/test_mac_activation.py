@@ -58,10 +58,13 @@ class MacUpgrade(unittest.TestCase):
             with self.assertRaises(RuntimeError):u.stop_daemon()
             self.assertFalse(any(c.args[0][0]=='/bin/launchctl' for c in run.call_args_list))
 
-    def test_only_launchd_distnoted_is_tolerated(self):
-        with patch.object(u,'run',return_value=types.SimpleNamespace(stdout='5000 7 1 S /usr/sbin/distnoted agent\n')):
+    def test_only_known_launchd_system_agents_are_tolerated(self):
+        rows=''.join('5000 %d 1 S %s\n'%(10+i,a) for i,a in enumerate(sorted(u.SYSTEM_AGENTS)))
+        with patch.object(u,'run',return_value=types.SimpleNamespace(stdout=rows)):
             u.no_other_processes()
-        for row in ('5000 7 9 S /usr/sbin/distnoted agent\n','5000 7 1 S /tmp/distnoted agent\n','5000 7 1 S /usr/sbin/distnoted agent extra\n'):
+        for row in ('5000 7 9 S /usr/sbin/distnoted agent\n','5000 7 1 S /tmp/distnoted agent\n','5000 7 1 S /usr/sbin/distnoted agent extra\n',
+                    '5000 7 9 S /usr/libexec/trustd --agent\n','5000 7 1 S /usr/libexec/trustd\n','5000 7 1 S /bin/sh\n',
+                    '5000 7 1 S /Users/Shared/MCPAndreaMacMio/workspace/usr/libexec/lsd\n'):
             with patch.object(u,'run',return_value=types.SimpleNamespace(stdout=row)):
                 with self.assertRaises(RuntimeError):u.no_other_processes()
 

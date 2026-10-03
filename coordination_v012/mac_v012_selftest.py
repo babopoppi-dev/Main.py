@@ -167,7 +167,25 @@ async def main():
         code, out = await asyncio.to_thread(sandboxed, '/usr/bin/git ls-remote https://github.com/git/git HEAD', folder, proxy, 25)
         info['github_git_ls_remote'] = 'ok' if code == 0 and 'HEAD' in out else 'failed: ' + out[-400:]
         os.unlink(script)
+
+        whole = await call('work_lock', a, action='acquire', path=str(WORK), minutes=5)
+        await call('enable_full_shell', a, minutes=2)
+        s1 = await call('shell_session', a, action='start', command='sleep 20', cwd=folder)
+        s2 = await call('shell_session', a, action='start', command='echo CONCURRENT_OK; sleep 20', cwd=folder)
+        await refused('shell_session', b, action='start', command='true')
+        listed = await call('shell_session', a, action='list')
+        assert sum(x['running'] for x in listed['sessions']) == 2, listed
+        await call('shell_session', a, action='stop', session_id=s1['session_id'])
+        await asyncio.sleep(.5)
+        r2 = await call('shell_session', a, action='read', session_id=s2['session_id'])
+        assert r2['running'] and 'CONCURRENT_OK' in r2['output'], r2
+        procs = await call('shell_session', a, action='processes')
+        assert procs['processes'], procs
+        await call('disable_full_shell', a)
+        await call('work_lock', a, action='release', lock_id=whole['lock_id'])
+        checks.append('two concurrent shell processes, stop one keeps the other, disable stops all')
     finally:
+        await d.shell.disable()
         await proxy.stop()
         await d.search.close()
         for operation in reversed(operations):

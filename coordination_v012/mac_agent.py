@@ -27,7 +27,7 @@ from agent_shell import AgentShell
 from work_sessions import WorkSessions, MUTATIONS
 from work_schema import WORK_NAMES
 from upload_tools import Uploads
-from net_proxy import ALLOWED_HOSTS
+from net_proxy import ALLOWED_HOSTS, PROFILES
 from mac_guard import require_identity, stop_dedicated_children
 from mac_policy import profile
 
@@ -214,6 +214,9 @@ class Dispatcher:
                     identity = self.work_sessions.authenticate(caller,work_id,work_token)
             if op in WORK_NAMES:
                 result = await self.work_call(op,args,caller)
+                # Successful session/lock calls are recorded under their session.
+                sid = result.get('work_session_id') if op=='work_session' and isinstance(result,dict) else work_id
+                if isinstance(sid,str):identity = 'work:'+sid
             elif op in SEARCH_NAMES:
                 result = await self.search.dispatch(op, args, identity)
             elif op == 'upload_file':
@@ -270,7 +273,8 @@ def metadata():
     return {'hostname': socket.gethostname(), 'platform': 'darwin', 'python': sys.version.split()[0],
             'uid': os.getuid(), 'machine': 'mac_mio', 'agent_version': VERSION,
             'full_shell_capable': True, 'file_tools_version': '0.8', 'search_version': '0.10.1',
-            'shell_backend': 'seatbelt-v09', 'shell_network': 'disabled; github on request',
+            'shell_backend': 'seatbelt-v09', 'shell_network': 'disabled; profiles on request',
+            'shell_network_profiles': {k: sorted(v) for k, v in PROFILES.items()},
             'shell_network_hosts': sorted(ALLOWED_HOSTS), 'shell_scope': str(WORK),
             'allowed_roots': [str(WORK)], 'read_only_log_root': str(STATE / 'shell-logs'),
             'coordination_version':'0.11.0', 'work_session_required':True,

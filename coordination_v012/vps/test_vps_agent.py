@@ -189,6 +189,13 @@ class VpsAgent(unittest.IsolatedAsyncioTestCase):
         for n in ('work_session', 'work_lock', 'delete_path', 'copy_file', 'read_binary', 'upload_file'):
             self.assertIn(n, meta['capabilities'])
 
+    async def test_session_and_lock_operations_audited_with_session_id(self):
+        await self.lock(self.a)
+        recent = (await self.call('who_is_working', {}))['recent_work_operations']
+        ops = [(x['operation'], x['work_session_id']) for x in recent if 'request_id' in x]
+        self.assertIn(('work_lock', self.a['work_session_id']), ops)
+        self.assertIn(('work_session', self.b['work_session_id']), ops)
+
     async def test_legacy_rollback_requires_lock(self):
         op = uuid.uuid4().hex; target = WORKDIR / ('legacy' + op)
         (agent.OPS_ROOT / op).mkdir(mode=0o700)

@@ -1,4 +1,4 @@
-"""GitHub-only HTTPS CONNECT proxy for the isolated shell.
+"""Allow-listed HTTPS CONNECT proxy for the isolated shell (GitHub, packages).
 
 Seatbelt cannot filter by host name, so the shell may reach only this proxy on
 loopback. The proxy runs inside the agent (outside the sandbox), demands a
@@ -19,6 +19,9 @@ ALLOWED_HOSTS = frozenset({
     'github.com', 'api.github.com', 'codeload.github.com',
     'objects.githubusercontent.com', 'raw.githubusercontent.com',
 })
+PACKAGE_HOSTS = frozenset({'pypi.org', 'files.pythonhosted.org', 'registry.npmjs.org'})
+# Lease profiles selectable with enable_full_shell(network=...).
+PROFILES = {'github': ALLOWED_HOSTS, 'packages': ALLOWED_HOSTS | PACKAGE_HOSTS}
 REQUEST = re.compile(rb'CONNECT ([a-z0-9.-]{1,253}):([0-9]{1,5}) HTTP/1\.[01]\r\n')
 
 
@@ -54,9 +57,11 @@ class GitHubProxy:
     def proxy_url(self):
         return 'http://mcp:%s@127.0.0.1:%d' % (self.token, self.address())
 
-    async def start(self):
+    async def start(self, hosts=None):
         if self.server is not None:
             return self.address()
+        if hosts is not None:
+            self.hosts = frozenset(hosts)
         self.token = secrets.token_urlsafe(24)
         self.stats = {'accepted': 0, 'refused': 0}
         self.server = await asyncio.start_server(self._client, '127.0.0.1', 0, limit=self.HEAD_LIMIT)

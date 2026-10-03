@@ -1,4 +1,10 @@
-"""One offline macOS shell, leased to an OAuth authorization, uid5000 only."""
+"""macOS shell lease for one work session, uid5000 only.
+
+Up to MAX_RUNNING concurrent processes share the lease, the workspace guard
+and the watchdog. Stopping one process kills its process group; the full
+uid5000 cleanup runs when the last one ends, on stop of the last one and
+when the lease ends. Network is off unless the lease selects a profile.
+"""
 import asyncio
 import contextlib
 import errno
@@ -15,11 +21,12 @@ import uuid
 from shell_common import IsolatedShell
 from mac_guard import require_identity, stop_dedicated_children
 from mac_clock import lease_deadline
-from net_proxy import GitHubProxy
+from net_proxy import GitHubProxy, PROFILES
 
 
 class MacShell(IsolatedShell):
     LOG_LIMIT = 16 * 1024 * 1024
+    MAX_RUNNING = 4
 
     def __init__(self, files, workspace, logs, capable=False):
         super().__init__(files, workspace, capable)
@@ -30,6 +37,7 @@ class MacShell(IsolatedShell):
         self.network = 'none'
         self.proxy = GitHubProxy(log=self.log_network)
         self.network_log = []
+        self.guard_fd = None
 
     def log_network(self, event):
         self.network_log.append(dict(event, time=time.time()))
@@ -37,20 +45,21 @@ class MacShell(IsolatedShell):
 
     async def enable(self, caller, minutes, network='none'):
         require_identity()
-        if network not in ('none', 'github'):
-            raise ValueError("network must be 'none' or 'github'")
+        if network != 'none' and network not in PROFILES:
+            raise ValueError('network must be none or one of: ' + ', '.join(sorted(PROFILES)))
         if self.owner == caller and time.monotonic() < self.until and network != self.network:
             if any(not j['done'].is_set() for j in self.jobs.values()):
                 raise PermissionError('stop the running shell before changing network access')
         result = await super().enable(caller, minutes)
-        if network == 'github':
-            await self.proxy.start()
-        else:
-            await self.proxy.stop()
+        await self.proxy.stop()
+        if network != 'none':
+            await self.proxy.start(PROFILES[network])
         self.network = network
         if self.watchdog and self.watchdog.poll() is None:
             self.refresh_watchdog()
-        result['network'] = 'github-only via agent proxy' if network == 'github' else 'disabled'
+        result['network'] = (network + ' via agent proxy: ' + ', '.join(sorted(PROFILES[network]))
+                             if network != 'none' else 'disabled')
+        result['maximum_active_sessions'] = self.MAX_RUNNING
         return result
 
     async def disable(self):
@@ -62,7 +71,7 @@ class MacShell(IsolatedShell):
 
     def child_env(self):
         env = {'PATH': '/usr/bin:/bin', 'LANG': 'en_US.UTF-8'}
-        if self.network == 'github' and self.proxy.running:
+        if self.network != 'none' and self.proxy.running:
             env.update(MCP_NET_PORT=str(self.proxy.address()), MCP_NET_TOKEN=self.proxy.token)
         return env
 
@@ -128,28 +137,57 @@ class MacShell(IsolatedShell):
             if len(chunk) > remaining:
                 job['log_complete'] = False
                 job['stop_reason'] = 'output limit reached'
-                self._cleanup_uid()
+                self._kill(job)
                 return
+
+    def running(self):
+        return [j for j in self.jobs.values() if not j['done'].is_set()]
+
+    def _acquire_guard(self):
+        fd = os.open('guard', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600, dir_fd=self.files.state_fd)
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            self.files._check_journal()
+        except BaseException:
+            os.close(fd)
+            raise
+        self.guard_fd = fd
+
+    def _release_guard(self):
+        if self.guard_fd is not None:
+            os.close(self.guard_fd)
+            self.guard_fd = None
+
+    def _kill(self, job):
+        """Stop one process group, or everything when it is the last one."""
+        if any(j is not job for j in self.running()):
+            with contextlib.suppress(ProcessLookupError, PermissionError):
+                os.killpg(job['proc'].pid, 9)
+        else:
+            self._cleanup_uid()
 
     async def start(self, caller, command, cwd=None):
         require_identity()
         self.allowed(caller)
         if not isinstance(command, str) or not command.strip() or '\0' in command or len(command.encode()) > 32768:
             raise ValueError('command required; maximum32768 bytes')
-        if any(not j['done'].is_set() for j in self.jobs.values()):
-            raise PermissionError('workspace already has a running shell')
-        while len(self.jobs) >= 16:
-            self.jobs.pop(next(iter(self.jobs)))
+        running = self.running()
+        if len(running) >= self.MAX_RUNNING:
+            raise PermissionError('at most %d concurrent shell processes; stop one first' % self.MAX_RUNNING)
+        if running and self.guard_fd is None:
+            raise RuntimeError('shell guard lost; disable the shell')
+        while len(self.jobs) >= 16 and len(self.jobs) > len(running):
+            done = next(k for k, j in self.jobs.items() if j['done'].is_set())
+            self.jobs.pop(done)
         cwd = self.cwd(cwd)
         self._trusted_code()
-        guard = os.open('guard', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW,
-                        0o600, dir_fd=self.files.state_fd)
+        first = not running
         master = slave = -1
         log = None
         started = False
         try:
-            fcntl.flock(guard, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            self.files._check_journal()
+            if first:
+                self._acquire_guard()
             sid = uuid.uuid4().hex
             logpath = self.logs / (sid + '.log')
             fd = os.open(str(logpath), os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
@@ -157,7 +195,8 @@ class MacShell(IsolatedShell):
             master, slave = pty.openpty()
             os.set_blocking(master, False)
             started = True
-            self._start_watchdog()
+            if first or not self.watchdog or self.watchdog.poll() is not None:
+                self._start_watchdog()
             proc = subprocess.Popen(
                 [sys.executable, '-I', '-B', str(self.code / 'mac_child.py'),
                  self.workspace, cwd, command, os.ttyname(slave)],
@@ -165,22 +204,25 @@ class MacShell(IsolatedShell):
                 start_new_session=True, cwd=cwd, env=self.child_env())
             os.close(slave); slave = -1
             job = {'id': sid, 'owner': caller, 'proc': proc, 'fd': master,
-                   'guard': guard, 'output': bytearray(), 'base': 0, 'cursor': 0,
+                   'output': bytearray(), 'base': 0, 'cursor': 0, 'command': command[:200],
+                   'cwd': cwd, 'started_at': time.time(),
                    'done': asyncio.Event(), 'closed': False, 'log': log,
                    'log_path': str(logpath), 'log_bytes': 0, 'log_complete': True}
             self.jobs[sid] = job
             asyncio.get_running_loop().add_reader(master, self._drain, job)
             job['watcher'] = asyncio.create_task(self._watch_job(job))
-            master = guard = -1; log = None
+            master = -1; log = None
             return {'session_id': sid, 'pid': proc.pid, 'running': proc.poll() is None,
-                    'scope': self.workspace, 'uid': 5000,
-                    'network': 'github-only' if 'MCP_NET_PORT' in self.child_env() else 'disabled'}
+                    'scope': self.workspace, 'uid': 5000, 'concurrent': len(self.running()),
+                    'network': self.network if 'MCP_NET_PORT' in self.child_env() else 'disabled'}
         except BaseException:
-            if started:
-                self._cleanup_uid()
+            if first:
+                if started:
+                    self._cleanup_uid()
+                self._release_guard()
             raise
         finally:
-            for fd in (master, slave, guard):
+            for fd in (master, slave):
                 if fd >= 0:
                     os.close(fd)
             if log:
@@ -193,20 +235,49 @@ class MacShell(IsolatedShell):
                     job['stop_reason'] = 'watchdog ended unexpectedly'
                     self._cleanup_uid()
                 await asyncio.sleep(.05)
-            # Also catches daemons that detached before the foreground command ended.
-            self._cleanup_uid()
+            # The last process also takes down daemons detached by any of them.
+            if not any(j is not job for j in self.running()):
+                self._cleanup_uid()
             self._drain(job)
         finally:
             if not job['closed']:
                 job['closed'] = True
                 asyncio.get_running_loop().remove_reader(job['fd'])
-                os.close(job['fd']); os.close(job['guard']); job['log'].close()
+                os.close(job['fd']); job['log'].close()
             job['done'].set()
+            if not self.running():
+                self._release_guard()
 
     async def _terminate(self, job):
         if not job['done'].is_set():
-            self._cleanup_uid()
+            self._kill(job)
             await asyncio.wait_for(job['done'].wait(), 3)
+
+    def processes(self):
+        """Read-only inventory of uid5000 processes (the agent itself excluded)."""
+        out = subprocess.run(['/bin/ps', '-axo', 'uid=,pid=,ppid=,etime=,args='], capture_output=True,
+                             text=True, timeout=5, env={'PATH': '/usr/bin:/bin', 'LANG': 'C'}).stdout
+        rows = []
+        for line in out.splitlines()[:5000]:
+            p = line.split(None, 4)
+            if len(p) >= 4 and p[0] == '5000' and int(p[1]) != os.getpid():
+                rows.append({'pid': int(p[1]), 'ppid': int(p[2]), 'elapsed': p[3],
+                             'command': (p[4] if len(p) == 5 else '')[:300]})
+        return rows[:500]
+
+    async def session(self, caller, args):
+        action = args.get('action')
+        if action == 'list':
+            self.identity(caller)
+            return {'sessions': [{'session_id': j['id'], 'command': j['command'], 'cwd': j['cwd'],
+                                  'started_at': j['started_at'], 'running': not j['done'].is_set(),
+                                  'exit_code': j['proc'].poll(), 'pid': j['proc'].pid}
+                                 for j in self.jobs.values() if j['owner'] == caller],
+                    'maximum_active_sessions': self.MAX_RUNNING}
+        if action == 'processes':
+            self.allowed(caller)
+            return {'processes': self.processes()}
+        return await super().session(caller, args)
 
     def read(self, caller, sid):
         result = super().read(caller, sid)

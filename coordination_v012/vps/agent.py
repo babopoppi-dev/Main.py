@@ -311,6 +311,10 @@ async def dispatch(op, args, caller=None, request_id=None):
                 identity = WORK.authenticate(caller, work_id, work_token)
         if op in WORK_NAMES:
             result = await work_call(op, args, caller)
+            # Successful session/lock calls are recorded under their session.
+            sid = result.get('work_session_id') if op == 'work_session' and isinstance(result, dict) else work_id
+            if isinstance(sid, str):
+                identity = 'work:' + sid
         elif op in SEARCH_NAMES:
             result = await SEARCH.dispatch(op, args, identity)
         elif op == 'upload_file':

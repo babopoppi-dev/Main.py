@@ -37,7 +37,8 @@ def main():
         env.update({'HTTPS_PROXY': proxy, 'https_proxy': proxy, 'NO_PROXY': '', 'no_proxy': '',
                     'GIT_SSL_CAINFO': '/etc/ssl/cert.pem', 'SSL_CERT_FILE': '/etc/ssl/cert.pem',
                     'GIT_TERMINAL_PROMPT': '0', 'GIT_CONFIG_COUNT': '1',
-                    'GIT_CONFIG_KEY_0': 'http.proxyAuthMethod', 'GIT_CONFIG_VALUE_0': 'basic'})
+                    'GIT_CONFIG_KEY_0': 'http.proxyAuthMethod', 'GIT_CONFIG_VALUE_0': 'basic',
+                    'PIP_PROXY': proxy, 'npm_config_https_proxy': proxy, 'npm_config_proxy': proxy})
     os.execve('/usr/bin/sandbox-exec', ['/usr/bin/sandbox-exec', '-p',
               profile(workspace, tty_path, net_port), '/bin/bash', '--noprofile', '--norc',
               '-c', command], env)

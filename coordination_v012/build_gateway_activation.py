@@ -46,7 +46,7 @@ swap("""'assert {"work_session","work_lock","write_file","start_search","admin_r
 swap("""'assert "work_session_id" not in t["admin_request"]["inputSchema"]["properties"];print(len(n))')""",
      """'assert "work_session_id" not in t["admin_request"]["inputSchema"]["properties"];'
               'assert "work_session_id" in t["upload_file"]["inputSchema"]["properties"];'
-              'assert t["enable_full_shell"]["inputSchema"]["properties"]["network"]["enum"]==["none","github"];print(len(n))')""")
+              'assert t["enable_full_shell"]["inputSchema"]["properties"]["network"]["enum"]==["none","github","packages"];print(len(n))')""")
 start = logic.index('def smoke(expect_work):')
 end = logic.index('def install(manifest):')
 logic = logic[:start] + '''NEW_TOOLS={'delete_path','copy_file','read_binary','upload_file'}

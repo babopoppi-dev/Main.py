@@ -59,6 +59,12 @@ swap("""    r=child(code)
     atomic(TEST_CODE/'selftest.log'""", """    r=child(code,timeout=120)
     atomic(TEST_CODE/'selftest.log'""")
 swap("'coordination smoke failed: '", "'v0.12 smoke failed: '")
+# Tolerate only per-user macOS agents that launchd starts on demand for any
+# account (exact SIP-protected path and arguments, parent launchd).
+swap("""        # macOS starts this per-user notification agent on demand from launchd.
+        if p[2]=='1' and len(p)==5 and p[4].strip()=='/usr/sbin/distnoted agent':continue""",
+     """        # macOS starts these per-user agents on demand from launchd (exact path and arguments).
+        if p[2]=='1' and len(p)==5 and p[4].strip() in SYSTEM_AGENTS:continue""")
 swap("""                record('active',version=NEW_VERSION,uid=5000,agent_pid=ready['pid'],checks=checks,""",
      """                record('active',version=NEW_VERSION,uid=5000,agent_pid=ready['pid'],checks=checks,info=SMOKE_INFO,""")
 swap("""    result=json.loads(r.stdout.strip())
@@ -90,6 +96,8 @@ NEW_VERSION='0.12-personal-1'
 PAYLOAD={}
 TESTS={}
 SMOKE_INFO={}
+SYSTEM_AGENTS=frozenset({'/usr/sbin/distnoted agent','/usr/sbin/cfprefsd agent','/usr/libexec/trustd --agent',
+    '/usr/libexec/secinitd','/usr/libexec/lsd','/usr/libexec/containermanagerd'})
 ''' % {'s': STAMP}
 header += ('ORIGINAL=' + repr(original) + '\nDEPENDENCIES=' + repr(deps) + '\nTEST_NAMES=' + repr(tests)
            + '\nSOURCE_SHA=' + repr(source_sha) + '\nSOURCES={\n'

@@ -19,10 +19,12 @@ NEW_VERSION='0.12-personal-1'
 PAYLOAD={}
 TESTS={}
 SMOKE_INFO={}
+SYSTEM_AGENTS=frozenset({'/usr/sbin/distnoted agent','/usr/sbin/cfprefsd agent','/usr/libexec/trustd --agent',
+    '/usr/libexec/secinitd','/usr/libexec/lsd','/usr/libexec/containermanagerd'})
 ORIGINAL={'mac_agent.py': 'f099f621d41b17f834105393c3161cc5428681f8ddf22b07dcdafb542e6d0104', 'work_sessions.py': '707604271f3570ec6f03a42e68c19430200623cfad341691fef620522b0f0f67', 'work_schema.py': '9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9', 'file_tools.py': '8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e', 'file_schema.py': '06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'search_tools.py': 'ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b', 'mac_policy.py': 'ae04120908a35656258243d73fc30e7069077388a4e863cd815444b14f2e53e0', 'mac_child.py': '99416031aa2404ec2e49798ca2e33797cc492f19f15f92048bea382a9cf29856', 'mac_shell.py': 'fad744a688debf755e17b04257a3d3d2afb2ed492426b1d2332b9f8475a11d67', 'net_proxy.py': None, 'upload_tools.py': None}
 DEPENDENCIES={'agent_shell.py': 'd62822814d97c52468ca8aad4a43fa1bf8e424b8cd8200ac88ea4e2c9c33e21c', 'shell_common.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'mac_guard.py': '8d3f7afe80daae81e8f3a3471229423d14777eb84358a3f57621e74149dc57bc', 'mac_clock.py': '6553b061c51e2da286296231538796dd086404b1dbacca37bd9299e2628dae07', 'mac_watchdog.py': '66dc9cbe74dd74931979200a9eda4032461a31c1687f5a2ca64a4441f21c4c99', 'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d'}
 TEST_NAMES=['mac_agent.py', 'work_sessions.py', 'work_schema.py', 'file_tools.py', 'file_schema.py', 'search_tools.py', 'mac_policy.py', 'mac_child.py', 'mac_shell.py', 'net_proxy.py', 'upload_tools.py', 'agent_shell.py', 'shell_common.py', 'mac_guard.py', 'mac_clock.py', 'mac_watchdog.py', 'search_schema.py', 'test_work_core.py', 'test_search.py', 'test_v012.py', 'test_files_v012.py', 'mac_v012_selftest.py', 'cg_tools.py']
-SOURCE_SHA={'mac_agent.py': 'c3db14ba1fea17a0b6240d59ebac071750af4629bc1f6e5466bb94c4b66f594c', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_child.py': 'f5b37188587c1459633d4eefb3ebc250798609272b83b4472247cca3b125b5bd', 'mac_shell.py': '5ebae9f1e668a6b7f9801d5014ff66deef308ceea4ec6acfa22b2c6839606534', 'net_proxy.py': 'a9ae31721b4eef732ce5cab4dfc15836224d5f7f5d33b3cd527ca3361ed8822e', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': '8f6857229c6a0e050fa704bd44d8132afec7ffdaa0531abf2572fd581751d79c', 'test_files_v012.py': 'e206d7c2e86e3afdb39340bcd62ec586177c307a00817c0f46710963f374a53e', 'mac_v012_selftest.py': 'c0372cb8adc8d46b64af45664166132fd27d3ef8dc713b422ff03983ec9fc1a8', 'cg_tools.py': '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567'}
+SOURCE_SHA={'mac_agent.py': '49f5be2c6223fe842b6635e41ed3f112c7dada5784cbd18c4e965d45dbfc1d73', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_child.py': '24d7c1701eeab38885fbf51ea7b3bb0d368ebe102c1740c97c95efa6c6f8de1e', 'mac_shell.py': '79c8595ddf87e1076b64b782a0a366de5d7c30de89b1b697c99581e1e6de9c14', 'net_proxy.py': '550deb2441af4fbbd3b89ed7e8204339e439e1049c98ca2a01e6e73c50bfd48c', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': 'cab24eee0012e8218188c133ebdfb44d7670263cbd70fc53e3392eeea4a9e8e5', 'test_files_v012.py': 'e206d7c2e86e3afdb39340bcd62ec586177c307a00817c0f46710963f374a53e', 'mac_v012_selftest.py': '7784859a8e44a4030e58109f822701de123c6d6ed590307e25a10d3c4403f774', 'cg_tools.py': '0df2f955e3de20a5fb13565fcb347c52c8c738963f8c418de0873dc0c123fbd1'}
 SOURCES={
 'mac_agent.py': r'''#!/usr/bin/env python3
 """Dedicated non-admin agent; root-owned code, private state, offline shell."""
@@ -53,7 +55,7 @@ from agent_shell import AgentShell
 from work_sessions import WorkSessions, MUTATIONS
 from work_schema import WORK_NAMES
 from upload_tools import Uploads
-from net_proxy import ALLOWED_HOSTS
+from net_proxy import ALLOWED_HOSTS, PROFILES
 from mac_guard import require_identity, stop_dedicated_children
 from mac_policy import profile
 
@@ -240,6 +242,9 @@ class Dispatcher:
                     identity = self.work_sessions.authenticate(caller,work_id,work_token)
             if op in WORK_NAMES:
                 result = await self.work_call(op,args,caller)
+                # Successful session/lock calls are recorded under their session.
+                sid = result.get('work_session_id') if op=='work_session' and isinstance(result,dict) else work_id
+                if isinstance(sid,str):identity = 'work:'+sid
             elif op in SEARCH_NAMES:
                 result = await self.search.dispatch(op, args, identity)
             elif op == 'upload_file':
@@ -296,7 +301,8 @@ def metadata():
     return {'hostname': socket.gethostname(), 'platform': 'darwin', 'python': sys.version.split()[0],
             'uid': os.getuid(), 'machine': 'mac_mio', 'agent_version': VERSION,
             'full_shell_capable': True, 'file_tools_version': '0.8', 'search_version': '0.10.1',
-            'shell_backend': 'seatbelt-v09', 'shell_network': 'disabled; github on request',
+            'shell_backend': 'seatbelt-v09', 'shell_network': 'disabled; profiles on request',
+            'shell_network_profiles': {k: sorted(v) for k, v in PROFILES.items()},
             'shell_network_hosts': sorted(ALLOWED_HOSTS), 'shell_scope': str(WORK),
             'allowed_roots': [str(WORK)], 'read_only_log_root': str(STATE / 'shell-logs'),
             'coordination_version':'0.11.0', 'work_session_required':True,
@@ -1977,7 +1983,8 @@ def main():
         env.update({'HTTPS_PROXY': proxy, 'https_proxy': proxy, 'NO_PROXY': '', 'no_proxy': '',
                     'GIT_SSL_CAINFO': '/etc/ssl/cert.pem', 'SSL_CERT_FILE': '/etc/ssl/cert.pem',
                     'GIT_TERMINAL_PROMPT': '0', 'GIT_CONFIG_COUNT': '1',
-                    'GIT_CONFIG_KEY_0': 'http.proxyAuthMethod', 'GIT_CONFIG_VALUE_0': 'basic'})
+                    'GIT_CONFIG_KEY_0': 'http.proxyAuthMethod', 'GIT_CONFIG_VALUE_0': 'basic',
+                    'PIP_PROXY': proxy, 'npm_config_https_proxy': proxy, 'npm_config_proxy': proxy})
     os.execve('/usr/bin/sandbox-exec', ['/usr/bin/sandbox-exec', '-p',
               profile(workspace, tty_path, net_port), '/bin/bash', '--noprofile', '--norc',
               '-c', command], env)
@@ -1986,7 +1993,13 @@ def main():
 if __name__ == '__main__':
     main()
 ''',
-'mac_shell.py': r'''"""One offline macOS shell, leased to an OAuth authorization, uid5000 only."""
+'mac_shell.py': r'''"""macOS shell lease for one work session, uid5000 only.
+
+Up to MAX_RUNNING concurrent processes share the lease, the workspace guard
+and the watchdog. Stopping one process kills its process group; the full
+uid5000 cleanup runs when the last one ends, on stop of the last one and
+when the lease ends. Network is off unless the lease selects a profile.
+"""
 import asyncio
 import contextlib
 import errno
@@ -2003,11 +2016,12 @@ import uuid
 from shell_common import IsolatedShell
 from mac_guard import require_identity, stop_dedicated_children
 from mac_clock import lease_deadline
-from net_proxy import GitHubProxy
+from net_proxy import GitHubProxy, PROFILES
 
 
 class MacShell(IsolatedShell):
     LOG_LIMIT = 16 * 1024 * 1024
+    MAX_RUNNING = 4
 
     def __init__(self, files, workspace, logs, capable=False):
         super().__init__(files, workspace, capable)
@@ -2018,6 +2032,7 @@ class MacShell(IsolatedShell):
         self.network = 'none'
         self.proxy = GitHubProxy(log=self.log_network)
         self.network_log = []
+        self.guard_fd = None
 
     def log_network(self, event):
         self.network_log.append(dict(event, time=time.time()))
@@ -2025,20 +2040,21 @@ class MacShell(IsolatedShell):
 
     async def enable(self, caller, minutes, network='none'):
         require_identity()
-        if network not in ('none', 'github'):
-            raise ValueError("network must be 'none' or 'github'")
+        if network != 'none' and network not in PROFILES:
+            raise ValueError('network must be none or one of: ' + ', '.join(sorted(PROFILES)))
         if self.owner == caller and time.monotonic() < self.until and network != self.network:
             if any(not j['done'].is_set() for j in self.jobs.values()):
                 raise PermissionError('stop the running shell before changing network access')
         result = await super().enable(caller, minutes)
-        if network == 'github':
-            await self.proxy.start()
-        else:
-            await self.proxy.stop()
+        await self.proxy.stop()
+        if network != 'none':
+            await self.proxy.start(PROFILES[network])
         self.network = network
         if self.watchdog and self.watchdog.poll() is None:
             self.refresh_watchdog()
-        result['network'] = 'github-only via agent proxy' if network == 'github' else 'disabled'
+        result['network'] = (network + ' via agent proxy: ' + ', '.join(sorted(PROFILES[network]))
+                             if network != 'none' else 'disabled')
+        result['maximum_active_sessions'] = self.MAX_RUNNING
         return result
 
     async def disable(self):
@@ -2050,7 +2066,7 @@ class MacShell(IsolatedShell):
 
     def child_env(self):
         env = {'PATH': '/usr/bin:/bin', 'LANG': 'en_US.UTF-8'}
-        if self.network == 'github' and self.proxy.running:
+        if self.network != 'none' and self.proxy.running:
             env.update(MCP_NET_PORT=str(self.proxy.address()), MCP_NET_TOKEN=self.proxy.token)
         return env
 
@@ -2116,28 +2132,57 @@ class MacShell(IsolatedShell):
             if len(chunk) > remaining:
                 job['log_complete'] = False
                 job['stop_reason'] = 'output limit reached'
-                self._cleanup_uid()
+                self._kill(job)
                 return
+
+    def running(self):
+        return [j for j in self.jobs.values() if not j['done'].is_set()]
+
+    def _acquire_guard(self):
+        fd = os.open('guard', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600, dir_fd=self.files.state_fd)
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            self.files._check_journal()
+        except BaseException:
+            os.close(fd)
+            raise
+        self.guard_fd = fd
+
+    def _release_guard(self):
+        if self.guard_fd is not None:
+            os.close(self.guard_fd)
+            self.guard_fd = None
+
+    def _kill(self, job):
+        """Stop one process group, or everything when it is the last one."""
+        if any(j is not job for j in self.running()):
+            with contextlib.suppress(ProcessLookupError, PermissionError):
+                os.killpg(job['proc'].pid, 9)
+        else:
+            self._cleanup_uid()
 
     async def start(self, caller, command, cwd=None):
         require_identity()
         self.allowed(caller)
         if not isinstance(command, str) or not command.strip() or '\0' in command or len(command.encode()) > 32768:
             raise ValueError('command required; maximum32768 bytes')
-        if any(not j['done'].is_set() for j in self.jobs.values()):
-            raise PermissionError('workspace already has a running shell')
-        while len(self.jobs) >= 16:
-            self.jobs.pop(next(iter(self.jobs)))
+        running = self.running()
+        if len(running) >= self.MAX_RUNNING:
+            raise PermissionError('at most %d concurrent shell processes; stop one first' % self.MAX_RUNNING)
+        if running and self.guard_fd is None:
+            raise RuntimeError('shell guard lost; disable the shell')
+        while len(self.jobs) >= 16 and len(self.jobs) > len(running):
+            done = next(k for k, j in self.jobs.items() if j['done'].is_set())
+            self.jobs.pop(done)
         cwd = self.cwd(cwd)
         self._trusted_code()
-        guard = os.open('guard', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW,
-                        0o600, dir_fd=self.files.state_fd)
+        first = not running
         master = slave = -1
         log = None
         started = False
         try:
-            fcntl.flock(guard, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            self.files._check_journal()
+            if first:
+                self._acquire_guard()
             sid = uuid.uuid4().hex
             logpath = self.logs / (sid + '.log')
             fd = os.open(str(logpath), os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
@@ -2145,7 +2190,8 @@ class MacShell(IsolatedShell):
             master, slave = pty.openpty()
             os.set_blocking(master, False)
             started = True
-            self._start_watchdog()
+            if first or not self.watchdog or self.watchdog.poll() is not None:
+                self._start_watchdog()
             proc = subprocess.Popen(
                 [sys.executable, '-I', '-B', str(self.code / 'mac_child.py'),
                  self.workspace, cwd, command, os.ttyname(slave)],
@@ -2153,22 +2199,25 @@ class MacShell(IsolatedShell):
                 start_new_session=True, cwd=cwd, env=self.child_env())
             os.close(slave); slave = -1
             job = {'id': sid, 'owner': caller, 'proc': proc, 'fd': master,
-                   'guard': guard, 'output': bytearray(), 'base': 0, 'cursor': 0,
+                   'output': bytearray(), 'base': 0, 'cursor': 0, 'command': command[:200],
+                   'cwd': cwd, 'started_at': time.time(),
                    'done': asyncio.Event(), 'closed': False, 'log': log,
                    'log_path': str(logpath), 'log_bytes': 0, 'log_complete': True}
             self.jobs[sid] = job
             asyncio.get_running_loop().add_reader(master, self._drain, job)
             job['watcher'] = asyncio.create_task(self._watch_job(job))
-            master = guard = -1; log = None
+            master = -1; log = None
             return {'session_id': sid, 'pid': proc.pid, 'running': proc.poll() is None,
-                    'scope': self.workspace, 'uid': 5000,
-                    'network': 'github-only' if 'MCP_NET_PORT' in self.child_env() else 'disabled'}
+                    'scope': self.workspace, 'uid': 5000, 'concurrent': len(self.running()),
+                    'network': self.network if 'MCP_NET_PORT' in self.child_env() else 'disabled'}
         except BaseException:
-            if started:
-                self._cleanup_uid()
+            if first:
+                if started:
+                    self._cleanup_uid()
+                self._release_guard()
             raise
         finally:
-            for fd in (master, slave, guard):
+            for fd in (master, slave):
                 if fd >= 0:
                     os.close(fd)
             if log:
@@ -2181,20 +2230,49 @@ class MacShell(IsolatedShell):
                     job['stop_reason'] = 'watchdog ended unexpectedly'
                     self._cleanup_uid()
                 await asyncio.sleep(.05)
-            # Also catches daemons that detached before the foreground command ended.
-            self._cleanup_uid()
+            # The last process also takes down daemons detached by any of them.
+            if not any(j is not job for j in self.running()):
+                self._cleanup_uid()
             self._drain(job)
         finally:
             if not job['closed']:
                 job['closed'] = True
                 asyncio.get_running_loop().remove_reader(job['fd'])
-                os.close(job['fd']); os.close(job['guard']); job['log'].close()
+                os.close(job['fd']); job['log'].close()
             job['done'].set()
+            if not self.running():
+                self._release_guard()
 
     async def _terminate(self, job):
         if not job['done'].is_set():
-            self._cleanup_uid()
+            self._kill(job)
             await asyncio.wait_for(job['done'].wait(), 3)
+
+    def processes(self):
+        """Read-only inventory of uid5000 processes (the agent itself excluded)."""
+        out = subprocess.run(['/bin/ps', '-axo', 'uid=,pid=,ppid=,etime=,args='], capture_output=True,
+                             text=True, timeout=5, env={'PATH': '/usr/bin:/bin', 'LANG': 'C'}).stdout
+        rows = []
+        for line in out.splitlines()[:5000]:
+            p = line.split(None, 4)
+            if len(p) >= 4 and p[0] == '5000' and int(p[1]) != os.getpid():
+                rows.append({'pid': int(p[1]), 'ppid': int(p[2]), 'elapsed': p[3],
+                             'command': (p[4] if len(p) == 5 else '')[:300]})
+        return rows[:500]
+
+    async def session(self, caller, args):
+        action = args.get('action')
+        if action == 'list':
+            self.identity(caller)
+            return {'sessions': [{'session_id': j['id'], 'command': j['command'], 'cwd': j['cwd'],
+                                  'started_at': j['started_at'], 'running': not j['done'].is_set(),
+                                  'exit_code': j['proc'].poll(), 'pid': j['proc'].pid}
+                                 for j in self.jobs.values() if j['owner'] == caller],
+                    'maximum_active_sessions': self.MAX_RUNNING}
+        if action == 'processes':
+            self.allowed(caller)
+            return {'processes': self.processes()}
+        return await super().session(caller, args)
 
     def read(self, caller, sid):
         result = super().read(caller, sid)
@@ -2209,7 +2287,7 @@ class MacShell(IsolatedShell):
         value['network_events'] = list(self.network_log[-10:])
         return value
 ''',
-'net_proxy.py': r'''"""GitHub-only HTTPS CONNECT proxy for the isolated shell.
+'net_proxy.py': r'''"""Allow-listed HTTPS CONNECT proxy for the isolated shell (GitHub, packages).
 
 Seatbelt cannot filter by host name, so the shell may reach only this proxy on
 loopback. The proxy runs inside the agent (outside the sandbox), demands a
@@ -2230,6 +2308,9 @@ ALLOWED_HOSTS = frozenset({
     'github.com', 'api.github.com', 'codeload.github.com',
     'objects.githubusercontent.com', 'raw.githubusercontent.com',
 })
+PACKAGE_HOSTS = frozenset({'pypi.org', 'files.pythonhosted.org', 'registry.npmjs.org'})
+# Lease profiles selectable with enable_full_shell(network=...).
+PROFILES = {'github': ALLOWED_HOSTS, 'packages': ALLOWED_HOSTS | PACKAGE_HOSTS}
 REQUEST = re.compile(rb'CONNECT ([a-z0-9.-]{1,253}):([0-9]{1,5}) HTTP/1\.[01]\r\n')
 
 
@@ -2265,9 +2346,11 @@ class GitHubProxy:
     def proxy_url(self):
         return 'http://mcp:%s@127.0.0.1:%d' % (self.token, self.address())
 
-    async def start(self):
+    async def start(self, hosts=None):
         if self.server is not None:
             return self.address()
+        if hosts is not None:
+            self.hosts = frozenset(hosts)
         self.token = secrets.token_urlsafe(24)
         self.stats = {'accepted': 0, 'refused': 0}
         self.server = await asyncio.start_server(self._client, '127.0.0.1', 0, limit=self.HEAD_LIMIT)
@@ -2940,6 +3023,9 @@ if __name__=='__main__':unittest.main(verbosity=2)
 File tool tests live in test_files_v012.py.
 """
 import asyncio
+import contextlib
+import subprocess
+import types
 import base64
 import hashlib
 import json
@@ -2950,7 +3036,7 @@ import unittest
 from unittest.mock import AsyncMock, patch
 import uuid
 
-from file_tools import FileToolError
+from file_tools import FileTools, FileToolError
 import net_proxy
 from net_proxy import GitHubProxy
 import mac_policy
@@ -3175,12 +3261,128 @@ class AgentV012(unittest.IsolatedAsyncioTestCase):
             self.assertFalse(shell.proxy.running)
             self.assertEqual(shell.network, 'none')
 
+    async def test_session_and_lock_operations_audited_with_session_id(self):
+        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
+        recent = (await self.call('who_is_working', {}))['recent_work_operations']
+        sid = self.a['work_session_id']
+        ops = [(x['operation'], x['work_session_id']) for x in recent if 'request_id' in x]
+        self.assertIn(('work_session', sid), ops)
+        self.assertIn(('work_lock', sid), ops)
+        self.assertIn(('work_session', self.b['work_session_id']), ops)
+
     async def test_metadata_advertises_new_capabilities(self):
         import mac_agent
         meta = mac_agent.metadata()
         for name in ['delete_path', 'copy_file', 'read_binary', 'upload_file']:
             self.assertIn(name, meta['capabilities'])
         self.assertIn('github.com', meta['shell_network_hosts'])
+
+
+class ConcurrentShell(unittest.IsolatedAsyncioTestCase):
+    """Real processes through MacShell's job machinery (bash replaces the seatbelt child)."""
+
+    async def asyncSetUp(self):
+        import mac_shell
+        self.ms = mac_shell
+        self.tmp = tempfile.TemporaryDirectory(); r = Path(self.tmp.name)
+        (r / 'work').mkdir(mode=0o700)
+        self.f = FileTools([str(r / 'work')], str(r / 'journal'))
+        self.work = str(r / 'work')
+        self.cleanups = 0
+        def cleanup():
+            # Like stop_dedicated_children: every uid5000 process goes.
+            self.cleanups += 1
+            for j in self.shell.jobs.values():
+                with contextlib.suppress(ProcessLookupError, PermissionError):
+                    os.killpg(j['proc'].pid, 9)
+        real = subprocess.Popen
+        def popen(argv, **kw):
+            if len(argv) != 8 or not str(argv[3]).endswith('mac_child.py'):
+                return real(argv, **kw)
+            kw['env'] = {'PATH': '/usr/bin:/bin'}
+            return real(['/bin/bash', '-c', argv[6]], **kw)
+        self.patches = [patch.object(mac_shell, 'require_identity'), patch.object(mac_shell.subprocess, 'Popen', side_effect=popen)]
+        for p in self.patches: p.start()
+        self.shell = mac_shell.MacShell(self.f, self.work, str(r / 'logs'), capable=True)
+        self.shell._trusted_code = lambda: None
+        self.shell._start_watchdog = lambda: None
+        self.shell._cleanup_uid = cleanup
+        self.me = 'work:' + 'a' * 32
+        await self.shell.enable(self.me, 1)
+
+    async def asyncTearDown(self):
+        for j in self.shell.running():
+            with contextlib.suppress(ProcessLookupError):
+                os.killpg(j['proc'].pid, 9)
+        for j in list(self.shell.jobs.values()):
+            await asyncio.wait_for(j['done'].wait(), 5)
+        self.shell.owner = None
+        for p in self.patches: p.stop()
+        self.f.close(); self.tmp.cleanup()
+
+    async def wait_done(self, sid):
+        await asyncio.wait_for(self.shell.jobs[sid]['done'].wait(), 5)
+
+    async def test_four_concurrent_processes_with_separate_output(self):
+        ids = [(await self.shell.start(self.me, 'echo out%d; sleep 3' % i))['session_id'] for i in range(4)]
+        with self.assertRaises(PermissionError):
+            await self.shell.start(self.me, 'true')
+        await asyncio.sleep(.3)
+        outs = [self.shell.read(self.me, i)['output'] for i in ids]
+        for i, out in enumerate(outs):
+            self.assertIn('out%d' % i, out)
+        listed = await self.shell.session(self.me, {'action': 'list'})
+        self.assertEqual(sum(x['running'] for x in listed['sessions']), 4)
+        other = await self.shell.session('work:' + 'b' * 32, {'action': 'list'})
+        self.assertEqual(other['sessions'], [])
+
+    async def test_guard_held_while_any_runs_and_released_after_last(self):
+        a = (await self.shell.start(self.me, 'sleep 3'))['session_id']
+        b = (await self.shell.start(self.me, 'sleep 0.2'))['session_id']
+        await self.wait_done(b)
+        self.assertEqual(self.cleanups, 0, 'one process ending must not clean up the others')
+        self.assertIsNotNone(self.shell.guard_fd)
+        with self.assertRaises(FileToolError):
+            self.f.write_file(self.work + '/x', 'x', session_id=self.me)
+        await self.shell.session(self.me, {'action': 'stop', 'session_id': a})
+        self.assertGreaterEqual(self.cleanups, 1)
+        self.assertIsNone(self.shell.guard_fd)
+        self.f.write_file(self.work + '/x', 'x', session_id=self.me)
+
+    async def test_stop_one_keeps_others_running(self):
+        a = (await self.shell.start(self.me, 'sleep 5'))['session_id']
+        b = (await self.shell.start(self.me, 'sleep 5'))['session_id']
+        r = await self.shell.session(self.me, {'action': 'stop', 'session_id': a})
+        self.assertTrue(r['stopped'])
+        self.assertTrue(self.shell.jobs[a]['done'].is_set())
+        self.assertFalse(self.shell.jobs[b]['done'].is_set())
+        self.assertEqual(self.cleanups, 0)
+
+    async def test_disable_stops_everything(self):
+        for _ in range(3):
+            await self.shell.start(self.me, 'sleep 5')
+        await self.shell.disable()
+        self.assertEqual(self.shell.running(), [])
+        self.assertIsNone(self.shell.guard_fd)
+
+    async def test_processes_requires_lease(self):
+        with patch.object(self.ms.subprocess, 'run', return_value=types.SimpleNamespace(
+                stdout='5000 10 1 00:05 /bin/bash -c sleep\n501 11 1 00:01 other\n')):
+            r = await self.shell.session(self.me, {'action': 'processes'})
+        self.assertEqual([p['pid'] for p in r['processes']], [10])
+        with self.assertRaises(PermissionError):
+            await self.shell.session('work:' + 'b' * 32, {'action': 'processes'})
+
+    async def test_network_profiles(self):
+        with self.assertRaises(ValueError):
+            await self.shell.enable(self.me, 1, 'internet')
+        r = await self.shell.enable(self.me, 1, 'packages')
+        self.assertIn('pypi.org', r['network'])
+        self.assertIn('registry.npmjs.org', self.shell.proxy.hosts)
+        await self.shell.enable(self.me, 1, 'github')
+        self.assertNotIn('pypi.org', self.shell.proxy.hosts)
+        await self.shell.enable(self.me, 1, 'none')
+        self.assertFalse(self.shell.proxy.running)
 
 
 class Catalog(unittest.TestCase):
@@ -3190,7 +3392,8 @@ class Catalog(unittest.TestCase):
         self.assertEqual(len(tools), len(cg_tools.TOOLS))
         for name in ['delete_path', 'copy_file', 'read_binary', 'upload_file']:
             self.assertIn('work_session_id', tools[name]['inputSchema']['properties'])
-        self.assertEqual(tools['enable_full_shell']['inputSchema']['properties']['network']['enum'], ['none', 'github'])
+        self.assertEqual(tools['enable_full_shell']['inputSchema']['properties']['network']['enum'], ['none', 'github', 'packages'])
+        self.assertIn('processes', tools['shell_session']['description'])
         json.dumps(cg_tools.TOOLS)
 
 
@@ -3639,7 +3842,25 @@ async def main():
         code, out = await asyncio.to_thread(sandboxed, '/usr/bin/git ls-remote https://github.com/git/git HEAD', folder, proxy, 25)
         info['github_git_ls_remote'] = 'ok' if code == 0 and 'HEAD' in out else 'failed: ' + out[-400:]
         os.unlink(script)
+
+        whole = await call('work_lock', a, action='acquire', path=str(WORK), minutes=5)
+        await call('enable_full_shell', a, minutes=2)
+        s1 = await call('shell_session', a, action='start', command='sleep 20', cwd=folder)
+        s2 = await call('shell_session', a, action='start', command='echo CONCURRENT_OK; sleep 20', cwd=folder)
+        await refused('shell_session', b, action='start', command='true')
+        listed = await call('shell_session', a, action='list')
+        assert sum(x['running'] for x in listed['sessions']) == 2, listed
+        await call('shell_session', a, action='stop', session_id=s1['session_id'])
+        await asyncio.sleep(.5)
+        r2 = await call('shell_session', a, action='read', session_id=s2['session_id'])
+        assert r2['running'] and 'CONCURRENT_OK' in r2['output'], r2
+        procs = await call('shell_session', a, action='processes')
+        assert procs['processes'], procs
+        await call('disable_full_shell', a)
+        await call('work_lock', a, action='release', lock_id=whole['lock_id'])
+        checks.append('two concurrent shell processes, stop one keeps the other, disable stops all')
     finally:
+        await d.shell.disable()
         await proxy.stop()
         await d.search.close()
         for operation in reversed(operations):
@@ -3673,8 +3894,10 @@ NAMES = {t["name"] for t in TOOLS}
 # v0.12: optional GitHub-only network for the Mac shell lease.
 for _t in TOOLS:
     if _t['name'] == 'enable_full_shell':
-        _t['inputSchema']['properties']['network'] = {'type': 'string', 'enum': ['none', 'github'], 'default': 'none'}
-        _t['description'] += " On mac_mio, network='github' lets the shell reach only GitHub over HTTPS through the agent proxy; default 'none'."
+        _t['inputSchema']['properties']['network'] = {'type': 'string', 'enum': ['none', 'github', 'packages'], 'default': 'none'}
+        _t['description'] += " On mac_mio, network='github' lets the shell reach only GitHub over HTTPS through the agent proxy; 'packages' adds pypi and the npm registry; default 'none'."
+    if _t['name'] == 'shell_session':
+        _t['description'] += " Actions: start, send, read, stop, list (this session's processes), processes (uid5000 inventory, mac_mio). On mac_mio up to 4 processes run concurrently in one lease."
 ''',
 }
 
@@ -3786,8 +4009,8 @@ def no_other_processes(daemon_pid=None):
     for row in text.splitlines():
         p=row.split(None,4)
         if len(p)<4 or p[0]!='5000' or p[3].startswith('Z'):continue
-        # macOS starts this per-user notification agent on demand from launchd.
-        if p[2]=='1' and len(p)==5 and p[4].strip()=='/usr/sbin/distnoted agent':continue
+        # macOS starts these per-user agents on demand from launchd (exact path and arguments).
+        if p[2]=='1' and len(p)==5 and p[4].strip() in SYSTEM_AGENTS:continue
         pids.add(int(p[1]))
     if pids!=(set() if daemon_pid is None else {daemon_pid}):raise RuntimeError('dedicated account busy')
 
