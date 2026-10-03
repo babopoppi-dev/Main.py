@@ -109,6 +109,14 @@ COLLAUDO DI PARITA CON DESKTOP COMMANDER (03/10 sera, stesso Mac)
   non ha il permesso di cancellare.
 - DC ancora acceso nel Terminale di Andrea: NON spento, in attesa di decisione.
 
+DIAGNOSI REPL PYTHON (03/10 sera, sessione 93db6d66..., chiusa e pulita)
+- python3 -I -i (salta l'import di readline) su PTY: funziona (>>> e risposta 42).
+- import readline + input("p> ") su PTY: prompt non mostrato, input letto vuoto.
+- stty dentro la shell: "TIOCGETD: Operation not permitted" -> il profilo seatbelt (deny default)
+  nega ioctl sul terminale; tcgetattr passa, altre ioctl no. libedit (readline di macOS) si blocca.
+- Correzione proposta (p4, mac_policy.py): (allow file-ioctl (literal <pty della sessione>)),
+  piu dimensione 80x24 impostata sul PTY in mac_shell.py. Da confermare prima con prova locale.
+
 PROSSIMI PASSI
 1. Decidere lo spegnimento di DC (Ctrl+C nel Terminale; poi eventualmente revoca del device su
    mcp.desktopcommander.app). Prima valutare: REPL Python, Xcode su mac_mio, accesso ai progetti
