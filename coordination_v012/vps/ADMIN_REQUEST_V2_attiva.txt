@@ -1,0 +1,1 @@
+/usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_vps_v012_20261003.py --apply

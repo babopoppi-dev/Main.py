@@ -212,10 +212,10 @@ class RestartRecovery(unittest.TestCase):
 
     def test_v012_preflight_and_selftest_wiring(self):
         source=Path(u.__file__).read_text()
-        self.assertIn("loadTestsFromNames(['test_work_core','test_search','test_v012'])",source)
+        self.assertIn("loadTestsFromNames(['test_work_core','test_search','test_v012','test_files_v012'])",source)
         self.assertIn("TEST_CODE/'mac_v012_selftest.py'",source)
         self.assertIn('child(code,timeout=120)',source)
-        for name in ('test_v012.py','mac_v012_selftest.py'):self.assertIn(name,u.TEST_NAMES)
+        for name in ('test_v012.py','test_files_v012.py','mac_v012_selftest.py'):self.assertIn(name,u.TEST_NAMES)
         for name in ('net_proxy.py','upload_tools.py','mac_policy.py','mac_child.py','mac_shell.py'):self.assertIn(name,u.PAYLOAD if u.PAYLOAD else u.ORIGINAL)
 
     def test_smoke_receipt_takes_last_json_line(self):

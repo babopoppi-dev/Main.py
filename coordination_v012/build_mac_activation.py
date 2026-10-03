@@ -23,7 +23,7 @@ new = ['net_proxy.py', 'upload_tools.py']
 names = changed + new
 dependencies = ['agent_shell.py', 'shell_common.py', 'mac_guard.py', 'mac_clock.py',
                 'mac_watchdog.py', 'search_schema.py']
-tests = names + dependencies + ['test_work_core.py', 'test_search.py', 'test_v012.py',
+tests = names + dependencies + ['test_work_core.py', 'test_search.py', 'test_v012.py', 'test_files_v012.py',
                                 'mac_v012_selftest.py', 'cg_tools.py']
 
 for n in dependencies:
@@ -53,7 +53,7 @@ def swap(old, new_text):
 
 
 swap("loadTestsFromNames(['test_work_core','test_search'])",
-     "loadTestsFromNames(['test_work_core','test_search','test_v012'])")
+     "loadTestsFromNames(['test_work_core','test_search','test_v012','test_files_v012'])")
 swap("TEST_CODE/'mac_coordination_selftest.py'", "TEST_CODE/'mac_v012_selftest.py'")
 swap("""    r=child(code)
     atomic(TEST_CODE/'selftest.log'""", """    r=child(code,timeout=120)

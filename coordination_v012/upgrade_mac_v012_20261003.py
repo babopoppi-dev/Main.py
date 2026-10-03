@@ -21,8 +21,8 @@ TESTS={}
 SMOKE_INFO={}
 ORIGINAL={'mac_agent.py': 'f099f621d41b17f834105393c3161cc5428681f8ddf22b07dcdafb542e6d0104', 'work_sessions.py': '707604271f3570ec6f03a42e68c19430200623cfad341691fef620522b0f0f67', 'work_schema.py': '9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9', 'file_tools.py': '8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e', 'file_schema.py': '06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'search_tools.py': 'ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b', 'mac_policy.py': 'ae04120908a35656258243d73fc30e7069077388a4e863cd815444b14f2e53e0', 'mac_child.py': '99416031aa2404ec2e49798ca2e33797cc492f19f15f92048bea382a9cf29856', 'mac_shell.py': 'fad744a688debf755e17b04257a3d3d2afb2ed492426b1d2332b9f8475a11d67', 'net_proxy.py': None, 'upload_tools.py': None}
 DEPENDENCIES={'agent_shell.py': 'd62822814d97c52468ca8aad4a43fa1bf8e424b8cd8200ac88ea4e2c9c33e21c', 'shell_common.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'mac_guard.py': '8d3f7afe80daae81e8f3a3471229423d14777eb84358a3f57621e74149dc57bc', 'mac_clock.py': '6553b061c51e2da286296231538796dd086404b1dbacca37bd9299e2628dae07', 'mac_watchdog.py': '66dc9cbe74dd74931979200a9eda4032461a31c1687f5a2ca64a4441f21c4c99', 'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d'}
-TEST_NAMES=['mac_agent.py', 'work_sessions.py', 'work_schema.py', 'file_tools.py', 'file_schema.py', 'search_tools.py', 'mac_policy.py', 'mac_child.py', 'mac_shell.py', 'net_proxy.py', 'upload_tools.py', 'agent_shell.py', 'shell_common.py', 'mac_guard.py', 'mac_clock.py', 'mac_watchdog.py', 'search_schema.py', 'test_work_core.py', 'test_search.py', 'test_v012.py', 'mac_v012_selftest.py', 'cg_tools.py']
-SOURCE_SHA={'mac_agent.py': 'c3db14ba1fea17a0b6240d59ebac071750af4629bc1f6e5466bb94c4b66f594c', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_child.py': 'f5b37188587c1459633d4eefb3ebc250798609272b83b4472247cca3b125b5bd', 'mac_shell.py': '5ebae9f1e668a6b7f9801d5014ff66deef308ceea4ec6acfa22b2c6839606534', 'net_proxy.py': 'a9ae31721b4eef732ce5cab4dfc15836224d5f7f5d33b3cd527ca3361ed8822e', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': 'e875065dd20087b189044e401c5da027d8b50bb453ce868767dcdabe5582bcc9', 'mac_v012_selftest.py': 'c0372cb8adc8d46b64af45664166132fd27d3ef8dc713b422ff03983ec9fc1a8', 'cg_tools.py': '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567'}
+TEST_NAMES=['mac_agent.py', 'work_sessions.py', 'work_schema.py', 'file_tools.py', 'file_schema.py', 'search_tools.py', 'mac_policy.py', 'mac_child.py', 'mac_shell.py', 'net_proxy.py', 'upload_tools.py', 'agent_shell.py', 'shell_common.py', 'mac_guard.py', 'mac_clock.py', 'mac_watchdog.py', 'search_schema.py', 'test_work_core.py', 'test_search.py', 'test_v012.py', 'test_files_v012.py', 'mac_v012_selftest.py', 'cg_tools.py']
+SOURCE_SHA={'mac_agent.py': 'c3db14ba1fea17a0b6240d59ebac071750af4629bc1f6e5466bb94c4b66f594c', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_child.py': 'f5b37188587c1459633d4eefb3ebc250798609272b83b4472247cca3b125b5bd', 'mac_shell.py': '5ebae9f1e668a6b7f9801d5014ff66deef308ceea4ec6acfa22b2c6839606534', 'net_proxy.py': 'a9ae31721b4eef732ce5cab4dfc15836224d5f7f5d33b3cd527ca3361ed8822e', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': '8f6857229c6a0e050fa704bd44d8132afec7ffdaa0531abf2572fd581751d79c', 'test_files_v012.py': 'e206d7c2e86e3afdb39340bcd62ec586177c307a00817c0f46710963f374a53e', 'mac_v012_selftest.py': 'c0372cb8adc8d46b64af45664166132fd27d3ef8dc713b422ff03983ec9fc1a8', 'cg_tools.py': '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567'}
 SOURCES={
 'mac_agent.py': r'''#!/usr/bin/env python3
 """Dedicated non-admin agent; root-owned code, private state, offline shell."""
@@ -2935,7 +2935,10 @@ class Schema(unittest.TestCase):
 
 if __name__=='__main__':unittest.main(verbosity=2)
 ''',
-'test_v012.py': r'''"""v0.12: delete_path, copy_file, binary read/upload, GitHub-only proxy, policy."""
+'test_v012.py': r'''"""v0.12 Mac side: GitHub-only proxy, seatbelt policy, child environment, dispatcher.
+
+File tool tests live in test_files_v012.py.
+"""
 import asyncio
 import base64
 import hashlib
@@ -2947,13 +2950,269 @@ import unittest
 from unittest.mock import AsyncMock, patch
 import uuid
 
-from file_tools import FileTools, FileToolError
-from work_sessions import WorkSessions
-from upload_tools import Uploads
+from file_tools import FileToolError
 import net_proxy
 from net_proxy import GitHubProxy
 import mac_policy
 from mac_agent import Dispatcher
+
+
+class Proxy(unittest.IsolatedAsyncioTestCase):
+    async def asyncSetUp(self):
+        self.events = []
+        async def echo(reader, writer):
+            data = await reader.read(100)
+            writer.write(b'echo:' + data); await writer.drain(); writer.close()
+        self.upstream = await asyncio.start_server(echo, '127.0.0.1', 0)
+        port = self.upstream.sockets[0].getsockname()[1]
+        async def resolve(host): return ['127.0.0.1']
+        self.p = GitHubProxy(log=self.events.append, resolver=resolve, port=port)
+        await self.p.start()
+
+    async def asyncTearDown(self):
+        await self.p.stop(); self.upstream.close(); await self.upstream.wait_closed()
+
+    async def request(self, head):
+        r, w = await asyncio.open_connection('127.0.0.1', self.p.address())
+        w.write(head); await w.drain()
+        line = await r.readline()
+        return r, w, line
+
+    def auth(self, token=None):
+        value = base64.b64encode(('mcp:' + (token or self.p.token)).encode())
+        return b'Proxy-Authorization: Basic ' + value + b'\r\n'
+
+    async def test_requires_credential(self):
+        _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n\r\n'); w.close()
+        self.assertIn(b'407', line)
+        _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth('x' * 32) + b'\r\n'); w.close()
+        self.assertIn(b'407', line)
+
+    async def test_407_announces_basic_scheme_for_curl_anyauth(self):
+        r, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n\r\n')
+        head = await asyncio.wait_for(r.read(500), 5); w.close()
+        self.assertIn(b'407', line)
+        self.assertIn(b'Proxy-Authenticate: Basic', head)
+
+    async def test_only_allowed_hosts_port_and_method(self):
+        for head in [b'CONNECT example.com:443 HTTP/1.1\r\n', b'CONNECT github.com:22 HTTP/1.1\r\n',
+                     b'CONNECT evilgithub.com:443 HTTP/1.1\r\n', b'CONNECT github.com.evil.com:443 HTTP/1.1\r\n']:
+            _, w, line = await self.request(head + self.auth() + b'\r\n'); w.close()
+            self.assertIn(b'403', line, head)
+        _, w, line = await self.request(b'GET http://github.com/ HTTP/1.1\r\n' + self.auth() + b'\r\n'); w.close()
+        self.assertIn(b'405', line)
+
+    async def test_private_addresses_refused(self):
+        _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth() + b'\r\n'); w.close()
+        self.assertIn(b'502', line)
+        for a in ['127.0.0.1', '10.0.0.1', '192.168.1.1', '169.254.169.254', '::1', '::ffff:127.0.0.1']:
+            self.assertFalse(net_proxy.public_address(a), a)
+        self.assertTrue(net_proxy.public_address('140.82.121.4'))
+
+    async def test_tunnel_to_allowed_host(self):
+        with patch('net_proxy.public_address', return_value=True):
+            r, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth() + b'\r\n')
+            self.assertIn(b'200', line)
+            await r.readline()
+            w.write(b'hello'); await w.drain()
+            self.assertEqual(await asyncio.wait_for(r.read(100), 5), b'echo:hello')
+            w.close()
+
+    async def test_stop_invalidates_token_and_port(self):
+        port, token = self.p.address(), self.p.token
+        await self.p.stop()
+        self.assertIsNone(self.p.token)
+        with self.assertRaises(OSError):
+            await asyncio.open_connection('127.0.0.1', port)
+        await self.p.start()
+        self.assertNotEqual(self.p.token, token)
+
+
+class Policy(unittest.TestCase):
+    def setUp(self):
+        self.patch = patch('mac_policy.safe_executables', return_value=['/bin/bash'])
+        self.patch.start()
+
+    def tearDown(self):
+        self.patch.stop()
+
+    def test_offline_profile_has_no_network(self):
+        text = mac_policy.profile('/Users/Shared/X/workspace')
+        self.assertIn('(deny network*)', text)
+        self.assertNotIn('network-outbound', text)
+        self.assertNotIn('trustd', text)
+
+    def test_network_profile_is_loopback_port_only(self):
+        text = mac_policy.profile('/Users/Shared/X/workspace', net_port=50123)
+        self.assertIn('(allow network-outbound (remote ip "localhost:50123"))', text)
+        self.assertNotIn('(allow network*', text)
+        self.assertIn('com.apple.trustd', text)
+        self.assertLess(text.index('(deny network*)'), text.index('localhost:50123'))
+        for bad in [80, 0, 70000, '50123']:
+            with self.assertRaises(ValueError):
+                mac_policy.profile('/Users/Shared/X/workspace', net_port=bad)
+
+
+class TrustedTree(unittest.TestCase):
+    def fake(self, modes):
+        import stat as st
+        def lstat(p):
+            uid, mode, gid = modes.get(str(p), (0, 0o755, 0))
+            return os.stat_result((st.S_IFDIR | mode, 0, 0, 0, uid, gid, 0, 0, 0, 0))
+        return patch('mac_policy.Path.lstat', lambda self: lstat(self))
+
+    def test_root_owned_tree_accepted_admin_group_write_tolerated(self):
+        with self.fake({'/Applications': (0, 0o775, 80)}):
+            self.assertEqual(mac_policy.trusted_tree('/Applications/Xcode.app/Contents/Developer/usr'),
+                             '/Applications/Xcode.app/Contents/Developer/usr')
+
+    def test_unsafe_trees_rejected(self):
+        for bad in [(501, 0o755, 20), (0, 0o777, 0), (0, 0o775, 20)]:
+            with self.fake({'/Applications/Xcode.app': bad}):
+                self.assertIsNone(mac_policy.trusted_tree('/Applications/Xcode.app/Contents/Developer/usr'), bad)
+
+
+class ChildEnvironment(unittest.TestCase):
+    def test_git_uses_basic_proxy_auth_and_token_not_in_argv(self):
+        import mac_child
+        captured = {}
+        def fake_exec(path, argv, env): captured.update(argv=argv, env=env)
+        env = {'MCP_NET_PORT': '50123', 'MCP_NET_TOKEN': 'A' * 32}
+        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
+                patch.object(mac_child.os, 'execve', side_effect=fake_exec), patch.dict(mac_child.os.environ, env, clear=True), \
+                patch.object(mac_child, 'profile', return_value='(version 1)'), \
+                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'git status', '/dev/ttys001']):
+            mac_child.main()
+        self.assertEqual(captured['env']['GIT_CONFIG_KEY_0'], 'http.proxyAuthMethod')
+        self.assertEqual(captured['env']['GIT_CONFIG_VALUE_0'], 'basic')
+        self.assertIn('A' * 32, captured['env']['HTTPS_PROXY'])
+        self.assertNotIn('A' * 32, ' '.join(captured['argv']))
+
+    def test_offline_child_has_no_proxy(self):
+        import mac_child
+        captured = {}
+        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
+                patch.object(mac_child.os, 'execve', side_effect=lambda p, a, e: captured.update(env=e)), \
+                patch.dict(mac_child.os.environ, {}, clear=True), patch.object(mac_child, 'profile', return_value='x') as prof, \
+                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'ls', '/dev/ttys001']):
+            mac_child.main()
+        self.assertNotIn('HTTPS_PROXY', captured['env'])
+        self.assertIsNone(prof.call_args.args[2])
+
+
+class AgentV012(unittest.IsolatedAsyncioTestCase):
+    async def asyncSetUp(self):
+        self.tmp = tempfile.TemporaryDirectory(); r = Path(self.tmp.name)
+        self.work = r / 'work'; self.state = r / 'state'
+        self.work.mkdir(mode=0o700); self.state.mkdir(mode=0o700)
+        self.d = Dispatcher(self.work, self.state)
+        self.a = await self.call('work_session', {'action': 'open', 'label': 'A', 'minutes': 10})
+        self.b = await self.call('work_session', {'action': 'open', 'label': 'B', 'minutes': 10})
+
+    async def asyncTearDown(self):
+        await self.d.close(); self.tmp.cleanup()
+
+    async def call(self, op, args, s=None):
+        if s:
+            args = {**args, **{k: s[k] for k in ['work_session_id', 'work_session_token']}}
+        return await self.d.dispatch({'type': 'request', 'id': uuid.uuid4().hex, 'caller': 'test:client', 'op': op, 'args': args})
+
+    async def test_new_mutations_require_session(self):
+        (self.work / 'f').write_text('x')
+        for op, args in [('delete_path', {'path': str(self.work / 'f')}),
+                         ('copy_file', {'source': str(self.work / 'f'), 'destination': str(self.work / 'g')}),
+                         ('upload_file', {'action': 'begin', 'path': str(self.work / 'h'), 'size': 1, 'sha256': '0' * 64})]:
+            with self.assertRaises(PermissionError):
+                await self.call(op, args)
+        r = await self.call('read_binary', {'path': str(self.work / 'f')})
+        self.assertEqual(base64.b64decode(r['content_base64']), b'x')
+
+    async def test_upload_and_delete_through_dispatcher(self):
+        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
+        data = b'\x89PNG\r\n\x1a\n' + os.urandom(1000)
+        b = await self.call('upload_file', {'action': 'begin', 'path': str(self.work / 'i.png'), 'size': len(data),
+                                            'sha256': hashlib.sha256(data).hexdigest()}, self.a)
+        with self.assertRaises(FileToolError):
+            await self.call('upload_file', {'action': 'commit', 'upload_id': b['upload_id']}, self.b)
+        await self.call('upload_file', {'action': 'chunk', 'upload_id': b['upload_id'], 'offset': 0,
+                                        'data': base64.b64encode(data).decode()}, self.a)
+        await self.call('upload_file', {'action': 'commit', 'upload_id': b['upload_id']}, self.a)
+        self.assertEqual((self.work / 'i.png').read_bytes(), data)
+        r = await self.call('delete_path', {'path': str(self.work / 'i.png')}, self.a)
+        self.assertFalse((self.work / 'i.png').exists())
+        await self.call('rollback_file', {'operation_id': r['operation_id']}, self.a)
+        self.assertEqual((self.work / 'i.png').read_bytes(), data)
+
+    async def test_close_drops_own_uploads(self):
+        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
+        await self.call('upload_file', {'action': 'begin', 'path': str(self.work / 'z'), 'size': 1, 'sha256': '0' * 64}, self.a)
+        await self.call('work_session', {'action': 'close'}, self.a)
+        self.assertEqual(self.d.uploads.jobs, {})
+
+    async def test_enable_network_argument_validated_and_forwarded(self):
+        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
+        with patch.object(self.d.shell, 'enable', new=AsyncMock(return_value={'enabled': True})) as m:
+            await self.call('enable_full_shell', {'minutes': 1, 'network': 'github'}, self.a)
+            m.assert_awaited_once_with('work:' + self.a['work_session_id'], 1, 'github')
+        with self.assertRaises(ValueError):
+            await self.call('enable_full_shell', {'minutes': 1, 'proxy': 'x'}, self.a)
+
+    async def test_shell_network_lease_starts_and_stops_proxy(self):
+        shell = self.d.shell; identity = 'work:' + self.a['work_session_id']
+        with patch('mac_shell.require_identity'):
+            with self.assertRaises(ValueError):
+                await shell.enable(identity, 1, 'internet')
+            r = await shell.enable(identity, 1, 'github')
+            self.assertTrue(shell.proxy.running)
+            self.assertIn('github', r['network'])
+            env = shell.child_env()
+            self.assertEqual(env['MCP_NET_PORT'], str(shell.proxy.address()))
+            await shell.enable(identity, 1, 'none')
+            self.assertFalse(shell.proxy.running)
+            self.assertNotIn('MCP_NET_PORT', shell.child_env())
+            await shell.enable(identity, 1, 'github')
+            await shell.disable()
+            self.assertFalse(shell.proxy.running)
+            self.assertEqual(shell.network, 'none')
+
+    async def test_metadata_advertises_new_capabilities(self):
+        import mac_agent
+        meta = mac_agent.metadata()
+        for name in ['delete_path', 'copy_file', 'read_binary', 'upload_file']:
+            self.assertIn(name, meta['capabilities'])
+        self.assertIn('github.com', meta['shell_network_hosts'])
+
+
+class Catalog(unittest.TestCase):
+    def test_gateway_catalog_has_new_tools_with_session_fields(self):
+        import cg_tools
+        tools = {t['name']: t for t in cg_tools.TOOLS}
+        self.assertEqual(len(tools), len(cg_tools.TOOLS))
+        for name in ['delete_path', 'copy_file', 'read_binary', 'upload_file']:
+            self.assertIn('work_session_id', tools[name]['inputSchema']['properties'])
+        self.assertEqual(tools['enable_full_shell']['inputSchema']['properties']['network']['enum'], ['none', 'github'])
+        json.dumps(cg_tools.TOOLS)
+
+
+if __name__ == '__main__':
+    unittest.main()
+''',
+'test_files_v012.py': r'''"""v0.12 reversible file tools: delete_path, copy_file, read_binary, upload_file.
+
+Platform-neutral (runs in the Mac and VPS preflights).
+"""
+import base64
+import hashlib
+import os
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+import uuid
+
+from file_tools import FileTools, FileToolError
+from work_sessions import WorkSessions
+from upload_tools import Uploads
 
 
 class Base(unittest.TestCase):
@@ -3206,243 +3465,6 @@ class Binary(Base):
         with self.assertRaises(FileToolError):
             u.dispatch(ia, {'action': 'chunk', 'upload_id': b['upload_id'], 'offset': 0, 'data': 'YQ=='})
         u.close()
-
-
-class Proxy(unittest.IsolatedAsyncioTestCase):
-    async def asyncSetUp(self):
-        self.events = []
-        async def echo(reader, writer):
-            data = await reader.read(100)
-            writer.write(b'echo:' + data); await writer.drain(); writer.close()
-        self.upstream = await asyncio.start_server(echo, '127.0.0.1', 0)
-        port = self.upstream.sockets[0].getsockname()[1]
-        async def resolve(host): return ['127.0.0.1']
-        self.p = GitHubProxy(log=self.events.append, resolver=resolve, port=port)
-        await self.p.start()
-
-    async def asyncTearDown(self):
-        await self.p.stop(); self.upstream.close(); await self.upstream.wait_closed()
-
-    async def request(self, head):
-        r, w = await asyncio.open_connection('127.0.0.1', self.p.address())
-        w.write(head); await w.drain()
-        line = await r.readline()
-        return r, w, line
-
-    def auth(self, token=None):
-        value = base64.b64encode(('mcp:' + (token or self.p.token)).encode())
-        return b'Proxy-Authorization: Basic ' + value + b'\r\n'
-
-    async def test_requires_credential(self):
-        _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n\r\n'); w.close()
-        self.assertIn(b'407', line)
-        _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth('x' * 32) + b'\r\n'); w.close()
-        self.assertIn(b'407', line)
-
-    async def test_407_announces_basic_scheme_for_curl_anyauth(self):
-        r, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n\r\n')
-        head = await asyncio.wait_for(r.read(500), 5); w.close()
-        self.assertIn(b'407', line)
-        self.assertIn(b'Proxy-Authenticate: Basic', head)
-
-    async def test_only_allowed_hosts_port_and_method(self):
-        for head in [b'CONNECT example.com:443 HTTP/1.1\r\n', b'CONNECT github.com:22 HTTP/1.1\r\n',
-                     b'CONNECT evilgithub.com:443 HTTP/1.1\r\n', b'CONNECT github.com.evil.com:443 HTTP/1.1\r\n']:
-            _, w, line = await self.request(head + self.auth() + b'\r\n'); w.close()
-            self.assertIn(b'403', line, head)
-        _, w, line = await self.request(b'GET http://github.com/ HTTP/1.1\r\n' + self.auth() + b'\r\n'); w.close()
-        self.assertIn(b'405', line)
-
-    async def test_private_addresses_refused(self):
-        _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth() + b'\r\n'); w.close()
-        self.assertIn(b'502', line)
-        for a in ['127.0.0.1', '10.0.0.1', '192.168.1.1', '169.254.169.254', '::1', '::ffff:127.0.0.1']:
-            self.assertFalse(net_proxy.public_address(a), a)
-        self.assertTrue(net_proxy.public_address('140.82.121.4'))
-
-    async def test_tunnel_to_allowed_host(self):
-        with patch('net_proxy.public_address', return_value=True):
-            r, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth() + b'\r\n')
-            self.assertIn(b'200', line)
-            await r.readline()
-            w.write(b'hello'); await w.drain()
-            self.assertEqual(await asyncio.wait_for(r.read(100), 5), b'echo:hello')
-            w.close()
-
-    async def test_stop_invalidates_token_and_port(self):
-        port, token = self.p.address(), self.p.token
-        await self.p.stop()
-        self.assertIsNone(self.p.token)
-        with self.assertRaises(OSError):
-            await asyncio.open_connection('127.0.0.1', port)
-        await self.p.start()
-        self.assertNotEqual(self.p.token, token)
-
-
-class Policy(unittest.TestCase):
-    def setUp(self):
-        self.patch = patch('mac_policy.safe_executables', return_value=['/bin/bash'])
-        self.patch.start()
-
-    def tearDown(self):
-        self.patch.stop()
-
-    def test_offline_profile_has_no_network(self):
-        text = mac_policy.profile('/Users/Shared/X/workspace')
-        self.assertIn('(deny network*)', text)
-        self.assertNotIn('network-outbound', text)
-        self.assertNotIn('trustd', text)
-
-    def test_network_profile_is_loopback_port_only(self):
-        text = mac_policy.profile('/Users/Shared/X/workspace', net_port=50123)
-        self.assertIn('(allow network-outbound (remote ip "localhost:50123"))', text)
-        self.assertNotIn('(allow network*', text)
-        self.assertIn('com.apple.trustd', text)
-        self.assertLess(text.index('(deny network*)'), text.index('localhost:50123'))
-        for bad in [80, 0, 70000, '50123']:
-            with self.assertRaises(ValueError):
-                mac_policy.profile('/Users/Shared/X/workspace', net_port=bad)
-
-
-class TrustedTree(unittest.TestCase):
-    def fake(self, modes):
-        import stat as st
-        def lstat(p):
-            uid, mode, gid = modes.get(str(p), (0, 0o755, 0))
-            return os.stat_result((st.S_IFDIR | mode, 0, 0, 0, uid, gid, 0, 0, 0, 0))
-        return patch('mac_policy.Path.lstat', lambda self: lstat(self))
-
-    def test_root_owned_tree_accepted_admin_group_write_tolerated(self):
-        with self.fake({'/Applications': (0, 0o775, 80)}):
-            self.assertEqual(mac_policy.trusted_tree('/Applications/Xcode.app/Contents/Developer/usr'),
-                             '/Applications/Xcode.app/Contents/Developer/usr')
-
-    def test_unsafe_trees_rejected(self):
-        for bad in [(501, 0o755, 20), (0, 0o777, 0), (0, 0o775, 20)]:
-            with self.fake({'/Applications/Xcode.app': bad}):
-                self.assertIsNone(mac_policy.trusted_tree('/Applications/Xcode.app/Contents/Developer/usr'), bad)
-
-
-class ChildEnvironment(unittest.TestCase):
-    def test_git_uses_basic_proxy_auth_and_token_not_in_argv(self):
-        import mac_child
-        captured = {}
-        def fake_exec(path, argv, env): captured.update(argv=argv, env=env)
-        env = {'MCP_NET_PORT': '50123', 'MCP_NET_TOKEN': 'A' * 32}
-        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
-                patch.object(mac_child.os, 'execve', side_effect=fake_exec), patch.dict(mac_child.os.environ, env, clear=True), \
-                patch.object(mac_child, 'profile', return_value='(version 1)'), \
-                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'git status', '/dev/ttys001']):
-            mac_child.main()
-        self.assertEqual(captured['env']['GIT_CONFIG_KEY_0'], 'http.proxyAuthMethod')
-        self.assertEqual(captured['env']['GIT_CONFIG_VALUE_0'], 'basic')
-        self.assertIn('A' * 32, captured['env']['HTTPS_PROXY'])
-        self.assertNotIn('A' * 32, ' '.join(captured['argv']))
-
-    def test_offline_child_has_no_proxy(self):
-        import mac_child
-        captured = {}
-        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
-                patch.object(mac_child.os, 'execve', side_effect=lambda p, a, e: captured.update(env=e)), \
-                patch.dict(mac_child.os.environ, {}, clear=True), patch.object(mac_child, 'profile', return_value='x') as prof, \
-                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'ls', '/dev/ttys001']):
-            mac_child.main()
-        self.assertNotIn('HTTPS_PROXY', captured['env'])
-        self.assertIsNone(prof.call_args.args[2])
-
-
-class AgentV012(unittest.IsolatedAsyncioTestCase):
-    async def asyncSetUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); r = Path(self.tmp.name)
-        self.work = r / 'work'; self.state = r / 'state'
-        self.work.mkdir(mode=0o700); self.state.mkdir(mode=0o700)
-        self.d = Dispatcher(self.work, self.state)
-        self.a = await self.call('work_session', {'action': 'open', 'label': 'A', 'minutes': 10})
-        self.b = await self.call('work_session', {'action': 'open', 'label': 'B', 'minutes': 10})
-
-    async def asyncTearDown(self):
-        await self.d.close(); self.tmp.cleanup()
-
-    async def call(self, op, args, s=None):
-        if s:
-            args = {**args, **{k: s[k] for k in ['work_session_id', 'work_session_token']}}
-        return await self.d.dispatch({'type': 'request', 'id': uuid.uuid4().hex, 'caller': 'test:client', 'op': op, 'args': args})
-
-    async def test_new_mutations_require_session(self):
-        (self.work / 'f').write_text('x')
-        for op, args in [('delete_path', {'path': str(self.work / 'f')}),
-                         ('copy_file', {'source': str(self.work / 'f'), 'destination': str(self.work / 'g')}),
-                         ('upload_file', {'action': 'begin', 'path': str(self.work / 'h'), 'size': 1, 'sha256': '0' * 64})]:
-            with self.assertRaises(PermissionError):
-                await self.call(op, args)
-        r = await self.call('read_binary', {'path': str(self.work / 'f')})
-        self.assertEqual(base64.b64decode(r['content_base64']), b'x')
-
-    async def test_upload_and_delete_through_dispatcher(self):
-        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
-        data = b'\x89PNG\r\n\x1a\n' + os.urandom(1000)
-        b = await self.call('upload_file', {'action': 'begin', 'path': str(self.work / 'i.png'), 'size': len(data),
-                                            'sha256': hashlib.sha256(data).hexdigest()}, self.a)
-        with self.assertRaises(FileToolError):
-            await self.call('upload_file', {'action': 'commit', 'upload_id': b['upload_id']}, self.b)
-        await self.call('upload_file', {'action': 'chunk', 'upload_id': b['upload_id'], 'offset': 0,
-                                        'data': base64.b64encode(data).decode()}, self.a)
-        await self.call('upload_file', {'action': 'commit', 'upload_id': b['upload_id']}, self.a)
-        self.assertEqual((self.work / 'i.png').read_bytes(), data)
-        r = await self.call('delete_path', {'path': str(self.work / 'i.png')}, self.a)
-        self.assertFalse((self.work / 'i.png').exists())
-        await self.call('rollback_file', {'operation_id': r['operation_id']}, self.a)
-        self.assertEqual((self.work / 'i.png').read_bytes(), data)
-
-    async def test_close_drops_own_uploads(self):
-        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
-        await self.call('upload_file', {'action': 'begin', 'path': str(self.work / 'z'), 'size': 1, 'sha256': '0' * 64}, self.a)
-        await self.call('work_session', {'action': 'close'}, self.a)
-        self.assertEqual(self.d.uploads.jobs, {})
-
-    async def test_enable_network_argument_validated_and_forwarded(self):
-        await self.call('work_lock', {'action': 'acquire', 'path': str(self.work), 'minutes': 10}, self.a)
-        with patch.object(self.d.shell, 'enable', new=AsyncMock(return_value={'enabled': True})) as m:
-            await self.call('enable_full_shell', {'minutes': 1, 'network': 'github'}, self.a)
-            m.assert_awaited_once_with('work:' + self.a['work_session_id'], 1, 'github')
-        with self.assertRaises(ValueError):
-            await self.call('enable_full_shell', {'minutes': 1, 'proxy': 'x'}, self.a)
-
-    async def test_shell_network_lease_starts_and_stops_proxy(self):
-        shell = self.d.shell; identity = 'work:' + self.a['work_session_id']
-        with patch('mac_shell.require_identity'):
-            with self.assertRaises(ValueError):
-                await shell.enable(identity, 1, 'internet')
-            r = await shell.enable(identity, 1, 'github')
-            self.assertTrue(shell.proxy.running)
-            self.assertIn('github', r['network'])
-            env = shell.child_env()
-            self.assertEqual(env['MCP_NET_PORT'], str(shell.proxy.address()))
-            await shell.enable(identity, 1, 'none')
-            self.assertFalse(shell.proxy.running)
-            self.assertNotIn('MCP_NET_PORT', shell.child_env())
-            await shell.enable(identity, 1, 'github')
-            await shell.disable()
-            self.assertFalse(shell.proxy.running)
-            self.assertEqual(shell.network, 'none')
-
-    async def test_metadata_advertises_new_capabilities(self):
-        import mac_agent
-        meta = mac_agent.metadata()
-        for name in ['delete_path', 'copy_file', 'read_binary', 'upload_file']:
-            self.assertIn(name, meta['capabilities'])
-        self.assertIn('github.com', meta['shell_network_hosts'])
-
-
-class Catalog(unittest.TestCase):
-    def test_gateway_catalog_has_new_tools_with_session_fields(self):
-        import cg_tools
-        tools = {t['name']: t for t in cg_tools.TOOLS}
-        self.assertEqual(len(tools), len(cg_tools.TOOLS))
-        for name in ['delete_path', 'copy_file', 'read_binary', 'upload_file']:
-            self.assertIn('work_session_id', tools[name]['inputSchema']['properties'])
-        self.assertEqual(tools['enable_full_shell']['inputSchema']['properties']['network']['enum'], ['none', 'github'])
-        json.dumps(cg_tools.TOOLS)
 
 
 if __name__ == '__main__':
@@ -3823,7 +3845,7 @@ def preflight():
         if TESTS.get(name)!=PAYLOAD[name]:raise RuntimeError('test and deployed module differ')
     for name,expected in DEPENDENCIES.items():
         if sha(TESTS[name])!=expected:raise RuntimeError('test dependency differs')
-    code="import sys,unittest;sys.path.insert(0,"+repr(str(TEST_CODE))+");s=unittest.defaultTestLoader.loadTestsFromNames(['test_work_core','test_search','test_v012']);r=unittest.TextTestRunner(verbosity=2).run(s);sys.exit(0 if r.wasSuccessful() else 1)"
+    code="import sys,unittest;sys.path.insert(0,"+repr(str(TEST_CODE))+");s=unittest.defaultTestLoader.loadTestsFromNames(['test_work_core','test_search','test_v012','test_files_v012']);r=unittest.TextTestRunner(verbosity=2).run(s);sys.exit(0 if r.wasSuccessful() else 1)"
     r=child(code)
     atomic(TEST_CODE/'result.log',(r.stdout+r.stderr).encode()[-65536:])
     if r.returncode:raise RuntimeError('UID5000 preflight failed: '+r.stderr[-1000:])
