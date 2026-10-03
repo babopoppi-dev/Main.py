@@ -1,0 +1,37 @@
+MCP ANDREA — VERIFICA PIANO C v0.12 su mac_mio — 03/10/2026 (branch claude/mcp-andrea-v0-12-verify-35k9tm)
+ESITO: PARZIALE. Trovato un difetto bloccante dell'agent Mac 0.12-personal-1.
+
+PASSI
+1. list_machines: OK. gateway 29 strumenti; vps 0.12-vps-1 online; mac_mio 0.12-personal-1 online
+   (coordination 0.11.0, rete shell "disabled; github on request"); mac_noleggio offline.
+   who_is_working iniziale: nessuna sessione/lock, shell spenta.
+2. work_session open (c8dd4144...) + work_lock su workspace/progetti: OK (progetti vuota).
+3. upload_file su progetti/verifica_35k9tm/probe.bin (1003 byte, sha256 716cf379...):
+   begin OK, chunk OK (complete=true), commit FALLITO:
+     FileNotFoundError: [Errno 2] No such file or directory: 'verifica_35k9tm'
+   (cartella padre inesistente: errore atteso, ma non gestito).
+4. DIFETTO: da quel momento OGNI operazione journaled risponde
+     FileToolError: interrupted operation requires reviewed recovery
+   - create_directory progetti/verifica_35k9tm: rifiutato (prima e dopo upload abort)
+   - upload_file abort: OK, ma non sblocca
+   - write_file progetti/verifica_35k9tm.txt: rifiutato
+   - shell_exec (git ls-remote) con shell abilitata network=github: rifiutato
+   Il commit fallito ha lasciato nel journal un'operazione "interrotta" invece di annullarla.
+   Nessun file e stato scritto (progetti resta vuota).
+5. read_binary su workspace/.tmp/xcrun_db (340 byte) in due chunk (200+140): OK,
+   sha256 riassemblato = a585e736... uguale a quello dichiarato.
+6. copy_file, delete_path, rollback: NON VERIFICATI (scritture bloccate).
+7. Lock workspace intero + enable_full_shell(network='github', 10 min): enable OK;
+   git ls-remote NON ESEGUITO (shell_exec bloccato dal punto 4).
+8. Chiusura: disable_full_shell OK (0 sessioni), lock rilasciati, sessione chiusa.
+   who_is_working finale: work_sessions [], work_locks [], shell_enabled false, rete disabled.
+
+AZIONI RICHIESTE
+A. Recupero locale sul Mac (Andrea, sudo): ispezionare il journal in /Library/MCPAndreaMacMioV09/state
+   e chiudere l'operazione upload interrotta (nessun file di destinazione creato). Finche non
+   avviene, mac_mio non accetta scritture ne shell via MCP.
+B. Correzione agent v0.12: in upload commit verificare che la cartella padre esista PRIMA di
+   registrare l'operazione nel journal (o marcarla abortita su eccezione), come fanno gli altri
+   strumenti; aggiungere un test "commit con padre mancante => errore pulito, journal libero".
+C. Dopo A (e B), ripetere il piano C: create_directory prima di upload, poi copy/delete/rollback
+   e git ls-remote via shell github.
