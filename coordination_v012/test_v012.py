@@ -302,6 +302,12 @@ class Proxy(unittest.IsolatedAsyncioTestCase):
         _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth('x' * 32) + b'\r\n'); w.close()
         self.assertIn(b'407', line)
 
+    async def test_407_announces_basic_scheme_for_curl_anyauth(self):
+        r, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n\r\n')
+        head = await asyncio.wait_for(r.read(500), 5); w.close()
+        self.assertIn(b'407', line)
+        self.assertIn(b'Proxy-Authenticate: Basic', head)
+
     async def test_only_allowed_hosts_port_and_method(self):
         for head in [b'CONNECT example.com:443 HTTP/1.1\r\n', b'CONNECT github.com:22 HTTP/1.1\r\n',
                      b'CONNECT evilgithub.com:443 HTTP/1.1\r\n', b'CONNECT github.com.evil.com:443 HTTP/1.1\r\n']:
@@ -378,6 +384,34 @@ class TrustedTree(unittest.TestCase):
         for bad in [(501, 0o755, 20), (0, 0o777, 0), (0, 0o775, 20)]:
             with self.fake({'/Applications/Xcode.app': bad}):
                 self.assertIsNone(mac_policy.trusted_tree('/Applications/Xcode.app/Contents/Developer/usr'), bad)
+
+
+class ChildEnvironment(unittest.TestCase):
+    def test_git_uses_basic_proxy_auth_and_token_not_in_argv(self):
+        import mac_child
+        captured = {}
+        def fake_exec(path, argv, env): captured.update(argv=argv, env=env)
+        env = {'MCP_NET_PORT': '50123', 'MCP_NET_TOKEN': 'A' * 32}
+        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
+                patch.object(mac_child.os, 'execve', side_effect=fake_exec), patch.dict(mac_child.os.environ, env, clear=True), \
+                patch.object(mac_child, 'profile', return_value='(version 1)'), \
+                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'git status', '/dev/ttys001']):
+            mac_child.main()
+        self.assertEqual(captured['env']['GIT_CONFIG_KEY_0'], 'http.proxyAuthMethod')
+        self.assertEqual(captured['env']['GIT_CONFIG_VALUE_0'], 'basic')
+        self.assertIn('A' * 32, captured['env']['HTTPS_PROXY'])
+        self.assertNotIn('A' * 32, ' '.join(captured['argv']))
+
+    def test_offline_child_has_no_proxy(self):
+        import mac_child
+        captured = {}
+        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
+                patch.object(mac_child.os, 'execve', side_effect=lambda p, a, e: captured.update(env=e)), \
+                patch.dict(mac_child.os.environ, {}, clear=True), patch.object(mac_child, 'profile', return_value='x') as prof, \
+                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'ls', '/dev/ttys001']):
+            mac_child.main()
+        self.assertNotIn('HTTPS_PROXY', captured['env'])
+        self.assertIsNone(prof.call_args.args[2])
 
 
 class AgentV012(unittest.IsolatedAsyncioTestCase):

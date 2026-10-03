@@ -41,7 +41,10 @@ print('DIRECT', d if isinstance(d, str) else 'open')
 
 
 def sandboxed(command, cwd, proxy=None, timeout=30):
-    """Run through the real mac_child exactly as the shell does."""
+    """Run through the real mac_child exactly as the shell does.
+
+    Blocking: call it in a worker thread so the proxy keeps serving the loop.
+    """
     master, slave = pty.openpty()
     env = {'PATH': '/usr/bin:/bin', 'LANG': 'en_US.UTF-8'}
     if proxy:
@@ -145,23 +148,23 @@ async def main():
         assert r['exit_code'] == 0 and not r['timed_out'], r
         checks.append('baseline sw_vers without session')
 
-        code, out = sandboxed('/usr/bin/true', folder)
+        code, out = await asyncio.to_thread(sandboxed, '/usr/bin/true', folder)
         assert code == 0, out
         checks.append('offline seatbelt profile with developer tools compiles')
         await proxy.start()
         script = folder + '/net_probe.py'
         Path(script).write_text(PROBE)
         probe = '%s -I -B %s %d %s' % (os.path.realpath(sys.executable), script, proxy.address(), proxy.token)
-        code, out = sandboxed(probe, folder, proxy)
+        code, out = await asyncio.to_thread(sandboxed, probe, folder, proxy)
         info['network_probe'] = out[-600:]
         assert lines(out, 'PROXY') == ['HTTP/1.1 403 Forbidden'], out
         assert lines(out, 'DIRECT') and lines(out, 'DIRECT')[0].startswith('blocked'), out
         checks.append('network lease: only the proxy port, non-GitHub host refused, direct internet blocked')
-        code, out = sandboxed(probe, folder, None)
+        code, out = await asyncio.to_thread(sandboxed, probe, folder, None)
         assert lines(out, 'PROXY') and lines(out, 'PROXY')[0].startswith('blocked'), out
         assert lines(out, 'DIRECT')[0].startswith('blocked'), out
         checks.append('offline shell cannot reach the proxy or internet')
-        code, out = sandboxed('/usr/bin/git ls-remote https://github.com/git/git HEAD', folder, proxy, timeout=25)
+        code, out = await asyncio.to_thread(sandboxed, '/usr/bin/git ls-remote https://github.com/git/git HEAD', folder, proxy, 25)
         info['github_git_ls_remote'] = 'ok' if code == 0 and 'HEAD' in out else 'failed: ' + out[-400:]
         os.unlink(script)
     finally:

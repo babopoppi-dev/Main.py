@@ -135,8 +135,10 @@ class GitHubProxy:
     async def _refuse(self, writer, status, reason, host):
         self.stats['refused'] += 1
         self.log({'event': 'refused', 'reason': reason, 'host': host})
+        # curl (git) probes without credentials first and needs the scheme.
+        extra = b'Proxy-Authenticate: Basic realm="mcp"\r\n' if status.startswith(b'407') else b''
         with contextlib.suppress(Exception):
-            writer.write(b'HTTP/1.1 ' + status + b'\r\nContent-Length: 0\r\n\r\n')
+            writer.write(b'HTTP/1.1 ' + status + b'\r\n' + extra + b'Connection: close\r\nContent-Length: 0\r\n\r\n')
             await writer.drain()
 
     async def _pipe(self, reader, writer, budget):

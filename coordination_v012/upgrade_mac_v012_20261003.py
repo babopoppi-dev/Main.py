@@ -22,7 +22,7 @@ SMOKE_INFO={}
 ORIGINAL={'mac_agent.py': 'f099f621d41b17f834105393c3161cc5428681f8ddf22b07dcdafb542e6d0104', 'work_sessions.py': '707604271f3570ec6f03a42e68c19430200623cfad341691fef620522b0f0f67', 'work_schema.py': '9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9', 'file_tools.py': '8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e', 'file_schema.py': '06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'search_tools.py': 'ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b', 'mac_policy.py': 'ae04120908a35656258243d73fc30e7069077388a4e863cd815444b14f2e53e0', 'mac_child.py': '99416031aa2404ec2e49798ca2e33797cc492f19f15f92048bea382a9cf29856', 'mac_shell.py': 'fad744a688debf755e17b04257a3d3d2afb2ed492426b1d2332b9f8475a11d67', 'net_proxy.py': None, 'upload_tools.py': None}
 DEPENDENCIES={'agent_shell.py': 'd62822814d97c52468ca8aad4a43fa1bf8e424b8cd8200ac88ea4e2c9c33e21c', 'shell_common.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'mac_guard.py': '8d3f7afe80daae81e8f3a3471229423d14777eb84358a3f57621e74149dc57bc', 'mac_clock.py': '6553b061c51e2da286296231538796dd086404b1dbacca37bd9299e2628dae07', 'mac_watchdog.py': '66dc9cbe74dd74931979200a9eda4032461a31c1687f5a2ca64a4441f21c4c99', 'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d'}
 TEST_NAMES=['mac_agent.py', 'work_sessions.py', 'work_schema.py', 'file_tools.py', 'file_schema.py', 'search_tools.py', 'mac_policy.py', 'mac_child.py', 'mac_shell.py', 'net_proxy.py', 'upload_tools.py', 'agent_shell.py', 'shell_common.py', 'mac_guard.py', 'mac_clock.py', 'mac_watchdog.py', 'search_schema.py', 'test_work_core.py', 'test_search.py', 'test_v012.py', 'mac_v012_selftest.py', 'cg_tools.py']
-SOURCE_SHA={'mac_agent.py': 'c3db14ba1fea17a0b6240d59ebac071750af4629bc1f6e5466bb94c4b66f594c', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_child.py': '9a83dce23263957f9dfcddc617c1c75d8e5656d924d095eaa3c14ae6d5d6260c', 'mac_shell.py': '5ebae9f1e668a6b7f9801d5014ff66deef308ceea4ec6acfa22b2c6839606534', 'net_proxy.py': 'e28ebb729b109333f694d6949b0725fbf3eca8a8142efcb50d6c3d102e886cfa', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': 'ff54b732fe4d53495893e8fc56c7fbfd8e9fa1adedd610332607270a8b2c53d1', 'mac_v012_selftest.py': 'b42185bb13ed33dc3b19c5ad37e9e0480c09a4fbb27981e969377afde3562e55', 'cg_tools.py': '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567'}
+SOURCE_SHA={'mac_agent.py': 'c3db14ba1fea17a0b6240d59ebac071750af4629bc1f6e5466bb94c4b66f594c', 'work_sessions.py': '4a7b736ef6d915c2439cd8aa63e09f0d40410325fa5e9387070f807d518b1861', 'work_schema.py': '40eaf6a37998e42d9cdd6e3c28853e1f22cfeff1fc9b16bec8d391abc04817df', 'file_tools.py': 'c4e8af4bf9b6542e02c1c6c442160998125335010a2b1009becb220146a01e76', 'file_schema.py': 'a981512019127689a443ca2717968d76e1509f4366075d5b39f6eee28218c1a4', 'search_tools.py': 'f5722cdf394ad1b98575e5f00d6af483a37c6c456adb7465e1213cdc002a625f', 'mac_policy.py': '70d03138610b2f7a92c0f5343c343abad2c1587479229670ed69f91205872246', 'mac_child.py': 'f5b37188587c1459633d4eefb3ebc250798609272b83b4472247cca3b125b5bd', 'mac_shell.py': '5ebae9f1e668a6b7f9801d5014ff66deef308ceea4ec6acfa22b2c6839606534', 'net_proxy.py': 'a9ae31721b4eef732ce5cab4dfc15836224d5f7f5d33b3cd527ca3361ed8822e', 'upload_tools.py': 'fbea947e87afd04e7bbf54d1075c3c2852db3a415ac65e65e6fffde07834abc7', 'test_work_core.py': '08aa60ad5317db32fa515ba21a834b3ae22dbed014b8a240168deefa7ea15380', 'test_search.py': '907e711f24fdf773db95d5c36d73702db4331d3ced1375cc4bfe43ee5b88db5c', 'test_v012.py': 'e875065dd20087b189044e401c5da027d8b50bb453ce868767dcdabe5582bcc9', 'mac_v012_selftest.py': 'c0372cb8adc8d46b64af45664166132fd27d3ef8dc713b422ff03983ec9fc1a8', 'cg_tools.py': '515b27df01b2195027d3de283f0a619cd568641a100158b7d310fdb80703a567'}
 SOURCES={
 'mac_agent.py': r'''#!/usr/bin/env python3
 """Dedicated non-admin agent; root-owned code, private state, offline shell."""
@@ -1976,7 +1976,8 @@ def main():
         proxy = 'http://mcp:%s@127.0.0.1:%d' % (token, net_port)
         env.update({'HTTPS_PROXY': proxy, 'https_proxy': proxy, 'NO_PROXY': '', 'no_proxy': '',
                     'GIT_SSL_CAINFO': '/etc/ssl/cert.pem', 'SSL_CERT_FILE': '/etc/ssl/cert.pem',
-                    'GIT_TERMINAL_PROMPT': '0'})
+                    'GIT_TERMINAL_PROMPT': '0', 'GIT_CONFIG_COUNT': '1',
+                    'GIT_CONFIG_KEY_0': 'http.proxyAuthMethod', 'GIT_CONFIG_VALUE_0': 'basic'})
     os.execve('/usr/bin/sandbox-exec', ['/usr/bin/sandbox-exec', '-p',
               profile(workspace, tty_path, net_port), '/bin/bash', '--noprofile', '--norc',
               '-c', command], env)
@@ -2345,8 +2346,10 @@ class GitHubProxy:
     async def _refuse(self, writer, status, reason, host):
         self.stats['refused'] += 1
         self.log({'event': 'refused', 'reason': reason, 'host': host})
+        # curl (git) probes without credentials first and needs the scheme.
+        extra = b'Proxy-Authenticate: Basic realm="mcp"\r\n' if status.startswith(b'407') else b''
         with contextlib.suppress(Exception):
-            writer.write(b'HTTP/1.1 ' + status + b'\r\nContent-Length: 0\r\n\r\n')
+            writer.write(b'HTTP/1.1 ' + status + b'\r\n' + extra + b'Connection: close\r\nContent-Length: 0\r\n\r\n')
             await writer.drain()
 
     async def _pipe(self, reader, writer, budget):
@@ -3236,6 +3239,12 @@ class Proxy(unittest.IsolatedAsyncioTestCase):
         _, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n' + self.auth('x' * 32) + b'\r\n'); w.close()
         self.assertIn(b'407', line)
 
+    async def test_407_announces_basic_scheme_for_curl_anyauth(self):
+        r, w, line = await self.request(b'CONNECT github.com:443 HTTP/1.1\r\n\r\n')
+        head = await asyncio.wait_for(r.read(500), 5); w.close()
+        self.assertIn(b'407', line)
+        self.assertIn(b'Proxy-Authenticate: Basic', head)
+
     async def test_only_allowed_hosts_port_and_method(self):
         for head in [b'CONNECT example.com:443 HTTP/1.1\r\n', b'CONNECT github.com:22 HTTP/1.1\r\n',
                      b'CONNECT evilgithub.com:443 HTTP/1.1\r\n', b'CONNECT github.com.evil.com:443 HTTP/1.1\r\n']:
@@ -3312,6 +3321,34 @@ class TrustedTree(unittest.TestCase):
         for bad in [(501, 0o755, 20), (0, 0o777, 0), (0, 0o775, 20)]:
             with self.fake({'/Applications/Xcode.app': bad}):
                 self.assertIsNone(mac_policy.trusted_tree('/Applications/Xcode.app/Contents/Developer/usr'), bad)
+
+
+class ChildEnvironment(unittest.TestCase):
+    def test_git_uses_basic_proxy_auth_and_token_not_in_argv(self):
+        import mac_child
+        captured = {}
+        def fake_exec(path, argv, env): captured.update(argv=argv, env=env)
+        env = {'MCP_NET_PORT': '50123', 'MCP_NET_TOKEN': 'A' * 32}
+        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
+                patch.object(mac_child.os, 'execve', side_effect=fake_exec), patch.dict(mac_child.os.environ, env, clear=True), \
+                patch.object(mac_child, 'profile', return_value='(version 1)'), \
+                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'git status', '/dev/ttys001']):
+            mac_child.main()
+        self.assertEqual(captured['env']['GIT_CONFIG_KEY_0'], 'http.proxyAuthMethod')
+        self.assertEqual(captured['env']['GIT_CONFIG_VALUE_0'], 'basic')
+        self.assertIn('A' * 32, captured['env']['HTTPS_PROXY'])
+        self.assertNotIn('A' * 32, ' '.join(captured['argv']))
+
+    def test_offline_child_has_no_proxy(self):
+        import mac_child
+        captured = {}
+        with patch.object(mac_child, 'require_identity'), patch.object(mac_child.resource, 'setrlimit'), \
+                patch.object(mac_child.os, 'execve', side_effect=lambda p, a, e: captured.update(env=e)), \
+                patch.dict(mac_child.os.environ, {}, clear=True), patch.object(mac_child, 'profile', return_value='x') as prof, \
+                patch.object(mac_child.sys, 'argv', ['c', '/Users/Shared/w', '/Users/Shared/w', 'ls', '/dev/ttys001']):
+            mac_child.main()
+        self.assertNotIn('HTTPS_PROXY', captured['env'])
+        self.assertIsNone(prof.call_args.args[2])
 
 
 class AgentV012(unittest.IsolatedAsyncioTestCase):
@@ -3454,7 +3491,10 @@ print('DIRECT', d if isinstance(d, str) else 'open')
 
 
 def sandboxed(command, cwd, proxy=None, timeout=30):
-    """Run through the real mac_child exactly as the shell does."""
+    """Run through the real mac_child exactly as the shell does.
+
+    Blocking: call it in a worker thread so the proxy keeps serving the loop.
+    """
     master, slave = pty.openpty()
     env = {'PATH': '/usr/bin:/bin', 'LANG': 'en_US.UTF-8'}
     if proxy:
@@ -3558,23 +3598,23 @@ async def main():
         assert r['exit_code'] == 0 and not r['timed_out'], r
         checks.append('baseline sw_vers without session')
 
-        code, out = sandboxed('/usr/bin/true', folder)
+        code, out = await asyncio.to_thread(sandboxed, '/usr/bin/true', folder)
         assert code == 0, out
         checks.append('offline seatbelt profile with developer tools compiles')
         await proxy.start()
         script = folder + '/net_probe.py'
         Path(script).write_text(PROBE)
         probe = '%s -I -B %s %d %s' % (os.path.realpath(sys.executable), script, proxy.address(), proxy.token)
-        code, out = sandboxed(probe, folder, proxy)
+        code, out = await asyncio.to_thread(sandboxed, probe, folder, proxy)
         info['network_probe'] = out[-600:]
         assert lines(out, 'PROXY') == ['HTTP/1.1 403 Forbidden'], out
         assert lines(out, 'DIRECT') and lines(out, 'DIRECT')[0].startswith('blocked'), out
         checks.append('network lease: only the proxy port, non-GitHub host refused, direct internet blocked')
-        code, out = sandboxed(probe, folder, None)
+        code, out = await asyncio.to_thread(sandboxed, probe, folder, None)
         assert lines(out, 'PROXY') and lines(out, 'PROXY')[0].startswith('blocked'), out
         assert lines(out, 'DIRECT')[0].startswith('blocked'), out
         checks.append('offline shell cannot reach the proxy or internet')
-        code, out = sandboxed('/usr/bin/git ls-remote https://github.com/git/git HEAD', folder, proxy, timeout=25)
+        code, out = await asyncio.to_thread(sandboxed, '/usr/bin/git ls-remote https://github.com/git/git HEAD', folder, proxy, 25)
         info['github_git_ls_remote'] = 'ok' if code == 0 and 'HEAD' in out else 'failed: ' + out[-400:]
         os.unlink(script)
     finally:
