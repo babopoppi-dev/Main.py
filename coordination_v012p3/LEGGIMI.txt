@@ -31,8 +31,8 @@ ORDINE DI ATTIVAZIONE
 1. Mac (locale, sudo di Andrea). Prima: Telegram -> @BotFather -> /newbot -> nome a scelta
    (es. "MCP Andrea Mac") -> copia il token. Poi nel Terminale del Mac:
      mkdir -p ~/MCPAndreaV012p3 && cd ~/MCPAndreaV012p3
-     curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/COMMIT/coordination_v012p3/upgrade_mac_v012p3_20261003.py
-     curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/COMMIT/coordination_v012p3/Attiva_MCP_Andrea_v012p3.command
+     curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/de0dfd7a352f79bf536515881cfedb31e27d134b/coordination_v012p3/upgrade_mac_v012p3_20261003.py
+     curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/de0dfd7a352f79bf536515881cfedb31e27d134b/coordination_v012p3/Attiva_MCP_Andrea_v012p3.command
      zsh Attiva_MCP_Andrea_v012p3.command
    Controlla che l'hash stampato sia 34f2f867...643f7e; password del Mac; incolla il token
    (non si vede); nella chat del nuovo bot premi Avvia e invia il codice a 6 cifre mostrato.
