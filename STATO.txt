@@ -1,59 +1,33 @@
-MCP ANDREA — STATO 03/10/2026 (Europe/Rome), dopo il checkpoint v36
-Riferimento: repository babopoppi-dev/Main.py, branch claude/mcp-andrea-coordination-test-1bgkfu
-(checkpoint v36 importato integralmente; nessuna credenziale trovata).
-ATTENZIONE: il repository e PUBBLICO (nessun segreto, ma contiene nomi host e percorsi).
+MCP ANDREA — STATO 03/10/2026 ore ~13:00 (Europe/Rome)
+Linea attiva: v0.12 dell'altra sessione Claude (branch claude/mcp-andrea-tools-update-h8gyic,
+cartella coordination_v012). Questo branch conserva il lavoro parallelo (riserva) e le correzioni.
 
-STATO OPERATIVO (invariato rispetto alla v36, verificato)
-- Gateway: 25 strumenti, coordinamento v0.11 attivo. Agent VPS senza coordinamento.
-- Mac personale: agent 0.11-personal-work-2, coordination 0.11.0, ricerca 0.10.1, UID 5000.
-- Nessuna sessione, lock o shell attivi. Mac a noleggio non toccato. Desktop Commander non usato.
+ATTIVO E VERIFICATO OGGI
+- Gateway v0.12: catalogo 29 strumenti (+ delete_path, copy_file, read_binary, upload_file).
+  Ricevuta active, backup /opt/central-mcp-gateway/backups/pre_v012_20261003.
+  Script di rollback in /opt ripristinato (a10e73e2...) dopo la sovrascrittura accidentale.
+- Agent VPS 0.12-vps-1: sessioni e lock, nuovi strumenti. Ricevuta active (6 controlli live),
+  backup /opt/central-mcp-gateway/backups/pre_vps_v012_20261003. Attivato con lo script
+  CORRETTO di vps_v012_fix/ (fcf8e9b4...): l'originale falliva il preflight (sys.path).
+- Mac personale 0.12-personal-1: attivazione locale da Andrea (installer 2ceaaf84, commit
+  a1d98356), ATTIVAZIONE_V012_MCP_COMPLETATA; selftest UID5000 nel registro, nessuna
+  sessione/lock/shell aperti. Rete shell: spenta, su richiesta solo GitHub.
+  Backup /Library/MCPAndreaMacMioV09/backup/v012_20261003.
 
-COMPLETATO E VERIFICATO
-A. Coordinamento v0.11 chiuso: work_session + lock su workspace/.tmp, scrittura,
-   lettura, rollback ok; sessione chiusa, nessun lock; in .tmp resta solo xcrun_db
-   (installer e launcher erano gia stati rimossi alle 01:07). EVIDENZE_A_20261003.json.
+INCIDENTE DEL MATTINO (nessun danno)
+Due sessioni avevano preparato script con lo stesso nome. L'approvazione della 3/6 ha
+eseguito lo script gateway gia verificato dell'altra sessione; il mio download ha poi
+sovrascritto il suo file (ripristinato). Regola: una sola chat al lavoro, nomi file unici.
 
-PRONTO, IN STANDBY (sviluppato e testato, NON installato) — TEST_v012.log: 155/155
-B+C. mac_v012/: agent 0.12 (id sessione nel registro, installer tollerante solo
-   verso agent di sistema macOS verificati), amministrazione del Mac via Telegram
-   con helper root e bot dedicato. Attivazione: procedura locale (mac_v012/LEGGIMI.txt).
-C. gateway_v012/: catalogo con mac_admin_request/mac_admin_result (admin_request).
-D. vps_v012/: coordinamento nell'agent VPS (admin_request).
-E+G. mac_v013/ + gateway_v013/: meccanismo progetti ro/rw (elenco VUOTO) e
-   process_list/process_stop (livello 1). Si installa via mac_admin_request dopo
-   la v0.12 (TEST_v013.log: 112/112). Elenco cartelle, ACL e livello 2 di G
-   restano da decidere: PROPOSTE_E_F_G_20261003.txt.
-F. mac_v014/ + gateway_v014/: proxy con lista domini (VUOTA = shell offline),
-   opzione network su enable_full_shell, strumento configura_mac.py per E e F
-   (TEST_v014.log: 131/131). Serve collaudo nativo dopo l'attivazione.
-Revisione di sicurezza dell'helper v0.12 fatta: hash installer Mac ora
-   959296e2c58fa96fc029ec247d4dd7430fc28252afb14379f5ed32579cdbab68.
+PROSSIMI PASSI
+1. Chat NUOVA (catalogo 29): verifica del piano C dell'altra sessione: list_machines,
+   work_session + lock su workspace/progetti, upload/read_binary/copy/delete con rollback,
+   enable_full_shell network='github' + git ls-remote, shell spenta, chiusura.
+2. Poi riallineare a questa linea il lavoro di riserva di questo branch: amministrazione del
+   Mac via Telegram (C, mac_v012 qui), processi (G), progetti ro/rw (E) dove servono.
+3. Revisione v0.12 r2 dell'altra sessione (commit 7222ffe) prima di qualsiasi installazione.
 
-SEQUENZA DI ATTIVAZIONE
-1. Mac (locale): bot @BotFather; git clone in ~/MCPAndreaRepo; zsh .../Attiva_MCP_Andrea_v012.command
-2. "sono disponibile" -> 6 admin_request in ordine: gateway download/check/apply,
-   VPS download/check/apply (si attendono a vicenda sul lock di manutenzione).
-3. Chat nuova (catalogo 27 strumenti): verifica list_machines (mac 0.12, vps 0.12),
-   work_session su VPS, mac_admin_request di prova (/usr/bin/id) approvata dal bot Mac.
-4. Facoltativo, dopo il 3: v0.13 e poi v0.14 (per ciascuna 3 admin_request gateway e
-   3 mac_admin_request Mac); poi configura_mac.py con le tue decisioni su E e F.
-
-BACKUP
-- Esistenti: Mac /Library/MCPAndreaMacMioV09/backup/coordination_v011r1_20261002 e
-  search_v010_20261002; gateway /opt/central-mcp-gateway/backups/pre_coordination_v011r1_20261002.
-- Previsti: Mac .../backup/v012_20261003; gateway .../backups/pre_v012_20261003;
-  VPS .../backups/pre_vps_v012_20261003.
-
-PROBLEMI RESIDUI
-- Non verificato che il VPS raggiunga raw.githubusercontent.com (alternativa
-  documentata: write_file + install).
-- Le chat con catalogo vecchio non vedranno mac_admin_* e, dopo D, non potranno
-  scrivere sul VPS senza work_session.
-- Alle 02:20 un'altra sessione ("v0.12 cartella progetti") ha creato
-  workspace/progetti sul Mac: lavori in parallelo da chiarire.
-- who_is_working restituisce molti dati (costo in crediti).
-- Sessioni = token per client cooperanti; altri programmi non rispettano i lock.
-
-VINCOLI INVARIATI: VPS solo admin_request+Telegram; Mac admin solo locale finche
-C non e attivo; non toccare Bitcoin, La Marruca, LiDAR, credenziali, Mac a noleggio.
-Scheda per il mattino: MATTINO_20261003.txt. Stato precedente: STORICO_prima_v012_20261003.txt.
+ROLLBACK
+- Gateway: /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_gateway_v012_20261003.py --rollback
+- VPS: /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_vps_v012_20261003.py --rollback
+- Mac: installer v0.12 con --rollback (sudo locale), vedi coordination_v012/LEGGIMI.txt dell'altro branch.
