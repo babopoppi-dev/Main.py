@@ -1,0 +1,1 @@
+chmod 0555 /opt/central-mcp-gateway/upgrade_vps_v012p2_20261003.py

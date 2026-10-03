@@ -1,0 +1,1 @@
+cat /opt/central-mcp-gateway/vps_v012p2_20261003_receipt.json
