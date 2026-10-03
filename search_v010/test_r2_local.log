@@ -1,0 +1,80 @@
+test_launcher_passes_exact_source_to_root_bootstrap (test_mac_upgrade_r2.MacUpgrade.test_launcher_passes_exact_source_to_root_bootstrap) ... ok
+test_other_dedicated_process_blocks_stop (test_mac_upgrade_r2.MacUpgrade.test_other_dedicated_process_blocks_stop) ... ok
+test_package_matches_tested_agent_and_dependencies (test_mac_upgrade_r2.MacUpgrade.test_package_matches_tested_agent_and_dependencies) ... ok
+test_plist_change_refused_before_any_stop (test_mac_upgrade_r2.MacUpgrade.test_plist_change_refused_before_any_stop) ... ok
+test_restore_prevalidation_does_not_modify_files (test_mac_upgrade_r2.MacUpgrade.test_restore_prevalidation_does_not_modify_files) ... ok
+test_root_bootstrap_does_not_overwrite_different_installer (test_mac_upgrade_r2.MacUpgrade.test_root_bootstrap_does_not_overwrite_different_installer) ... ok
+test_wrong_uid_refused (test_mac_upgrade_r2.MacUpgrade.test_wrong_uid_refused) ... ok
+test_zombies_are_not_live_workers (test_mac_upgrade_r2.MacUpgrade.test_zombies_are_not_live_workers) ... ok
+test_already_unloaded_daemon_needs_no_bootout (test_mac_upgrade_r2.RestartRecovery.test_already_unloaded_daemon_needs_no_bootout) ... ok
+test_delayed_bootout_waits_for_job_and_processes (test_mac_upgrade_r2.RestartRecovery.test_delayed_bootout_waits_for_job_and_processes) ... ok
+test_intact_original_sources_can_pass_with_service_offline (test_mac_upgrade_r2.RestartRecovery.test_intact_original_sources_can_pass_with_service_offline) ... ok
+test_interrupted_backup_is_reused_only_with_original_sources (test_mac_upgrade_r2.RestartRecovery.test_interrupted_backup_is_reused_only_with_original_sources) ... ok
+test_loaded_without_pid_is_stopped_when_account_idle (test_mac_upgrade_r2.RestartRecovery.test_loaded_without_pid_is_stopped_when_account_idle) ... ok
+test_only_explicit_missing_service_counts_as_unloaded (test_mac_upgrade_r2.RestartRecovery.test_only_explicit_missing_service_counts_as_unloaded) ... ok
+test_partial_write_failure_restores_original_before_starting (test_mac_upgrade_r2.RestartRecovery.test_partial_write_failure_restores_original_before_starting) ... ok
+test_probe_failure_prevents_bootout (test_mac_upgrade_r2.RestartRecovery.test_probe_failure_prevents_bootout) ... ok
+test_reconnect_failure_restores_original_and_restarts_old_version (test_mac_upgrade_r2.RestartRecovery.test_reconnect_failure_restores_original_and_restarts_old_version) ... ok
+test_reconnect_requires_fresh_correct_uid_version_and_pid (test_mac_upgrade_r2.RestartRecovery.test_reconnect_requires_fresh_correct_uid_version_and_pid) ... ok
+test_service_pid_is_parsed (test_mac_upgrade_r2.RestartRecovery.test_service_pid_is_parsed) ... ok
+test_start_refuses_loaded_service (test_mac_upgrade_r2.RestartRecovery.test_start_refuses_loaded_service) ... ok
+test_stop_timeout_does_not_claim_success (test_mac_upgrade_r2.RestartRecovery.test_stop_timeout_does_not_claim_success) ... ok
+test_successful_recovery_installs_and_verifies_connection (test_mac_upgrade_r2.RestartRecovery.test_successful_recovery_installs_and_verifies_connection) ... ok
+test_unloaded_job_with_lingering_process_waits (test_mac_upgrade_r2.RestartRecovery.test_unloaded_job_with_lingering_process_waits) ... ok
+test_unrelated_prior_receipt_refuses_backup_reuse (test_mac_upgrade_r2.RestartRecovery.test_unrelated_prior_receipt_refuses_backup_reuse) ... ok
+test_glob (test_search.Schema.test_glob) ... ok
+test_tools_unique_and_machines (test_search.Schema.test_tools_unique_and_machines) ... ok
+test_active_search_blocks_writes (test_search.Searches.test_active_search_blocks_writes) ... ok
+test_binary_and_large_skip (test_search.Searches.test_binary_and_large_skip) ... ok
+test_cancel_before_worker_starts_releases_guard (test_search.Searches.test_cancel_before_worker_starts_releases_guard) ... ok
+test_capacity_and_expiration (test_search.Searches.test_capacity_and_expiration) ... ok
+test_depth_truncation_does_not_stop_siblings (test_search.Searches.test_depth_truncation_does_not_stop_siblings) ... ok
+test_disconnect_cancels_and_clears (test_search.Searches.test_disconnect_cancels_and_clears) ... ok
+test_entry_budget (test_search.Searches.test_entry_budget) ... ok
+test_existing_exclusive_lock_blocks_search (test_search.Searches.test_existing_exclusive_lock_blocks_search) ... ok
+test_filename_glob_and_filter (test_search.Searches.test_filename_glob_and_filter) ... ok
+test_filename_replaced_with_link_before_read (test_search.Searches.test_filename_replaced_with_link_before_read) ... ok
+test_hidden_and_protected (test_search.Searches.test_hidden_and_protected) ... ok
+test_limit_results (test_search.Searches.test_limit_results) ... ok
+test_links_and_special_files_not_read (test_search.Searches.test_links_and_special_files_not_read) ... ok
+test_literal_punctuation (test_search.Searches.test_literal_punctuation) ... ok
+test_no_outside_traversal (test_search.Searches.test_no_outside_traversal) ... ok
+test_owner_isolation (test_search.Searches.test_owner_isolation) ... ok
+test_page_stability (test_search.Searches.test_page_stability) ... ok
+test_pagination_validation (test_search.Searches.test_pagination_validation) ... ok
+test_read_budget (test_search.Searches.test_read_budget) ... ok
+test_regular_read_detects_change (test_search.Searches.test_regular_read_detects_change) ... ok
+test_response_budget_and_long_line (test_search.Searches.test_response_budget_and_long_line) ... ok
+test_root_replaced (test_search.Searches.test_root_replaced) ... ok
+test_symlink_requested_directory (test_search.Searches.test_symlink_requested_directory) ... ok
+test_text_casefold_and_context (test_search.Searches.test_text_casefold_and_context) ... ok
+test_timeout (test_search.Searches.test_timeout) ... ok
+test_validation (test_search.Searches.test_validation) ... ok
+test_audit_records_request_but_not_command_in_recent_view (test_mac_agent.AgentTests.test_audit_records_request_but_not_command_in_recent_view) ... ok
+test_baseline_status_uses_sandbox_and_fixed_argv (test_mac_agent.AgentTests.test_baseline_status_uses_sandbox_and_fixed_argv) ... ok
+test_caller_passed_to_shell (test_mac_agent.AgentTests.test_caller_passed_to_shell) ... ok
+test_default_shell_is_disabled (test_mac_agent.AgentTests.test_default_shell_is_disabled) ... ok
+test_disconnect_revokes_search (test_mac_agent.AgentTests.test_disconnect_revokes_search) ... ok
+test_extra_shell_arguments_rejected (test_mac_agent.AgentTests.test_extra_shell_arguments_rejected) ... ok
+test_failed_heartbeat_still_revokes_shell (test_mac_agent.AgentTests.test_failed_heartbeat_still_revokes_shell) ... ok
+test_file_write_read_and_rollback (test_mac_agent.AgentTests.test_file_write_read_and_rollback) ... ok
+test_log_quota_does_not_delete_existing_logs (test_mac_agent.AgentTests.test_log_quota_does_not_delete_existing_logs) ... ok
+test_log_reader_cannot_write_or_move (test_mac_agent.AgentTests.test_log_reader_cannot_write_or_move) ... ok
+test_log_symlink_blocks_new_shell (test_mac_agent.AgentTests.test_log_symlink_blocks_new_shell) ... ok
+test_private_state_cannot_be_read (test_mac_agent.AgentTests.test_private_state_cannot_be_read) ... ok
+test_search_does_not_access_shell_logs (test_mac_agent.AgentTests.test_search_does_not_access_shell_logs) ... ok
+test_search_lifecycle_and_audit (test_mac_agent.AgentTests.test_search_lifecycle_and_audit) ... ok
+test_timeout_preserves_diagnostic_output_and_reaps_process (test_mac_agent.AgentTests.test_timeout_preserves_diagnostic_output_and_reaps_process) ... ok
+test_untrusted_identity_rejected (test_mac_agent.AgentTests.test_untrusted_identity_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 68 tests in 0.133s
+
+OK
+{
+  "status": "active",
+  "checks": [
+    "passed"
+  ],
+  "uid": 5000
+}

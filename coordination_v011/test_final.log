@@ -1,0 +1,52 @@
+test_authenticated_write_read_rollback_and_legacy_write_refused (test_work_core.AgentCore.test_authenticated_write_read_rollback_and_legacy_write_refused) ... ok
+test_close_cancels_search_and_releases_locks (test_work_core.AgentCore.test_close_cancels_search_and_releases_locks) ... ok
+test_durable_audit_contains_session_id_not_secret (test_work_core.AgentCore.test_durable_audit_contains_session_id_not_secret) ... ok
+test_expiry_reaps_before_accepting_new_lock (test_work_core.AgentCore.test_expiry_reaps_before_accepting_new_lock) ... ok
+test_foreign_disable_refused_close_revokes_own_shell (test_work_core.AgentCore.test_foreign_disable_refused_close_revokes_own_shell) ... ok
+test_search_results_private_between_same_oauth_chats (test_work_core.AgentCore.test_search_results_private_between_same_oauth_chats) ... ok
+test_shell_requires_whole_workspace_lock_and_separate_identity (test_work_core.AgentCore.test_shell_requires_whole_workspace_lock_and_separate_identity) ... ok
+test_schema_additive_and_idempotent (test_work_core.Schema.test_schema_additive_and_idempotent) ... ok
+test_case_and_unicode_alias_overlap (test_work_core.SessionCore.test_case_and_unicode_alias_overlap) ... ok
+test_corrupt_store_and_symlink_fail_closed (test_work_core.SessionCore.test_corrupt_store_and_symlink_fail_closed) ... ok
+test_foreign_lock_release_refused_and_renew_bounded (test_work_core.SessionCore.test_foreign_lock_release_refused_and_renew_bounded) ... ok
+test_lock_expiry_and_clock_rollback (test_work_core.SessionCore.test_lock_expiry_and_clock_rollback) ... ok
+test_move_checks_both_paths_and_reentrant_provider (test_work_core.SessionCore.test_move_checks_both_paths_and_reentrant_provider) ... ok
+test_outside_and_symlink_locks_refused (test_work_core.SessionCore.test_outside_and_symlink_locks_refused) ... ok
+test_prefix_overlap_and_component_boundary (test_work_core.SessionCore.test_prefix_overlap_and_component_boundary) ... ok
+test_restart_preserves_lock_and_no_plain_tokens (test_work_core.SessionCore.test_restart_preserves_lock_and_no_plain_tokens) ... ok
+test_same_oauth_distinct_sessions_cannot_impersonate (test_work_core.SessionCore.test_same_oauth_distinct_sessions_cannot_impersonate) ... ok
+test_session_expiry_and_reboot (test_work_core.SessionCore.test_session_expiry_and_reboot) ... ok
+test_write_requires_lock_and_rollback_is_protected (test_work_core.SessionCore.test_write_requires_lock_and_rollback_is_protected) ... ok
+test_glob (test_search.Schema.test_glob) ... ok
+test_tools_unique_and_machines (test_search.Schema.test_tools_unique_and_machines) ... ok
+test_active_search_blocks_writes (test_search.Searches.test_active_search_blocks_writes) ... ok
+test_binary_and_large_skip (test_search.Searches.test_binary_and_large_skip) ... ok
+test_cancel_before_worker_starts_releases_guard (test_search.Searches.test_cancel_before_worker_starts_releases_guard) ... ok
+test_capacity_and_expiration (test_search.Searches.test_capacity_and_expiration) ... ok
+test_depth_truncation_does_not_stop_siblings (test_search.Searches.test_depth_truncation_does_not_stop_siblings) ... ok
+test_disconnect_cancels_and_clears (test_search.Searches.test_disconnect_cancels_and_clears) ... ok
+test_entry_budget (test_search.Searches.test_entry_budget) ... ok
+test_existing_exclusive_lock_blocks_search (test_search.Searches.test_existing_exclusive_lock_blocks_search) ... ok
+test_filename_glob_and_filter (test_search.Searches.test_filename_glob_and_filter) ... ok
+test_filename_replaced_with_link_before_read (test_search.Searches.test_filename_replaced_with_link_before_read) ... ok
+test_hidden_and_protected (test_search.Searches.test_hidden_and_protected) ... ok
+test_limit_results (test_search.Searches.test_limit_results) ... ok
+test_links_and_special_files_not_read (test_search.Searches.test_links_and_special_files_not_read) ... ok
+test_literal_punctuation (test_search.Searches.test_literal_punctuation) ... ok
+test_no_outside_traversal (test_search.Searches.test_no_outside_traversal) ... ok
+test_owner_isolation (test_search.Searches.test_owner_isolation) ... ok
+test_page_stability (test_search.Searches.test_page_stability) ... ok
+test_pagination_validation (test_search.Searches.test_pagination_validation) ... ok
+test_read_budget (test_search.Searches.test_read_budget) ... ok
+test_regular_read_detects_change (test_search.Searches.test_regular_read_detects_change) ... ok
+test_response_budget_and_long_line (test_search.Searches.test_response_budget_and_long_line) ... ok
+test_root_replaced (test_search.Searches.test_root_replaced) ... ok
+test_symlink_requested_directory (test_search.Searches.test_symlink_requested_directory) ... ok
+test_text_casefold_and_context (test_search.Searches.test_text_casefold_and_context) ... ok
+test_timeout (test_search.Searches.test_timeout) ... ok
+test_validation (test_search.Searches.test_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.127s
+
+OK

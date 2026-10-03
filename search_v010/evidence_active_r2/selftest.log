@@ -1,0 +1,1 @@
+{"passed": true, "uid": 5000, "checks": ["content", "filename", "cancel and read-lock release", "sandboxed sw_vers", "all test files rolled back"]}

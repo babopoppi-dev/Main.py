@@ -1,0 +1,80 @@
+MCP ANDREA — MAC PERSONALE v0.9
+STATO: pacchetto preparato e verificato, NON installato. Consenso amministrativo locale pendente.
+
+AMBITO DEL CONSENSO DA ACQUISIRE
+Creazione dell'account mcp_andrea UID/GID5000 senza privilegi amministrativi e login
+interattivo disabilitato; collaudo shell isolata; installazione del nuovo agent
+come LaunchDaemon con avvio/riconnessione automatici, backup e rollback del collegamento.
+Il consenso del02/10 alle20:04 valeva solo per il Mac a noleggio e non copre questo Mac.
+admin_request/Telegram esegue ancora SOLO sul VPS: richiesta eccezione locale per questa installazione.
+Nessun sudo eseguito tramite Desktop Commander.
+
+VERIFICHE PREPARATORIE EFFETTIVE
+- Mac personale MBP-di-Andrea.station, macOS12.7.6 build21H1320, Intel.
+- Hardware UUID SHA25613e94bc1b7e266b260a0eb5aa9e0b3ffa4cd322a419b6be36481c583f6454d9d.
+- Attuale account babo501/admin; UID/GID5000 e nome mcp_andrea liberi.
+- Vecchio workspace /Users/babo/MCPAndreaWorkspace vuoto; nessun lock MCP attivo.
+- Vecchio LaunchAgent it.andreababini.mcp-mac-mio caricato.
+- Plist SHA2564b7221e55e61affad1c0296b6985d0b27b78135267e9114e093139a672207b1d.
+- Python3.9.6 /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9.
+- CLOCK_MONOTONIC_RAW presente.
+-56 test locali e56 sul Mac passati: account/rollback,preflight/guard/clock,dispatcher,
+  installer e sequenza account->preflight->migrazione. Nessun test privilegiato eseguito sul Mac personale.
+- Prova reale sandbox come501 PASS: workspace read/write,sw_vers exit0;
+  outside read/write/hardlink,signal-parent,privileged-executable e network negati.
+- --check dell'installer completo PASS; launcher zsh -n PASS.
+- Ultima revisione modifica solo etichetta log personale e commento sul runtime;
+  catena SHA componenti incorporati verificata e --check finale reale PASS.
+- Wheel websockets13.1 pura152134bytes, SHA a9a396a6ad26130cdae92ae10c36af09d9bfe6cafe69670fd3b6da9b07b4044f,
+  scaricata da host PyPI ufficiale con hash verificato; non installata.
+
+UN SOLO AVVIO FISICO PREVISTO
+- Staging /Users/babo/MCPAndreaMacMioSetupV09_20261002.
+- Attiva_MCP_Andrea_Mac_Personale.command preparato nello staging, NON ancora sul Desktop.
+- Dopo consenso esplicito, copiarlo sul Desktop e mostrarlo nel Finder senza eseguirlo via DC.
+- Il doppio clic fisico verifica SHA del setup e lo esegue come amministratore;
+  eventuale password va inserita solo sul Mac, mai inviata alla chat.
+- Fase1: account dedicato e ricevuta con UUID casuali protetta root.
+- Fase2:15controlli reali UID5000, inclusi PTY/revoca/scadenza/discendenti/morteagent,
+  in area separata. Fallimento ferma il passaggio senza cambiare vecchio agent.
+- Fase3: snapshot plist precedente, selftest dispatcher come5000, sostituzione
+  collegamento, attesa WSS90s, verifica UID/versione/PID. Auto-rollback su errore.
+- Il setup prende entrambi i lock root (account e preflight); migrazione tiene
+  lock del journal file precedente. Non si modifica nulla se esiste gia stato non revisionato.
+
+PERCORSI NUOVI E RISULTATI DA CONTROLLARE
+- Account bootstrap /Library/MCPAndreaMacMioAccountV09 (privato root).
+- Preflight /Library/MCPAndreaMacMioPreflightV09 e /Users/Shared/MCPAndreaMacMioPreflightV09.
+- Agent /Library/MCPAndreaMacMioV09, codice root, stato5000, token root:5000 mode0640.
+- Workspace /Users/Shared/MCPAndreaMacMio/workspace,5000:5000 mode0700.
+- LaunchDaemon it.andreababini.mcp-mac-mio-v09, versione0.9-personal-1.
+- Ricevuta finale /Library/MCPAndreaMacMioV09/receipt.json deve essere active.
+- list_machines deve indicare mac_mio UID5000/versione0.9-personal-1.
+- Il test UID5000 del Mac personale NON e gia passato: viene eseguito dall'installer.
+
+BACKUP E ROLLBACK
+- Account prima assente: before.json e codice rollback nel bootstrap privato.
+- Vecchia plist salvata in /Library/MCPAndreaMacMioV09/backup.
+- Vecchi file e credenziale originali, altri connettori e DesktopCommander preservati.
+- Workspace originale vuoto ricontrollato; abortisce se compaiono file.
+- Auto-rollback ripristina il precedente collegamento. Mantiene eventuale account
+  nuovo disabilitato e cartelle diagnostiche/dati per evitare perdita o riuso delUID.
+- Rollback manuale del solo collegamento, fisico e amministrativo:
+  sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/installer.py --rollback
+- Non cancellare account/cartelle con dati o servizi attivi.
+
+LIMITI CONSERVATI
+- Shell disabilitata perdefault, attivabile max240min, offline e solo workspace.
+- Nessun sudo per agent; nessun accesso generale ai file personali.
+- Un lease per famigliaOAuth, non perchat. Quota log, blocchi e rollback file.
+- sw_vers senza shellabilitata; nessuna buildXcode specifica su questo Mac.
+- Avvioautomatico configurato, nessuna promessa di superare FileVault prelogin.
+- Nessun intervento a Bitcoin, cron, progetti LaMarruca/LiDAR o OAuth.
+- MacadminTelegram e restante paritaDesktopCommander ancora da completare.
+
+SHA256
+bootstrap_account.py: c266d38a0a593db98364b42113495229125e6919c3f9d025b1088f7f2b0feec3
+preflight_installer.py: a6d840a6ee89b5e8346e1427ad56d4192e315b8fc31dde174f5ccaafd62f2fd9
+install_mac_agent.py: 30dd992f416befe06eb4481196f20354521f04299932a98d6091370e59438a85
+setup_personal.py: 193ea13da717b7ee1aba5ed6165bd03eae46906b6a9393191c5d10d0fb33ae17
+Attiva_MCP_Andrea_Mac_Personale.command: 66ebf6ef7666cf13e84cb13e41517f8322d4884c963507d7fad3e0f238d11485

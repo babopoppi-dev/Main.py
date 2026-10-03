@@ -1,0 +1,91 @@
+{
+  "machines": [
+    {
+      "machine": "vps",
+      "online": true,
+      "meta": {
+        "hostname": "vps-80501435",
+        "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+        "python": "3.12.3",
+        "uid": 997,
+        "full_shell_capable": true,
+        "file_tools_version": "0.7",
+        "shell_backend": "bwrap-v08",
+        "shell_network": "disabled",
+        "shell_scope": "/var/lib/central-mcp-vps-agent-test/workspace",
+        "capabilities": [
+          "create_directory",
+          "disable_full_shell",
+          "edit_block",
+          "enable_full_shell",
+          "get_file_info",
+          "list_directory",
+          "move_file",
+          "read_file",
+          "read_multiple_files",
+          "rollback_file",
+          "shell_exec",
+          "shell_session",
+          "who_is_working",
+          "write_file"
+        ],
+        "baseline_shell_commands": [
+          "uname -a"
+        ],
+        "allowed_roots": [
+          "/var/lib/central-mcp-vps-agent-test/workspace",
+          "/var/lib/central-mcp-vps-agent-test/tmp"
+        ]
+      },
+      "monitor": false
+    },
+    {
+      "machine": "mac_noleggio",
+      "online": false,
+      "meta": {},
+      "monitor": true
+    },
+    {
+      "machine": "mac_mio",
+      "online": true,
+      "meta": {
+        "hostname": "MBP-di-Andrea.station",
+        "platform": "darwin",
+        "python": "3.9.6",
+        "uid": 5000,
+        "machine": "mac_mio",
+        "agent_version": "0.9-personal-1",
+        "full_shell_capable": true,
+        "file_tools_version": "0.7",
+        "shell_backend": "seatbelt-v09",
+        "shell_network": "disabled",
+        "shell_scope": "/Users/Shared/MCPAndreaMacMio/workspace",
+        "allowed_roots": [
+          "/Users/Shared/MCPAndreaMacMio/workspace"
+        ],
+        "read_only_log_root": "/Library/MCPAndreaMacMioV09/state/shell-logs",
+        "capabilities": [
+          "create_directory",
+          "disable_full_shell",
+          "edit_block",
+          "enable_full_shell",
+          "get_file_info",
+          "list_directory",
+          "move_file",
+          "read_file",
+          "read_multiple_files",
+          "rollback_file",
+          "shell_exec",
+          "shell_session",
+          "who_is_working",
+          "write_file"
+        ],
+        "baseline_shell_commands": [
+          "sw_vers"
+        ],
+        "reconnect": "automatic; shell revoked on disconnect"
+      },
+      "monitor": true
+    }
+  ]
+}

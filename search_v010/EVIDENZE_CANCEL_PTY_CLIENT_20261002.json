@@ -1,0 +1,298 @@
+{
+  "coordination_before": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790975903.3696141, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"e8c3e63439e145b6a921997c1b01d44c\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790975910.230473, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"688d0275f8fb4d2bba89f8522a13fade\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790975929.1862872, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"37bc86b89a2346c59f98dd119e4a620c\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790975937.434218, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"e1678750207b4cc9b3de1d112d613fe7\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790975956.320823, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"1f67fa95ae9747de9007efeaa5330dcb\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790975964.881921, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4003375d3fa8470991f8425ec6ca619d\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976010.268818, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"aa0dc62625da43579990c96125630702\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976019.279773, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"62a1ba07d0594274ac88ffa06304ae6d\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976027.882022, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"56290d6b7caf4db5a6fcdb55052cb0c1\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976036.996769, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6dc0e392fe3a4ebbae2745591e6d03d2\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976064.9221041, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"9c808003b82b423a955bd0d0d8bfcdea\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790976071.261446, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"b2e62ce30f774bf0ad0c7b4a6f98dc77\", \"operation\": \"stop_search\", \"ok\": true}, {\"time\": 1790976081.131642, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"1b341fa021b34e85a5289d08103652f6\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976104.272413, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"27c2aba7ccb6452bb066851522711192\", \"operation\": \"stop_search\", \"ok\": true}, {\"time\": 1790976113.3944829, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"38b3353db07e4a258cd261d4fc9c3655\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790976122.4993331, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"14b5b844f24544d7adbb9d7e860d9e0c\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790976132.043204, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"69fee67c84d44b8f845a65f030604b7d\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790976165.527831, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4bcea56305b64990a417654ba83f2a84\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790976173.7687302, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"bbb2ab23a0054e35bbb18eefb2c32cea\", \"operation\": \"get_file_info\", \"ok\": false}, {\"time\": 1790976329.265056, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"632b63858319412a801c6853fcccecf7\", \"operation\": \"who_is_working\", \"ok\": true}], \"search_version\": \"0.10.1\"}"
+      }
+    ],
+    "isError": false
+  },
+  "tests": [],
+  "rental_touched": false,
+  "enable": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"enabled\": true, \"minutes\": 10, \"expires_at_epoch\": 1790976971.455184, \"scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"network\": \"disabled\", \"maximum_active_sessions\": 1, \"identity_scope\": \"OAuth authorization, not an individual chat\"}"
+      }
+    ],
+    "isError": false
+  },
+  "fixture_create": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"6ca44c4940f04f5b83169b681c93a092\", \"running\": false, \"exit_code\": 0, \"output\": \"{\\\"uid\\\": 5000, \\\"directory\\\": \\\"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126\\\", \\\"files\\\": 30, \\\"bytes\\\": 31456020}\\r\\n\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/6ca44c4940f04f5b83169b681c93a092.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "cancel_start": {
+    "search_id": "f29896f3fc98472d94edb3b966640745",
+    "status": "running",
+    "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126",
+    "results": [],
+    "offset": 0,
+    "next_offset": 0,
+    "total_results": 0,
+    "has_more": false,
+    "running": true,
+    "truncated": false,
+    "limits_reached": [],
+    "entries_scanned": 0,
+    "bytes_read": 0,
+    "skipped": {},
+    "retention_seconds_after_finish": 300,
+    "identity_scope": "OAuth authorization; chats may share an authorization"
+  },
+  "cancel_stop": {
+    "search_id": "f29896f3fc98472d94edb3b966640745",
+    "status": "cancelled",
+    "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126",
+    "results": [
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_05.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_11.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_10.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_04.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_12.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_06.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_07.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_13.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      },
+      {
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_17.txt",
+        "line": 1,
+        "context_start_line": 1,
+        "text": "MCP_CANCEL_CLIENT_MARKER_20261002",
+        "text_truncated": false
+      }
+    ],
+    "offset": 0,
+    "next_offset": 9,
+    "total_results": 9,
+    "has_more": false,
+    "running": false,
+    "truncated": false,
+    "limits_reached": [],
+    "entries_scanned": 9,
+    "bytes_read": 9436806,
+    "skipped": {},
+    "retention_seconds_after_finish": 300,
+    "identity_scope": "OAuth authorization; chats may share an authorization"
+  },
+  "cancel_after": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"search_id\": \"f29896f3fc98472d94edb3b966640745\", \"status\": \"cancelled\", \"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126\", \"results\": [{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_05.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_11.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_10.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_04.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_12.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_06.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_07.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_13.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}, {\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_cancel_client_20261002_2126/fixture_17.txt\", \"line\": 1, \"context_start_line\": 1, \"text\": \"MCP_CANCEL_CLIENT_MARKER_20261002\", \"text_truncated\": false}], \"offset\": 0, \"next_offset\": 9, \"total_results\": 9, \"has_more\": false, \"running\": false, \"truncated\": false, \"limits_reached\": [], \"entries_scanned\": 9, \"bytes_read\": 9436806, \"skipped\": {}, \"retention_seconds_after_finish\": 300, \"identity_scope\": \"OAuth authorization; chats may share an authorization\"}"
+      }
+    ],
+    "isError": false
+  },
+  "fixture_cleanup": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"f8182a4f39844556bdd9a8ad7e43e014\", \"running\": false, \"exit_code\": 0, \"output\": \"{\\\"search_lock_released\\\": true, \\\"fixture_removed\\\": true, \\\"files_removed\\\": 30}\\r\\n\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/f8182a4f39844556bdd9a8ad7e43e014.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "pty_start": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"66ae572b14aa4c69a066e70fef99181a\", \"pid\": 73375, \"running\": true, \"scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"network\": \"disabled\", \"uid\": 5000}"
+      }
+    ],
+    "isError": false
+  },
+  "pty_id": "66ae572b14aa4c69a066e70fef99181a",
+  "pty_send": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"66ae572b14aa4c69a066e70fef99181a\", \"bytes_sent\": 26}"
+      }
+    ],
+    "isError": false
+  },
+  "pty_read": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"66ae572b14aa4c69a066e70fef99181a\", \"running\": true, \"exit_code\": null, \"output\": \"MCP_PTY_READY uid=5000\\r\\nTEST_INTERATTIVO_20261002\\r\\nMCP_PTY_ECHO:TEST_INTERATTIVO_20261002\\r\\n\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/66ae572b14aa4c69a066e70fef99181a.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "pty_stop": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"66ae572b14aa4c69a066e70fef99181a\", \"stopped\": true, \"exit_code\": -9}"
+      }
+    ],
+    "isError": false
+  },
+  "pty_after": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"66ae572b14aa4c69a066e70fef99181a\", \"running\": false, \"exit_code\": -9, \"output\": \"\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/66ae572b14aa4c69a066e70fef99181a.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "process_start": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"24b3a322996244b187ac0197c89cfeb3\", \"running\": true, \"exit_code\": null, \"output\": \"\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/24b3a322996244b187ac0197c89cfeb3.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "process_id": "24b3a322996244b187ac0197c89cfeb3",
+  "process_read": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"24b3a322996244b187ac0197c89cfeb3\", \"running\": true, \"exit_code\": null, \"output\": \"{\\\"parent_pid\\\": 73405, \\\"child_pid\\\": 73406, \\\"uid\\\": 5000, \\\"heartbeat\\\": \\\"/Users/Shared/MCPAndreaMacMio/workspace/process_revoke_client_20261002_2129/heartbeat.txt\\\"}\\r\\n\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/24b3a322996244b187ac0197c89cfeb3.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "disable_with_child": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"enabled\": false, \"running_sessions\": 0}"
+      }
+    ],
+    "isError": false
+  },
+  "heartbeat_after_1": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/process_revoke_client_20261002_2129/heartbeat.txt\", \"content\": \"child=73406\\n0.076511011\\n0.521827798\\n0.940616174\\n1.190870281\\n1.518000788\\n1.768398207\\n2.21527697\\n2.660721442\\n3.10665607\\n3.357040871\\n3.80166879\\n4.052093814\\n4.48520425\\n4.914496582\\n5.358562573\\n5.795033605\\n6.239491989\\n6.660448766\\n7.098100659\\n7.516799125\\n7.907975909\\n8.348185577\\n8.793973155\\n9.238869845\\n9.489203979\\n9.918599884\\n10.35551433\\n10.804024026\\n11.249360021\\n11.695926357\\n11.976469042\\n12.425074678\\n12.859459391\\n13.304411994\\n13.741621973\\n14.17602531\\n14.584568012\\n15.034388123\\n15.289161743\\n15.739435072\\n16.174878576\\n16.458806253\\n16.903908207\\n17.327339002\\n17.771647876\\n18.046432969\\n18.491410932\\n18.741788691\\n18.992157761\\n19.341949939\\n19.791712468\\n20.239128888\\n20.685315673\\n21.112641704\\n21.362963114\\n21.803768295\\n22.225484278\\n22.674968239\\n22.92537453\\n23.175614271\\n23.446265911\\n23.896516057\\n24.26407803\\n24.709234751\\n24.959575335\\n25.388568587\\n25.829694577\\n26.278555845\\n26.715307095\\n27.164079455\\n27.414367784\\n27.859379429\\n28.304824986\\n28.683896769\\n29.124137915\\n29.562339293\\n30.008303574\\n30.25867754\\n30.702481436\\n31.14567014\\n31.590317005\\n32.021996937\\n32.466848373\\n32.915287307\\n\", \"bytes_returned\": 1068, \"truncated\": false}"
+      }
+    ],
+    "isError": false
+  },
+  "heartbeat_after_2": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/process_revoke_client_20261002_2129/heartbeat.txt\", \"content\": \"child=73406\\n0.076511011\\n0.521827798\\n0.940616174\\n1.190870281\\n1.518000788\\n1.768398207\\n2.21527697\\n2.660721442\\n3.10665607\\n3.357040871\\n3.80166879\\n4.052093814\\n4.48520425\\n4.914496582\\n5.358562573\\n5.795033605\\n6.239491989\\n6.660448766\\n7.098100659\\n7.516799125\\n7.907975909\\n8.348185577\\n8.793973155\\n9.238869845\\n9.489203979\\n9.918599884\\n10.35551433\\n10.804024026\\n11.249360021\\n11.695926357\\n11.976469042\\n12.425074678\\n12.859459391\\n13.304411994\\n13.741621973\\n14.17602531\\n14.584568012\\n15.034388123\\n15.289161743\\n15.739435072\\n16.174878576\\n16.458806253\\n16.903908207\\n17.327339002\\n17.771647876\\n18.046432969\\n18.491410932\\n18.741788691\\n18.992157761\\n19.341949939\\n19.791712468\\n20.239128888\\n20.685315673\\n21.112641704\\n21.362963114\\n21.803768295\\n22.225484278\\n22.674968239\\n22.92537453\\n23.175614271\\n23.446265911\\n23.896516057\\n24.26407803\\n24.709234751\\n24.959575335\\n25.388568587\\n25.829694577\\n26.278555845\\n26.715307095\\n27.164079455\\n27.414367784\\n27.859379429\\n28.304824986\\n28.683896769\\n29.124137915\\n29.562339293\\n30.008303574\\n30.25867754\\n30.702481436\\n31.14567014\\n31.590317005\\n32.021996937\\n32.466848373\\n32.915287307\\n\", \"bytes_returned\": 1068, \"truncated\": false}"
+      }
+    ],
+    "isError": false
+  },
+  "process_after": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"24b3a322996244b187ac0197c89cfeb3\", \"running\": false, \"exit_code\": -9, \"output\": \"\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/24b3a322996244b187ac0197c89cfeb3.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "disabled_command": {
+    "content": [
+      {
+        "type": "text",
+        "text": "PermissionError: enable the isolated shell for this client first"
+      }
+    ],
+    "structuredContent": {
+      "error_code": "INVALID_ARGUMENT"
+    },
+    "isError": true
+  },
+  "cleanup_enable": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"enabled\": true, \"minutes\": 1, \"expires_at_epoch\": 1790976742.982033, \"scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"network\": \"disabled\", \"maximum_active_sessions\": 1, \"identity_scope\": \"OAuth authorization, not an individual chat\"}"
+      }
+    ],
+    "isError": false
+  },
+  "process_cleanup": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"7a788426314047f08ccc3a667a5839d1\", \"running\": false, \"exit_code\": 0, \"output\": \"{\\\"heartbeat_still_unchanged\\\": true, \\\"fixture_removed\\\": true}\\r\\n\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacMioV09/state/shell-logs/7a788426314047f08ccc3a667a5839d1.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "final_disable": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"enabled\": false, \"running_sessions\": 0}"
+      }
+    ],
+    "isError": false
+  },
+  "coordination_final": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790976382.538311, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"849db840023d49b3b695dde1566d08f2\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790976400.646451, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"c268d8d2f9f54ab6b40a3240659387b2\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790976410.325462, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"757796ac7d614fba9577c054e10f32fb\", \"operation\": \"stop_search\", \"ok\": true}, {\"time\": 1790976456.7543418, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"83b64d1aa4b84e87bf8cd50211d96e3a\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976468.18112, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"12a096887add4d8b85905858983a28b5\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790976493.634225, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"f2bb923add5747d686e66d218f0c10a0\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976502.141393, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"8a0d37b641b346de9b87c12727c4ad2d\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976509.5933928, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"a7fc8f006bcb4245ae8d370720016943\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976536.354801, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"bcf5db9ba110476cb781864015845625\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976543.181447, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"aa959f103d5a4a44814353232d60aec6\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976552.727453, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"c780934163234ae99e676143eef1e660\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790976576.9753568, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"024463b2b0804ab585eb427702f4d21d\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976587.20579, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"f5dff306fd5a4b798c75fcefc006bcbd\", \"operation\": \"disable_full_shell\", \"ok\": true}, {\"time\": 1790976595.7134578, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"10010e4a4cd14578a8ff32fcb63687d5\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790976620.458514, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"3714bf0d4348435c9ddcee823ba15edf\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790976628.038489, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"0c92f6f9f3ab43ce9fa3fd25eca97060\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790976638.531328, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"26b3eb73bc974f4587c4b94e3e02882a\", \"operation\": \"shell_exec\", \"ok\": false}, {\"time\": 1790976682.9820402, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"8cb8f5038bcf4da1bcb939b4fbf6d953\", \"operation\": \"enable_full_shell\", \"ok\": true}, {\"time\": 1790976695.501357, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"74218e44fcd046e7b2ebb1c20825941f\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790976703.234132, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"891050123ebe4bf8b3845eb2d06d27ed\", \"operation\": \"disable_full_shell\", \"ok\": true}], \"search_version\": \"0.10.1\"}"
+      }
+    ],
+    "isError": false
+  }
+}

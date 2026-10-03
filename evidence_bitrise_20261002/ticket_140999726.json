@@ -1,0 +1,19 @@
+{
+  "ticket_id": "140999726",
+  "title": "Recupero sessione La Marruca iOS — CANNOT RESTORE / VM EXPIRED",
+  "description": "Buongiorno, la sessione Dev Environments «La Marruca iOS» nel workspace di Andrea Babini mostra «CANNOT RESTORE - VM EXPIRED» dal 2 ottobre 2026. ID sessione: 8a211be1-b176-44ec-a6f1-c0d0574e6f98. Potete verificare il motivo della scadenza e se è possibile recuperare la VM o esportarne i dati? Contiene un progetto iOS e la configurazione MCP Andrea. Vi chiedo di preservare gli eventuali dati ancora disponibili e di indicare opzioni e costi prima di effettuare interventi a pagamento.",
+  "authorized_by": "Invia — 2026-10-02T21:45:03+02:00",
+  "confirmation": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[Reading 13 new lines (total: 13 lines)]\n\nModulo compilato\n\n\nexit 0\nCreazione ticket premuta una volta\n\n\nexit 0\n{\"text\":\"Recupero sessione La Marruca iOS — CANNOT RESTORE / VM EXPIRED\\n\\nTicket is created\\n\\nWe'll notify you once your ticket has an update\\n\\nTicket Type\\n\\nGeneral question or feedback\\n\\nTicket ID\\n\\n#140999726\\n\\nTitle\\n\\nRecupero sessione La Marruca iOS — CANNOT RESTORE / VM EXPIRED\\n\\nDescription\\nBuongiorno, la sessione Dev Environments «La Marruca iOS» nel workspace di Andrea Babini mostra «CANNOT RESTORE - VM EXPIRED» dal 2 ottobre 2026. ID sessione: 8a211be1-b176-44ec-a6f1-c0d0574e6f98. Potete verificare il motivo della scadenza e se è possibile recuperare la VM o esportarne i dati? Contiene un progetto iOS e la configurazione MCP Andrea. Vi chiedo di preservare gli eventuali dati ancora disponibili e di indicare opzioni e costi prima di effettuare interventi a pagamento.\\nGeneral question or feedback\\n\\nAsterisks (*) indicate required fields.\\n\\nTitle\\nDescription*\\nCreate ticket\\nCancel\",\"controls\":[{\"tag\":\"BUTTON\",\"text\":\"\",\"label\":\"Go back, Messages\",\"type\":\"submit\",\"placeholder\":null,\"name\":\"\",\"disabled\":false,\"value\":\"\"},{\"tag\":\"DIV\",\"text\":\"\",\"label\":\"Close\",\"placeholder\":null},{\"tag\":\"BUTTON\",\"text\":\"\",\"label\":\"Go back, Messages\",\"type\":\"submit\",\"placeholder\":null,\"name\":\"\",\"disabled\":false,\"value\":\"\"},{\"tag\":\"DIV\",\"text\":\"\",\"label\":\"Close\",\"placeholder\":null},{\"tag\":\"INPUT\",\"text\":\"\",\"label\":\"Title\",\"type\":\"text\",\"placeholder\":\"Enter text here...\",\"name\":\"3990239\",\"disabled\":false,\"value\":\"Recupero sessione La Marruca iOS — CANNOT RESTORE / VM EXPIRED\"},{\"tag\":\"TEXTAREA\",\"text\":\"\",\"label\":\"Description\",\"type\":\"textarea\",\"placeholder\":\"Enter text here...\",\"name\":\"3990240\",\"disabled\":false,\"value\":\"Buongiorno, la sessione Dev Environments «La Marruca iOS» nel workspace di Andrea Babini mostra «CANNOT RESTORE - VM EXPIRED» dal 2 ottobre 2026. ID sessione: 8a211be1-b176-44ec-a6f1-c0d0574e6f98. Potete verificare il motivo della scadenza e se è possibile recuperare la VM o esportarne i dati? Contiene un progetto iOS e la configurazione MCP Andrea. Vi chiedo di preservare gli eventuali dati ancora disponibili e di indicare opzioni e costi prima di effettuare interventi a pagamento.\"},{\"tag\":\"BUTTON\",\"text\":\"Create ticket\",\"label\":\"Create ticket\",\"type\":\"submit\",\"placeholder\":null,\"name\":\"\",\"disabled\":false,\"value\":\"\"},{\"tag\":\"BUTTON\",\"text\":\"Cancel\",\"label\":null,\"type\":\"submit\",\"placeholder\":null,\"name\":\"\",\"disabled\":false,\"value\":\"\"}],\"frames\":[]}\n\n\nexit 0\n\n✅ Process completed with exit code 0 (runtime: 4.45s)"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+      }
+    ],
+    "isError": false
+  }
+}

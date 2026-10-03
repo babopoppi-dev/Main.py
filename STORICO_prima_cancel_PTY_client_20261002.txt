@@ -1,0 +1,58 @@
+MCP ANDREA — VERIFICA CLIENT CHATGPT DEI TOOL DI RICERCA
+02/10/2026, Europe/Rome. Ripreso dalla versione 31 del checkpoint.
+
+ESITO DI QUESTA SESSIONE
+- MCP Andrea espone e accetta ora start_search, get_more_search_results e stop_search in questa chat.
+- Solo mac_mio: hostname MBP-di-Andrea.station, agent 0.10-personal-search-1, search_version 0.10.1, UID5000.
+- start_search: ricerca per nome glob *.txt, 2/2 file; ricerca contenuto letterale, 6/6 occorrenze su 2 file.
+- get_more_search_results: nomi in 2 pagine da 1, contenuto in 3 pagine da 2, rilettura prima pagina identica. Nessun duplicato, limite raggiunto o file saltato.
+- stop_search: 2 chiamate riuscite, entrambe su ricerche gia completate; risultati conservati. Anche avviando una ricerca e chiamando subito stop, questa era gia completata all'arrivo dello stop.
+- LIMITE: annullamento di una ricerca ancora running NON dimostrato da questo client. Il selftest di installazione precedente lo aveva verificato direttamente sull'agent; non confondere i due livelli di prova.
+- File e cartella temporanei eliminati tramite 3 rollback persistenti; assenza finale verificata con FileNotFoundError atteso.
+- Stato finale: active_locks [], shell_enabled false, search_version 0.10.1.
+- Mac a noleggio IN PAUSA, nessuna chiamata diretta o modifica. Nessuna modifica VPS; nessun riavvio o reinstallazione.
+- Evidenze complete: search_v010/EVIDENZE_CLIENT_CHATGPT_20261002.json.
+
+STATO DEL RIPRISTINO PRECEDENTE (confermato prima di questa sessione)
+
+MCP ANDREA — RIPRISTINO COMPLETATO; RICERCA ATTIVA SU VPS E MAC PERSONALE
+02/10/2026, Europe/Rome. Dopo "Riprendi lavoro in work precedente", Andrea ha avviato il launcher locale e confermato "Fatto" alle 23:07.
+
+ESITO VERIFICATO
+- mac_mio ONLINE via MCP Andrea, agent 0.10-personal-search-1, search_version 0.10.1, UID5000.
+- Ricevuta /Library/MCPAndreaMacMioV09/search_v010_receipt.json: status active, agent_pid72980.
+- launchd: it.andreababini.mcp-mac-mio-v09, state running, PID72980.
+- 44/44 test della installazione r2 passati come UID5000.
+- Selftest reale passato: ricerca contenuto, ricerca nomi, annullamento e rilascio lock, sw_vers isolato, rollback completo di tutti i file/cartelle di prova.
+- 68/68 test preparatori anche sul Mac come UID501; in quei test i percorsi amministrativi erano simulati. Distinguere questi dai test reali sopra.
+- Hash di tutti e quattro i moduli installati corrispondono al payload collaudato.
+- Prove attraverso il connettore MCP Andrea della chat: sw_vers exit0 (macOS12.7.6), scrittura e rilettura del file temporaneo, rollback persistente e successiva assenza del file verificata.
+- operation_id prova scrittura/rollback: 44aa094858d643ff8c0f8898e7a0fbf5.
+- Stato finale who_is_working: active_locks [], shell_enabled false, search_version0.10.1.
+- VPS online, UID997, ricerca0.10.1. Nessuna modifica VPS durante la ripresa.
+- Mac a noleggio offline e IN PAUSA. Nessuna azione su VM, credenziali o progetti.
+
+CORREZIONE APPLICATA
+Il vecchio installer verificava subito lo spegnimento dopo bootout, mentre launchd completava l'arresto in modo asincrono.
+La r2 attende l'assenza del servizio e dei processi, tratta correttamente un servizio gia spento e non interpreta errori generici come prova di assenza.
+Recupero limitato al receipt fallito esaminato e a sorgenti originali integri; backup precedente verificato e conservato.
+Hash installer r2: 4bb2fcf8abe3536f34b6e0e15d3e8e84c92e72781b3c12799ba04ccdefb5216d.
+Installer root: /Library/MCPAndreaMacMioV09/upgrade_search_v010r2_20261002.py.
+Backup originale: /Library/MCPAndreaMacMioV09/backup/search_v010_20261002.
+Ricevuta precedente conservata durante applicazione: /Library/MCPAndreaMacMioV09/search_v010_interrupted_receipt.json.
+Log installazione: /Library/MCPAndreaMacMioV09/search-preflight-v010r2-20261002/result.log e selftest.log.
+Staging personale: /Users/babo/MCPAndreaSearchV010_20261002.
+Launcher usato: /Users/babo/Desktop/Riprendi_Ricerca_MCP_Andrea.command.
+Installazione CONCLUSA: non rieseguire i launcher e non ripetere --apply.
+
+LIMITI E PROSSIME ATTIVITA DEL PROGETTO COMPLESSIVO
+- Il limite del precedente catalogo e superato: i tre strumenti sono stati chiamati dal client nella verifica documentata sopra.
+- Ricerca collaudata durante installazione usando Dispatcher UID5000; ora anche nomi, contenuto e paginazione sono verificati dal client ChatGPT. Il limite della prova di annullamento resta quello documentato sopra.
+- Non reinstallare il connettore soltanto per aggiornare lo schema: seguire l'aggiornamento azioni/nuova chat gia concordato.
+- Restano amministrazione Mac via Telegram, gestione processi, coordinamento durevole per singola chat/progetto, collaudo client Claude e riavvio reale.
+- L'identita attuale e per autorizzazione OAuth; chat differenti possono condividerla. Non dichiarare isolamento per singola chat gia realizzato.
+- Ogni comando amministrativo VPS deve passare dall'approvazione Telegram. Approvazioni VPS non valgono per Mac.
+- Procedure amministrative Mac attuali tramite launcher e password locale dell'utente. Nessun sudo via Desktop Commander.
+- Fallback Desktop Commander conservato; nessun cutover e nessuna equivalenza completa dichiarata.
+
+Questo archivio conserva codice ed evidenze MCP, non e un backup completo della VM Bitrise o delle app.

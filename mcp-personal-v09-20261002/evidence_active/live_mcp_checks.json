@@ -1,0 +1,174 @@
+{
+  "personal_install_result_0": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"machines\": [{\"machine\": \"vps\", \"online\": true, \"meta\": {\"hostname\": \"vps-80501435\", \"platform\": \"Linux-6.8.0-142-generic-x86_64-with-glibc2.39\", \"python\": \"3.12.3\", \"uid\": 997, \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"shell_backend\": \"bwrap-v08\", \"shell_network\": \"disabled\", \"shell_scope\": \"/var/lib/central-mcp-vps-agent-test/workspace\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"uname -a\"], \"allowed_roots\": [\"/var/lib/central-mcp-vps-agent-test/workspace\", \"/var/lib/central-mcp-vps-agent-test/tmp\"]}, \"monitor\": false}, {\"machine\": \"mac_noleggio\", \"online\": false, \"meta\": {}, \"monitor\": true}, {\"machine\": \"mac_mio\", \"online\": true, \"meta\": {\"hostname\": \"MBP-di-Andrea.station\", \"platform\": \"darwin\", \"python\": \"3.9.6\", \"uid\": 5000, \"machine\": \"mac_mio\", \"agent_version\": \"0.9-personal-1\", \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"shell_backend\": \"seatbelt-v09\", \"shell_network\": \"disabled\", \"shell_scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"allowed_roots\": [\"/Users/Shared/MCPAndreaMacMio/workspace\"], \"read_only_log_root\": \"/Library/MCPAndreaMacMioV09/state/shell-logs\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"sw_vers\"], \"reconnect\": \"automatic; shell revoked on disconnect\"}, \"monitor\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "personal_install_result_1": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Process started with PID 70179 (shell: /bin/zsh)\nInitial output:\nFILE /Library/MCPAndreaMacMioV09/receipt.json\n{\n  \"status\": \"active\",\n  \"time\": 1790968150.258655,\n  \"source_sha256\": \"30dd992f416befe06eb4481196f20354521f04299932a98d6091370e59438a85\",\n  \"machine\": \"mac_mio\",\n  \"new_plist_sha256\": \"c355532f913809d9a183e0e4b4a55e226dfc850914dbe4992582d5d3bf7fd406\",\n  \"uid\": 5000,\n  \"agent_pid\": 70137,\n  \"new_workspace\": \"/Users/Shared/MCPAndreaMacMio/workspace\",\n  \"shell_default\": \"disabled\",\n  \"shell_network\": \"disabled\",\n  \"rollback_available\": true,\n  \"old_files_preserved\": true,\n  \"boot_start\": true\n}\nFILE /Library/MCPAndreaMacMioV09/selftest.log\n{\"starting\": \"sw_vers\", \"uid\": 5000, \"sandbox\": true}\n{\"check\": \"sw_vers\", \"passed\": true, \"output\": \"ProductName:\\tmacOS\\nProductVersion:\\t12.7.6\\nBuildVersion:\\t21H1320\\n\"}\n{\"check\": \"dispatcher_files_shell_logs_rollback\", \"passed\": true}\n\n\nFILE /Library/MCPAndreaMacMioPreflightV09/receipt.json\n{\n  \"status\": \"preflight_passed\",\n  \"live_agent_changed\": false,\n  \"uid\": 5000,\n  \"checks\": [\n    {\n      \"check\": \"disabled_by_default\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"read_write\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"rollback\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"shell_uid5000\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"pty_send_read\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"other_client_lease_rejected\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"file_shell_lock\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"disable_stops_session\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"foreground_end_stops_detached\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"disable_stops_detached\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"expiry_stops_detached\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"watchdog_failure_stops_session\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"output_limit\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"no_remaining_locks\",\n      \"passed\": true\n    },\n    {\n      \"check\": \"agent_death_stops_detached\",\n      \"passed\": true\n    }\n  ],\n  \"remaining_uid5000_processes\": 0,\n  \"time\": 1790968146.156075\n}\n"
+        },
+        {
+          "type": "text",
+          "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "personal_live_initial_1": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"exit_code\": 0, \"output\": \"ProductName:\\tmacOS\\nProductVersion:\\t12.7.6\\nBuildVersion:\\t21H1320\\n\", \"truncated\": false, \"timed_out\": false}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "personal_file_v1": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/mcp_live_test_20261002_2110.txt\", \"bytes_written\": 22, \"operation_id\": \"e76c343387134af998eca69f672c542f\", \"rollback_persistent\": true}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "personal_file_v2": {
+    "path": "/Users/Shared/MCPAndreaMacMio/workspace/mcp_live_test_20261002_2110.txt",
+    "bytes_written": 22,
+    "operation_id": "e857336d68504fee8698fedbcda9a2af",
+    "rollback_persistent": true
+  },
+  "personal_rollback_v2": {
+    "operation_id": "e857336d68504fee8698fedbcda9a2af",
+    "rolled_back": true,
+    "persistent": true
+  },
+  "personal_file_restore_verified": true,
+  "personal_file_test_cleaned": true,
+  "personal_shell_uid_test": {
+    "session_id": "bddf6c9d4405455fa87ae53b91e70cb9",
+    "running": false,
+    "exit_code": 0,
+    "output": "5000\r\n",
+    "truncated": false,
+    "has_more": false,
+    "log_path": "/Library/MCPAndreaMacMioV09/state/shell-logs/bddf6c9d4405455fa87ae53b91e70cb9.log",
+    "log_complete": true,
+    "stop_reason": null
+  },
+  "personal_log_read": {
+    "path": "/Library/MCPAndreaMacMioV09/state/shell-logs/bddf6c9d4405455fa87ae53b91e70cb9.log",
+    "content": "5000\r\n",
+    "bytes_returned": 6,
+    "truncated": false
+  },
+  "personal_pty_session": {
+    "session_id": "d8311947739d4dfa85f84ed0ca632dd2",
+    "pid": 70267,
+    "running": true,
+    "scope": "/Users/Shared/MCPAndreaMacMio/workspace",
+    "network": "disabled",
+    "uid": 5000
+  },
+  "personal_pty_send": {
+    "session_id": "d8311947739d4dfa85f84ed0ca632dd2",
+    "bytes_sent": 27
+  },
+  "personal_pty_read": {
+    "session_id": "d8311947739d4dfa85f84ed0ca632dd2",
+    "running": true,
+    "exit_code": null,
+    "output": "MCP_ANDREA_PERSONAL_PTY_OK\r\nMCP_ANDREA_PERSONAL_PTY_OK\r\n",
+    "truncated": false,
+    "has_more": false,
+    "log_path": "/Library/MCPAndreaMacMioV09/state/shell-logs/d8311947739d4dfa85f84ed0ca632dd2.log",
+    "log_complete": true,
+    "stop_reason": null
+  },
+  "personal_pty_stop": {
+    "session_id": "d8311947739d4dfa85f84ed0ca632dd2",
+    "stopped": true,
+    "exit_code": -9
+  },
+  "personal_pty_disable_session": {
+    "session_id": "da134c60b4a54b9e9700db4d4073a037",
+    "pid": 70278,
+    "running": true,
+    "scope": "/Users/Shared/MCPAndreaMacMio/workspace",
+    "network": "disabled",
+    "uid": 5000
+  },
+  "personal_shell_disabled": {
+    "enabled": false,
+    "running_sessions": 0
+  },
+  "personal_pty_after_disable": {
+    "session_id": "da134c60b4a54b9e9700db4d4073a037",
+    "running": false,
+    "exit_code": -9,
+    "output": "",
+    "truncated": false,
+    "has_more": false,
+    "log_path": "/Library/MCPAndreaMacMioV09/state/shell-logs/da134c60b4a54b9e9700db4d4073a037.log",
+    "log_complete": true,
+    "stop_reason": null
+  },
+  "personal_shell_denied_after_disable": {
+    "content": [
+      {
+        "type": "text",
+        "text": "PermissionError: enable the isolated shell for this client first"
+      }
+    ],
+    "structuredContent": {
+      "error_code": "INVALID_ARGUMENT"
+    },
+    "isError": true
+  },
+  "personal_final_0": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"machines\": [{\"machine\": \"vps\", \"online\": true, \"meta\": {\"hostname\": \"vps-80501435\", \"platform\": \"Linux-6.8.0-142-generic-x86_64-with-glibc2.39\", \"python\": \"3.12.3\", \"uid\": 997, \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"shell_backend\": \"bwrap-v08\", \"shell_network\": \"disabled\", \"shell_scope\": \"/var/lib/central-mcp-vps-agent-test/workspace\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"uname -a\"], \"allowed_roots\": [\"/var/lib/central-mcp-vps-agent-test/workspace\", \"/var/lib/central-mcp-vps-agent-test/tmp\"]}, \"monitor\": false}, {\"machine\": \"mac_noleggio\", \"online\": false, \"meta\": {}, \"monitor\": true}, {\"machine\": \"mac_mio\", \"online\": true, \"meta\": {\"hostname\": \"MBP-di-Andrea.station\", \"platform\": \"darwin\", \"python\": \"3.9.6\", \"uid\": 5000, \"machine\": \"mac_mio\", \"agent_version\": \"0.9-personal-1\", \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"shell_backend\": \"seatbelt-v09\", \"shell_network\": \"disabled\", \"shell_scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"allowed_roots\": [\"/Users/Shared/MCPAndreaMacMio/workspace\"], \"read_only_log_root\": \"/Library/MCPAndreaMacMioV09/state/shell-logs\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"sw_vers\"], \"reconnect\": \"automatic; shell revoked on disconnect\"}, \"monitor\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "personal_final_2": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Desktop Commander devices\n\n1. vps-80501435\n   Status: Online\n   ID: 16fa6fec-8f65-4638-9879-4db65e5821f3\n   Last seen: 49s ago\n   App version: 0.2.51\n\n2. MBP-di-Andrea.station\n   Status: Online\n   ID: af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4\n   Last seen: 57s ago\n   App version: 0.2.52\n\n3. vm-standalone-macos-825d4ed0-558a-4289-b673-9b2a146c0122\n   Status: Online\n   ID: 3a394f81-d3fa-4f51-b61f-05aaacea06b3\n   Last seen: 11m ago\n   App version: 0.2.52\n\nManage devices: https://mcp.desktopcommander.app/\nYou can view, add, or revoke devices there."
+        }
+      ],
+      "isError": false
+    }
+  },
+  "authorized_at": "2026-10-02T21:06:35+02:00",
+  "user_reported_done_at": "2026-10-02T21:10:01+02:00",
+  "rental_diagnostic": "MCP offline. Desktop Commander cached Online label but last seen 11 minutes and start_process HTTP 504. No service restart attempted. Physical VNC check required."
+}

@@ -1,0 +1,98 @@
+{
+  "vps_apply_status": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"status\": \"done\", \"exit_code\": 0, \"output\": \"{\\\"status\\\": \\\"activation_scheduled\\\", \\\"receipt\\\": \\\"/opt/central-mcp-gateway/search_v010_receipt.json\\\"}\\n\", \"seconds\": 0.3, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"id\": \"8d14beffda244d74be5ed2037f7b8d9f\", \"updated\": 1790971766}"
+      }
+    ],
+    "isError": false
+  },
+  "vps_activation": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Process started with PID 555747 (shell: /bin/bash)\nInitial output:\n{\n  \"status\": \"active\",\n  \"time\": 1790971809.894397,\n  \"checks\": [\n    \"content search via local MCP\",\n    \"files search via local MCP\",\n    \"outside-root refusal\",\n    \"baseline status; shell remains disabled\",\n    \"test file and directory rolled back\"\n  ],\n  \"backup\": \"/opt/central-mcp-gateway/backups/pre_search_v010_20261002\",\n  \"preflight_uid\": 997,\n  \"hashes\": {\n    \"agent.py\": \"a6a9573ed8faf425d9e81897c2c7aaf7b07cd0a6a4d3470d4475ad3354b22ea2\",\n    \"cg_tools.py\": \"a6a9f4fa6ce5569fdb7622b957765e8ca1adb052f941b5e750406987e527c519\",\n    \"search_tools.py\": \"ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b\",\n    \"search_schema.py\": \"c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d\"\n  },\n  \"rental_touched\": false\n}\nResult=success\nExecMainStatus=0\nActiveState=inactive\nSubState=dead\n\nt.VpsFiles.test_full_shell_stays_disabled) ... ok\ntest_new_rollback_conflict_never_falls_back (test_vps_agent.VpsFiles.test_new_rollback_conflict_never_falls_back) ... ok\ntest_requires_authenticated_caller_and_request (test_vps_agent.VpsFiles.test_requires_authenticated_caller_and_request) ... ok\ntest_search_identity_is_not_supplied_by_arguments (test_vps_agent.VpsFiles.test_search_identity_is_not_supplied_by_arguments) ... ok\ntest_search_lifecycle_and_lock (test_vps_agent.VpsFiles.test_search_lifecycle_and_lock) ... ok\ntest_search_metadata (test_vps_agent.VpsFiles.test_search_metadata) ... ok\n\n----------------------------------------------------------------------\nRan 35 tests in 0.445s\n\nOK\n\n"
+        },
+        {
+          "type": "text",
+          "text": "\n[executed on device: vps-80501435 (16fa6fec-8f65-4638-9879-4db65e5821f3)]"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "machines_after_vps_activation": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"machines\": [{\"machine\": \"vps\", \"online\": true, \"meta\": {\"hostname\": \"vps-80501435\", \"platform\": \"Linux-6.8.0-142-generic-x86_64-with-glibc2.39\", \"python\": \"3.12.3\", \"uid\": 997, \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"search_version\": \"0.10.1\", \"shell_backend\": \"bwrap-v08\", \"shell_network\": \"disabled\", \"shell_scope\": \"/var/lib/central-mcp-vps-agent-test/workspace\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"get_more_search_results\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"start_search\", \"stop_search\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"uname -a\"], \"allowed_roots\": [\"/var/lib/central-mcp-vps-agent-test/workspace\", \"/var/lib/central-mcp-vps-agent-test/tmp\"]}, \"monitor\": false}, {\"machine\": \"mac_noleggio\", \"online\": false, \"meta\": {}, \"monitor\": true}, {\"machine\": \"mac_mio\", \"online\": true, \"meta\": {\"hostname\": \"MBP-di-Andrea.station\", \"platform\": \"darwin\", \"python\": \"3.9.6\", \"uid\": 5000, \"machine\": \"mac_mio\", \"agent_version\": \"0.9-personal-1\", \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"shell_backend\": \"seatbelt-v09\", \"shell_network\": \"disabled\", \"shell_scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"allowed_roots\": [\"/Users/Shared/MCPAndreaMacMio/workspace\"], \"read_only_log_root\": \"/Library/MCPAndreaMacMioV09/state/shell-logs\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"sw_vers\"], \"reconnect\": \"automatic; shell revoked on disconnect\"}, \"monitor\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "mac_preparation_initial": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Process started with PID 71294 (shell: /bin/zsh)\nInitial output:\n{\"command\": \"test_mac_upgrade\", \"exit\": 0, \"output\": \"test_other_dedicated_process_blocks_stop (test_mac_upgrade.MacUpgrade) ... ok\\ntest_package_matches_tested_agent_and_dependencies (test_mac_upgrade.MacUpgrade) ... ok\\ntest_plist_change_refused_before_any_stop (test_mac_upgrade.MacUpgrade) ... ok\\ntest_restore_prevalidation_does_not_modify_files (test_mac_upgrade.MacUpgrade) ... ok\\ntest_root_bootstrap_does_not_overwrite_different_installer (test_mac_upgrade.MacUpgrade) ... ok\\ntest_wrong_uid_refused (test_mac_upgrade.MacUpgrade) ... ok\\ntest_zombies_are_not_live_workers (test_mac_upgrade.MacUpgrade) ... ok\\n\\n----------------------------------------------------------------------\\nRan 7 tests in 0.036s\\n\\nOK\\n\"}\n{\"command\": \"--check\", \"exit\": 0, \"output\": \"{\\n  \\\"source_check_passed\\\": true,\\n  \\\"target\\\": \\\"mac_mio\\\",\\n  \\\"new_version\\\": \\\"0.10-personal-search-1\\\",\\n  \\\"administrative_preflight_pending\\\": true,\\n  \\\"rental_touched\\\": false\\n}\\n\"}\n{\"command\": \"/Users/babo/MCPAndreaSearchV010_20261002/Aggiorna_Ricerca_MCP_Andrea.command\", \"exit\": 0, \"output\": \"\"}\n{\"administrative_update_executed\": false, \"staging\": \"/Users/babo/MCPAndreaSearchV010_20261002\"}\n"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+      }
+    ],
+    "isError": false
+  },
+  "mac_launcher_revision": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Process started with PID 71401 (shell: /bin/zsh)\nInitial output:\n{\"tests_exit\": 0, \"output\": \"test_launcher_passes_exact_source_to_root_bootstrap (test_mac_upgrade.MacUpgrade) ... ok\\ntest_other_dedicated_process_blocks_stop (test_mac_upgrade.MacUpgrade) ... ok\\ntest_package_matches_tested_agent_and_dependencies (test_mac_upgrade.MacUpgrade) ... ok\\ntest_plist_change_refused_before_any_stop (test_mac_upgrade.MacUpgrade) ... ok\\ntest_restore_prevalidation_does_not_modify_files (test_mac_upgrade.MacUpgrade) ... ok\\ntest_root_bootstrap_does_not_overwrite_different_installer (test_mac_upgrade.MacUpgrade) ... ok\\ntest_wrong_uid_refused (test_mac_upgrade.MacUpgrade) ... ok\\ntest_zombies_are_not_live_workers (test_mac_upgrade.MacUpgrade) ... ok\\n\\n----------------------------------------------------------------------\\nRan 8 tests in 0.050s\\n\\nOK\\n\"}\n{\"launcher_check_exit\": 0, \"output\": \"{\\n  \\\"source_check_passed\\\": true,\\n  \\\"target\\\": \\\"mac_mio\\\",\\n  \\\"new_version\\\": \\\"0.10-personal-search-1\\\",\\n  \\\"administrative_preflight_pending\\\": true,\\n  \\\"rental_touched\\\": false\\n}\\n\"}\n{\"shell_syntax_exit\": 0, \"output\": \"\", \"administrative_update_executed\": false, \"hashes\": {\"Aggiorna_Ricerca_MCP_Andrea.command\": \"942b02d2d57cef72014e0f725cf27247e63a1c4d4db74ee5a1a73a0bf3a05472\", \"test_mac_upgrade.py\": \"57f443a7ec32c71f7dcca02f12962a83abf301611a778c0d98c89140c3f0281d\"}}\n"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+      }
+    ],
+    "isError": false
+  },
+  "mac_latest_lock_check": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790968470.392321, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"b698ab9c5ffe43b3afd543f1d90d7480\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790968477.5598059, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"320ab9addea2487cae509d1f46673910\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790968485.1312058, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"81c0c55ce0a948a69792a98655b22816\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790968513.5016818, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"603fe2549aba4692a3ab22e9670e25cf\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790968522.507777, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"d28d022ca95246f394589ccd2545403d\", \"operation\": \"read_file\", \"ok\": false}, {\"time\": 1790968530.1889029, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"729f7a127ef544b989167f561f83a2c0\", \"operation\": \"enable_full_shell\", \"ok\": true}, {\"time\": 1790968539.8757389, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"086df34e1e9743fc8d99a4efae63256e\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790968570.227519, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"8270be22670b4c66989338d25188486d\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790968578.468914, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6481750234184f88bf08db4df04a8cda\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968586.5424662, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"9c56fc9f2b5c4367bbd91b057e31616d\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968595.007956, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"93be4ffdd0634da39c0d5111d144245a\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968603.274496, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"d70ab8ba9a2449deb845e23fe20127bd\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968624.310434, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4cffc212cbfa41a7b86a70fa0361bc2c\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968635.951761, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"179a8d8e451844dcb4f6012eb6034613\", \"operation\": \"disable_full_shell\", \"ok\": true}, {\"time\": 1790968644.833038, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"c7f913022807489b8794c5d0e1378021\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968652.763606, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"f131ce77a8cd48e894fd213dfe9b8e5c\", \"operation\": \"shell_exec\", \"ok\": false}, {\"time\": 1790968692.903317, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"2c81ee4a922e46479e1d1abbd56395a0\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790970951.3064919, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4f59eec5a5004424a6d263f98279c8e7\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790971047.853436, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6f915652a03848508f86e990c291dc92\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790971591.464424, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"c48fc5dd942a4c65a275a61ab11f73c2\", \"operation\": \"who_is_working\", \"ok\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "vps_search_installed": true,
+  "mac_search_installed": false,
+  "rental_paused": true,
+  "mac_installer_sha256": "fddd5279a3070a717275a82766bcdcc55522ea5a4bc67cdb67845863905cc4ce",
+  "mac_launcher_sha256": "942b02d2d57cef72014e0f725cf27247e63a1c4d4db74ee5a1a73a0bf3a05472",
+  "mac_install_authorization": "Pending specific local administrative authorization: current Telegram admin route supports VPS only.",
+  "tests_summary": {
+    "local_runtime_and_agent": 51,
+    "local_vps_deployment": 9,
+    "vps_user_1000": 35,
+    "vps_user_997": 35,
+    "mac_user_501_runtime": 44,
+    "local_mac_updater": 8,
+    "mac_user_501_updater": 8,
+    "launcher_read_only_check": true,
+    "shell_syntax_check": true,
+    "all_final_tests_passed": true,
+    "live_services_updated": [
+      "vps"
+    ]
+  }
+}

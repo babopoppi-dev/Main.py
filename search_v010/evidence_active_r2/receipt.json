@@ -1,0 +1,22 @@
+{
+  "status": "active",
+  "time": 1790975222.988673,
+  "version": "0.10-personal-search-1",
+  "uid": 5000,
+  "agent_pid": 72980,
+  "checks": [
+    "content",
+    "filename",
+    "cancel and read-lock release",
+    "sandboxed sw_vers",
+    "all test files rolled back"
+  ],
+  "backup": "/Library/MCPAndreaMacMioV09/backup/search_v010_20261002",
+  "hashes": {
+    "mac_agent.py": "a043138883eada66cbcc44e8d35b38a663efba67936a542ca89be8f086691a64",
+    "file_schema.py": "06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb",
+    "search_tools.py": "ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b",
+    "search_schema.py": "c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d"
+  },
+  "rental_touched": false
+}

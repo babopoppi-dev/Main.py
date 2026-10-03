@@ -1,0 +1,55 @@
+MCP ANDREA — RIPRESA WORK: CORREZIONE PRONTA, AVVIO LOCALE NECESSARIO
+02/10/2026, Europe/Rome. Istruzione utente: "Riprendi lavoro in work precedente".
+
+STATO LIVE CONTROLLATO IN QUESTA RIPRESA
+- VPS online, ricerca v0.10.1 dichiarata dall'agent; nessuna modifica VPS in questa ripresa.
+- Mac personale raggiungibile tramite Desktop Commander. Il servizio centrale mac_mio e offline.
+- launchctl print del label it.andreababini.mcp-mac-mio-v09: servizio assente (exit113, Could not find service).
+- Nessuna sessione terminale Desktop Commander attiva all'inizio; nessun processo dell'agent individuato. Lock staging disponibile e acquisito per le scritture.
+- Receipt /Library/MCPAndreaMacMioV09/search_v010_receipt.json: rollback_requires_review, reason e rollback_error "daemon still loaded".
+- 44 test preflight gia superati come UID5000 nel precedente tentativo. Selftest successivo mai eseguito.
+- Sorgenti originali e dipendenze live confermati dai controlli SHA256. Nessuna installazione ricerca sul Mac completata.
+- Mac a noleggio IN PAUSA per richiesta utente; nessuna azione su di esso.
+
+CAUSA E CORREZIONE
+Il vecchio installer chiamava launchctl bootout e controllava subito l'assenza del servizio.
+launchd rimuove il servizio in modo asincrono: quel controllo generava l'errore mentre lo spegnimento era ancora in corso.
+Anche il tentativo di ripristino ripeteva il medesimo controllo; successivamente il servizio risultava spento.
+La revisione r2 attende fino a 20 secondi l'assenza SIA del servizio SIA dei processi dell'account dedicato.
+Accetta un servizio gia spento; considera assenza solo l'errore esplicito di servizio mancante, non altri errori di launchctl.
+Riusa il backup precedente soltanto se receipt, hash e sorgenti originali corrispondono esattamente all'interruzione esaminata.
+Conserva la vecchia ricevuta in search_v010_interrupted_receipt.json al momento dell'applicazione.
+Preflight r2 in cartelle nuove; installer root r2 distinto; backup originale e file del vecchio tentativo preservati.
+Verifica UID5000, versione, timestamp fresco e PID della riconnessione. Ripristino su errore durante scrittura o riconnessione.
+
+PACCHETTO PRONTO SUL MAC, NON APPLICATO
+Staging: /Users/babo/MCPAndreaSearchV010_20261002
+Installer: upgrade_mac_search_v010r2_20261002.py
+SHA256: 4bb2fcf8abe3536f34b6e0e15d3e8e84c92e72781b3c12799ba04ccdefb5216d
+Launcher: Riprendi_Ricerca_MCP_Andrea.command
+SHA256: 6737f48c836abec5bbecd1eed41afc892c80e51563a467fbbcb2ac6cc2feec62
+Copia Desktop: /Users/babo/Desktop/Riprendi_Ricerca_MCP_Andrea.command, modo0700, hash verificato e selezionata nel Finder.
+File originali staging preservati. Nessuna modifica al codice di sistema, plist, credenziali o progetti durante questa ripresa.
+
+COLLAUDO ESEGUITO
+- 68 test passati localmente: 44 runtime/agent e 24 installer/launcher/recupero.
+- Gli stessi 68 test passati sul Mac personale come utente babo UID501.
+- Test includono ritardo bootout, servizio gia assente, processi residui, timeout, errori di ispezione, protezione backup, riconnessione e ripristino dopo scrittura parziale o mancata riconnessione.
+- Questi test dell'installer simulano le operazioni amministrative: non sono una installazione live.
+- Sintassi zsh del launcher valida.
+- Esecuzione reale del loader del launcher con --check: exit0, source_check_passed true, daemon_loaded false.
+- Restano da eseguire preflight r2 come UID5000, scrittura controllata, selftest reale e riconnessione del nuovo agent.
+
+PROSSIMO PASSAGGIO
+L'aggiornamento locale e gia autorizzato. L'utente deve aprire fisicamente sulla scrivania
+Riprendi_Ricerca_MCP_Andrea.command e inserire la password del Mac solo nel Terminale locale.
+Non usare il vecchio Aggiorna_Ricerca_MCP_Andrea.command per ripetere il tentativo fallito.
+L'approvatore Telegram attuale riguarda solo il VPS; non usare sudo via Desktop Commander.
+Dopo "Fatto": leggere prima la ricevuta e i log r2, list_machines e who_is_working(mac_mio), verificare nuova versione 0.10-personal-search-1, shell disabilitata e nessun lock.
+Non ripetere --apply senza leggere lo stato: le cartelle preflight e l'installer root sono volutamente protetti contro sovrascritture o nuovi tentativi ciechi.
+Se serve amministrazione VPS, ogni comando deve continuare a passare dall'approvazione Telegram.
+
+LAVORO SUCCESSIVO ANCORA PENDENTE
+Amministrazione Mac via Telegram, gestione processi, coordinamento durevole per singola chat/progetto,
+aggiornamento catalogo nei client e collaudo Claude, prove di riavvio reale. Fallback conservati, cutover non effettuato.
+Questo archivio conserva codice ed evidenze MCP, non un backup completo del Mac Bitrise o delle app.

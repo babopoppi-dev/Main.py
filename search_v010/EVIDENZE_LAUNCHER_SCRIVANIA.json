@@ -1,0 +1,62 @@
+{
+  "authorization": {
+    "user_message": "Continuiamo",
+    "local_time": "2026-10-02T22:27:23+02:00",
+    "scope": "Specific local Mac search update described in previous assistant request, with backup and rollback."
+  },
+  "machines": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"machines\": [{\"machine\": \"vps\", \"online\": true, \"meta\": {\"hostname\": \"vps-80501435\", \"platform\": \"Linux-6.8.0-142-generic-x86_64-with-glibc2.39\", \"python\": \"3.12.3\", \"uid\": 997, \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"search_version\": \"0.10.1\", \"shell_backend\": \"bwrap-v08\", \"shell_network\": \"disabled\", \"shell_scope\": \"/var/lib/central-mcp-vps-agent-test/workspace\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"get_more_search_results\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"start_search\", \"stop_search\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"uname -a\"], \"allowed_roots\": [\"/var/lib/central-mcp-vps-agent-test/workspace\", \"/var/lib/central-mcp-vps-agent-test/tmp\"]}, \"monitor\": false}, {\"machine\": \"mac_noleggio\", \"online\": false, \"meta\": {}, \"monitor\": true}, {\"machine\": \"mac_mio\", \"online\": true, \"meta\": {\"hostname\": \"MBP-di-Andrea.station\", \"platform\": \"darwin\", \"python\": \"3.9.6\", \"uid\": 5000, \"machine\": \"mac_mio\", \"agent_version\": \"0.9-personal-1\", \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"shell_backend\": \"seatbelt-v09\", \"shell_network\": \"disabled\", \"shell_scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"allowed_roots\": [\"/Users/Shared/MCPAndreaMacMio/workspace\"], \"read_only_log_root\": \"/Library/MCPAndreaMacMioV09/state/shell-logs\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"sw_vers\"], \"reconnect\": \"automatic; shell revoked on disconnect\"}, \"monitor\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "locks": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790968477.5598059, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"320ab9addea2487cae509d1f46673910\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790968485.1312058, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"81c0c55ce0a948a69792a98655b22816\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790968513.5016818, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"603fe2549aba4692a3ab22e9670e25cf\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790968522.507777, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"d28d022ca95246f394589ccd2545403d\", \"operation\": \"read_file\", \"ok\": false}, {\"time\": 1790968530.1889029, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"729f7a127ef544b989167f561f83a2c0\", \"operation\": \"enable_full_shell\", \"ok\": true}, {\"time\": 1790968539.8757389, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"086df34e1e9743fc8d99a4efae63256e\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790968570.227519, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"8270be22670b4c66989338d25188486d\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790968578.468914, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6481750234184f88bf08db4df04a8cda\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968586.5424662, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"9c56fc9f2b5c4367bbd91b057e31616d\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968595.007956, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"93be4ffdd0634da39c0d5111d144245a\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968603.274496, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"d70ab8ba9a2449deb845e23fe20127bd\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968624.310434, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4cffc212cbfa41a7b86a70fa0361bc2c\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968635.951761, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"179a8d8e451844dcb4f6012eb6034613\", \"operation\": \"disable_full_shell\", \"ok\": true}, {\"time\": 1790968644.833038, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"c7f913022807489b8794c5d0e1378021\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790968652.763606, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"f131ce77a8cd48e894fd213dfe9b8e5c\", \"operation\": \"shell_exec\", \"ok\": false}, {\"time\": 1790968692.903317, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"2c81ee4a922e46479e1d1abbd56395a0\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790970951.3064919, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4f59eec5a5004424a6d263f98279c8e7\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790971047.853436, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6f915652a03848508f86e990c291dc92\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790971591.464424, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"c48fc5dd942a4c65a275a61ab11f73c2\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790972332.651572, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"cded5f0cff5d47b7833479ee4da3d1c9\", \"operation\": \"who_is_working\", \"ok\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "sources": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Process started with PID 71544 (shell: /bin/zsh)\nInitial output:\n{\"verified_hashes\": {\"upgrade_mac_search_v010_20261002.py\": \"fddd5279a3070a717275a82766bcdcc55522ea5a4bc67cdb67845863905cc4ce\", \"Aggiorna_Ricerca_MCP_Andrea.command\": \"942b02d2d57cef72014e0f725cf27247e63a1c4d4db74ee5a1a73a0bf3a05472\"}}\n{\"check_exit\": 0, \"output\": \"{\\n  \\\"source_check_passed\\\": true,\\n  \\\"target\\\": \\\"mac_mio\\\",\\n  \\\"new_version\\\": \\\"0.10-personal-search-1\\\",\\n  \\\"administrative_preflight_pending\\\": true,\\n  \\\"rental_touched\\\": false\\n}\\n\"}\n{\"desktop_target_exists\": false, \"installer_executed\": false}\n"
+        },
+        {
+          "type": "text",
+          "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "launcher": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Process started with PID 71557 (shell: /bin/zsh)\nInitial output:\n{\"desktop_launcher\": \"/Users/babo/Desktop/Aggiorna_Ricerca_MCP_Andrea.command\", \"sha256\": \"942b02d2d57cef72014e0f725cf27247e63a1c4d4db74ee5a1a73a0bf3a05472\", \"finder_reveal_exit\": 0, \"installer_executed\": false, \"awaiting_user_double_click\": true}\n"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+      }
+    ],
+    "isError": false
+  },
+  "installer_executed": false,
+  "awaiting_user_physical_action": true
+}

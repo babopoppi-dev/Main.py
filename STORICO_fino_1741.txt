@@ -1,0 +1,292 @@
+MCP ANDREA — STATO VERIFICATO 02/10/2026 17:41 EUROPE/ROME
+
+BLOCCO ATTUALE: REVISIONE AUTOMATICA DELL'APPROVAZIONE
+- La prova14e7a8d037a4419284993c1718154006 e riuscita done/0, output997.
+- Tutte e tre le macchine online, full_shell_capable=false, verificato nuovamente.
+- Approvatore, gateway e VPS agent active. Hash agent live v0.7 invariato.
+- Installer r3 copiato e verificato root:root0555:
+  /opt/central-mcp-gateway/upgrade_shell_v08r3_20261002.py
+  SHA256 901ff7efea0f8e0babc5f49b1a546bf19e7feb1bd80b15f83c8b44e591d7ce03.
+- Copia e6352b21c0fc4ef7be76cb7355e6c7a7 done/0.
+- La richiesta admin_request per --apply e stata RIFIUTATA dal controllo automatico,
+  prima dell'invio Telegram. Nessun request_id e nessuna applicazione avviata.
+- Motivazione: disabilita permanentemente ProtectKernelTunables e ProtectKernelLogs
+  nel servizio VPS; consenso generale/temporaneo non dimostra autorizzazione esplicita
+  a queste precise impostazioni e al relativo ampliamento del rischio di isolamento.
+- NON aggirare il rifiuto con DC/sudo, altro comando o percorso indiretto.
+- Occorre spiegare il rischio e chiedere consenso specifico all'utente; dopo consenso
+  esplicito si potra ritentare admin_request per il medesimo --apply, poi Telegram.
+- Impatto proposto: soltanto central-mcp-vps-agent-test.service, due opzioni=no;
+  UID997, NoNewPrivileges, altri vincoli, niente sudo e nessun sysctl globale cambiato.
+- Ricevuta r3 non esiste (verificato). Il servizio mantiene tutte le impostazioni precedenti.
+- Prima di qualunque cambio live r3 esegue l'intero collaudo in unit temporanea con
+  LockPersonality, ProtectKernelModules/ControlGroups e le impostazioni compatibili.
+  Usa lo stesso interprete venv del servizio e lo stesso runtime isolato da installare.
+- Se preflight fallisce: nessuna modifica live. Se successivo collaudo gateway fallisce:
+  rollback automatico. Backup e unit r3 hanno nomi separati dalle versioni precedenti.
+- Template/build aggiornati usano r3; i generati r1/r2 storici sono conservati.
+
+CORREZIONE TELEGRAM PREPARATA, NON INSTALLATA
+- Sorgenti in approver_v07_pending nell'archivio.
+- Un errore in answerCallbackQuery non elimina piu una pressione valida: viene
+  registrato solo tipo d'errore, poi restano verifiche utente/chat/hash/scadenza/claim.
+- Timeout breve di3s per l'ack UI. Non registra URL API o testo dell'eccezione.
+- Se fallisce la visualizzazione della seconda conferma, un nuovo clic sul primo
+  pulsante ripropone la seconda conferma; non esegue il comando sensibile.
+- Solo il pulsante distinto di seconda conferma puo avviare il comando sensibile.
+- 16 test locali passati inclusi errori ack, rifiuto utente estraneo, scadenza,
+  doppia conferma recuperabile ed esecuzione una sola volta.
+- Il problema osservato di Telegram potrebbe avere questa causa, ma non e provato
+  dai log live. Non dichiarare il problema risolto: codice ancora solo locale.
+- Approvatore live resta v0.6 invariato. Nessun installer v0.7 ancora preparato/inviato.
+
+
+IL PROGETTO NON E ANCORA EQUIVALENTE A DESKTOP COMMANDER REMOTE.
+
+OPERATIVO
+- Gateway https://mcp.andreababini.it con OAuth e /mcp Streamable HTTP.
+- list_machines: vps, mac_noleggio, mac_mio tutti online, verificato in questa sessione.
+- Desktop Commander Remote: anche i tre dispositivi fallback online.
+- Gateway e VPS agent restano utenti di servizio senza sudo.
+- VPS uname -a, Mac personale sw_vers, Mac noleggio sw_vers e xcodebuild -version gia collaudati.
+- Lettura/scrittura/rollback gia collaudati via MCP sulle tre macchine.
+- full_shell_capable=false ovunque; shell arbitraria e PTY NON ancora abilitate.
+- Vecchi gateway/connettori conservati. Nessuna modifica Bitcoin o cron, nessun trading.
+
+MAC NOLEGGIO: AGENT FILE v0.7 ATTIVATO
+- Dispositivo DC: 3a394f81-d3fa-4f51-b61f-05aaacea06b3.
+- Agent centrale launchd indipendente dal terminale DC, label it.andreababini.central-mcp-mac-noleggio-test.
+- Release attiva: /Users/vagrant/.mac-control-gateway/central-adapter/releases/files_20261002_v07.
+- Modalita workspace_files_and_status; workspace /Users/vagrant/MCPAndreaWorkspace.
+- Aggiunti routing e dichiarazione di create_directory, list_directory, read_multiple_files,
+  get_file_info, edit_block, move_file; read_file puo usare offset/length.
+- Scritture/rollback usano FileTools con journal persistente, rifiuto symlink e conflitti,
+  lock condivisi con mac_control, identita OAuth piu ID richiesta per singola operazione.
+- 33 test passati sul Mac, attivazione riuscita, riconnessione verificata da list_machines.
+- Config SHA256 3f15119222ab13f6b574d9bd3ca62c9ae3cb2b6d1b085849a0ad27ec1d1288fd.
+- Plist SHA256 9ecb17283993ddb25736909d66288b4af05d761a701ebd848f4e3bc8e9bd6c0f.
+- Backup config/plist: backups/pre_files_20261002_v07, nello stesso base adapter.
+- Rollback rootless:
+  /usr/bin/python3 -B /Users/vagrant/.mac-control-gateway/central-adapter/releases/files_20261002_v07/activate_release.py --rollback
+- Precedenti release e backup v1/v1_1 conservati; original readonly releases/5b1ec8101bafd598 conservato.
+- Nuove operazioni esposte dal catalogo pubblico centrale e collaudate via MCP locale il 2 ottobre alle16:18 circa.
+
+MAC PERSONALE
+- macOS 12.7.6 build21H1320, user babo UID501 membro admin.
+- Agent attivo: it.andreababini.mcp-mac-mio, sandbox-exec.
+- Base /Users/babo/Library/Application Support/MCPAndrea.
+- Workspace /Users/babo/MCPAndreaWorkspace.
+- Implementazione FileTools comprende gia le operazioni aggiuntive sopra indicate;
+  sono ora esposte dal catalogo pubblico centrale e collaudate con rollback.
+- Token privato mai stampato. Nessuna modifica dell'agent personale in questa sessione.
+- Manca ancora account dedicato non-admin e percorso approvato amministrativo sul Mac.
+
+VPS E GATEWAY: FILE v0.7 INSTALLATO E COLLAUDATO
+- Il catalogo live e passato da14 a20 strumenti con sei nuove operazioni file.
+- In questa conversazione ALL_TOOLS conserva ancora14 strumenti; i sei nuovi sono
+  verificati tramite tools/list e tools/call su /mcp locale con token statico solo localhost.
+- Per aggiornare gli strumenti visibili al client preferire una nuova chat, senza reinstallare connettori.
+- Nuovo agent VPS metadata file_tools_version=0.7, UID997, full_shell_capable=false.
+- uname -a ricollaudato via MCP dopo l'installazione: exit0 Linux6.8.0-142-generic.
+- Installer attivo /opt/central-mcp-gateway/upgrade_files_v07r2_20261002.py, root:root0555.
+- SHA256 2dc8fabe28f6c5fdcc8014ad558fd7871368e62373283490153ab544bd31342a.
+- Ricevuta /opt/central-mcp-gateway/files_v07r2_receipt.json: status active, time1790950697.0399573.
+- Backup /opt/central-mcp-gateway/backups/pre_files_v07r2_20261002.
+- agent.py d16fa5dc84953513ff8cab0c60fcf204f5c64c888d290e49c12cdfab6f21ef00
+- cg_tools.py 94e364be3794082f7f29c5c1cd6217abc843c575b5cc651204f56297dd37ef89
+- file_schema.py 06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb
+- file_tools.py 8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e
+- 37 test file/integrazione locali; 5 test installatore r2; sul VPS32 test selezionati passati.
+- Prima prova root fallita per timeout troppo breve (20s contro TimeoutStopUSec90s).
+  Rollback automatico verificato: hash originali ripristinati, tre macchine online.
+- r2 attende110s per riavvio e applica tramite job systemd indipendente dall'approvatore.
+- In r2 tutti i test live completati: create_directory, write_file, edit_block, move_file,
+  read_file con righe, list_directory, get_file_info, read_multiple_files e rollback inversi.
+- Cartelle prove, rimosse dal rollback completato:
+  VPS /var/lib/central-mcp-vps-agent-test/workspace/collaudo_file_v07_60b3b4eca5bd
+  noleggio /Users/vagrant/MCPAndreaWorkspace/collaudo_file_v07_5e5982e576c8
+  personale /Users/babo/MCPAndreaWorkspace/collaudo_file_v07_d702d05a6fcf
+- Rollback del gateway/VPS, SOLO via Telegram:
+  python3 /opt/central-mcp-gateway/upgrade_files_v07r2_20261002.py --rollback
+- Conservati backup e installer r1 storici; non rieseguire r1 --apply.
+
+APPROVAZIONI DI QUESTA FASE
+- ef1def08a6b749b5bb22567eb9f1c1d6: expired, NON eseguita. Lo screenshot mostrava il messaggio corretto.
+- La causa del clic non registrato non e stata determinata: audit e journal del root
+  non sono leggibili dall'utente ordinario. Non interpretare journal vuoto come assenza di errori.
+- 714240c3224d4bdfb76db274f2d41564: rinnovo install r1, done/0.
+- f9794b424930471aa2552de9a5a10ec4: apply r1, done/1 e rollback confermato.
+- fd3906bae3b94c7ca65c6978308683dd: install r2, done/0, hash e root0555 verificati.
+- f7e94b553f4141158b8d350d955876b1: apply r2, done/0, job attivato e risultato finale active verificato.
+- Il pulsante ha quindi funzionato sulle nuove richieste. Nessuna modifica all'approvatore in questa fase.
+
+ISOLAMENTO VPS: PREREQUISITO INSTALLATO E COLLAUDATO
+- Helper root:root0555 /opt/central-mcp-gateway/install_isolation_20261002.py.
+- SHA256 8b35d0a19e1051fa16360f370dce609ee18721bbe237b2be9bf8ff1054324c02.
+- Copia richiesta d9c69572c9924d68801bfa2bb0532a7d done/0.
+- Applicazione fc34439716ac4ac3a81a7357b722b399 done/0.
+- Ricevuta /opt/central-mcp-gateway/isolation_20261002_receipt.json: prerequisite_ready.
+- Profilo /etc/apparmor.d/mcp-andrea-bwrap, specifico per la copia root:mcp-vps-agent0550
+  /opt/central-mcp-gateway/bin/bwrap-mcp. La restrizione globale userns resta attiva.
+- Prove reali: UID997, NoNewPrivs1, CapEff0, home/config/stato host non visibili.
+- Prova successiva 6c14e69f8ce14f919e43a0d7c000830c: done/0,
+  id eseguito con restrizioni principali equivalenti al servizio reale, incluse
+  PrivateTmp, PrivateDevices, ProtectHome, ProtectSystem, RestrictSUIDSGID.
+- Output uid=997 gid=987 groups=987. Unit temporanea terminata correttamente.
+- Backup /opt/central-mcp-gateway/backups/pre_isolation_20261002.
+- Rollback SOLO via Telegram:
+  python3 /opt/central-mcp-gateway/install_isolation_20261002.py --rollback
+- Il prerequisito NON abilita la shell pubblica.
+
+SHELL VPS v0.8: PROTOTIPO COLLAUDATO, DEPLOYMENT RIPRISTINATO
+- Sorgenti/test in shell_v08. Prototipo runtime reale supera i test, ma integrazione
+  sul servizio ha fallito una verifica ed e stata ripristinata: shell pubblica disabilitata.
+- Primo collaudo 315d67d2c38341acb5071e6f4462fdd6 done/1 prima dell'avvio sandbox.
+- Diagnostica c1008803ff6643899a3e67a61f0b7fca done/1:
+  bwrap: --disable-userns requires --unshare-user.
+- Correzione: aggiunto --unshare-user esplicito, nessuna restrizione rimossa.
+- Collaudo r2 /opt/central-mcp-gateway/probe_shell_v08r2_20261002.py root0555,
+  SHA256 48dae775d7195fb18dff02604390dde872d7bcbe2a2c5e945e2706fb88dd54b8.
+- Copia r2 5b884ea1f66543809f9b53cb9839f261 done/0.
+- Collaudo r2 879ec69b83484d5a94d234a1eaf31421 done/0, SHELL_PROBE_OK.
+- Ricevuta /opt/central-mcp-gateway/shell_probe_v08r2_receipt.json: passed.
+- Test reali passati come UID997 in unit systemd temporanea:
+  isolamento filesystem/segreti/capability/rete, limiti risorse, PTY input/output,
+  separazione autorizzazioni, lock file condiviso, output limitato, revoca e scadenza
+  arrestano processi distaccati con setsid; anche morte agent termina figli e libera lock.
+- Hash runtime collaudato 254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f.
+- La shell prototipo monta solo workspace, rete disabilitata, una sessione attiva;
+  durata temporanea per autorizzazione OAuth, non identita separata per ogni chat.
+- 13 test locali runtime, regressione file/agent e installer passati.
+
+DEPLOYMENT v0.8 E ROLLBACK VERIFICATO
+- /opt/central-mcp-gateway/upgrade_shell_v08_20261002.py root:root0555.
+- SHA256 b9c0b09c66ccd819b2bb7974141bd8388bb0e6045152637cfa2dd79d1b41f5f9.
+- Copia a80c8e265a0946b09f5e7c15c919b99e done/0, hash e proprietario verificati.
+- Applicazione b433a3255edf43f8850f8e218942ac4c done/0 ha solo pianificato la unit;
+  questo NON significa deployment riuscito.
+- Ricevuta /opt/central-mcp-gateway/shell_v08_receipt.json: rolled_back,
+  time1790953576.285829, reason AssertionError (dettaglio nel journal root).
+- Backup root-only /opt/central-mcp-gateway/backups/pre_shell_v08_20261002.
+- Modifiche previste: agent.py + isolated_shell.py, cg_mcp.py con identita OAuth completa,
+  cg_tools.py descrizioni; config /etc/central-mcp-vps-agent/agent-test.json;
+  drop-in80-mcp-shell-v08.conf con MemoryMax512M/Tasks128/CPUQuota100%/TimeoutStop10s.
+- Ripristino verificato via hash:
+  agent.py d16fa5dc84953513ff8cab0c60fcf204f5c64c888d290e49c12cdfab6f21ef00
+  cg_mcp.py a1a9a7c66c0f003f8de9bf98f421bd89726f13c5f3f24b0ae1b9a8b155419844
+  cg_tools.py 94e364be3794082f7f29c5c1cd6217abc843c575b5cc651204f56297dd37ef89
+- isolated_shell.py e il nuovo drop-in assenti dopo rollback.
+- list_machines conferma tutti online e full_shell_capable=false ovunque.
+- Non rieseguire lo stesso installer r1: il backup esiste gia. Preparare r2 separato
+  solo dopo lettura del log e identificazione della verifica fallita.
+- upgrade_shell.py locale ha gia messaggi di errore e ricevute per ogni fase piu chiari,
+  NON ancora incorporati in un nuovo installer. Il generato r1 conserva il codice approvato.
+- Agent/gateway aggiornati presenti nell'archivio sono bozze, NON la versione attiva.
+
+TELEGRAM: NUOVE RICHIESTE RICEVUTE CORRETTAMENTE
+- c65bd69f300b42919d46bdf56c15e3a3 era waiting quando Andrea segnalava pulsante lampeggiante;
+  approvatore active/running, NRestarts0. Non era ancora scaduta.
+- La nuova richiesta identica 6a34e241be074133a9180c3a463596de e stata approvata: done/0.
+- Journal letto: la verifica fallita nel deployment r1 e l'assert su risultato di shell_exec id -u,
+  linea104 del generato upgrade_shell_v08_20261002.py. Il risultato concreto non era registrato.
+- Non e provata la causa del problema intermittente al pulsante; nessuna modifica all'approvatore.
+- Nel codice on_callback chiama prima answerCallbackQuery e il polling avanza offset prima
+  dell'elaborazione: possibile perdita in caso di errore API, da verificare con audit.
+- I comandi approva testuali non sono supportati; usare pulsanti inline delle richieste nuove.
+
+DEPLOYMENT SHELL v0.8 r2: ROLLBACK VERIFICATO, ERRORE IDENTIFICATO
+- Corretto difetto certo del collaudo r1: shell_exec puo restituire running=true;
+  ora il collaudo attende con shell_session/read e accumula output fino al completamento.
+- Questo POTREBBE spiegare l'errore precedente, ma non e confermato senza risultato concreto.
+- r2 registra passo e risultato id, e messaggi di assert dettagliati; runtime invariato rispetto
+  al prototipo reale passato. Un nuovo test del collaudo asincrono passa (14 test locali totali).
+- Installer /opt/central-mcp-gateway/upgrade_shell_v08r2_20261002.py root:root0555.
+- SHA256 175cd2eb7a2b35feca063f08adce0d563f61dc5499aa645470182651a37a05eb.
+- Copia 8ba28c4eb0b54f2c985b17160336829c done/0, proprietario e hash verificati.
+- Applicazione 426e4dbb5d92447089b5bb822db03930 done/0 (job pianificato):
+  python3 /opt/central-mcp-gateway/upgrade_shell_v08r2_20261002.py --apply
+- Ricevuta /opt/central-mcp-gateway/shell_v08r2_receipt.json: rolled_back, time1790954537.6184819.
+- Causa reale ora osservata nel risultato di id: exit1,
+  bwrap: Can't mount proc on /newroot/proc: Operation not permitted.
+- L'attesa asincrona corregge un difetto del test ma NON risolve questo blocco OS.
+- Backup pre_shell_v08r2_20261002 preservato. Hash originali agent.py/cg_mcp.py/cg_tools.py
+  ricontrollati dopo rollback e corrispondenti alla v0.7. Shell resta disabilitata.
+- Non rieseguire r1 o r2 sullo stesso backup. Prima correggere incompatibilita con le
+  restrizioni del servizio; mantenere sicurezza e approvazioni.
+- Restrizioni aggiuntive del servizio reale, NON incluse nel prototipo temporaneo iniziale:
+  ProtectKernelTunables=yes, ProtectKernelModules=yes, ProtectKernelLogs=yes,
+  ProtectControlGroups=yes. ProtectProc=default, ProcSubset=all, PrivateMounts=no,
+  MountAPIVFS=no. Nessuna di queste opzioni e stata disabilitata.
+- Le opzioni ProtectKernelTunables/Logs creano mount protetti sotto proc; probabile
+  incompatibilita con nuovo mount proc nel namespace utente. Confermare prima di cambiare.
+- MAI risolvere montando proc host nel processo shell: esporrebbe processi/credenziali.
+- Possibili direzioni da valutare: worker separato con confini e lifecycle verificati,
+  oppure ambiente senza proc (molti programmi ne hanno bisogno: non promettere piena parita).
+- Prova innocua corrente, inviata via Telegram: 37230029e4884dd0970ead59aa603bfa.
+  systemd-run unit mcp-andrea-proc-diag-20261002, utente mcp-vps-agent, tutte le quattro
+  restrizioni sopra attive, bwrap con PID/user/net isolati e /proc VUOTO, comando /usr/bin/id -u.
+  Non monta proc host, home, workspace o credenziali; non modifica servizi o privilegi.
+- Esito37230029e4884dd0970ead59aa603bfa: done/1, bwrap: cannot open
+  /proc/sys/user/max_user_namespaces: Read-only file system. Nessuna modifica al servizio.
+- NUOVA prova di compatibilita inviata: 14e7a8d037a4419284993c1718154006.
+  Unit temporanea mcp-andrea-proc-compat-20261002: stesse restrizioni, ma solo in questa
+  unit di prova ProtectKernelTunables=no e ProtectKernelLogs=no, mantenendo UID997,
+  NoNewPrivileges, ProtectSystem/ProtectHome/PrivateDevices/PrivateTmp/RestrictSUIDSGID,
+  ProtectKernelModules e ProtectControlGroups. Esegue solamente id -u dentro bwrap con
+  proc privato, userns/PID/rete isolati e nested userns disabilitati. Nessun dato utente montato.
+- Queste due eccezioni NON sono state applicate al servizio reale o al sistema globale.
+  La prova serve valutarne la compatibilita prima di proporre un cambiamento definitivo.
+- Prossimo passo: admin_result su14e7a8d037a4419284993c1718154006.
+  Se successo, prima di deploy occorre ripetere l'intero collaudo del lifecycle con queste
+  impostazioni effettive; non basta id. Ogni modifica definitiva richiede nuova approvazione.
+- Valutare anche worker separato per conservare i mount protettivi dell'agent principale.
+  Nessuna soluzione definitiva e stata scelta o installata.
+- Mac non modificati; ultimi who_is_working avevano active_locks vuoto su entrambi.
+- Il problema intermittente del pulsante Telegram non e diagnosticato definitivamente:
+  le richieste nuove6a34e241,8ba28c4e,426e4dbb sono state tutte approvate ed eseguite.
+
+MOTORE DESKTOP COMMANDER: PROTOTIPO COLLAUDATO, NON COLLEGATO AL SERVIZIO
+- Upstream @wonderwhy-er/desktop-commander 0.2.52 gia presente sul Mac noleggio.
+- Il nostro dc_stdio.mjs usa solo backend stdio locale; non esegue index.js,
+  pairing remote, inizializzazione feature flags o pre-download Chrome.
+- Variabile DESKTOP_COMMANDER_DISABLE_TELEMETRY=1 e configurazione telemetryEnabled=false.
+- Prova con sandbox macOS: rete bloccata, scritture solo in test-home/test-workspace,
+  letture utenti limitate alle directory del prototipo e del pacchetto.
+- Directory riuscita /Users/vagrant/MCPAndreaParityTest_20261002_v3.
+- Risultato PROBE_OK: catalogo 26 strumenti, write_file/read_file/list_directory,
+  start_search/get_more_search_results, start_process(sw_vers)/read_process_output.
+- Nessun collegamento gateway o modifica a configurazione del DC Remote attivo.
+- Prime due prove fallite senza modificare servizi: profilo letture runtime troppo stretto,
+  poi mancava metadata sui parent di /Users. Versione v3 corretta per il prototipo.
+- Bridge aggiornato successivamente con chiusura su timeout/cancellazione/errore,
+  6 test locali passati. Questa ultima correzione del bridge non e ancora ridistribuita.
+- Non e ancora un isolamento definitivo per shell arbitraria: richiede revisione,
+  utenti non-admin e gestione dei processi/sessioni/lease.
+
+APPROVATORE TELEGRAM v0.6 ATTIVO
+- /opt/central-mcp-approver/approver.py SHA256
+  85bcdce1a05ae06bde9c9a85c3bd4e938ed47ff26f3db4f30f932d83f2db60dc
+- Controlli scadenza10min, comando/argv/SHA, claim persistente root-only esecuzione singola,
+  doppia conferma sensibili mantenuta, 17 test passati nella fase precedente.
+- Attivo dalle15:06:54 Europe/Rome, ricevuta approver_v06_receipt.json active.
+- Test callback e4ba85bd050c4a7383167a96c624846c confermato done/0, output active.
+- Backup /opt/central-mcp-approver/backups/pre_v06_20261002.
+- Rollback Telegram: python3 /opt/central-mcp-gateway/upgrade_approver_v06_20261002.py --rollback
+- Il percorso amministrativo attuale supporta SOLO VPS, non i Mac.
+
+PROVE ISOLAMENTO PRECEDENTI, ORA SUPERATE DAL PROFILO DEDICATO
+- I test read-only 925ce6696bb042b58515882abee17f11 e 441993d239b64592a30968cc3c52599d
+  avevano fallito per namespace/uid map. La copia con profilo specifico supera ora id.
+- Nessuna protezione globale disattivata. Node sul VPS solo nella home utente storica:
+  non usarlo nel servizio dedicato; il nuovo prototipo shell usa Python e bash di sistema.
+
+ANCORA DA COMPLETARE
+1. Completare collaudo ciclo vita shell VPS e integrare solo dopo esito positivo e approvazione Telegram.
+2. Percorso autenticato di approvazione amministrativa per i Mac, account dedicati non-admin.
+3. Isolamento del backend/figli, shell temporanea, PTY e revoca/scadenza reale su ogni macchina.
+4. Identita persistenti per-chat e lease dei progetti, oltre ai lock per singola operazione.
+5. Collegare il backend DC collaudato alle ricerche/processi con ownership delle sessioni.
+6. Collaudo anche dal client Claude; qui non e stato eseguito da Claude.
+7. Solo dopo collaudo, eventuale cutover finale. Mantenere tutti i fallback.
+
+Questo archivio contiene codice, test, stato e istruzioni di rollback; non contiene password o token.

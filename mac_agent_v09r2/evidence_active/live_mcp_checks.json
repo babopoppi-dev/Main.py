@@ -1,0 +1,49 @@
+{
+  "file_test_v1": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacNoleggioR2/workspace/mcp_oauth_live_test_20261002.txt\", \"bytes_written\": 32, \"operation_id\": \"b73f04eba4b64514a523a8d79f8ec5cf\", \"rollback_persistent\": true}"
+      }
+    ],
+    "isError": false
+  },
+  "file_test_v2": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacNoleggioR2/workspace/mcp_oauth_live_test_20261002.txt\", \"bytes_written\": 32, \"operation_id\": \"25022292c9ec4b71ad5309055d459278\", \"rollback_persistent\": true}"
+      }
+    ],
+    "isError": false
+  },
+  "file_test_passed": true,
+  "pty": {
+    "session_id": "b1ea0da445414001bc9e7edabe222f0c",
+    "pid": 65030,
+    "running": true,
+    "scope": "/Users/Shared/MCPAndreaMacNoleggioR2/workspace",
+    "network": "disabled",
+    "uid": 5000
+  },
+  "pty_read": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"session_id\": \"b1ea0da445414001bc9e7edabe222f0c\", \"running\": true, \"exit_code\": null, \"output\": \"MCP_ANDREA_RENTAL_PTY_LIVE_OK\\r\\nMCP_ANDREA_RENTAL_PTY_LIVE_OK\\r\\n\", \"truncated\": false, \"has_more\": false, \"log_path\": \"/Library/MCPAndreaMacNoleggioV09R2/state/shell-logs/b1ea0da445414001bc9e7edabe222f0c.log\", \"log_complete\": true, \"stop_reason\": null}"
+      }
+    ],
+    "isError": false
+  },
+  "after_disable": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790965787.799216, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"113fa67746d34f6a8072b241077ef0dd\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790965831.652034, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"ad00d55233bb46c595cfb261dd91c0a0\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790965843.980774, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"0b52d9980d144fcaa78f96f6c0764ebb\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790965849.256694, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"939654bae40d459a993458831d07ff54\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790965875.830922, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"68f7bf6bbe054e56b0e90e1062f70b07\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790965881.705118, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4f13b2f3de88417686cb2030b40f7f73\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790965887.318708, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"63e16021f8ea4405b1995c2a31ea8667\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790965892.3294652, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"47be40da004944e1b190f54af36fffe6\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790965897.290286, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6b9817494374457d92ea337d4c7e6057\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790965901.6902452, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"05b1212f2838438fa06a09a66ca5927f\", \"operation\": \"read_file\", \"ok\": false}, {\"time\": 1790965907.496573, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"d17d737afe04462a97959e54431786be\", \"operation\": \"enable_full_shell\", \"ok\": true}, {\"time\": 1790965914.101682, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"aae9a2b8ff5745bb880de91aa772bee8\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790965945.675222, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6d884de3341948fbae2a0af2e599e4e1\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790965952.748498, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"1ef48fcdc8454f7096520257e78ab7b0\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790965959.591875, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"a49503192c3e4456b970a46521338acd\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790965966.355229, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"fab6f4e3efeb4baaa11a87aa2d9eb0af\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790965973.7911758, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"eb61cb97b4f544b59cfda89064e603a1\", \"operation\": \"disable_full_shell\", \"ok\": true}, {\"time\": 1790965978.389052, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"1cded65b5b554e52bee0fa8bdee435da\", \"operation\": \"shell_session\", \"ok\": true}, {\"time\": 1790965984.934617, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"fb99edd759f54557a5c45105c31e967e\", \"operation\": \"shell_exec\", \"ok\": false}]}"
+      }
+    ],
+    "isError": false
+  },
+  "stop_test_session": "3152f19371df41c8a780e49621097d89",
+  "stop_test_result": "stopped=true exit_code=-9; shell disabled, running_sessions=0"
+}

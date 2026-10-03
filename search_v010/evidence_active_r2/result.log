@@ -1,0 +1,49 @@
+test_glob (test_search.Schema) ... ok
+test_tools_unique_and_machines (test_search.Schema) ... ok
+test_active_search_blocks_writes (test_search.Searches) ... ok
+test_binary_and_large_skip (test_search.Searches) ... ok
+test_cancel_before_worker_starts_releases_guard (test_search.Searches) ... ok
+test_capacity_and_expiration (test_search.Searches) ... ok
+test_depth_truncation_does_not_stop_siblings (test_search.Searches) ... ok
+test_disconnect_cancels_and_clears (test_search.Searches) ... ok
+test_entry_budget (test_search.Searches) ... ok
+test_existing_exclusive_lock_blocks_search (test_search.Searches) ... ok
+test_filename_glob_and_filter (test_search.Searches) ... ok
+test_filename_replaced_with_link_before_read (test_search.Searches) ... ok
+test_hidden_and_protected (test_search.Searches) ... ok
+test_limit_results (test_search.Searches) ... ok
+test_links_and_special_files_not_read (test_search.Searches) ... ok
+test_literal_punctuation (test_search.Searches) ... ok
+test_no_outside_traversal (test_search.Searches) ... ok
+test_owner_isolation (test_search.Searches) ... ok
+test_page_stability (test_search.Searches) ... ok
+test_pagination_validation (test_search.Searches) ... ok
+test_read_budget (test_search.Searches) ... ok
+test_regular_read_detects_change (test_search.Searches) ... ok
+test_response_budget_and_long_line (test_search.Searches) ... ok
+test_root_replaced (test_search.Searches) ... ok
+test_symlink_requested_directory (test_search.Searches) ... ok
+test_text_casefold_and_context (test_search.Searches) ... ok
+test_timeout (test_search.Searches) ... ok
+test_validation (test_search.Searches) ... ok
+test_audit_records_request_but_not_command_in_recent_view (test_mac_agent.AgentTests) ... ok
+test_baseline_status_uses_sandbox_and_fixed_argv (test_mac_agent.AgentTests) ... ok
+test_caller_passed_to_shell (test_mac_agent.AgentTests) ... ok
+test_default_shell_is_disabled (test_mac_agent.AgentTests) ... ok
+test_disconnect_revokes_search (test_mac_agent.AgentTests) ... ok
+test_extra_shell_arguments_rejected (test_mac_agent.AgentTests) ... ok
+test_failed_heartbeat_still_revokes_shell (test_mac_agent.AgentTests) ... ok
+test_file_write_read_and_rollback (test_mac_agent.AgentTests) ... ok
+test_log_quota_does_not_delete_existing_logs (test_mac_agent.AgentTests) ... ok
+test_log_reader_cannot_write_or_move (test_mac_agent.AgentTests) ... ok
+test_log_symlink_blocks_new_shell (test_mac_agent.AgentTests) ... ok
+test_private_state_cannot_be_read (test_mac_agent.AgentTests) ... ok
+test_search_does_not_access_shell_logs (test_mac_agent.AgentTests) ... ok
+test_search_lifecycle_and_audit (test_mac_agent.AgentTests) ... ok
+test_timeout_preserves_diagnostic_output_and_reaps_process (test_mac_agent.AgentTests) ... ok
+test_untrusted_identity_rejected (test_mac_agent.AgentTests) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.528s
+
+OK

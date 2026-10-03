@@ -1,0 +1,9 @@
+abi <abi/4.0>,
+include <tunables/global>
+
+# Only the root-owned, group-restricted MCP Andrea binary receives this rule.
+# Filesystem/process isolation is applied by bubblewrap and the service unit.
+# The global unprivileged-userns restriction stays enabled.
+profile mcp-andrea-bwrap /opt/central-mcp-gateway/bin/bwrap-mcp flags=(default_allow) {
+  userns,
+}

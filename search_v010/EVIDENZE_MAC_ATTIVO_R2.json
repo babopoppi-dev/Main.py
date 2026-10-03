@@ -1,0 +1,99 @@
+{
+  "installed": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Process started with PID 73019 (shell: /bin/zsh)\nInitial output:\n{\"file\": \"search_v010_receipt.json\", \"text\": \"{\\n  \\\"status\\\": \\\"active\\\",\\n  \\\"time\\\": 1790975222.988673,\\n  \\\"version\\\": \\\"0.10-personal-search-1\\\",\\n  \\\"uid\\\": 5000,\\n  \\\"agent_pid\\\": 72980,\\n  \\\"checks\\\": [\\n    \\\"content\\\",\\n    \\\"filename\\\",\\n    \\\"cancel and read-lock release\\\",\\n    \\\"sandboxed sw_vers\\\",\\n    \\\"all test files rolled back\\\"\\n  ],\\n  \\\"backup\\\": \\\"/Library/MCPAndreaMacMioV09/backup/search_v010_20261002\\\",\\n  \\\"hashes\\\": {\\n    \\\"mac_agent.py\\\": \\\"a043138883eada66cbcc44e8d35b38a663efba67936a542ca89be8f086691a64\\\",\\n    \\\"file_schema.py\\\": \\\"06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb\\\",\\n    \\\"search_tools.py\\\": \\\"ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b\\\",\\n    \\\"search_schema.py\\\": \\\"c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d\\\"\\n  },\\n  \\\"rental_touched\\\": false\\n}\"}\n{\"file\": \"search-preflight-v010r2-20261002/result.log\", \"text\": \"test_glob (test_search.Schema) ... ok\\ntest_tools_unique_and_machines (test_search.Schema) ... ok\\ntest_active_search_blocks_writes (test_search.Searches) ... ok\\ntest_binary_and_large_skip (test_search.Searches) ... ok\\ntest_cancel_before_worker_starts_releases_guard (test_search.Searches) ... ok\\ntest_capacity_and_expiration (test_search.Searches) ... ok\\ntest_depth_truncation_does_not_stop_siblings (test_search.Searches) ... ok\\ntest_disconnect_cancels_and_clears (test_search.Searches) ... ok\\ntest_entry_budget (test_search.Searches) ... ok\\ntest_existing_exclusive_lock_blocks_search (test_search.Searches) ... ok\\ntest_filename_glob_and_filter (test_search.Searches) ... ok\\ntest_filename_replaced_with_link_before_read (test_search.Searches) ... ok\\ntest_hidden_and_protected (test_search.Searches) ... ok\\ntest_limit_results (test_search.Searches) ... ok\\ntest_links_and_special_files_not_read (test_search.Searches) ... ok\\ntest_literal_punctuation (test_search.Searches) ... ok\\ntest_no_outside_traversal (test_search.Searches) ... ok\\ntest_owner_isolation (test_search.Searches) ... ok\\ntest_page_stability (test_search.Searches) ... ok\\ntest_pagination_validation (test_search.Searches) ... ok\\ntest_read_budget (test_search.Searches) ... ok\\ntest_regular_read_detects_change (test_search.Searches) ... ok\\ntest_response_budget_and_long_line (test_search.Searches) ... ok\\ntest_root_replaced (test_search.Searches) ... ok\\ntest_symlink_requested_directory (test_search.Searches) ... ok\\ntest_text_casefold_and_context (test_search.Searches) ... ok\\ntest_timeout (test_search.Searches) ... ok\\ntest_validation (test_search.Searches) ... ok\\ntest_audit_records_request_but_not_command_in_recent_view (test_mac_agent.AgentTests) ... ok\\ntest_baseline_status_uses_sandbox_and_fixed_argv (test_mac_agent.AgentTests) ... ok\\ntest_caller_passed_to_shell (test_mac_agent.AgentTests) ... ok\\ntest_default_shell_is_disabled (test_mac_agent.AgentTests) ... ok\\ntest_disconnect_revokes_search (test_mac_agent.AgentTests) ... ok\\ntest_extra_shell_arguments_rejected (test_mac_agent.AgentTests) ... ok\\ntest_failed_heartbeat_still_revokes_shell (test_mac_agent.AgentTests) ... ok\\ntest_file_write_read_and_rollback (test_mac_agent.AgentTests) ... ok\\ntest_log_quota_does_not_delete_existing_logs (test_mac_agent.AgentTests) ... ok\\ntest_log_reader_cannot_write_or_move (test_mac_agent.AgentTests) ... ok\\ntest_log_symlink_blocks_new_shell (test_mac_agent.AgentTests) ... ok\\ntest_private_state_cannot_be_read (test_mac_agent.AgentTests) ... ok\\ntest_search_does_not_access_shell_logs (test_mac_agent.AgentTests) ... ok\\ntest_search_lifecycle_and_audit (test_mac_agent.AgentTests) ... ok\\ntest_timeout_preserves_diagnostic_output_and_reaps_process (test_mac_agent.AgentTests) ... ok\\ntest_untrusted_identity_rejected (test_mac_agent.AgentTests) ... ok\\n\\n----------------------------------------------------------------------\\nRan 44 tests in 0.528s\\n\\nOK\\n\"}\n{\"file\": \"search-preflight-v010r2-20261002/selftest.log\", \"text\": \"{\\\"passed\\\": true, \\\"uid\\\": 5000, \\\"checks\\\": [\\\"content\\\", \\\"filename\\\", \\\"cancel and read-lock release\\\", \\\"sandboxed sw_vers\\\", \\\"all test files rolled back\\\"]}\\n\"}\n{\"launchd_exit\": 0, \"status_lines\": [\"state = running\", \"pid = 72980\", \"last exit code = (never exited)\"], \"error\": \"\"}\n{\"file\": \"mac_agent.py\", \"sha256\": \"a043138883eada66cbcc44e8d35b38a663efba67936a542ca89be8f086691a64\"}\n{\"file\": \"file_schema.py\", \"sha256\": \"06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb\"}\n{\"file\": \"search_tools.py\", \"sha256\": \"ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b\"}\n{\"file\": \"search_schema.py\", \"sha256\": \"c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d\"}\n"
+        },
+        {
+          "type": "text",
+          "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "machines": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"machines\": [{\"machine\": \"vps\", \"online\": true, \"meta\": {\"hostname\": \"vps-80501435\", \"platform\": \"Linux-6.8.0-142-generic-x86_64-with-glibc2.39\", \"python\": \"3.12.3\", \"uid\": 997, \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"search_version\": \"0.10.1\", \"shell_backend\": \"bwrap-v08\", \"shell_network\": \"disabled\", \"shell_scope\": \"/var/lib/central-mcp-vps-agent-test/workspace\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"get_more_search_results\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"start_search\", \"stop_search\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"uname -a\"], \"allowed_roots\": [\"/var/lib/central-mcp-vps-agent-test/workspace\", \"/var/lib/central-mcp-vps-agent-test/tmp\"]}, \"monitor\": false}, {\"machine\": \"mac_noleggio\", \"online\": false, \"meta\": {}, \"monitor\": true}, {\"machine\": \"mac_mio\", \"online\": true, \"meta\": {\"hostname\": \"MBP-di-Andrea.station\", \"platform\": \"darwin\", \"python\": \"3.9.6\", \"uid\": 5000, \"machine\": \"mac_mio\", \"agent_version\": \"0.10-personal-search-1\", \"full_shell_capable\": true, \"file_tools_version\": \"0.7\", \"search_version\": \"0.10.1\", \"shell_backend\": \"seatbelt-v09\", \"shell_network\": \"disabled\", \"shell_scope\": \"/Users/Shared/MCPAndreaMacMio/workspace\", \"allowed_roots\": [\"/Users/Shared/MCPAndreaMacMio/workspace\"], \"read_only_log_root\": \"/Library/MCPAndreaMacMioV09/state/shell-logs\", \"capabilities\": [\"create_directory\", \"disable_full_shell\", \"edit_block\", \"enable_full_shell\", \"get_file_info\", \"get_more_search_results\", \"list_directory\", \"move_file\", \"read_file\", \"read_multiple_files\", \"rollback_file\", \"shell_exec\", \"shell_session\", \"start_search\", \"stop_search\", \"who_is_working\", \"write_file\"], \"baseline_shell_commands\": [\"sw_vers\"], \"reconnect\": \"automatic; shell revoked on disconnect\"}, \"monitor\": true}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "baseline": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"exit_code\": 0, \"output\": \"ProductName:\\tmacOS\\nProductVersion:\\t12.7.6\\nBuildVersion:\\t21H1320\\n\", \"truncated\": false, \"timed_out\": false}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "write": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/ripresa_work_20261002_03c5537f9b0d5.txt\", \"bytes_written\": 36, \"operation_id\": \"44aa094858d643ff8c0f8898e7a0fbf5\", \"rollback_persistent\": true}"
+      }
+    ],
+    "isError": false
+  },
+  "read": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/ripresa_work_20261002_03c5537f9b0d5.txt\", \"content\": \"MCP_ANDREA_RIPRESA_WORK_OK_20261002\\n\", \"bytes_returned\": 36, \"truncated\": false}"
+      }
+    ],
+    "isError": false
+  },
+  "rollback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"operation_id\": \"44aa094858d643ff8c0f8898e7a0fbf5\", \"rolled_back\": true, \"persistent\": true}"
+      }
+    ],
+    "isError": false
+  },
+  "file_absent_after_rollback": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "FileNotFoundError: [Errno 2] No such file or directory: 'ripresa_work_20261002_03c5537f9b0d5.txt'"
+        }
+      ],
+      "structuredContent": {
+        "error_code": "INVALID_ARGUMENT"
+      },
+      "isError": true
+    }
+  },
+  "coordination": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790975335.5513558, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"537dbb5dcf484e628bee21ca992e958b\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790975344.38548, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"ca3e08de2e3441ddb9f420455a1b1be4\", \"operation\": \"shell_exec\", \"ok\": true}, {\"time\": 1790975369.9654772, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4164f534d245482784255de67a0c7b4a\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790975383.217379, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"27f7503ae0be4a7ead5a66b26714a335\", \"operation\": \"read_file\", \"ok\": true}, {\"time\": 1790975389.6514418, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"a53d59827e90423cbdff997c711b7750\", \"operation\": \"rollback_file\", \"ok\": true}], \"search_version\": \"0.10.1\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "operation_id": "44aa094858d643ff8c0f8898e7a0fbf5",
+  "expected_file_not_found_after_rollback": true,
+  "note": "44/44 test reali come UID5000 e selftest installazione passati. 68/68 test preparatori UID501 passati; i test amministrativi preparatori erano simulati."
+}

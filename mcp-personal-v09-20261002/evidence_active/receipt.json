@@ -1,0 +1,15 @@
+{
+  "status": "active",
+  "time": 1790968150.258655,
+  "source_sha256": "30dd992f416befe06eb4481196f20354521f04299932a98d6091370e59438a85",
+  "machine": "mac_mio",
+  "new_plist_sha256": "c355532f913809d9a183e0e4b4a55e226dfc850914dbe4992582d5d3bf7fd406",
+  "uid": 5000,
+  "agent_pid": 70137,
+  "new_workspace": "/Users/Shared/MCPAndreaMacMio/workspace",
+  "shell_default": "disabled",
+  "shell_network": "disabled",
+  "rollback_available": true,
+  "old_files_preserved": true,
+  "boot_start": true
+}

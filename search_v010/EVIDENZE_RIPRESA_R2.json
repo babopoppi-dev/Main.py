@@ -1,0 +1,35 @@
+{
+  "mac_test": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Process started with PID 72531 (shell: /bin/zsh)\nInitial output:\n{\"tests\": {\"exit\": 0, \"tail\": \"h.Searches) ... ok\\ntest_audit_records_request_but_not_command_in_recent_view (test_mac_agent.AgentTests) ... ok\\ntest_baseline_status_uses_sandbox_and_fixed_argv (test_mac_agent.AgentTests) ... ok\\ntest_caller_passed_to_shell (test_mac_agent.AgentTests) ... ok\\ntest_default_shell_is_disabled (test_mac_agent.AgentTests) ... ok\\ntest_disconnect_revokes_search (test_mac_agent.AgentTests) ... ok\\ntest_extra_shell_arguments_rejected (test_mac_agent.AgentTests) ... ok\\ntest_failed_heartbeat_still_revokes_shell (test_mac_agent.AgentTests) ... ok\\ntest_file_write_read_and_rollback (test_mac_agent.AgentTests) ... ok\\ntest_log_quota_does_not_delete_existing_logs (test_mac_agent.AgentTests) ... ok\\ntest_log_reader_cannot_write_or_move (test_mac_agent.AgentTests) ... ok\\ntest_log_symlink_blocks_new_shell (test_mac_agent.AgentTests) ... ok\\ntest_private_state_cannot_be_read (test_mac_agent.AgentTests) ... ok\\ntest_search_does_not_access_shell_logs (test_mac_agent.AgentTests) ... ok\\ntest_search_lifecycle_and_audit (test_mac_agent.AgentTests) ... ok\\ntest_timeout_preserves_diagnostic_output_and_reaps_process (test_mac_agent.AgentTests) ... ok\\ntest_untrusted_identity_rejected (test_mac_agent.AgentTests) ... ok\\n\\n----------------------------------------------------------------------\\nRan 68 tests in 0.380s\\n\\nOK\\n\"}, \"launcher_syntax\": {\"exit\": 0, \"output\": \"\"}, \"actual_launcher_check\": {\"exit\": 0, \"output\": \"{\\n  \\\"source_check_passed\\\": true,\\n  \\\"target\\\": \\\"mac_mio\\\",\\n  \\\"new_version\\\": \\\"0.10-personal-search-1\\\",\\n  \\\"daemon_loaded\\\": false,\\n  \\\"administrative_preflight_pending\\\": true,\\n  \\\"rental_touched\\\": false\\n}\\n\"}, \"uid\": 501, \"administrative_installer_executed\": false}\n"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+      }
+    ],
+    "isError": false
+  },
+  "desktop": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Process started with PID 72549 (shell: /bin/zsh)\nInitial output:\n{\"desktop_launcher\": \"/Users/babo/Desktop/Riprendi_Ricerca_MCP_Andrea.command\", \"sha256\": \"6737f48c836abec5bbecd1eed41afc892c80e51563a467fbbcb2ac6cc2feec62\", \"finder_reveal_exit\": 0, \"administrative_installer_executed\": false, \"awaiting_user_double_click\": true}\n"
+      },
+      {
+        "type": "text",
+        "text": "\n[executed on device: MBP-di-Andrea.station (af9e6e0f-90a4-4b8e-8b9b-abce2c5199c4)]"
+      }
+    ],
+    "isError": false
+  },
+  "hashes": {
+    "mac_updater_body_r2.py": "d43adfbc854a9c1b478e368d96e18fd3734f6a7b90196b5873edaf10c3946023",
+    "test_mac_upgrade_r2.py": "0985d5b13fdcf3f804909b08c82dc4ec9ea1ba436a4d5f8b628bbb8024404e43",
+    "Riprendi_Ricerca_MCP_Andrea.command": "6737f48c836abec5bbecd1eed41afc892c80e51563a467fbbcb2ac6cc2feec62",
+    "upgrade_mac_search_v010r2_20261002.py": "4bb2fcf8abe3536f34b6e0e15d3e8e84c92e72781b3c12799ba04ccdefb5216d"
+  },
+  "root_installation_executed": false
+}

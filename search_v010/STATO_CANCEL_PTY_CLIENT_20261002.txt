@@ -1,0 +1,47 @@
+MCP ANDREA — RICERCA E SESSIONI INTERATTIVE COLLAUDATE DAL CLIENT CHATGPT
+02/10/2026, Europe/Rome. Continuazione dalla versione 32 del checkpoint.
+
+ESITO ATTUALE
+Mac personale mac_mio: MBP-di-Andrea.station, UID5000, agent 0.10-personal-search-1, ricerca 0.10.1.
+Mac a noleggio resta IN PAUSA: nessuna chiamata diretta o modifica. Nessuna modifica VPS.
+
+RICERCA — PROVE REALI TRAMITE MCP ANDREA
+- Nomi glob: 2/2 file; contenuto letterale: 6/6 occorrenze.
+- Paginazione: 2 pagine da 1 nome e 3 pagine da 2 occorrenze; prima pagina riletta identica; nessun duplicato, troncamento o file saltato.
+- Annullamento ATTIVO ora dimostrato: search_id f29896f3fc98472d94edb3b966640745, transizione running -> cancelled chiamando start_search e stop_search dal client ChatGPT.
+- Ricerca interrotta dopo 9 file su 30, 9 risultati conservati e riletti identici; 9436806 byte letti, nessun limite raggiunto.
+- Corpus di prova di 31456020 byte creato nella sola workspace e completamente rimosso dopo il test.
+- La shell successiva ha acquisito il lock ed eseguito la pulizia: rilascio del blocco di ricerca verificato.
+- Il limite della precedente verifica (stop solo su ricerche gia completate) e SUPERATO.
+
+SHELL E SESSIONI — PROVE REALI DAL CLIENT
+- Lease temporaneo, comandi come UID5000 nella sandbox esistente, rete disabilitata.
+- PTY: start/send/read/stop passati; risposta MCP_PTY_ECHO:TEST_INTERATTIVO_20261002; arresto con exit -9, running false.
+- Revoca con processo figlio: parent PID73405, child PID73406, sessione 24b3a322996244b187ac0197c89cfeb3.
+- disable_full_shell restituisce enabled false e running_sessions 0. Sessione riletta running false, exit -9.
+- Heartbeat del figlio invariato in due letture successive e ancora invariato prima della rimozione. Questa e una prova osservabile dell'arresto dell'attivita del figlio; non e un inventario globale dei processi del Mac.
+- Comando innocuo /usr/bin/true dopo revoca correttamente rifiutato: enable the isolated shell for this client first.
+- Pulizia eseguita con nuovo lease di 1 minuto, poi disable esplicito. Tutte le fixture rimosse; log di audit e shell conservati.
+- Stato finale: active_locks [], shell_enabled false, running_sessions 0.
+
+RIPRISTINO E INSTALLAZIONE GIA COMPLETATI
+- Installazione r2 attiva, 44/44 test come UID5000 e selftest reali superati nella precedente sessione; 68 test preparatori separati, non privilegiati.
+- Non reinstallare il connettore o rieseguire i launcher per aggiornare le azioni: i tre tool ricerca sono ora disponibili e verificati dal client.
+- Agent /Library/MCPAndreaMacMioV09; ricevuta search_v010_receipt.json; backup originale backup/search_v010_20261002.
+- LaunchDaemon it.andreababini.mcp-mac-mio-v09. Nessun riavvio reale della macchina eseguito in queste verifiche.
+
+REGOLE E ATTIVITA ANCORA APERTE
+- L'identita/lease e per autorizzazione OAuth; chat diverse possono condividerla. Il coordinamento durevole per singola chat/progetto NON e implementato.
+- Amministrazione Mac via Telegram ancora da implementare. admin_request attuale riguarda solo il VPS e ogni comando amministrativo VPS richiede approvazione Telegram.
+- Procedure amministrative Mac attuali tramite launcher e password locale dell'utente; nessun sudo tramite Desktop Commander.
+- Gestione generale dei processi resta da implementare; i test attuali coprono soltanto le sessioni e i processi di prova di MCP Andrea.
+- Collaudo del client Claude e riavvio reale restano da eseguire.
+- Nessuna modifica a Bitcoin, La Marruca, LiDAR, credenziali, OAuth o servizi installati.
+- Desktop Commander conservato come fallback; nessun cutover o equivalenza completa dichiarati.
+
+EVIDENZE
+- search_v010/EVIDENZE_CLIENT_CHATGPT_20261002.json: nomi, contenuto, pagine, rollback dei primi file.
+- search_v010/EVIDENZE_CANCEL_PTY_CLIENT_20261002.json: cancellazione attiva, risultati conservati, PTY, revoca, figlio, pulizia e stato finale.
+- I precedenti STATO sono conservati nei file STORICO; le limitazioni superate in essi non descrivono lo stato attuale.
+
+Questo archivio conserva codice ed evidenze MCP; non e un backup completo della VM Bitrise o delle app.

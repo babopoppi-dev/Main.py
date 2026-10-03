@@ -1,0 +1,54 @@
+MCP ANDREA — PAUSA RICHIESTA PER CONTENIMENTO CREDITI
+02/10/2026, Europe/Rome. Ultima istruzione utente: completare solo il blocco
+corrente, test essenziali, poi fermarsi. Nessuna nuova feature o installer del
+nuovo Mac. Mac a noleggio sempre in pausa.
+
+STATO OPERATIVO
+La versione 0.10.1 sul Mac personale resta quella gia collaudata. Nessun codice
+installato, nessun servizio, privilegio, percorso autorizzato o rete modificato
+sul VPS o sui Mac durante questo blocco di sviluppo. Nessun Desktop Commander
+usato dall'istruzione di completare il progetto senza quel connettore.
+Le verifiche live gia concluse (ricerca, annullamento attivo, PTY, revoca e
+pulizia) restano documentate nel precedente STATO conservato nello storico.
+
+BLOCCO ATTUALE CONCLUSO IN SVILUPPO: COORDINAMENTO v0.11
+- Registro persistente delle sessioni di lavoro, credenziale distinta per chat,
+  lock su percorsi e discendenti, scadenza, protezione da clock civile arretrato.
+- Controlli integrati nel dispatcher Mac: scritture e rollback richiedono lock;
+  shell richiede lock della workspace; ricerche e shell appartengono alla
+  sessione di lavoro anziche alla sola famiglia OAuth.
+- Chiusura/scadenza revocano le attivita; audit persistente senza token pubblici.
+- Schema gateway additivo predisposto per work_session, work_lock e parametri
+  di sessione sugli strumenti. Nessuna attivazione del gateway eseguita.
+- 47/47 test PASS in ambiente Linux: core registro/file reali, integrazione
+  dispatcher e regressioni ricerca. Esecuzione shell macOS simulata nei test.
+- Sintassi controllata. Sorgenti, dipendenze, manifest e log in coordination_v011/.
+- Nessun errore residuo nella suite eseguita. NON dichiarare installazione,
+  collaudo UID5000 nativo o sostituzione completa di Desktop Commander.
+
+LIMITI E LAVORO ANCORA DA FARE
+1. Collaudo nativo del pacchetto sul Mac personale come UID5000.
+2. Preparazione e attivazione revisionata Mac + schema gateway, backup/rollback
+   e approvazioni previste. Aggiornamento del catalogo strumenti nel client.
+3. Integrazione del coordinamento nell'agent VPS (non inclusa nel blocco).
+4. Accesso ai progetti, operazioni di rete necessarie, amministrazione Mac via
+   Telegram e gestione generale processi restano successivi sviluppi.
+5. Prove con Claude, lavoro reale e riavvio del Mac prima del passaggio completo.
+Le sessioni sono capacita esplicite per client cooperanti, non ID chat firmati
+ dalla piattaforma. Altri programmi che scrivono direttamente non sono bloccati.
+
+VINCOLI
+- VPS: ogni comando amministrativo richiede approvazione Telegram.
+- Mac: nessun sudo remoto; attivazioni amministrative con procedura locale.
+- Mac a noleggio in pausa. Non modificare Bitcoin, La Marruca, LiDAR o credenziali.
+- Non iniziare l'installer del nuovo Mac senza richiesta esplicita dell'utente.
+- Nessuna automazione o lavorazione in background avviata: lavoro fermato.
+
+PERCORSI E RIPRESA
+- coordination_v011/LEGGIMI.txt: ambito, limiti e prossimo passo.
+- coordination_v011/test_final.log: esito finale 47 test.
+- coordination_v011/mac_agent_before.py: codice Mac prima della modifica proposta.
+- STORICO_prima_coordinamento_v011_20261002.txt: precedente stato operativo.
+- Backup installazione Mac gia esistente: /Library/MCPAndreaMacMioV09/backup/search_v010_20261002.
+Il prossimo passo consigliato e un unico collaudo nativo mirato sul Mac personale,
+poi la preparazione dell'attivazione. Non ripetere i test live gia superati.

@@ -1,0 +1,181 @@
+AGGIORNAMENTO CHE PREVALE SULLE SEZIONI PRECEDENTI
+- Installazione amministrativa sul Mac personale AUTORIZZATA da Andrea con «Autorizzo» alle 21:06:35 CEST del 02/10/2026.
+- Ricontrollo reale: tutte tre online, nessun lock attivo sul Mac personale, setup --check preparation_ready=true.
+- Launcher con SHA 66ebf6ef7666cf13e84cb13e41517f8322d4884c963507d7fad3e0f238d11485 verificato e copiato senza sudo in /Users/babo/Desktop/Attiva_MCP_Andrea_Mac_Personale.command.
+- File mostrato nel Finder con open -R. Non ancora eseguito: serve doppio clic fisico dell'utente.
+- Installazione e test UID5000 sul Mac personale NON ancora completati. Non chiedere nuovamente consenso già ricevuto.
+
+MCP ANDREA — CONSENSO MAC PERSONALE 02/10/2026 21:06:35 CEST
+
+OPERATIVO
+- Gateway https://mcp.andreababini.it, HTTPS/OAuth e StreamableHTTP /mcp esistenti.
+- VPS, mac_noleggio, mac_mio tutti online.
+- VPS UID997: file e shell/PTY temporanea isolata operativi.
+- Mac noleggio UID5000: agent0.9-rental-2 installato e collaudato via MCP.
+- Mac personale UID501: vecchioagent file/status operativo; nuovo pacchetto non-admin pronto, non installato.
+- Shell VPS/rental disabilitate perdefault; rental lasciato disabled con0sessioni e0lock.
+- File v0.7 sulle3macchine gia collaudati; catalogogateway20tool, questa chat14tool.
+- admin_request/admin_result operativi SOLO sul VPS, protetti da Telegram.
+- Nessun intervento Bitcoin/cron/trading. Fallback conservati.
+
+AGGIORNAMENTO LIVE MAC NOLEGGIO — R2 ATTIVA E COLLAUDATA
+- Utente Fatto20:28:47 Europe/Rome. Ricevuta active1790965715.740101,
+  uid5000, agent_pid62627, versione0.9-rental-2, sorgente47bbf8e89ab9e5d6085c1b9e97152029af26bdb28104ee18d7ae13b8d3d97b40.
+- BASE /Library/MCPAndreaMacNoleggioV09R2, workspace /Users/Shared/MCPAndreaMacNoleggioR2/workspace.
+- Nuova plist hash9ba9e15614666a7219d89235a345fe6077d5670b3efcd8ee19d9d8c35f276031;
+  LaunchDaemon caricato dall'installer, vecchio LaunchAgent sospeso; vecchi file intatti.
+- Selftest reale UID5000 passa sw_vers, xcodebuild-version, file/shell/log/rollback.
+- Collaudo reale con MCP OAuth di questa chat PASS: sw_vers26.6.1/25G76,
+  Xcode26.6/17F113, write v1, read, write v2, rollback v2 ripristina v1,
+  rollback v1 rimuove filetest. Operazioni b73f04eba4b64514a523a8d79f8ec5cf e25022292c9ec4b71ad5309055d459278.
+- Enable3min, shell id-u=5000 exit0, log completo letto tramite read_file.
+- PTY cat start/send/read marker PASS, disable ferma processo exit-9, nuovo id-u rifiutato.
+- Ulteriore shell_session stop esplicito PASS, exit-9. Shell infine DISABILITATA,0sessioni.
+- Tutte3macchine online. VPSuname e Macpersonal swvers ricollaudati exit0.
+- Avvio automatico configurato; riavvio fisico macchina non effettuato.
+- Account/shell Macpersonale ancora da preparare; UID/GID5000 liberi, workspacevecchio vuoto.
+- Le sezioni storiche successive sullo staging R2 sono superate da questo aggiornamento.
+
+
+SHELL VPS v0.8 r3 — RISULTATO CONFERMATO
+- L'utente ha autorizzato esplicitamente ProtectKernelTunables=no e
+  ProtectKernelLogs=no sul solo central-mcp-vps-agent-test.service.
+- Richiesta Telegram32bd263cae7e48d1990649194c1902b9:done/0 (job pianificato).
+- Ricevuta finale /opt/central-mcp-gateway/shell_v08r3_receipt.json:
+  status=active, time=1790955909.9406059; collaudo preflight e live passati.
+- Backup /opt/central-mcp-gateway/backups/pre_shell_v08r3_20261002.
+- Installer /opt/central-mcp-gateway/upgrade_shell_v08r3_20261002.py root:root0555.
+  SHA256901ff7efea0f8e0babc5f49b1a546bf19e7feb1bd80b15f83c8b44e591d7ce03.
+- Preflight verificato: UID997, nessuna capability effettiva, NoNewPrivileges,
+  filesystem/credenziali isolati, niente rete, output/risorse limitati,
+  esclusione autorizzazioni concorrenti, PTY, lock file condiviso, revoca/scadenza/
+  morte agent terminano anche discendenti distaccati con setsid.
+- Drop-in /etc/systemd/system/central-mcp-vps-agent-test.service.d/80-mcp-shell-v08.conf.
+  Mantiene altri vincoli; MemoryMax512M, TasksMax128, CPUQuota100%, TimeoutStop10s.
+- Nessuna modifica ai sysctl globali, nessun sudo per agent/gateway.
+- Agent hash b96b46b676e0c2174053c09536f3a151da13bbae68a31411cf84ab8d2e343f9a.
+- cg_mcp.py f8a86b9a8424f9e6a0bc335f2951c8e9233750b62e1181379d9c6be3ebb04171.
+- cg_tools.py 59bba665b4ed825d7f4491b24f9c014d4596f3019060fe6255c99d40231954d7.
+- isolated_shell.py254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f.
+- Collaudo tramite connettore OAuth di questa chat: enable3min, id-u=997 exit0,
+  shell_session start cat, send/read marker MCP_ANDREA_OAUTH_PTY_OK_20261002,
+  disable(enabled=false,running_sessions=0), sessione terminata exit-9,
+  nuovo id-u rifiutato per shell disabilitata. uname-a exit0 ancora disponibile.
+- La shell monta solo /var/lib/central-mcp-vps-agent-test/workspace come /workspace;
+  rete disabilitata, una sessione attiva. Identita per autorizzazione OAuth,
+  non per singola conversazione: chat diverse possono condividere l'autorizzazione.
+- Rollback SOLO via admin_request/Telegram:
+  python3 /opt/central-mcp-gateway/upgrade_shell_v08r3_20261002.py --rollback
+
+APPROVER v0.7 r2 — ATTIVO E COLLAUDATO
+- Primo tentativo v07 ripristinato: attesa20s non adeguata alle chiamate Telegram40s.
+  Diagnostica0ba5c76d18e5464da757b42a542b0cde done/0 senza errori Python.
+- Copia r274bde3ae4cd14963bc4748baa072fed0 DONE/0, root:root0555 e SHA verificati.
+- APPLY907d24bbcb0d4c7780017337a5c355b9 DONE/0, riavvio pianificato.
+- Receipt finale /opt/central-mcp-gateway/approver_v07r2_receipt.json ACTIVE,
+  time1790957310.6910286; servizio active/running, NRestarts0.
+- Avvio confermato DOPO risposta Telegram, con attesa120s e rollback automatico.
+- Candidato1a93b45a8e9d4dcc2295edc5909bffffd7823e378998f5ea50e1cac176718cda.
+- Installer /opt/central-mcp-gateway/upgrade_approver_v07r2_20261002.py,
+  SHA25692f38b45ff7d93e8b31bd318da67296e0816128aee147872d3abb1894252b55a.
+- Backup /opt/central-mcp-approver/backups/pre_v07r2_20261002.
+- Collaudo Telegram b3e2d1383c8741f1a46d23fb99289335 /usr/bin/id DONE exit0,
+  output uid=0(root) gid=0(root) groups=0(root). Percorso reale verificato.
+- Correzioni: errore ack non scarta clic valido; ack3s; nuova pressione primo
+  pulsante puo riproporre seconda conferma senza saltarla.24 test passati.
+- Mantiene hash, utente/chat, scadenza10min, doppia conferma ed esecuzione unica.
+- Questo conferma l'installazione e un collaudo reale, non prova che tutti i
+  possibili ritardi di rete o problemi dell'app Telegram siano eliminati.
+- Rollback via Telegram:
+  python3 /opt/central-mcp-gateway/upgrade_approver_v07r2_20261002.py --rollback
+
+
+MCP ANDREA — MAC PERSONALE v0.9
+STATO: pacchetto preparato e verificato, NON installato. Consenso amministrativo locale pendente.
+
+AMBITO DEL CONSENSO DA ACQUISIRE
+Creazione dell'account mcp_andrea UID/GID5000 senza privilegi amministrativi e login
+interattivo disabilitato; collaudo shell isolata; installazione del nuovo agent
+come LaunchDaemon con avvio/riconnessione automatici, backup e rollback del collegamento.
+Il consenso del02/10 alle20:04 valeva solo per il Mac a noleggio e non copre questo Mac.
+admin_request/Telegram esegue ancora SOLO sul VPS: richiesta eccezione locale per questa installazione.
+Nessun sudo eseguito tramite Desktop Commander.
+
+VERIFICHE PREPARATORIE EFFETTIVE
+- Mac personale MBP-di-Andrea.station, macOS12.7.6 build21H1320, Intel.
+- Hardware UUID SHA25613e94bc1b7e266b260a0eb5aa9e0b3ffa4cd322a419b6be36481c583f6454d9d.
+- Attuale account babo501/admin; UID/GID5000 e nome mcp_andrea liberi.
+- Vecchio workspace /Users/babo/MCPAndreaWorkspace vuoto; nessun lock MCP attivo.
+- Vecchio LaunchAgent it.andreababini.mcp-mac-mio caricato.
+- Plist SHA2564b7221e55e61affad1c0296b6985d0b27b78135267e9114e093139a672207b1d.
+- Python3.9.6 /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9.
+- CLOCK_MONOTONIC_RAW presente.
+-56 test locali e56 sul Mac passati: account/rollback,preflight/guard/clock,dispatcher,
+  installer e sequenza account->preflight->migrazione. Nessun test privilegiato eseguito sul Mac personale.
+- Prova reale sandbox come501 PASS: workspace read/write,sw_vers exit0;
+  outside read/write/hardlink,signal-parent,privileged-executable e network negati.
+- --check dell'installer completo PASS; launcher zsh -n PASS.
+- Ultima revisione modifica solo etichetta log personale e commento sul runtime;
+  catena SHA componenti incorporati verificata e --check finale reale PASS.
+- Wheel websockets13.1 pura152134bytes, SHA a9a396a6ad26130cdae92ae10c36af09d9bfe6cafe69670fd3b6da9b07b4044f,
+  scaricata da host PyPI ufficiale con hash verificato; non installata.
+
+UN SOLO AVVIO FISICO PREVISTO
+- Staging /Users/babo/MCPAndreaMacMioSetupV09_20261002.
+- Attiva_MCP_Andrea_Mac_Personale.command verificato, copiato sul Desktop e selezionato nel Finder.
+- Consenso esplicito ricevuto il 02/10/2026 alle 21:06:35 Europe/Rome: utente «Autorizzo».
+- Il doppio clic fisico verifica SHA del setup e lo esegue come amministratore;
+  eventuale password va inserita solo sul Mac, mai inviata alla chat.
+- Fase1: account dedicato e ricevuta con UUID casuali protetta root.
+- Fase2:15controlli reali UID5000, inclusi PTY/revoca/scadenza/discendenti/morteagent,
+  in area separata. Fallimento ferma il passaggio senza cambiare vecchio agent.
+- Fase3: snapshot plist precedente, selftest dispatcher come5000, sostituzione
+  collegamento, attesa WSS90s, verifica UID/versione/PID. Auto-rollback su errore.
+- Il setup prende entrambi i lock root (account e preflight); migrazione tiene
+  lock del journal file precedente. Non si modifica nulla se esiste gia stato non revisionato.
+
+PERCORSI NUOVI E RISULTATI DA CONTROLLARE
+- Account bootstrap /Library/MCPAndreaMacMioAccountV09 (privato root).
+- Preflight /Library/MCPAndreaMacMioPreflightV09 e /Users/Shared/MCPAndreaMacMioPreflightV09.
+- Agent /Library/MCPAndreaMacMioV09, codice root, stato5000, token root:5000 mode0640.
+- Workspace /Users/Shared/MCPAndreaMacMio/workspace,5000:5000 mode0700.
+- LaunchDaemon it.andreababini.mcp-mac-mio-v09, versione0.9-personal-1.
+- Ricevuta finale /Library/MCPAndreaMacMioV09/receipt.json deve essere active.
+- list_machines deve indicare mac_mio UID5000/versione0.9-personal-1.
+- Il test UID5000 del Mac personale NON e gia passato: viene eseguito dall'installer.
+
+BACKUP E ROLLBACK
+- Account prima assente: before.json e codice rollback nel bootstrap privato.
+- Vecchia plist salvata in /Library/MCPAndreaMacMioV09/backup.
+- Vecchi file e credenziale originali, altri connettori e DesktopCommander preservati.
+- Workspace originale vuoto ricontrollato; abortisce se compaiono file.
+- Auto-rollback ripristina il precedente collegamento. Mantiene eventuale account
+  nuovo disabilitato e cartelle diagnostiche/dati per evitare perdita o riuso delUID.
+- Rollback manuale del solo collegamento, fisico e amministrativo:
+  sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/installer.py --rollback
+- Non cancellare account/cartelle con dati o servizi attivi.
+
+LIMITI CONSERVATI
+- Shell disabilitata perdefault, attivabile max240min, offline e solo workspace.
+- Nessun sudo per agent; nessun accesso generale ai file personali.
+- Un lease per famigliaOAuth, non perchat. Quota log, blocchi e rollback file.
+- sw_vers senza shellabilitata; nessuna buildXcode specifica su questo Mac.
+- Avvioautomatico configurato, nessuna promessa di superare FileVault prelogin.
+- Nessun intervento a Bitcoin, cron, progetti LaMarruca/LiDAR o OAuth.
+- MacadminTelegram e restante paritaDesktopCommander ancora da completare.
+
+SHA256
+bootstrap_account.py: c266d38a0a593db98364b42113495229125e6919c3f9d025b1088f7f2b0feec3
+preflight_installer.py: a6d840a6ee89b5e8346e1427ad56d4192e315b8fc31dde174f5ccaafd62f2fd9
+install_mac_agent.py: 30dd992f416befe06eb4481196f20354521f04299932a98d6091370e59438a85
+setup_personal.py: 193ea13da717b7ee1aba5ed6165bd03eae46906b6a9393191c5d10d0fb33ae17
+Attiva_MCP_Andrea_Mac_Personale.command: 66ebf6ef7666cf13e84cb13e41517f8322d4884c963507d7fad3e0f238d11485
+
+PROSSIMO PASSAGGIO
+1. Consenso locale per account+preflight+agent sul Mac PERSONALE RICEVUTO. Non richiederlo di nuovo.
+2. Desktop preparato e Finder aperto. Attendere doppio clic fisico, quindi leggere ricevute.
+3. Collaudo MCP personale: sw_vers,read/write/rollback,enable,id-u5000,PTYsend/read/stop,disable.
+4. Percorso amministrativo Mac tramiteTelegram, ricerca/processi/coord duraturo,
+   aggiornamento catalogo client e collaudo end-to-end ChatGPT/Claude, poi cutover.
+- Non affermare paritaDesktopCommander completa. Nessun riavvio macchina eseguito.
+- Non chiedere di nuovo l'autorizzazione per il Mac noleggio gia installato.

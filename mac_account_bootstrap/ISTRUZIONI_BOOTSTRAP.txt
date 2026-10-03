@@ -1,0 +1,40 @@
+AGGIORNAMENTO: consenso locale acquisito alle18:27 del02/10/2026.
+Metodo semplice: doppio clic su Avvia_MCP_Andrea.command sul Desktop del Mac a noleggio.
+Launcher preparato, verificato e NON eseguito dall'assistente.
+
+MAC NOLEGGIO — ACCOUNT DI SERVIZIO PREPARATO, NON INSTALLATO
+
+Prima dell'esecuzione serve il consenso specifico dell'utente al bootstrap locale:
+l'approvatore Telegram attuale agisce solo sul VPS e non puo eseguire sul Mac.
+Non usare Desktop Commander con sudo, non aggirare il vincolo Telegram senza
+una esplicita eccezione dell'utente per questo preciso passaggio locale.
+
+Scopo: crea soltanto account e gruppo mcp_andrea UID/GID5000 sul Mac a noleggio,
+identificato anche dal digest hardware. Login disabilitato, shell /usr/bin/false,
+home /var/empty, nessuna password utilizzabile, nessun gruppo admin o sudo.
+Non modifica l'agent esistente, token, workspace, vecchi connettori o progetti.
+Non abilita ancora la shell. Il Mac personale non e coinvolto in questo installer.
+
+Verifiche eseguite:10 test locali,10 test sul Mac con comandi amministrativi simulati;
+--check reale di sola lettura passato, account e gruppo assenti e UID/GID5000 liberi.
+I test mock non equivalgono a una creazione account gia provata in produzione.
+
+Sorgente depositato: /Users/vagrant/MCPAndreaAccountSetup20261002/bootstrap_account.py
+SHA256 673a989f829b2e67d3f320baa15c373f44e8af8cf1d75e42c046ee331a0eac1f
+
+Solo DOPO consenso specifico, nel Terminale del Mac a noleggio:
+sudo /usr/bin/python3 -I -B -c 'from pathlib import Path; import hashlib; p=Path('"'"'/Users/vagrant/MCPAndreaAccountSetup20261002/bootstrap_account.py'"'"'); d=p.open('"'"'rb'"'"').read(65537); assert len(d)<=65536 and hashlib.sha256(d).hexdigest()=='"'"'673a989f829b2e67d3f320baa15c373f44e8af8cf1d75e42c046ee331a0eac1f'"'"', '"'"'Hash non corrispondente: nessuna esecuzione'"'"'; exec(compile(d,str(p),'"'"'exec'"'"'), {'"'"'__name__'"'"':'"'"'__main__'"'"','"'"'__file__'"'"':str(p),'"'"'APPROVED_SOURCE'"'"':d})' --apply
+
+Il launcher legge una copia in memoria, verifica SHA256 e solo dopo esegue quella
+stessa copia. La password richiesta da sudo va inserita sul Mac, mai in chat.
+Prima delle modifiche vengono salvati lo stato iniziale (account assente) e una
+copia protetta del codice in /Library/MCPAndreaBootstrap20261002.
+Un errore attiva rollback; se l'identita e stata riutilizzata o ci sono processi
+attivi, il rollback si ferma per evitare cancellazioni non pertinenti.
+
+Rollback, sempre con autorizzazione amministrativa locale specifica:
+sudo /usr/bin/python3 -I -B /Library/MCPAndreaBootstrap20261002/bootstrap_account.py --rollback
+
+Il rollback rimuove solo i record creati con UUID corrispondenti e conserva le
+ricevute. La migrazione agent e il percorso amministrativo Mac via Telegram
+restano da sviluppare; non dichiarare il progetto equivalente a Desktop Commander.

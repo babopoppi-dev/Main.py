@@ -1,0 +1,15 @@
+{
+  "status": "active",
+  "time": 1790965715.740101,
+  "source_sha256": "47bbf8e89ab9e5d6085c1b9e97152029af26bdb28104ee18d7ae13b8d3d97b40",
+  "machine": "mac_noleggio",
+  "new_plist_sha256": "9ba9e15614666a7219d89235a345fe6077d5670b3efcd8ee19d9d8c35f276031",
+  "uid": 5000,
+  "agent_pid": 62627,
+  "new_workspace": "/Users/Shared/MCPAndreaMacNoleggioR2/workspace",
+  "shell_default": "disabled",
+  "shell_network": "disabled",
+  "rollback_available": true,
+  "old_files_preserved": true,
+  "boot_start": true
+}

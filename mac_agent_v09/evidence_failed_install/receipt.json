@@ -1,0 +1,9 @@
+{
+  "status": "rolled_back",
+  "time": 1790964626.562148,
+  "source_sha256": "322c27c45652760b97326d53be33814f83f1d94de0c325de6652fcd98e38abcd",
+  "machine": "mac_noleggio",
+  "failure": "RuntimeError: new agent selftest failed; see selftest.log",
+  "old_agent_restored": true,
+  "new_data_preserved": true
+}

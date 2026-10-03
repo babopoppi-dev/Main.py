@@ -1,0 +1,437 @@
+{
+  "date": "2026-10-02",
+  "machine": "mac_mio",
+  "rental_touched": false,
+  "tests": [
+    {
+      "name": "filenames_glob",
+      "start": {
+        "search_id": "64be745a186341a2b143d6e1bb1d7f12",
+        "status": "running",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [],
+        "offset": 0,
+        "next_offset": 0,
+        "total_results": 0,
+        "has_more": false,
+        "running": true,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 0,
+        "bytes_read": 0,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      },
+      "pages": [
+        {
+          "search_id": "64be745a186341a2b143d6e1bb1d7f12",
+          "status": "completed",
+          "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+          "results": [
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+              "type": "file"
+            }
+          ],
+          "offset": 0,
+          "next_offset": 1,
+          "total_results": 2,
+          "has_more": true,
+          "running": false,
+          "truncated": false,
+          "limits_reached": [],
+          "entries_scanned": 2,
+          "bytes_read": 0,
+          "skipped": {},
+          "retention_seconds_after_finish": 300,
+          "identity_scope": "OAuth authorization; chats may share an authorization"
+        },
+        {
+          "search_id": "64be745a186341a2b143d6e1bb1d7f12",
+          "status": "completed",
+          "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+          "results": [
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+              "type": "file"
+            }
+          ],
+          "offset": 1,
+          "next_offset": 2,
+          "total_results": 2,
+          "has_more": false,
+          "running": false,
+          "truncated": false,
+          "limits_reached": [],
+          "entries_scanned": 2,
+          "bytes_read": 0,
+          "skipped": {},
+          "retention_seconds_after_finish": 300,
+          "identity_scope": "OAuth authorization; chats may share an authorization"
+        }
+      ]
+    },
+    {
+      "name": "content_literal",
+      "start": {
+        "search_id": "aca5a036b62f4e56a0ef59c596389d08",
+        "status": "running",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [],
+        "offset": 0,
+        "next_offset": 0,
+        "total_results": 0,
+        "has_more": false,
+        "running": true,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 0,
+        "bytes_read": 0,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      },
+      "pages": [
+        {
+          "search_id": "aca5a036b62f4e56a0ef59c596389d08",
+          "status": "completed",
+          "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+          "results": [
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+              "line": 2,
+              "context_start_line": 2,
+              "text": "MCP_CLIENT_CHECK_20261002 alpha uno",
+              "text_truncated": false
+            },
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+              "line": 3,
+              "context_start_line": 3,
+              "text": "MCP_CLIENT_CHECK_20261002 alpha due",
+              "text_truncated": false
+            }
+          ],
+          "offset": 0,
+          "next_offset": 2,
+          "total_results": 6,
+          "has_more": true,
+          "running": false,
+          "truncated": false,
+          "limits_reached": [],
+          "entries_scanned": 2,
+          "bytes_read": 231,
+          "skipped": {},
+          "retention_seconds_after_finish": 300,
+          "identity_scope": "OAuth authorization; chats may share an authorization"
+        },
+        {
+          "search_id": "aca5a036b62f4e56a0ef59c596389d08",
+          "status": "completed",
+          "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+          "results": [
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+              "line": 4,
+              "context_start_line": 4,
+              "text": "MCP_CLIENT_CHECK_20261002 alpha tre",
+              "text_truncated": false
+            },
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+              "line": 1,
+              "context_start_line": 1,
+              "text": "MCP_CLIENT_CHECK_20261002 beta uno",
+              "text_truncated": false
+            }
+          ],
+          "offset": 2,
+          "next_offset": 4,
+          "total_results": 6,
+          "has_more": true,
+          "running": false,
+          "truncated": false,
+          "limits_reached": [],
+          "entries_scanned": 2,
+          "bytes_read": 231,
+          "skipped": {},
+          "retention_seconds_after_finish": 300,
+          "identity_scope": "OAuth authorization; chats may share an authorization"
+        },
+        {
+          "search_id": "aca5a036b62f4e56a0ef59c596389d08",
+          "status": "completed",
+          "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+          "results": [
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+              "line": 2,
+              "context_start_line": 2,
+              "text": "MCP_CLIENT_CHECK_20261002 beta due",
+              "text_truncated": false
+            },
+            {
+              "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+              "line": 3,
+              "context_start_line": 3,
+              "text": "MCP_CLIENT_CHECK_20261002 beta tre",
+              "text_truncated": false
+            }
+          ],
+          "offset": 4,
+          "next_offset": 6,
+          "total_results": 6,
+          "has_more": false,
+          "running": false,
+          "truncated": false,
+          "limits_reached": [],
+          "entries_scanned": 2,
+          "bytes_read": 231,
+          "skipped": {},
+          "retention_seconds_after_finish": 300,
+          "identity_scope": "OAuth authorization; chats may share an authorization"
+        }
+      ],
+      "repeat_page": {
+        "search_id": "aca5a036b62f4e56a0ef59c596389d08",
+        "status": "completed",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+            "line": 2,
+            "context_start_line": 2,
+            "text": "MCP_CLIENT_CHECK_20261002 alpha uno",
+            "text_truncated": false
+          },
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+            "line": 3,
+            "context_start_line": 3,
+            "text": "MCP_CLIENT_CHECK_20261002 alpha due",
+            "text_truncated": false
+          }
+        ],
+        "offset": 0,
+        "next_offset": 2,
+        "total_results": 6,
+        "has_more": true,
+        "running": false,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 2,
+        "bytes_read": 231,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      },
+      "stop": {
+        "search_id": "aca5a036b62f4e56a0ef59c596389d08",
+        "status": "completed",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+            "line": 2,
+            "context_start_line": 2,
+            "text": "MCP_CLIENT_CHECK_20261002 alpha uno",
+            "text_truncated": false
+          },
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+            "line": 3,
+            "context_start_line": 3,
+            "text": "MCP_CLIENT_CHECK_20261002 alpha due",
+            "text_truncated": false
+          },
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt",
+            "line": 4,
+            "context_start_line": 4,
+            "text": "MCP_CLIENT_CHECK_20261002 alpha tre",
+            "text_truncated": false
+          },
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+            "line": 1,
+            "context_start_line": 1,
+            "text": "MCP_CLIENT_CHECK_20261002 beta uno",
+            "text_truncated": false
+          },
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+            "line": 2,
+            "context_start_line": 2,
+            "text": "MCP_CLIENT_CHECK_20261002 beta due",
+            "text_truncated": false
+          },
+          {
+            "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt",
+            "line": 3,
+            "context_start_line": 3,
+            "text": "MCP_CLIENT_CHECK_20261002 beta tre",
+            "text_truncated": false
+          }
+        ],
+        "offset": 0,
+        "next_offset": 6,
+        "total_results": 6,
+        "has_more": false,
+        "running": false,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 2,
+        "bytes_read": 231,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      }
+    },
+    {
+      "name": "stop_immediate",
+      "start": {
+        "search_id": "491e517848434444a4ca2fb910db9a04",
+        "status": "running",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [],
+        "offset": 0,
+        "next_offset": 0,
+        "total_results": 0,
+        "has_more": false,
+        "running": true,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 0,
+        "bytes_read": 0,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      },
+      "stop": {
+        "search_id": "491e517848434444a4ca2fb910db9a04",
+        "status": "completed",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [],
+        "offset": 0,
+        "next_offset": 0,
+        "total_results": 0,
+        "has_more": false,
+        "running": false,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 2,
+        "bytes_read": 231,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      },
+      "after": {
+        "search_id": "491e517848434444a4ca2fb910db9a04",
+        "status": "completed",
+        "path": "/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119",
+        "results": [],
+        "offset": 0,
+        "next_offset": 0,
+        "total_results": 0,
+        "has_more": false,
+        "running": false,
+        "truncated": false,
+        "limits_reached": [],
+        "entries_scanned": 2,
+        "bytes_read": 231,
+        "skipped": {},
+        "retention_seconds_after_finish": 300,
+        "identity_scope": "OAuth authorization; chats may share an authorization"
+      }
+    }
+  ],
+  "create_directory": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119\", \"created\": true, \"operation_id\": \"b547d13a1ee3492681bd6d5f2e399adb\", \"rollback_persistent\": true}"
+      }
+    ],
+    "isError": false
+  },
+  "writes": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/alpha.txt\", \"bytes_written\": 126, \"operation_id\": \"80bd5090372d4b519205bba0ceed9fe9\", \"rollback_persistent\": true}"
+        }
+      ],
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\": \"/Users/Shared/MCPAndreaMacMio/workspace/search_client_check_20261002_2119/beta.txt\", \"bytes_written\": 105, \"operation_id\": \"340b56977c9745bca91bc1e004afc0a8\", \"rollback_persistent\": true}"
+        }
+      ],
+      "isError": false
+    }
+  ],
+  "cleanup": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"operation_id\": \"340b56977c9745bca91bc1e004afc0a8\", \"rolled_back\": true, \"persistent\": true}"
+        }
+      ],
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"operation_id\": \"80bd5090372d4b519205bba0ceed9fe9\", \"rolled_back\": true, \"persistent\": true}"
+        }
+      ],
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"operation_id\": \"b547d13a1ee3492681bd6d5f2e399adb\", \"rolled_back\": true, \"persistent\": true}"
+        }
+      ],
+      "isError": false
+    }
+  ],
+  "coordination_final": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"active_locks\": [], \"coordination\": \"exclusive workspace shell and shared file-journal lock\", \"shell_enabled\": false, \"identity_scope\": \"OAuth authorization; separate chats can share an authorization\", \"recent_operations\": [{\"time\": 1790975420.008922, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"d8bde481d12c462cb966dba09a76980e\", \"operation\": \"read_file\", \"ok\": false}, {\"time\": 1790975846.529512, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"465f87265e3f477c8e6dcef14e2f08a9\", \"operation\": \"who_is_working\", \"ok\": true}, {\"time\": 1790975879.305755, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"f68068062c124ff1b536c433cde7be2f\", \"operation\": \"create_directory\", \"ok\": true}, {\"time\": 1790975903.3696141, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"e8c3e63439e145b6a921997c1b01d44c\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790975910.230473, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"688d0275f8fb4d2bba89f8522a13fade\", \"operation\": \"write_file\", \"ok\": true}, {\"time\": 1790975929.1862872, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"37bc86b89a2346c59f98dd119e4a620c\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790975937.434218, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"e1678750207b4cc9b3de1d112d613fe7\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790975956.320823, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"1f67fa95ae9747de9007efeaa5330dcb\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790975964.881921, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"4003375d3fa8470991f8425ec6ca619d\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976010.268818, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"aa0dc62625da43579990c96125630702\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976019.279773, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"62a1ba07d0594274ac88ffa06304ae6d\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976027.882022, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"56290d6b7caf4db5a6fcdb55052cb0c1\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976036.996769, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"6dc0e392fe3a4ebbae2745591e6d03d2\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976064.9221041, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"9c808003b82b423a955bd0d0d8bfcdea\", \"operation\": \"start_search\", \"ok\": true}, {\"time\": 1790976071.261446, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"b2e62ce30f774bf0ad0c7b4a6f98dc77\", \"operation\": \"stop_search\", \"ok\": true}, {\"time\": 1790976081.131642, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"1b341fa021b34e85a5289d08103652f6\", \"operation\": \"get_more_search_results\", \"ok\": true}, {\"time\": 1790976104.272413, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"27c2aba7ccb6452bb066851522711192\", \"operation\": \"stop_search\", \"ok\": true}, {\"time\": 1790976113.3944829, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"38b3353db07e4a258cd261d4fc9c3655\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790976122.4993331, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"14b5b844f24544d7adbb9d7e860d9e0c\", \"operation\": \"rollback_file\", \"ok\": true}, {\"time\": 1790976132.043204, \"caller\": \"chatgpt:QZR97poU743om5w8iL58i68w\", \"request_id\": \"69fee67c84d44b8f845a65f030604b7d\", \"operation\": \"rollback_file\", \"ok\": true}], \"search_version\": \"0.10.1\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "fixture_absent": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "FileNotFoundError: [Errno 2] No such file or directory: 'search_client_check_20261002_2119'"
+        }
+      ],
+      "structuredContent": {
+        "error_code": "INVALID_ARGUMENT"
+      },
+      "isError": true
+    }
+  },
+  "client_cancellation_proven": false,
+  "client_stop_on_completed_proven": true,
+  "note": "Real client calls through MCP Andrea. stop_search succeeded for completed searches; active cancellation not demonstrated in this client run. Previous installation selftest covered active cancellation."
+}

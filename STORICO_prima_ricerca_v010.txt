@@ -1,0 +1,31 @@
+MCP ANDREA — RECUPERO MAC NOLEGGIATO BLOCCATO DALLA SCADENZA BITRISE
+Questo stato prevale sulle note storiche.
+
+STATO LIVE
+- VPS online, UID997.
+- mac_mio online, UID5000, agente 0.9-personal-1, file e shell/PTY gia collaudati.
+- mac_noleggio offline; sessione Bitrise scaduta. Non dichiarare tutte tre online.
+
+BITRISE: VERIFICA DIRETTA NEL BROWSER DEL MAC PERSONALE
+- Utente ha abilitato JavaScript da Apple Events; accesso DOM funzionante tramite Desktop Commander come utente babo, senza sudo.
+- Browser /Users/babo/Applications/Google Chrome 150.app, finestra1/tab1.
+- Dashboard e Dev Environments nuovamente accessibili: errore500 non presente nell'ultima verifica.
+- Workspace3880dd07ddd01856; sessione8a211be1-b176-44ec-a6f1-c0d0574e6f98, La Marruca iOS.
+- Verificato TERMINATED, CANNOT RESTORE - VM EXPIRED. Nessun pulsante Restore disponibile.
+- Sessione aggiornata02/10/2026 21:10, creata28/09/2026; causa esatta e recuperabilita dei dati non confermate.
+- Consenso esplicito utente Invia ricevuto02/10/2026 21:45:03 Europe/Rome.
+- Messaggio inviato e ricevuto nella chat Bitrise; richiesta successiva di operatore umano. Compilato modulo General question or feedback con lo stesso testo autorizzato.
+- TICKET CREATO #140999726, titolo Recupero sessione La Marruca iOS — CANNOT RESTORE / VM EXPIRED. Conferma UI Ticket is created; Bitrise notifichera aggiornamenti. Nessuna risposta umana sul recupero ancora ricevuta.
+- Nessuna VM cancellata o nuova VM acquistata/avviata; nessun dato modificato su mac_noleggio.
+
+PROSSIMO PASSO
+Ticket gia inviato: NON reinviare o creare duplicati, NON chiedere nuovamente consenso per la stessa richiesta. Attendere o controllare la risposta del supporto sul ticket140999726 prima di stabilire se la VM o i dati siano recuperabili. L'invio non autorizza acquisti o interventi a pagamento.
+Se recupero impossibile, esaminare configurazione e costi di una nuova macchina prima di avviarla. Adattare e ricollaudare l'installer alla nuova identita; non eseguire alla cieca vecchi launcher.
+
+LIMITI E LAVORO RESIDUO
+- Questo archivio conserva sorgenti/configurazioni/evidenze MCP, NON un backup completo della VM o delle app La Marruca/LiDAR.
+- Restano amministrazione Mac viaTelegram, ricerca/processi e coordinamento durevole perchat/progetto, aggiornamento catalogo client e collaudo end-to-end Claude.
+- Nessun cutover finale; fallback conservati. Nessuna modifica Bitcoin/cron/trading.
+- Vedere storico e directory evidence_active per prove e ricevute dei collaudi gia completati.
+
+Ora checkpoint UTC: 2026-10-02T19:48:36.833828+00:00

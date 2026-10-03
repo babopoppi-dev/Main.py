@@ -1,0 +1,58 @@
+MCP ANDREA — COORDINAMENTO v0.11, PACCHETTO DI SVILUPPO
+Preparato il 02/10/2026. NON INSTALLATO. Nessun servizio remoto modificato.
+
+Ambito completato
+- Sessione esplicita per ogni client/chat, legata all'autorizzazione OAuth e a
+  una credenziale casuale distinta. Il token viene restituito all'apertura,
+  conservato soltanto come hash e mai mostrato da who_is_working.
+- Prenotazioni esclusive di file/cartelle con scadenza. Conflitti anche tra
+  cartella e discendenti, con normalizzazione conservativa di maiuscole e Unicode.
+- Stato e ultime operazioni persistenti con scrittura atomica, fsync e flock.
+- Le scritture richiedono una sessione e un lock che copre il percorso; move
+  controlla origine e destinazione, rollback passa dallo stesso controllo.
+- Ricerca e terminale appartengono alla sessione di lavoro, distinta dal PID
+  o dall'ID della sessione PTY. Un'altra chat della stessa autorizzazione OAuth
+  non puo usare i risultati della ricerca o disattivare la shell altrui.
+- Per la shell serve il lock di tutta la workspace: il lease non puo durare
+  piu della sessione e del lock. Scadenza/chiusura revocano l'esecuzione.
+- I lock sopravvivono al riavvio dell'agent sullo stesso avvio del sistema;
+  un nuovo avvio del sistema invalida le vecchie sessioni. Scadenza verificata
+  con orologio condiviso monotono e ora civile, anche se questa torna indietro.
+
+File da distribuire in una futura attivazione
+Mac personale: mac_agent.py, work_sessions.py, work_schema.py.
+Gateway VPS: cg_tools.py, work_schema.py (schema dei due nuovi strumenti e
+parametri work_session_id/work_session_token aggiunti agli strumenti esistenti).
+Gli altri moduli sono copie delle dipendenze correnti per riprodurre i test.
+mac_agent_before.py conserva la versione Mac precedente, tratta dal checkpoint.
+
+Verifica eseguita
+python3 -B -m unittest -v test_work_core test_search
+47 test: nuovo coordinamento, integrazione dispatcher e regressioni ricerca.
+Ambiente di verifica: workspace Linux, non il Mac con UID5000.
+Le chiamate alla shell macOS nei test di integrazione sono simulate; il core
+del registro, i file, i lock, il rollback e il motore ricerca sono eseguiti.
+test_final.log contiene l'esito. Non dichiarare collaudo nativo o installazione.
+
+Limiti da mantenere espliciti
+- E un protocollo di coordinamento per client cooperanti: non autentica un vero
+  ID di conversazione ChatGPT. Chi condivide il token condivide la sessione.
+- Protegge le operazioni instradate da questo agent; altri editor, programmi o
+  connettori che scrivono direttamente sui file non rispettano automaticamente
+  questi lock. Il lock esclusivo singleton dell'agent resta necessario.
+- Aggiornamento ancora da collaudare nativamente e attivare con backup e rollback
+  revisionati. Il codice root del Mac non e stato toccato.
+- L'integrazione dell'agent VPS con il nuovo registro non e inclusa in questo
+  blocco. Il gateway propone i parametri in modo additivo; la versione richiede
+  controllo coordination_version sulla macchina selezionata.
+- Dopo attivazione Mac, le vecchie chiamate di scrittura senza credenziale di
+  sessione saranno rifiutate: serve aggiornare il catalogo del client.
+- Nessuna estensione di cartelle, rete, privilegi o funzioni amministrative.
+
+Prossimo passo, solo alla ripresa autorizzata
+Collaudare questo stesso pacchetto sul Mac personale come UID5000 in un'area
+temporanea. Poi preparare l'attivazione Mac/gateway con backup verificati e
+approvazioni previste. Non partire dall'installer del nuovo Mac.
+
+Pausa richiesta dall'utente per contenere i crediti. Nessuna nuova feature,
+nessuna attivita sul Mac a noleggio, nessun installer del nuovo Mac iniziato.

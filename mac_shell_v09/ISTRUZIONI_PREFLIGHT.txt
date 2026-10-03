@@ -1,0 +1,37 @@
+COLLAUDO LOCALE AUTORIZZATO IL02/10/2026 ALLE19:11 EUROPE/ROME
+Il consenso copre questo collaudo isolato e le correzioni necessarie.
+Non chiedere nuovamente il consenso; serve avvio fisico per la password locale.
+
+V1 ESEGUITA DALL’UTENTE, FALLITA exit-9, nessun processo5000 rimasto.
+Ricevuta: /Library/MCPAndreaShellPreflight20261002/receipt.json
+Causa individuata: kill(-1) puo includere il mittente nella semantica POSIX
+macOS; il prototipo si arrestava durante la propria pulizia. Il man locale
+riporta una descrizione legacy insufficiente per questa variante.
+Prova innocua senza inviare segnali: in sandbox con signal consentito soltanto
+verso self, kill(-1,0) consentito e kill(parent,0) negato.
+Altra correzione: Python3.9 macOS ha monotonic() relativo al processo;
+watchdog ora usa CLOCK_MONOTONIC_RAW comune. Prova reale tra processi passata.
+
+R2 PREPARATA, NON ANCORA ESEGUITA COME UID5000
+Staging: /Users/vagrant/MCPAndreaShellPreflightSetupR2_20261002
+Launcher sul Desktop: Riprova_Collaudo_MCP_Andrea.command
+Installer SHA256: 506636dda780016d3f5c3e81084062a12ebdb1e802aee339c82d8fef395a4b8e
+22 test locali e sul Mac PASS, policy probe PASS, --check PASS.
+La pulizia ora enumera soltanto processi5000, esclude se stessa/ps/zombie,
+usa PID positivi espliciti e ripete la scansione per discendenti distaccati.
+Root/501 e segnali a PID negativi/0/1/self sono rifiutati.
+
+L’installer verifica Mac, UUID account/gruppo, assenza processi UID5000,
+assenza installazioni precedenti. Crea soltanto queste nuove cartelle:
+/Library/MCPAndreaShellPreflightR2_20261002
+/Users/Shared/MCPAndreaShellPreflightR2_20261002
+La V1 e conservata per diagnosi. Nessun servizio, account o agent live cambiato.
+
+Il supervisore root prepara il test; shell e pulizia processi girano come5000.
+Test: file rollback, PTY, lock, lease, revoca/scadenza, morte agent/watchdog,
+limite output. Il nuovo log mantiene anche i controlli passati prima di un errore.
+Non vengono cambiati progetti, token, connettori, programmi/cron Bitcoin.
+
+Rollback R2 (richiede esecuzione amministrativa autorizzata):
+/usr/bin/python3 -I -B /Library/MCPAndreaShellPreflightR2_20261002/preflight_installer.py --rollback
+Rifiuta account riutilizzati/processi UID5000 attivi. Elimina solo cartelle R2.

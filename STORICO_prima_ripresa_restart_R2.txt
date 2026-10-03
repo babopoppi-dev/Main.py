@@ -1,0 +1,58 @@
+MCP ANDREA — VPS OPERATIVO; MAC AUTORIZZATO, IN ATTESA DI AVVIO LOCALE
+Stato del 02/10/2026. Ultima istruzione: continuare su VPS e Mac personale, fermare il lavoro sul Mac a noleggio.
+
+OPERATIVO E VERIFICATO
+- VPS online UID997: ricerca v0.10.1 installata. File, rollback e shell isolata gia collaudati. Shell disabilitata al termine dei controlli.
+- Mac personale online UID5000, agente 0.9-personal-1: file, rollback e shell/PTY gia collaudati. Ultimo controllo: nessun lock, shell disabilitata. Ricerca NON ancora installata.
+- Mac noleggiato offline e lavoro IN PAUSA per istruzione utente. Non collegarsi, non installare e non usarlo come gate del deploy. Ticket Bitrise 140999726 gia inviato; nessun recupero confermato.
+
+RICERCA
+- start_search, get_more_search_results, stop_search. Ricerca progressiva per nome o contenuto, risultati paginati e arresto.
+- Nomi: testo letterale o glob * ?. Contenuto: testo UTF-8 letterale. Nessun comando shell usato per cercare.
+- Solo radici autorizzate; symlink/hardlink/file speciali rifiutati, percorsi protetti e dati binari saltati.
+- Limiti: 60 secondi, 1000 risultati, 1 MiB per file, 32 MiB letti, 512 KiB di risultati, 20000 voci, profondita 16. Scadenza risultati 5 minuti dopo il completamento.
+- Lock del journal durante la ricerca; mutazioni e shell concorrenti bloccate. Stop/disconnessione rilasciano il lock.
+- Identita per autorizzazione OAuth, NON ancora per singola chat.
+- Catalogo live verificato: 23 strumenti. Questa chat conserva un catalogo precedente; i nuovi strumenti possono richiedere una nuova chat/aggiornamento azioni. Non reinstallare il connettore solo per lo schema.
+
+VPS: INSTALLAZIONE CONCLUSA
+- Deposito approvato su Telegram: 3794e8055706495dbcea90a11ecf007a, done exit0.
+- Applicazione approvata su Telegram: 8d14beffda244d74be5ed2037f7b8d9f, done exit0.
+- Receipt /opt/central-mcp-gateway/search_v010_receipt.json: status active, UID preflight 997.
+- Verificati via MCP locale: ricerca contenuti, ricerca nomi, rifiuto fuori radice, stato di base/shell disabilitata, creazione e rollback completo file/cartella di prova.
+- Backup: /opt/central-mcp-gateway/backups/pre_search_v010_20261002
+- Installer root: /opt/central-mcp-gateway/upgrade_search_v010_20261002.py
+- SHA256 installer: 3a921ff2e83771bff2f35044fb889df421705f3cc51d73e0f122ba8d49fc13b2
+- Aggiornati soltanto agent.py, cg_tools.py, search_tools.py, search_schema.py; gateway e agent riavviati, Mac personale riconnesso.
+- Rollback esplicito, solo con nuova approvazione Telegram: /usr/bin/python3 /opt/central-mcp-gateway/upgrade_search_v010_20261002.py --rollback
+- Non ripetere l'installazione completata. Nessuna modifica a OAuth, Caddy, credenziali, privilegi shell o Bitcoin/cron.
+
+MAC PERSONALE: INSTALLER PRONTO E NON ESEGUITO
+- Staging privato: /Users/babo/MCPAndreaSearchV010_20261002
+- Installer: upgrade_mac_search_v010_20261002.py
+- SHA256 installer: fddd5279a3070a717275a82766bcdcc55522ea5a4bc67cdb67845863905cc4ce
+- Launcher corretto e verificato: Aggiorna_Ricerca_MCP_Andrea.command
+- SHA256 launcher: 942b02d2d57cef72014e0f725cf27247e63a1c4d4db74ee5a1a73a0bf3a05472
+- Backup della precedente versione del launcher in staging: backup_launcher_before_revision2. Non usare quella versione precedente.
+- Controllo --check effettivo attraverso il loader del launcher passato; nessuna esecuzione amministrativa.
+- Root live da preservare: /Library/MCPAndreaMacMioV09/code
+- Daemon: it.andreababini.mcp-mac-mio-v09, workspace /Users/Shared/MCPAndreaMacMio/workspace.
+- Aggiornamento previsto: mac_agent.py, file_schema.py, search_tools.py, search_schema.py. Nuova versione 0.10-personal-search-1.
+- Plist, credenziali e privilegi shell invariati. Riavvio del solo agent centrale personale.
+- Prima delle modifiche: controllo hash/identita, lock esclusivo manutenzione, 44 test come UID5000, backup. Nessuna operazione su progetti personali o Bitcoin.
+- Backup previsto: /Library/MCPAndreaMacMioV09/backup/search_v010_20261002
+- Receipt previsto: /Library/MCPAndreaMacMioV09/search_v010_receipt.json
+- Dopo aggiornamento: test ricerca come UID5000, sw_vers, rollback file/cartella di prova e riconnessione verificata. Ripristino automatico su errore.
+- L'approvatore Telegram attuale gestisce SOLTANTO il VPS. Autorizzazione specifica locale ricevuta con "Continuiamo" il 02/10/2026 alle 22:27:23 Europe/Rome. Manca soltanto l'intervento fisico dell'utente per avviare il launcher e inserire la password sul Mac. Non usare sudo via Desktop Commander e non considerare le approvazioni VPS come autorizzazioni Mac.
+- Launcher gia copiato, hash verificato, modo0700 e selezionato nel Finder: /Users/babo/Desktop/Aggiorna_Ricerca_MCP_Andrea.command. Destinazione prima assente. Installer NON eseguito. Farlo aprire fisicamente all'utente; password del Mac solo nel suo terminale, mai in chat. Non chiedere di nuovo autorizzazione per questo aggiornamento. Dopo "Fatto", leggere receipt e stato live prima di ripetere qualsiasi operazione.
+
+COLLAUDI SUPERATI
+- 51 test locali runtime/agent, 9 deploy/rollback VPS.
+- 35 test staging VPS UID1000 e 35 preflight installazione VPS UID997.
+- 44 test runtime/agent sul Mac personale come UID501.
+- 8 test updater/launcher locali e 8 sul Mac personale; test del loader --check e --apply senza esecuzione del codice amministrativo, verifica sintassi zsh.
+- Il collaudo root UID5000 e la riconnessione del NUOVO agente Mac restano da eseguire durante l'installazione autorizzata.
+
+LAVORO RESIDUO
+Applicare ricerca Mac personale; amministrazione Mac via Telegram; gestione processi; coordinamento durevole per chat/progetto; aggiornamento catalogo nei client e collaudo Claude; prove di riavvio reale. Cutover non eseguito, fallback conservati. Nessuna equivalenza completa con Desktop Commander dichiarata.
+Questo archivio conserva codice ed evidenze MCP; NON e un backup completo della VM Bitrise o delle app.

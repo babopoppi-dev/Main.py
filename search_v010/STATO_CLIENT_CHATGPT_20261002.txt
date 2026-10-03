@@ -1,0 +1,16 @@
+MCP ANDREA — VERIFICA CLIENT CHATGPT DEI TOOL DI RICERCA
+02/10/2026, Europe/Rome. Ripreso dalla versione 31 del checkpoint.
+
+ESITO DI QUESTA SESSIONE
+- MCP Andrea espone e accetta ora start_search, get_more_search_results e stop_search in questa chat.
+- Solo mac_mio: hostname MBP-di-Andrea.station, agent 0.10-personal-search-1, search_version 0.10.1, UID5000.
+- start_search: ricerca per nome glob *.txt, 2/2 file; ricerca contenuto letterale, 6/6 occorrenze su 2 file.
+- get_more_search_results: nomi in 2 pagine da 1, contenuto in 3 pagine da 2, rilettura prima pagina identica. Nessun duplicato, limite raggiunto o file saltato.
+- stop_search: 2 chiamate riuscite, entrambe su ricerche gia completate; risultati conservati. Anche avviando una ricerca e chiamando subito stop, questa era gia completata all'arrivo dello stop.
+- LIMITE: annullamento di una ricerca ancora running NON dimostrato da questo client. Il selftest di installazione precedente lo aveva verificato direttamente sull'agent; non confondere i due livelli di prova.
+- File e cartella temporanei eliminati tramite 3 rollback persistenti; assenza finale verificata con FileNotFoundError atteso.
+- Stato finale: active_locks [], shell_enabled false, search_version 0.10.1.
+- Mac a noleggio IN PAUSA, nessuna chiamata diretta o modifica. Nessuna modifica VPS; nessun riavvio o reinstallazione.
+- Evidenze complete: search_v010/EVIDENZE_CLIENT_CHATGPT_20261002.json.
+
+STATO DEL RIPRISTINO PRECEDENTE (confermato prima di questa sessione)

@@ -1,0 +1,9 @@
+{
+  "consent_time": "2026-10-02T20:04:47+02:00",
+  "user_message": "Autorizzo",
+  "scope": "Installazione locale nuovo agent non-admin Mac noleggio con avvio automatico, backup e rollback",
+  "installer_sha256": "322c27c45652760b97326d53be33814f83f1d94de0c325de6652fcd98e38abcd",
+  "desktop_launcher": "/Users/vagrant/Desktop/Attiva_Agent_MCP_Andrea.command",
+  "execution_status": "awaiting_user_physical_launch",
+  "active_locks_before_preparation": []
+}

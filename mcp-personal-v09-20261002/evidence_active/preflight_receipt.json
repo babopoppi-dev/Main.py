@@ -1,0 +1,69 @@
+{
+  "status": "preflight_passed",
+  "live_agent_changed": false,
+  "uid": 5000,
+  "checks": [
+    {
+      "check": "disabled_by_default",
+      "passed": true
+    },
+    {
+      "check": "read_write",
+      "passed": true
+    },
+    {
+      "check": "rollback",
+      "passed": true
+    },
+    {
+      "check": "shell_uid5000",
+      "passed": true
+    },
+    {
+      "check": "pty_send_read",
+      "passed": true
+    },
+    {
+      "check": "other_client_lease_rejected",
+      "passed": true
+    },
+    {
+      "check": "file_shell_lock",
+      "passed": true
+    },
+    {
+      "check": "disable_stops_session",
+      "passed": true
+    },
+    {
+      "check": "foreground_end_stops_detached",
+      "passed": true
+    },
+    {
+      "check": "disable_stops_detached",
+      "passed": true
+    },
+    {
+      "check": "expiry_stops_detached",
+      "passed": true
+    },
+    {
+      "check": "watchdog_failure_stops_session",
+      "passed": true
+    },
+    {
+      "check": "output_limit",
+      "passed": true
+    },
+    {
+      "check": "no_remaining_locks",
+      "passed": true
+    },
+    {
+      "check": "agent_death_stops_detached",
+      "passed": true
+    }
+  ],
+  "remaining_uid5000_processes": 0,
+  "time": 1790968146.156075
+}

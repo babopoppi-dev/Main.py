@@ -1,0 +1,11 @@
+BITRISE — ESITO FOTO UTENTE 02/10/2026 21:21:50 EUROPE/ROME
+La foto della sessione La Marruca iOS mostra TERMINATED e CANNOT RESTORE - VM EXPIRED, simulatore NOT RUNNING, Xcode26.6, M2ProLarge, auto-terminate8h on restore. UpdatedOct2 2026 09:10PM.
+Questo identifica la cessazione della VM a livello Bitrise, coerente con MCP mac_noleggio offline e DC504. Non attribuire la causa all'agent MCP. Non dedurre dal solo timer8h la ragione precisa della scadenza.
+MCP_Andrea_stato_20261002.zip verificato integralmente tramite SHA256: sorgenti, installer e prove MCP salvati. Questo archivio NON e un backup completo della VM o dei progetti LaMarruca/LiDAR, le cui copie esterne non sono state verificate in questa lavorazione.
+Documentazione ufficiale consultata:
+https://docs.bitrise.io/en/bitrise-rde/getting-started/key-concepts
+https://docs.bitrise.io/en/bitrise-rde/getting-started/rde-faq
+La normale terminazione conserva il disco; rimozione dello stack rende le sessioni non recuperabili. La documentazione non consente di stabilire la specifica ragione del VM EXPIRED mostrato in foto. Non affermare che lo stack sia stato rimosso o che tutti i file siano persi. Se necessario, conferma tramite assistenza Bitrise.
+Nessuna eliminazione, nuova VM, acquisto o richiesta di assistenza inviati dall'agente.
+Prossimo passo assistito: cliccare Sessions nel breadcrumb e mostrare l'elenco, per verificare le opzioni effettive. Prima di creare risorse a pagamento verificare la configurazione e i costi proposti. Una nuova macchina richiedera adattamento installer all'identita hardware e collegamento sicuro: non riusare ciecamente i vecchi script legati all'hardware scaduto.
+VPS e Mac personale restano installati; collaudo Macpersonale completato nel checkpoint precedente.

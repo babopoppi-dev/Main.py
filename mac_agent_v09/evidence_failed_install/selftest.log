@@ -1,0 +1,50 @@
+{"check": "sw_vers", "passed": true, "output": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.1\nBuildVersion:\t\t25G76\n"}
+
+Traceback (most recent call last):
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/streams.py", line 517, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/subprocess.py", line 196, in communicate
+    stdin, stdout, stderr = await tasks.gather(stdin, stdout, stderr,
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 492, in wait_for
+    fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/MCPAndreaMacNoleggioV09/code/selftest.py", line 41, in <module>
+    if __name__=='__main__':asyncio.run(main())
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Library/MCPAndreaMacNoleggioV09/code/selftest.py", line 19, in main
+    result=await call('shell_exec',{'command':command})
+  File "/Library/MCPAndreaMacNoleggioV09/code/selftest.py", line 16, in call
+    return await d.dispatch({'type':'request','id':uuid.uuid4().hex,'caller':caller,'op':op,'args':args})
+  File "/Library/MCPAndreaMacNoleggioV09/code/mac_agent.py", line 123, in dispatch
+    result = await self.baseline(args)
+  File "/Library/MCPAndreaMacNoleggioV09/code/mac_agent.py", line 96, in baseline
+    output, _ = await asyncio.wait_for(proc.communicate(), 15)
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 494, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x107497160>
+Traceback (most recent call last):
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_subprocess.py", line 126, in __del__
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_subprocess.py", line 104, in close
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/unix_events.py", line 536, in close
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/unix_events.py", line 560, in _close
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 746, in call_soon
+  File "/Applications/Xcode-26.6.0.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 510, in _check_closed
+RuntimeError: Event loop is closed

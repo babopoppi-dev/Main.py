@@ -1,0 +1,70 @@
+MCP ANDREA — MIGRAZIONE MAC A NOLEGGIO v0.9
+STATO: preparata e verificata, NON installata; consenso locale acquisito02/10/2026 alle20:04:47 Europe/Rome; attesa esecuzione fisica.
+
+RISULTATI
+- Preflight R2 effettivo come UID/GID5000:15 controlli passati,0 processi residui.
+- Nuovo dispatcher e installer:18 test locali e18 sul Mac passati.
+- --check come vagrant501:preparation_ready=true.
+- Dipendenza websockets13.1 wheel pura, SHA verificato; nessun install di pacchetti.
+- Launcher verificato con zsh -n; nessun sudo eseguito via Desktop Commander.
+- Controlli riservati a root ripetuti PRIMA di qualsiasi modifica:
+  destinazione LaunchDaemon assente, hash sorgente preflight e login disabilitato.
+- /Library/LaunchDaemons e una directory root:root con mode0644 preesistente:
+  non leggibile/attraversabile da501. Non modificarne i permessi.
+
+INSTALLAZIONE PROPOSTA
+- Base root /Library/MCPAndreaMacNoleggioV09.
+- Workspace /Users/Shared/MCPAndreaMacNoleggio/workspace,5000:5000 mode0700.
+- Account mcp_andrea, UID/GID5000, fuori admin/wheel, login disabilitato.
+- LaunchDaemon it.andreababini.mcp-mac-noleggio-v09 con UserName/GroupName dedicati.
+- Avvio automatico con macOS, KeepAlive, riconnessione WSS al gateway esistente.
+  Non risolve un eventuale avvio bloccato prima dello sblocco FileVault.
+- Credenziale esistente riutilizzata internamente: root:5000 mode0640.
+- Codice root, stato privato5000, log a dimensione limitata.
+- Shell disattivata per default, attivabile fino240min, PTY e log leggibili.
+- Shell confinata al workspace, senza rete. Non e ancora la piena parita DC.
+- Disconnessione/revoca/scadenza/morte agent interrompono processi della shell.
+- File v0.7 con rollback e lock; una shell per autorizzazione OAuth alla volta.
+- Identita per autorizzazione OAuth, NON per singola chat; limite gia presente.
+- sw_vers e xcodebuild-version disponibili senza attivare la shell.
+- Non aggiunge build/test Xcode su progetti esterni al workspace.
+- Nessun cambiamento a Bitcoin, progetti La Marruca/LiDAR, OAuth, gateway/VPS.
+- Percorso amministrativo Telegram Mac ancora da implementare: admin_request solo VPS.
+
+BACKUP E CONTROLLO DEL PASSAGGIO
+- Workspace precedente verificato vuoto: l'installer si ferma se compaiono dati.
+- Floccaggio del journal precedente durante il passaggio e lock root condiviso
+  con il preflight: vietata concorrenza UID5000.
+- Backup root in BASE/backup/before.json e old-agent.plist.
+- Vecchia installazione resta intatta. Disabilita/ferma soltanto il vecchio
+  central-adapter LaunchAgent al momento del nuovo collegamento.
+- Prima del passaggio, selftest eseguito come5000 su comandi di stato, file,
+  rollback, shell, accesso ai log e revoca.
+- Attesa connessione nuova max90s, verifica UID/versione/PID e scrive receipt.json.
+- Se fallisce, ferma il nuovo servizio e ripristina il precedente; se anche il
+  ripristino fallisce scrive rollback_requires_review e richiede intervento.
+- Desktop Commander e vecchi connettori preservati; Terminale DC resta aperto.
+
+PASSAGGIO FISICO, SOLO DOPO CONSENSO LOCALE ESPLICITO
+- Staging /Users/vagrant/MCPAndreaMacAgentSetupV09_20261002.
+- Launcher Attiva_Agent_MCP_Andrea.command copiato sul Desktop e mostrato in Finder.
+- Dopo consenso, copiarlo sul Desktop e mostrarlo in Finder senza eseguirlo via DC.
+- Utente: doppio clic, password Mac soltanto nel Terminale, poi scrivere Fatto.
+- L'assistente non riceve la password e non esegue sudo tramite DC.
+- Il launcher verifica SHA256 prima di eseguire in memoria il sorgente approvato.
+- Installer SHA256: 322c27c45652760b97326d53be33814f83f1d94de0c325de6652fcd98e38abcd
+
+COLLAUDO DOPO ATTIVAZIONE
+- Leggere receipt.json:active, uid5000, e controllare list_machines meta.
+- sw_vers, xcodebuild-version, read/write/rollback tramite MCP Andrea.
+- enable_full_shell, id-u=5000, PTY start/send/read/stop, disable_full_shell.
+- Verificare nessun lock attivo e rifiuto di nuovi comandi shell dopo revoca.
+- Conservare ricevuta e risultati; poi procedere al Mac personale e alla rotta
+  amministrativa Telegram per Mac con autorizzazioni separate dove necessarie.
+
+ROLLBACK
+- Con approvazione amministrativa locale, eseguire fisicamente:
+  sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacNoleggioV09/installer.py --rollback
+- Si rifiuta se la plist nuova o quella vecchia sono cambiate; controllare prima.
+- Riabilita/bootstrap vecchio LaunchAgent; preserva nuovo workspace e log.
+- Non cancellare BASE/AREA senza revisione e backup dei dati.

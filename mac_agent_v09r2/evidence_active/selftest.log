@@ -1,0 +1,6 @@
+{"starting": "sw_vers", "uid": 5000, "sandbox": true}
+{"check": "sw_vers", "passed": true, "output": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.1\nBuildVersion:\t\t25G76\n"}
+{"starting": "xcodebuild -version", "uid": 5000, "sandbox": true}
+{"check": "xcodebuild -version", "passed": true, "output": "Xcode 26.6\nBuild version 17F113\n"}
+{"check": "dispatcher_files_shell_logs_rollback", "passed": true}
+

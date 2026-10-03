@@ -1,0 +1,51 @@
+MCP ANDREA — RICERCA v0.10 PRONTA; ATTESA APPROVAZIONE TELEGRAM
+Aggiornamento dopo istruzione02/10/2026 21:55:15 Europe/Rome: continuare su VPS e Mac personale, mettere in pausa Mac a noleggio.
+
+OPERATIVO (ULTIMO CONTROLLO)
+- VPS online UID997: file, rollback, shell e PTY gia collaudati. Servizi gateway, agent e approver attivi. Gateway/agent NoNewPrivileges=yes.
+- Mac personale online UID5000, agente0.9-personal-1. File, rollback, shell/PTY gia collaudati. Shell disabilitata, nessun lock.
+- Mac noleggiato OFFLINE e LAVORO IN PAUSA per istruzione utente. Non tentare collegamenti o installazioni e non usare la sua disponibilita come gate del deploy VPS. Ticket Bitrise140999726 gia inviato; nessun recupero confermato.
+
+NUOVA FUNZIONE PREPARATA (NON ANCORA INSTALLATA)
+- start_search, get_more_search_results, stop_search. Ricerca progressiva per nome o contenuto, risultati a pagine, arresto e conservazione5min.
+- Nomi: testo letterale o glob * ?. Contenuto: testo UTF-8 letterale. Nessuna esecuzione shell per cercare.
+- Solo radici gia autorizzate; symlink/hardlink/file speciali rifiutati, percorsi protetti e dati binari saltati.
+- Limiti: max60s,1000risultati,1MiB/file,32MiB letti,512KiB risultati,20000voci,profondita16. I risultati segnalano limiti e file saltati.
+- Lock condiviso del journal durante la ricerca: mutazioni/shell concorrenti bloccate; stop/disconnessione rilasciano il lock.
+- Proprietario e risultati isolati per famiglia OAuth. NON ancora per singola chat, limite esplicito conservato.
+- Il nuovo catalogo passa da20a23tool; i client possono richiedere una nuova chat/aggiornamento azioni per vederli. Nessuna reinstallazione del connettore solo per aggiornarne lo schema.
+
+COLLAUDI GIA SUPERATI
+- 51 test locali runtime/agent +9 test deploy/rollback (60 complessivi).
+- 35 test sul VPS come utente1000 in staging, stesso Python del servizio.
+- 44 test reali macOS/Python3.9 come utente501 in staging.
+- Test includono traversal, link e race symlink, identita, quote, stop prima dell'avvio del worker, cancellazione su disconnessione, paginazione, regressione file/rollback e lock.
+- Preflight come UID997 previsto nell'installer PRIMA di modificare i moduli live; non ancora eseguito.
+
+VPS: DEPOSITO APPROVATO; SECONDA APPROVAZIONE IN ATTESA
+Request ID:3794e8055706495dbcea90a11ecf007a (breve3794e805).
+Comando:install -o root -g root -m 0555 /tmp/mcp-search-v010-20261002/upgrade_search_v010_20261002.py /opt/central-mcp-gateway/upgrade_search_v010_20261002.py
+Deposito completato exit0. Copia root verificata: proprietario0:0, modo0555, SHA esatto. Nessun modulo live ancora cambiato.
+SHA256 atteso:3a921ff2e83771bff2f35044fb889df421705f3cc51d73e0f122ba8d49fc13b2.
+- Staging VPS verificato; destinazione root assente prima della richiesta; sorgenti agent.py/cg_tools.py invariati.
+- Seconda richiesta GIA INVIATA:8d14beffda244d74be5ed2037f7b8d9f (breve8d14beff), in attesa di approvazione. NON duplicare.
+- Comando:/usr/bin/python3 /opt/central-mcp-gateway/upgrade_search_v010_20261002.py --apply
+- Poll admin_result sulla seconda richiesta. Se done exit0, controllare receipt search_v010_receipt.json e list_machines; l'attivazione avviene in un job systemd separato dopo5s. Non confondere activation_scheduled con active.
+- L'apply pianifica una attivazione in5s: preflight UID997, backup, update4moduli (agent.py,cg_tools.py,search_tools.py,search_schema.py), riavvio agentVPS e gateway, collaudo MCP locale e rollback automatico su errore se non confligge con attivita altrui.
+- Backup previsto:/opt/central-mcp-gateway/backups/pre_search_v010_20261002
+- Receipt:/opt/central-mcp-gateway/search_v010_receipt.json
+- Rollback esplicito (sempreTelegram):/usr/bin/python3 /opt/central-mcp-gateway/upgrade_search_v010_20261002.py --rollback
+- Nessuna modifica config credenziali/OAuth/Caddy, sudo, agentMac o Bitcoin/cron. Il riavvio gateway comporta breve riconnessione del Mac personale.
+
+MAC PERSONALE: PROSSIMO PASSO DOPO VPS
+- Codice aggiornato mac_agent.py, search_tools.py, search_schema.py e schema file corretto pronti e testati.
+- Staging:/Users/babo/MCPAndreaSearchV010_20261002 (directory privata utente501).
+- Installazione root del Mac NON preparata/eseguita; serve un updater compatibile con l'installazione attuale e la prevista autorizzazione. Non eseguire il vecchio installer di migrazione su un'installazione esistente.
+- File live root da preservare:/Library/MCPAndreaMacMioV09/code; daemon it.andreababini.mcp-mac-mio-v09; workspace /Users/Shared/MCPAndreaMacMio/workspace.
+- Hash mac_agent.py corrente:a8c2efa68d19d449df69152344ece4beab8370e9ceab09488ed5f5f1bc030512.
+
+ALTRO LAVORO RESIDUO
+AmministrazioneMac viaTelegram, gestioneprocessi piucompleta, coordinamento durevole perchat/progetto, collaudoClaude e avvio/riconnessione. Fallback conservati; cutover non eseguito. Nessuna equivalenza completa con DesktopCommander dichiarata.
+Questo archivio e un backup del codice/evidenze MCP, NON un backup completo della VM Bitrise o delle app.
+
+Checkpoint UTC:2026-10-02T20:07:37.692188+00:00
