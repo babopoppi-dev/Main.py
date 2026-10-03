@@ -231,6 +231,28 @@ class Hostile(Base):
         self.assertEqual(self.result(r['request_id'])['status'], 'done')
         self.assertNotIn(r['request_id'], self.helper.pending)
 
+    def test_flood_is_bounded(self):
+        for i in range(25):
+            self.put(uuid.uuid4().hex + '.json', '{bad')
+        self.helper.scan()
+        self.assertEqual(len(os.listdir(self.root / 'outbox')), 15)
+        old = H.KEEP_RESULTS
+        H.KEEP_RESULTS = 4
+        try:
+            self.helper.prune()
+        finally:
+            H.KEEP_RESULTS = old
+        names = [n for n in os.listdir(self.root / 'results') if n != 'helper_status.json']
+        self.assertEqual(len(names), 4)
+
+    def test_prune_keeps_pending(self):
+        r = self.ask()
+        self.helper.scan()
+        self.clock[0] += H.RESULT_TTL + 10
+        os.utime(self.root / 'results' / (r['request_id'] + '.json'), (0, 0))
+        self.helper.prune()
+        self.assertTrue((self.root / 'results' / (r['request_id'] + '.json')).exists())
+
     def test_layout_check_rejects_open_outbox(self):
         os.chmod(self.root / 'outbox', 0o777)
         with self.assertRaises(RuntimeError):

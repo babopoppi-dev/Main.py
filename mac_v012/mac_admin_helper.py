@@ -32,6 +32,10 @@ MAX_TIMEOUT = 900
 MAX_PENDING = 3
 MAX_REQUEST = 16384
 MAX_OUT = 20000
+MAX_SCAN = 10          # outbox entries handled per loop (flood control)
+KEEP_RESULTS = 500     # newest result files kept
+RESULT_TTL = 7 * 86400
+AUDIT_MAX = 5 * 1024 * 1024
 CHARSET = re.compile(r'[A-Za-z0-9_./:=@%+, -]+')
 HEX32 = re.compile(r'[0-9a-f]{32}')
 CALLER = re.compile(r'[A-Za-z0-9][A-Za-z0-9._:-]{5,95}')
@@ -107,6 +111,11 @@ class Helper:
 
     def audit(self, event, **kw):
         kw.update(event=event, ts=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(self.now())))
+        try:
+            if os.lstat(str(self.audit_path)).st_size > AUDIT_MAX:
+                os.replace(str(self.audit_path), str(self.audit_path) + '.1')
+        except FileNotFoundError:
+            pass
         fd = os.open(str(self.audit_path), os.O_WRONLY | os.O_APPEND | os.O_CREAT | os.O_NOFOLLOW, 0o600)
         with os.fdopen(fd, 'a') as f:
             f.write(json.dumps(kw, ensure_ascii=False) + '\n')
@@ -134,6 +143,28 @@ class Helper:
 
     def result_exists(self, rid):
         return os.path.lexists(str(self.results / (rid + '.json'))) or os.path.lexists(str(self.claims / (rid + '.json')))
+
+    def prune(self):
+        """Bound the results directory: drop old or excess finished results (never pending ones)."""
+        dfd = os.open(str(self.results), os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            items = []
+            for name in os.listdir(dfd):
+                if name.endswith('.json') and HEX32.fullmatch(name[:-5]) and name[:-5] not in self.pending:
+                    try:
+                        items.append((os.lstat(name, dir_fd=dfd).st_mtime, name))
+                    except FileNotFoundError:
+                        pass
+            items.sort(reverse=True)
+            now = self.now()
+            for i, (mtime, name) in enumerate(items):
+                if i >= KEEP_RESULTS or now - mtime > RESULT_TTL:
+                    try:
+                        os.unlink(name, dir_fd=dfd)
+                    except FileNotFoundError:
+                        pass
+        finally:
+            os.close(dfd)
 
     def heartbeat(self, busy_until=None):
         self._publish('helper_status.json', {'time': self.now(), 'version': VERSION, 'pid': os.getpid(),
@@ -174,16 +205,22 @@ class Helper:
             st = os.fstat(dfd)
             if st.st_uid != self.agent_uid or stat.S_IMODE(st.st_mode) != 0o700:
                 raise RuntimeError('unsafe outbox')
+            handled = 0
             for name in sorted(os.listdir(dfd)):
+                if handled >= MAX_SCAN:
+                    break
                 rid = name[:-5] if name.endswith('.json') else None
                 if rid is None or not HEX32.fullmatch(rid):
                     try:
+                        # A young temp file may be a request being written: skip it, uncounted.
                         if name.endswith('.tmp') and self.now() - os.lstat(name, dir_fd=dfd).st_mtime < 60:
                             continue
+                        handled += 1
                         os.unlink(name, dir_fd=dfd)
                     except (FileNotFoundError, IsADirectoryError, PermissionError):
                         pass
                     continue
+                handled += 1
                 data, error = None, None
                 try:
                     fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=dfd)
@@ -399,6 +436,7 @@ def main():
     while True:
         try:
             helper.heartbeat()
+            helper.prune()
             helper.scan()
             params = {'timeout': 5, 'allowed_updates': ['callback_query']}
             if offset is not None:

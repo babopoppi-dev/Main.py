@@ -7,7 +7,7 @@ print 'Hash atteso installer: ''+digest+'
 print 'Quando richiesta, inserisci la password di accesso del tuo Mac personale.'
 /usr/bin/python3 -I -B -c 'import os,stat,hashlib,sys
 path='"'"'/Users/babo/MCPAndreaRepo/mac_v012/upgrade_mac_v012_20261003.py'"'"'
-expected='"'"'bbfc67c0cfb78dd07382e0f2a47bb3941b9c0196501a55381633c2ca90e62d3b'"'"'
+expected='"'"'959296e2c58fa96fc029ec247d4dd7430fc28252afb14379f5ed32579cdbab68'"'"'
 fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
 with os.fdopen(fd,'"'"'rb'"'"') as f:
  st=os.fstat(f.fileno())
@@ -24,7 +24,7 @@ exec(compile(raw,path,'"'"'exec'"'"'),context)
 if [[ $? == 0 ]]; then
   /usr/bin/sudo /usr/bin/python3 -I -B -c 'import os,stat,hashlib,sys
 path='"'"'/Users/babo/MCPAndreaRepo/mac_v012/upgrade_mac_v012_20261003.py'"'"'
-expected='"'"'bbfc67c0cfb78dd07382e0f2a47bb3941b9c0196501a55381633c2ca90e62d3b'"'"'
+expected='"'"'959296e2c58fa96fc029ec247d4dd7430fc28252afb14379f5ed32579cdbab68'"'"'
 fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
 with os.fdopen(fd,'"'"'rb'"'"') as f:
  st=os.fstat(f.fileno())

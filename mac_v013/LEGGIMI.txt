@@ -26,14 +26,14 @@ G. PROCESSI, LIVELLO 1 (nessun indebolimento del contenimento)
   della workspace (read_file).
 
 FILE E HASH
-  upgrade_mac_v013_20261003.py  0d44f7d189b4258b106853953d87263568b235cf69bf39bcf0f175f3cb9b4ed8
+  upgrade_mac_v013_20261003.py  c222968c9b6ba52f9d24b6d542b1201523782911fd077e810eeb1f5be9c09bb6
   mac_agent.py (0.13-personal-projects-1) 0b0e43d4c446e58506f804634eb3324592056beb10cf0264a1c173fcdea639e5
 Verifica live: mac_agent 0.12 (be237fab...), 16 dipendenze, plist, UID 5000.
 
 ATTIVAZIONE (dopo v0.12 e dopo il catalogo gateway v0.13)
 mac_admin_request, in ordine (timeout 900 per --apply):
   MAC_ADMIN_1_download.txt  curl al commit fissato (comando sensibile: doppia conferma)
-  MAC_ADMIN_2_check.txt     deve stampare installer_sha256 = 0d44f7d1...
+  MAC_ADMIN_2_check.txt     deve stampare installer_sha256 = c222968c...
   MAC_ADMIN_3_apply.txt     preflight UID 5000 (106 test), backup
                             /Library/MCPAndreaMacMioV09/backup/v013_20261003, stop/riavvio
                             del solo agent, selftest, rollback automatico alla 0.12

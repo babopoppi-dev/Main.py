@@ -21,7 +21,7 @@ TESTS={}
 ORIGINAL={'mac_agent.py': 'be237fab0a3d23209f32e186a8bcc206ab878f67abb5638a8138c413f56c760a', 'mac_projects.py': None, 'mac_processes.py': None, 'process_schema.py': None}
 DEPENDENCIES={'file_tools.py': '8a830b3e4ed62fec5b28c5c600a616899c5b706547155d5ed3684a1d8309d54e', 'file_schema.py': '06e579c359835daa58876d7e5de21d26ad374992fb76d9104dd1d6dd929409eb', 'search_tools.py': 'ebc7358ce73cd449d452363943b4fa66cfc3d740858ade3efc0ee6132513235b', 'search_schema.py': 'c6d111d440eec78bb08e27673fd832479f02446ac2abc25fb5237e12d47ee20d', 'agent_shell.py': 'd62822814d97c52468ca8aad4a43fa1bf8e424b8cd8200ac88ea4e2c9c33e21c', 'shell_common.py': '254dd32f26295b9376b1201cf7449832b8d9927018d0b9e208cc2a950b954f3f', 'mac_guard.py': '8d3f7afe80daae81e8f3a3471229423d14777eb84358a3f57621e74149dc57bc', 'mac_clock.py': '6553b061c51e2da286296231538796dd086404b1dbacca37bd9299e2628dae07', 'mac_policy.py': 'ae04120908a35656258243d73fc30e7069077388a4e863cd815444b14f2e53e0', 'mac_child.py': '99416031aa2404ec2e49798ca2e33797cc492f19f15f92048bea382a9cf29856', 'mac_watchdog.py': '66dc9cbe74dd74931979200a9eda4032461a31c1687f5a2ca64a4441f21c4c99', 'mac_shell.py': 'fad744a688debf755e17b04257a3d3d2afb2ed492426b1d2332b9f8475a11d67', 'work_sessions.py': '707604271f3570ec6f03a42e68c19430200623cfad341691fef620522b0f0f67', 'work_schema.py': '9204940d1c304ca41236785b2248c449a93f8102fcd1e15fae4d76c478db9ee9', 'admin_schema.py': 'a11e96523aa9571a3b64b4df9567d9b6d72f15fe6e4f09e39e2a19b4b13c5a03', 'mac_admin_client.py': '686e33d61c74dbd8c76485293c53d92ea8568297cf91ef44e79a13516d76f181'}
 TEST_NAMES=['mac_agent.py', 'mac_projects.py', 'mac_processes.py', 'process_schema.py', 'file_tools.py', 'file_schema.py', 'search_tools.py', 'search_schema.py', 'agent_shell.py', 'shell_common.py', 'mac_guard.py', 'mac_clock.py', 'mac_policy.py', 'mac_child.py', 'mac_watchdog.py', 'mac_shell.py', 'work_sessions.py', 'work_schema.py', 'admin_schema.py', 'mac_admin_client.py', 'test_work_core.py', 'test_search.py', 'test_mac_admin.py', 'test_projects_processes.py', 'mac_admin_helper.py', 'mac_coordination_selftest.py', 'cg_tools.py']
-SOURCE_SHA={'mac_agent.py': '0b0e43d4c446e58506f804634eb3324592056beb10cf0264a1c173fcdea639e5', 'mac_projects.py': '1ad44ac2e71b3026f7a6d87ac3f73b19a5dd87e777cf3c5cc69291c313988170', 'mac_processes.py': '08f4ebb5d7bda9711de74bfd4e8b2c9637790370a4e4800ef04d57d4768ff1fc', 'process_schema.py': 'b885baebf9f3d20cc00131a111945f64ff8678a3f3ce5f5b71917ed6d9a91849', 'test_work_core.py': 'b5e4d90c7a443dbada567e46c16d6ac60b95292f28b0b74bc0295572a2303229', 'test_search.py': '1988fb32d8545eff80ec68f59fe0070ef94d3023df6d1415b47c5fe4f849a3c3', 'test_mac_admin.py': '6934256c817d50f9bca2aee4791467f8055d315a25472f8738c403e2f9bb76e2', 'test_projects_processes.py': '99210d81744a045f1cfa0fea360afd61b674823ebd7ccd22ab00bd85fcbb8d9b', 'mac_admin_helper.py': 'fcf391cf59ef593eec4869ac6a793360532f1f758fcafb213b3946f0b6ef5932', 'mac_coordination_selftest.py': '9c8e9cc6fe845d05a2ac589b38eee3ba98e22c0d74dc1c893184647705303553', 'cg_tools.py': '9e216e48d7761bedcbfc33cb1f1b6298a1a92866778992d2630e84726ffff2fa'}
+SOURCE_SHA={'mac_agent.py': '0b0e43d4c446e58506f804634eb3324592056beb10cf0264a1c173fcdea639e5', 'mac_projects.py': '1ad44ac2e71b3026f7a6d87ac3f73b19a5dd87e777cf3c5cc69291c313988170', 'mac_processes.py': '08f4ebb5d7bda9711de74bfd4e8b2c9637790370a4e4800ef04d57d4768ff1fc', 'process_schema.py': 'b885baebf9f3d20cc00131a111945f64ff8678a3f3ce5f5b71917ed6d9a91849', 'test_work_core.py': 'b5e4d90c7a443dbada567e46c16d6ac60b95292f28b0b74bc0295572a2303229', 'test_search.py': '1988fb32d8545eff80ec68f59fe0070ef94d3023df6d1415b47c5fe4f849a3c3', 'test_mac_admin.py': '380666c26320a69804e93cd42b19a010f078ab2a2f34d182b44cb8694dd8611f', 'test_projects_processes.py': '99210d81744a045f1cfa0fea360afd61b674823ebd7ccd22ab00bd85fcbb8d9b', 'mac_admin_helper.py': '75285c6b156f85837952e9532db8f32920bc646e89ca0a7147939800e6e20c70', 'mac_coordination_selftest.py': '9c8e9cc6fe845d05a2ac589b38eee3ba98e22c0d74dc1c893184647705303553', 'cg_tools.py': '9e216e48d7761bedcbfc33cb1f1b6298a1a92866778992d2630e84726ffff2fa'}
 SOURCES={
 'mac_agent.py': r'''#!/usr/bin/env python3
 """Dedicated non-admin agent; root-owned code, private state, offline shell."""
@@ -1335,6 +1335,28 @@ class Hostile(Base):
         self.assertEqual(self.result(r['request_id'])['status'], 'done')
         self.assertNotIn(r['request_id'], self.helper.pending)
 
+    def test_flood_is_bounded(self):
+        for i in range(25):
+            self.put(uuid.uuid4().hex + '.json', '{bad')
+        self.helper.scan()
+        self.assertEqual(len(os.listdir(self.root / 'outbox')), 15)
+        old = H.KEEP_RESULTS
+        H.KEEP_RESULTS = 4
+        try:
+            self.helper.prune()
+        finally:
+            H.KEEP_RESULTS = old
+        names = [n for n in os.listdir(self.root / 'results') if n != 'helper_status.json']
+        self.assertEqual(len(names), 4)
+
+    def test_prune_keeps_pending(self):
+        r = self.ask()
+        self.helper.scan()
+        self.clock[0] += H.RESULT_TTL + 10
+        os.utime(self.root / 'results' / (r['request_id'] + '.json'), (0, 0))
+        self.helper.prune()
+        self.assertTrue((self.root / 'results' / (r['request_id'] + '.json')).exists())
+
     def test_layout_check_rejects_open_outbox(self):
         os.chmod(self.root / 'outbox', 0o777)
         with self.assertRaises(RuntimeError):
@@ -1621,6 +1643,10 @@ MAX_TIMEOUT = 900
 MAX_PENDING = 3
 MAX_REQUEST = 16384
 MAX_OUT = 20000
+MAX_SCAN = 10          # outbox entries handled per loop (flood control)
+KEEP_RESULTS = 500     # newest result files kept
+RESULT_TTL = 7 * 86400
+AUDIT_MAX = 5 * 1024 * 1024
 CHARSET = re.compile(r'[A-Za-z0-9_./:=@%+, -]+')
 HEX32 = re.compile(r'[0-9a-f]{32}')
 CALLER = re.compile(r'[A-Za-z0-9][A-Za-z0-9._:-]{5,95}')
@@ -1696,6 +1722,11 @@ class Helper:
 
     def audit(self, event, **kw):
         kw.update(event=event, ts=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(self.now())))
+        try:
+            if os.lstat(str(self.audit_path)).st_size > AUDIT_MAX:
+                os.replace(str(self.audit_path), str(self.audit_path) + '.1')
+        except FileNotFoundError:
+            pass
         fd = os.open(str(self.audit_path), os.O_WRONLY | os.O_APPEND | os.O_CREAT | os.O_NOFOLLOW, 0o600)
         with os.fdopen(fd, 'a') as f:
             f.write(json.dumps(kw, ensure_ascii=False) + '\n')
@@ -1723,6 +1754,28 @@ class Helper:
 
     def result_exists(self, rid):
         return os.path.lexists(str(self.results / (rid + '.json'))) or os.path.lexists(str(self.claims / (rid + '.json')))
+
+    def prune(self):
+        """Bound the results directory: drop old or excess finished results (never pending ones)."""
+        dfd = os.open(str(self.results), os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            items = []
+            for name in os.listdir(dfd):
+                if name.endswith('.json') and HEX32.fullmatch(name[:-5]) and name[:-5] not in self.pending:
+                    try:
+                        items.append((os.lstat(name, dir_fd=dfd).st_mtime, name))
+                    except FileNotFoundError:
+                        pass
+            items.sort(reverse=True)
+            now = self.now()
+            for i, (mtime, name) in enumerate(items):
+                if i >= KEEP_RESULTS or now - mtime > RESULT_TTL:
+                    try:
+                        os.unlink(name, dir_fd=dfd)
+                    except FileNotFoundError:
+                        pass
+        finally:
+            os.close(dfd)
 
     def heartbeat(self, busy_until=None):
         self._publish('helper_status.json', {'time': self.now(), 'version': VERSION, 'pid': os.getpid(),
@@ -1763,16 +1816,22 @@ class Helper:
             st = os.fstat(dfd)
             if st.st_uid != self.agent_uid or stat.S_IMODE(st.st_mode) != 0o700:
                 raise RuntimeError('unsafe outbox')
+            handled = 0
             for name in sorted(os.listdir(dfd)):
+                if handled >= MAX_SCAN:
+                    break
                 rid = name[:-5] if name.endswith('.json') else None
                 if rid is None or not HEX32.fullmatch(rid):
                     try:
+                        # A young temp file may be a request being written: skip it, uncounted.
                         if name.endswith('.tmp') and self.now() - os.lstat(name, dir_fd=dfd).st_mtime < 60:
                             continue
+                        handled += 1
                         os.unlink(name, dir_fd=dfd)
                     except (FileNotFoundError, IsADirectoryError, PermissionError):
                         pass
                     continue
+                handled += 1
                 data, error = None, None
                 try:
                     fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=dfd)
@@ -1988,6 +2047,7 @@ def main():
     while True:
         try:
             helper.heartbeat()
+            helper.prune()
             helper.scan()
             params = {'timeout': 5, 'allowed_updates': ['callback_query']}
             if offset is not None:
