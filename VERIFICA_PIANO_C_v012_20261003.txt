@@ -1,5 +1,6 @@
 MCP ANDREA — VERIFICA PIANO C v0.12 su mac_mio — 03/10/2026 (branch claude/mcp-andrea-v0-12-verify-35k9tm)
-ESITO: PARZIALE. Trovato un difetto bloccante dell'agent Mac 0.12-personal-1.
+ESITO FINALE: PIANO C SUPERATO dopo recupero manuale del journal (vedi SECONDA PARTE).
+Difetto confermato nell agent 0.12-personal-1 (upload commit con cartella padre mancante), da correggere.
 
 PASSI
 1. list_machines: OK. gateway 29 strumenti; vps 0.12-vps-1 online; mac_mio 0.12-personal-1 online
@@ -27,11 +28,44 @@ PASSI
    who_is_working finale: work_sessions [], work_locks [], shell_enabled false, rete disabled.
 
 AZIONI RICHIESTE
-A. Recupero locale sul Mac (Andrea, sudo): ispezionare il journal in /Library/MCPAndreaMacMioV09/state
+A. [FATTO] Recupero locale sul Mac (Andrea, sudo): ispezionare il journal in /Library/MCPAndreaMacMioV09/state
    e chiudere l'operazione upload interrotta (nessun file di destinazione creato). Finche non
    avviene, mac_mio non accetta scritture ne shell via MCP.
 B. Correzione agent v0.12: in upload commit verificare che la cartella padre esista PRIMA di
    registrare l'operazione nel journal (o marcarla abortita su eccezione), come fanno gli altri
    strumenti; aggiungere un test "commit con padre mancante => errore pulito, journal libero".
-C. Dopo A (e B), ripetere il piano C: create_directory prima di upload, poi copy/delete/rollback
+C. [FATTO] Ripetere il piano C: create_directory prima di upload, poi copy/delete/rollback
    e git ls-remote via shell github.
+
+CAUSA (codice coordination_v012/file_tools.py, branch claude/mcp-andrea-tools-update-h8gyic)
+write_bytes(): _begin() scrive il record 'prepared'; _atomic_file() solleva FileNotFoundError
+(padre mancante) senza try/except, quindi nessun _abort(). _check_journal() poi rifiuta ogni
+operazione finche esiste un record non committed/rolled_back.
+
+RECUPERO MANUALE (Andrea, sudo, sul Mac)
+- Journal: /Library/MCPAndreaMacMioV09/state/operations
+- Record bloccato 972f731ef6ba40b888b76cd63df46a9a.json: upload_file, status prepared,
+  before probe.bin kind missing, owner 5000 0600; destinazione inesistente.
+- Copia originale: /Library/MCPAndreaMacMioV09/state/972f731e...json.bak-recovery (root 0600).
+- Record riscritto in modo atomico: status rolled_back, aborted true, after {}, campo recovery;
+  owner 5000 0600. Record bloccati rimasti: nessuno.
+
+SECONDA PARTE — piano C ripetuto (sessione aa71be69...)
+- work_session + lock workspace/progetti: OK
+- create_directory progetti/verifica_35k9tm: OK (op 2b38147e...)
+- upload_file probe.bin 1003 byte: begin/chunk/commit OK, sha256 716cf379... (op 0de62919...)
+- read_binary coda (offset 987): OK, termina con 00 ff 00 come atteso; sha256 coincide
+- copy_file -> probe_copia.bin: OK (op eb3aa0d5...)
+- delete_path probe_copia.bin: OK (op 7760ca36...); rollback_file: OK, copia ripristinata
+  con lo stesso sha256
+- lock sull'intero workspace + enable_full_shell(network='github', 10 min): OK
+- git ls-remote https://github.com/babopoppi-dev/Main.py: exit 0 (HEAD f5abf18, branch
+  coordination-test, tools-update 7222ffe, v0-12-verify c030019)
+- curl https://example.com: rifiutato (network_events: refused host example.com; tunnel github.com)
+- disable_full_shell: OK; rollback in ordine inverso di copy, upload, create_directory: OK
+  (progetti di nuovo vuota)
+- lock rilasciato, sessione chiusa; who_is_working: work_sessions [], work_locks [],
+  shell_enabled false, rete disabled.
+
+DA FARE
+B. Correzione agent (upload commit con padre mancante => errore pulito e journal libero) + test.
