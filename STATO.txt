@@ -56,4 +56,4 @@ PROBLEMI RESIDUI
 
 VINCOLI INVARIATI: VPS solo admin_request+Telegram; Mac admin solo locale finche
 C non e attivo; non toccare Bitcoin, La Marruca, LiDAR, credenziali, Mac a noleggio.
-Stato precedente: STORICO_prima_v012_20261003.txt.
+Scheda per il mattino: MATTINO_20261003.txt. Stato precedente: STORICO_prima_v012_20261003.txt.

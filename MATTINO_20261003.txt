@@ -1,0 +1,30 @@
+MCP ANDREA — SCHEDA PER LE 9:30 DEL 03/10/2026 (in ordine; non saltare passi)
+
+A. AL MAC (procedura locale, ~5 minuti)
+1. Telegram: @BotFather -> /newbot -> nome (es. MCP Andrea Mac) -> copia il token.
+2. Terminale:
+   git clone -b claude/mcp-andrea-coordination-test-1bgkfu https://github.com/babopoppi-dev/Main.py.git ~/MCPAndreaRepo
+3. Terminale:
+   zsh ~/MCPAndreaRepo/mac_v012/Attiva_MCP_Andrea_v012.command
+   - hash stampato = 959296e2c58fa96fc029ec247d4dd7430fc28252afb14379f5ed32579cdbab68
+   - password del Mac, poi incolla il token, poi invia al nuovo bot il codice a 6 cifre
+   - esito: ATTIVAZIONE_MCP_V012_COMPLETATA
+
+B. IN CHAT: scrivi "sono disponibile" (approvazioni sul bot del VPS, scadono in 10 min)
+   Claude invia in un unico gruppo, in ordine:
+   1 gateway v0.12 download  2 check (hash e3555b10...)  3 apply
+   4 VPS v0.12 download      5 check (hash 8c9da8a9...)  6 apply
+   Le attivazioni si attendono a vicenda: approva pure in sequenza.
+
+C. CHAT NUOVA (catalogo 27 strumenti) — verifica
+   list_machines (mac 0.12-personal-admin-1, vps 0.12-vps-work-1),
+   work_session sul VPS, mac_admin_request di prova /usr/bin/id (approvata sul bot del Mac).
+
+D. FACOLTATIVO, SOLO DOPO C
+   v0.13 (E meccanismo + G livello 1): gateway_v013 (3 sul bot VPS), mac_v013 MAC_ADMIN_1..3 (bot Mac)
+   v0.14 (F): gateway_v014 (3), mac_v014 MAC_ADMIN_1..3, poi MAC_ADMIN_4/5 per configura_mac.py
+   Decisioni da dare: cartelle E (percorso:ro|rw), domini F, livello 2 di G (si/no).
+   F richiede il collaudo nativo descritto in mac_v014/LEGGIMI.txt.
+
+ROLLBACK: file *rollback* in ogni cartella; Mac v0.12: sudo /usr/bin/python3 -I -B
+/Library/MCPAndreaMacMioV09/upgrade_v012_20261003.py --rollback
