@@ -49,11 +49,13 @@ STATO DELL'ATTIVAZIONE (03/10/2026)
   bloccato dal controllo automatico dei permessi di Claude Code; serve il via
   di Andrea in chat (oppure lancia lui la admin_request).
 - VPS: agent v0.12 pronto (vps/), installer vps/upgrade_vps_v012_20261003.py
-  sha256 295b226dce6e5c238097094baa5cfd6bd7e3ab2f8ed309280a1b34d38dacd8af.
-  Deposito in workspace VPS via admin_request curl dal commit a1d98356.
-  Richiede PRIMA il gateway v0.12 (file_schema/work_schema/cg_tools fissati).
+  sha256 e628db4ca931451f9694b46301540f6e7f03ddac07fe4afae06bc9a9e2ae821e.
+  Deposito in workspace VPS via admin_request curl dal commit e146726e.
+  Indipendente dal gateway: accetta il catalogo v0.11 o v0.12; i nuovi
+  strumenti compaiono ai client quando il gateway v0.12 e attivo.
+- Mac: workspace/progetti creata (operazione 045922e7).
 
-PROCEDURA (ordine obbligatorio: gateway, poi VPS, poi Mac; mai insieme)
+PROCEDURA (gateway, VPS e Mac in qualsiasi ordine, mai contemporaneamente)
 Prima di iniziare: nessuna sessione/lock/shell attiva (who_is_working).
 
 A. Gateway, via admin_request (Claude invia, Andrea approva su Telegram):
@@ -65,7 +67,7 @@ A. Gateway, via admin_request (Claude invia, Andrea approva su Telegram):
    Rollback: ADMIN_REQUEST_rollback_gateway.txt. Backup:
    /opt/central-mcp-gateway/backups/pre_v012_20261003.
 
-A2. VPS, via admin_request (dopo A):
+A2. VPS, via admin_request (anche prima di A):
    V1) vps/ADMIN_REQUEST_V1_installa_script.txt (install in /opt, root 0555)
    V2) vps/ADMIN_REQUEST_V2_attiva.txt -> activation_scheduled; il job
        separato fa preflight come utente agent, backup, stop agent, install,

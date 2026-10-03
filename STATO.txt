@@ -1,4 +1,4 @@
-MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 39
+MCP ANDREA — STATO 03/10/2026 (Europe/Rome), checkpoint versione 40
 Blocco coordinamento v0.11: ATTIVO su gateway e Mac personale, verificato.
 Blocco v0.12 (sostituzione Desktop Commander): pronto per gateway, VPS e Mac;
 attivazione gateway avviata (check OK), --apply in attesa del via di Andrea.
@@ -33,17 +33,19 @@ PIANO APPROVATO PER SOSTITUIRE DESKTOP COMMANDER
    FATTO (check_passed, 29). --apply IN ATTESA: il controllo automatico dei
    permessi di Claude Code lo ha bloccato; serve il via esplicito di Andrea.
 2. Agent VPS v0.12 (sessioni, lock, nuovi strumenti, shell offline): codice,
-   installer e test PRONTI (16 test, smoke reale contro l'agent). Sorgente
-   live letto e verificato (a6a9573e). Download installer in workspace VPS
-   via admin_request curl (commit a1d98356). Attivazione dopo il gateway.
+   installer e test PRONTI (17 test, smoke reale contro l'agent con catalogo
+   v0.11 e v0.12). Sorgente live letto e verificato (a6a9573e). Ora NON
+   dipende piu dal gateway: si attiva subito. Installer e628db4c...,
+   download in workspace VPS dal commit e146726e (admin_request curl).
 3. Mac v0.12: installer 2ceaaf84 pronto; comando Terminale nel LEGGIMI
    (scarica dal commit a1d98356, verifica hash, avvia launcher). Dopo il VPS.
 4. Verifica in chat nuova, poi prova di riavvio del Mac.
+5. Mac: cartella workspace/progetti creata (03/10, operazione 045922e7).
 
 STANDBY (in ordine)
  a) gateway --apply (ADMIN_REQUEST_3) + ricevuta (ADMIN_REQUEST_4).
- b) VPS: verifica hash del download (295b226d...), V1 install, V2 apply,
-    V3 ricevuta.
+ b) VPS (indipendente da a): verifica hash del download (e628db4c...),
+    V1 install, V2 apply, V3 ricevuta.
  c) Mac: comando Terminale (password).
  d) chat nuova: verifica; poi riavvio Mac.
 
