@@ -1,33 +1,33 @@
-MCP ANDREA — STATO 03/10/2026 ore ~13:00 (Europe/Rome)
-Linea attiva: v0.12 dell'altra sessione Claude (branch claude/mcp-andrea-tools-update-h8gyic,
-cartella coordination_v012). Questo branch conserva il lavoro parallelo (riserva) e le correzioni.
+MCP ANDREA — STATO 03/10/2026 pomeriggio (Europe/Rome) — branch claude/mcp-andrea-v0-12-verify-35k9tm
+Linea attiva: v0.12 p2 (cartella coordination_v012p2/). Stato precedente: STORICO_prima_v012p2_20261003.txt.
 
-ATTIVO E VERIFICATO OGGI
-- Gateway v0.12: catalogo 29 strumenti (+ delete_path, copy_file, read_binary, upload_file).
-  Ricevuta active, backup /opt/central-mcp-gateway/backups/pre_v012_20261003.
-  Script di rollback in /opt ripristinato (a10e73e2...) dopo la sovrascrittura accidentale.
-- Agent VPS 0.12-vps-1: sessioni e lock, nuovi strumenti. Ricevuta active (6 controlli live),
-  backup /opt/central-mcp-gateway/backups/pre_vps_v012_20261003. Attivato con lo script
-  CORRETTO di vps_v012_fix/ (fcf8e9b4...): l'originale falliva il preflight (sys.path).
-- Mac personale 0.12-personal-1: attivazione locale da Andrea (installer 2ceaaf84, commit
-  a1d98356), ATTIVAZIONE_V012_MCP_COMPLETATA; selftest UID5000 nel registro, nessuna
-  sessione/lock/shell aperti. Rete shell: spenta, su richiesta solo GitHub.
-  Backup /Library/MCPAndreaMacMioV09/backup/v012_20261003.
+ATTIVO E VERIFICATO
+- VPS 0.12-vps-2 (file_tools corretto, id di sessione nel registro). Ricevuta active, 7 controlli
+  live incluso "missing parent refused; journal usable". Backup backups/pre_vps_v012p2_20261003.
+- Gateway catalogo p2 (29 strumenti; network none|github|packages; shell_session list/processes).
+  Ricevuta active. Backup backups/pre_v012p2_20261003.
+- Mac 0.12-personal-2 (installer v012p2b, commit ada54b7, ATTIVAZIONE_V012P2B_MCP_COMPLETATA).
+  Verificato dal vivo: upload con padre mancante -> errore pulito, journal libero, stesso upload
+  completato dopo create_directory; due processi concorrenti, stop di uno lascia vivo l'altro,
+  processes/list, pulizia completa a fine ultimo processo; rollback; chiusura pulita.
+  Primo tentativo (v012p2) fallito nello smoke per tempi (shell seatbelt: primo output 1,5-2 s,
+  test leggeva a 0,5 s) e ripristinato automaticamente: residui innocui sul Mac da togliere
+  a fine lavori: /Library/MCPAndreaMacMioV09/backup/v012p2_20261003,
+  /Library/MCPAndreaMacMioV09/preflight-v012p2_20261003, /Users/Shared/MCPAndreaMacMio/preflight-v012p2_20261003.
 
-INCIDENTE DEL MATTINO (nessun danno)
-Due sessioni avevano preparato script con lo stesso nome. L'approvazione della 3/6 ha
-eseguito lo script gateway gia verificato dell'altra sessione; il mio download ha poi
-sovrascritto il suo file (ripristinato). Regola: una sola chat al lavoro, nomi file unici.
+INCIDENTE JOURNAL (03/10 mattina, risolto)
+Upload commit con cartella padre mancante lasciava un record 'prepared' che bloccava tutte le
+scritture e la shell. Recupero manuale (Andrea, sudo) + correzione in p2. Dettagli:
+VERIFICA_PIANO_C_v012_20261003.txt.
 
 PROSSIMI PASSI
-1. Chat NUOVA (catalogo 29): verifica del piano C dell'altra sessione: list_machines,
-   work_session + lock su workspace/progetti, upload/read_binary/copy/delete con rollback,
-   enable_full_shell network='github' + git ls-remote, shell spenta, chiusura.
-2. Poi riallineare a questa linea il lavoro di riserva di questo branch: amministrazione del
-   Mac via Telegram (C, mac_v012 qui), processi (G), progetti ro/rw (E) dove servono.
-3. Revisione v0.12 r2 dell'altra sessione (commit 7222ffe) prima di qualsiasi installazione.
+1. Chat NUOVA (catalogo p2): verifica di enable_full_shell network='packages' (pip/npm).
+2. Punto C su p2 (= p3): amministrazione del Mac via Telegram (bot dedicato, helper root),
+   lavoro di riserva in mac_v012/ da riportare sopra la p2. Poi collaudo di parita con
+   Desktop Commander e spegnimento di DC.
+Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
 
-ROLLBACK
-- Gateway: /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_gateway_v012_20261003.py --rollback
-- VPS: /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_vps_v012_20261003.py --rollback
-- Mac: installer v0.12 con --rollback (sudo locale), vedi coordination_v012/LEGGIMI.txt dell'altro branch.
+ROLLBACK p2
+- VPS:     admin_request /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_vps_v012p2_20261003.py --rollback
+- Gateway: admin_request /usr/bin/python3 -I -B /opt/central-mcp-gateway/upgrade_gateway_v012p2_20261003.py --rollback
+- Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p2b_20261003.py --rollback
