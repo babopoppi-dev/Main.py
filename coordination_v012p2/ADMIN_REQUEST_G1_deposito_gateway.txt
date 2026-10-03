@@ -1,1 +1,0 @@
-install -o root -g root -m 0555 /var/lib/central-mcp-vps-agent-test/workspace/upgrade_gateway_v012p2_20261003.py /opt/central-mcp-gateway/upgrade_gateway_v012p2_20261003.py

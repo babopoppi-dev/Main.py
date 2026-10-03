@@ -1,1 +1,0 @@
-sha256sum /var/lib/central-mcp-vps-agent-test/workspace/upgrade_gateway_v012p2_20261003.py

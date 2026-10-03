@@ -1,0 +1,1 @@
+sha256sum /opt/central-mcp-gateway/upgrade_gateway_v012p2_20261003.py

@@ -1,0 +1,1 @@
+/usr/bin/curl -fsS --proto =https --max-time 60 -o /opt/central-mcp-gateway/upgrade_gateway_v012p2_20261003.py https://raw.githubusercontent.com/babopoppi-dev/Main.py/3ad45a8fa61b37e15b73d3851c23687e63f57e76/coordination_v012p2/upgrade_gateway_v012p2_20261003.py
