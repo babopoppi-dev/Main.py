@@ -1,0 +1,58 @@
+MCP ANDREA v0.12 p3 — AMMINISTRAZIONE DEL MAC VIA TELEGRAM (03/10/2026)
+Sviluppata e testata, NON installata. Sopra la p2 attiva (Mac 0.12-personal-2, gateway p2).
+
+COSA CAMBIA
+- Mac: agent 0.12-personal-3 = p2b + strumenti mac_admin_request / mac_admin_result
+  (punto C della riserva mac_v012/, revisionato il 03/10). Moduli nuovi admin_schema.py e
+  mac_admin_client.py; mac_agent.py e l'unico modulo modificato (diff minimo); tutte le
+  altre 16 dipendenze restano quelle installate dalla p2b (hash fissati).
+- Mac: helper root separato (LaunchDaemon it.andreababini.mcp-mac-admin, file
+  /Library/MCPAndreaMacAdmin/code/mac_admin_helper.py, identico a mac_v012) con un bot
+  Telegram NUOVO dedicato al Mac (token solo sul Mac, root 0600). L'agent (UID 5000) scrive
+  soltanto la richiesta nell'outbox; l'helper mostra comando esatto, hash, motivo e sessione e
+  lo esegue come root solo dopo "Approva" (comandi sensibili: seconda conferma). Nessuna lista
+  pre-autorizzata, scadenza 10 min, esecuzione una sola volta, niente shell, max 3 in attesa.
+  La shell seatbelt (anche lei UID 5000) non puo scrivere nell'outbox: scrive solo nel workspace.
+- Gateway: catalogo 31 strumenti (+ mac_admin_request, mac_admin_result, solo mac_mio).
+  cg_mcp.py invariato (inoltra all'agent mac_mio). Agent VPS invariato.
+
+FILE E HASH (sha256)
+  upgrade_mac_v012p3_20261003.py      34f2f867340af7dc0e6292f3285602789cbb6ec71c137b7388f9e1e23d643f7e
+  Attiva_MCP_Andrea_v012p3.command    39280a9b0c594bf1313bced9ac7a43aef00af27fc64b0435107027f0b8e525cf
+  upgrade_gateway_v012p3_20261003.py  30c771130459dcc9e3c33d96a65fe917cfc8a889f9cd20694ab5b5e2c945bb9b
+  mac_admin_helper.py                 75285c6b156f85837952e9532db8f32920bc646e89ca0a7147939800e6e20c70
+Builder: build_mac_activation.py (base: installer p2b fecdbab5), build_gateway_activation.py
+(base: attivazione gateway p2 43c63ff8). Build deterministiche.
+
+TEST: TEST_v012p3.log — 162/162 con Python 3.9.23 (come sul Mac) e 3.11. Comprende la
+simulazione del preflight (gli stessi 27 file che l'installer porta sul Mac: 119 test).
+
+ORDINE DI ATTIVAZIONE
+1. Mac (locale, sudo di Andrea). Prima: Telegram -> @BotFather -> /newbot -> nome a scelta
+   (es. "MCP Andrea Mac") -> copia il token. Poi nel Terminale del Mac:
+     mkdir -p ~/MCPAndreaV012p3 && cd ~/MCPAndreaV012p3
+     curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/COMMIT/coordination_v012p3/upgrade_mac_v012p3_20261003.py
+     curl -fsSLO https://raw.githubusercontent.com/babopoppi-dev/Main.py/COMMIT/coordination_v012p3/Attiva_MCP_Andrea_v012p3.command
+     zsh Attiva_MCP_Andrea_v012p3.command
+   Controlla che l'hash stampato sia 34f2f867...643f7e; password del Mac; incolla il token
+   (non si vede); nella chat del nuovo bot premi Avvia e invia il codice a 6 cifre mostrato.
+   Esito atteso: ATTIVAZIONE_V012P3_MCP_COMPLETATA e messaggio "Helper ... avviato" sul bot.
+   Sequenza interna: --check senza privilegi; con sudo: abbinamento Telegram (se fallisce
+   l'agent non viene toccato), preflight UID 5000 (119 test), backup
+   /Library/MCPAndreaMacMioV09/backup/v012p3_20261003, stop del solo agent, installazione,
+   selftest UID 5000, riconnessione 0.12-personal-3, poi helper root e verifica del battito.
+   Errore sull'agent -> ripristino automatico della 0.12-personal-2; errore sul solo helper ->
+   helper rimosso, agent p3 resta (ricevuta active_agent_admin_failed).
+2. Gateway (Telegram, admin_request in ordine): ADMIN_REQUEST_G1_download, G1b_hash (deve
+   coincidere con 30c77113...45bb9b), G2_check, G3_apply (job systemd separato, backup
+   /opt/central-mcp-gateway/backups/pre_v012p3_20261003, rollback automatico), G4_ricevuta.
+3. Verifica dal vivo (chat nuova, catalogo 31): work_session su mac_mio, mac_admin_request
+   "/usr/bin/id" -> approvazione sul bot del Mac -> mac_admin_result done (uid=0); un comando
+   sensibile (es. "/bin/ls /Users/Shared") chiede la doppia conferma; uno rifiutato -> rejected;
+   mac_admin_result da un'altra autorizzazione -> rifiutato; senza sessione -> rifiutato.
+
+ROLLBACK
+- Mac:     sudo /usr/bin/python3 -I -B /Library/MCPAndreaMacMioV09/upgrade_v012p3_20261003.py --rollback
+           (rimuove l'helper e ripristina l'agent 0.12-personal-2; la configurazione Telegram
+           resta in /Library/MCPAndreaMacAdmin/conf)
+- Gateway: ADMIN_REQUEST_G_rollback_gateway.txt (torna al catalogo p2, 29 strumenti)
