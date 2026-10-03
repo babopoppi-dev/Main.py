@@ -66,10 +66,24 @@ VERIFICA DAL VIVO mac_admin_request (03/10 sera, superata)
 - Non provato: mac_admin_result letto da un'altra autorizzazione (serve una seconda chat).
 - Nuovo possibile residuo visto: /Users/Shared/MCPAndreaMacMioPreflightV09 (da guardare al punto 2).
 
+PULIZIA RESIDUI VIA HELPER (03/10 sera)
+- Sessione 9324136a..., contenuto controllato prima (du -sh + ls -laR, approvati sul bot del Mac):
+  backup/v012p2_20261003 88K (tentativo p2 fallito), preflight-v012p2_20261003 284K, dati
+  preflight-v012p2 vuoti, /Library e /Users/Shared/MCPAndreaMacMioPreflightV09 168K+16K
+  (preflight v0.9 del 02/10; il suo --rollback fa la stessa cosa e non tocca l'account).
+- /bin/rm -R -v sui 5 percorsi (c342ba29...) approvato -> done exit 0.
+- Verifica ls: residui spariti; backup intatti (before.json, old-agent.plist,
+  coordination_v011r1, search_v010, v012, v012p2b, v012p3).
+- workspace/Library (Caches/pip, Caches/com.apple.python) NON rimosso: delete_path bloccato dai
+  permessi della chat. Innocuo; da togliere a mano o con delete_path autorizzato.
+- Sessione chiusa; who_is_working pulito.
+- Restano altre cartelle di preflight di versioni attive/precedenti (coordination_v011r1, search
+  v010/v010r2, v012, v012p2b, v012p3, in /Library/MCPAndreaMacMioV09 e /Users/Shared/MCPAndreaMacMio):
+  non toccate, da valutare solo se si vuole una pulizia piu ampia.
+
 PROSSIMI PASSI
-1. Con l'helper: rimuovere i residui preflight v012p2 (elencati sopra), workspace/Library/Caches
-   e, dopo averlo guardato, /Users/Shared/MCPAndreaMacMioPreflightV09.
-2. Poi collaudo di parita con Desktop Commander e spegnimento di DC.
+1. Collaudo di parita con Desktop Commander e spegnimento di DC.
+2. (Facoltativo) workspace/Library/Caches; eventuale ritocco PIP_NO_CACHE_DIR nel profilo shell.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
 
 ROLLBACK p3
