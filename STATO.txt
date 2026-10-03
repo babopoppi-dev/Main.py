@@ -1,4 +1,4 @@
-MCP ANDREA — STATO 03/10/2026 pomeriggio (Europe/Rome) — branch claude/mcp-andrea-v0-12-verify-35k9tm
+MCP ANDREA — STATO 03/10/2026 sera (Europe/Rome) — branch claude/mcp-andrea-v0-12-verify-35k9tm
 Linea attiva: v0.12 p3 (cartella coordination_v012p3/, sopra la p2 di coordination_v012p2/). Stato precedente: STORICO_prima_v012p2_20261003.txt.
 
 ATTIVO E VERIFICATO
@@ -46,13 +46,30 @@ p3 ATTIVA (03/10, cartella coordination_v012p3/, dettagli in LEGGIMI.txt)
   active, catalogo 31, controlli "catalog p3", "vps baseline", "vps and mac_mio idle".
   Backup /opt/central-mcp-gateway/backups/pre_v012p3_20261003. Agent VPS non toccato.
 
+VERIFICA DAL VIVO mac_admin_request (03/10 sera, superata)
+- list_machines: mac_mio 0.12-personal-3 (mac_admin_version 0.12.0, capabilities con
+  mac_admin_request/mac_admin_result), vps 0.12-vps-2. Catalogo MCP_Andrea: 31 strumenti.
+- Senza sessione valida (id/token ben formati ma inesistenti) -> PermissionError
+  "invalid or expired work session" (who_is_working: mac_admin_request ok=false).
+- work_session aperta (117fd246...), nessun lock ne shell.
+- "/usr/bin/id" (c84c0295...) approvato su @Mcpmacandrea2bot -> done, exit 0, uid=0(root) gid=0(wheel).
+  Il messaggio era arrivato (stato waiting = sendMessage riuscito) ma Andrea non lo vedeva
+  subito: trovato aprendo direttamente la chat del bot del Mac.
+- "/bin/ls /Users/Shared" (ca88a116...) sensibile, approvato due volte -> done, exit 0
+  (.localized, MCPAndreaMacMio, MCPAndreaMacMioPreflightV09, SC Info).
+- "/bin/echo rifiuto" (d354deb6...) -> done "rifiuto": risultava APPROVATO, non rifiutato.
+  Nel codice (on_callback) il pulsante Rifiuta scrive solo rejected e l'esecuzione parte
+  solo con il callback Approva + hash: quasi certamente e stato premuto Approva (sinistra)
+  invece di Rifiuta (destra). Comando innocuo, nessun effetto.
+- Ripetuto con "/bin/echo rifiuto2" (5d6e1f0c...) -> Rifiuta -> rejected.
+- Sessione chiusa; who_is_working: nessuna sessione, nessun lock, shell spenta, rete disabled.
+- Non provato: mac_admin_result letto da un'altra autorizzazione (serve una seconda chat).
+- Nuovo possibile residuo visto: /Users/Shared/MCPAndreaMacMioPreflightV09 (da guardare al punto 2).
+
 PROSSIMI PASSI
-1. Chat NUOVA (catalogo 31): verifica dal vivo di mac_admin_request (LEGGIMI punto 3):
-   work_session su mac_mio, "/usr/bin/id" approvato sul bot del Mac -> done uid=0; comando
-   sensibile ("/bin/ls /Users/Shared") con doppia conferma; uno rifiutato -> rejected; senza
-   sessione -> rifiutato; poi chiusura e who_is_working pulito.
-2. Con l'helper: rimuovere i residui preflight v012p2 (elencati sopra) e workspace/Library/Caches.
-3. Poi collaudo di parita con Desktop Commander e spegnimento di DC.
+1. Con l'helper: rimuovere i residui preflight v012p2 (elencati sopra), workspace/Library/Caches
+   e, dopo averlo guardato, /Users/Shared/MCPAndreaMacMioPreflightV09.
+2. Poi collaudo di parita con Desktop Commander e spegnimento di DC.
 Rinviati per decisione di Andrea: accesso ai progetti reali (E) e Mac a noleggio.
 
 ROLLBACK p3
