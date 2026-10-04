@@ -117,6 +117,18 @@ DIAGNOSI REPL PYTHON (03/10 sera, sessione 93db6d66..., chiusa e pulita)
 - Correzione proposta (p4, mac_policy.py): (allow file-ioctl (literal <pty della sessione>)),
   piu dimensione 80x24 impostata sul PTY in mac_shell.py. Da confermare prima con prova locale.
 
+COLLAUDO FINALE SU PROGETTO VERO (04/10, Main.py in ~/Developer/MCPAndrea/Main.py)
+- git clone --depth 1 via rete github: 3,8 s, 14 MB. Clone lasciato li per lavori futuri.
+- Test del progetto lanciati come processo lungo con output letto durante l'esecuzione:
+  test_projects 18/18, test_files_v012 24/24, test_mac_admin 20/20 OK; 16 errori in
+  test_work_core/test_search/test_v012, tutti voluti dal sandbox: bind su 127.0.0.1 (8),
+  nuovo PTY (5), hard link (2) (oltre a un errore di invocazione mio).
+- Ricerca nel codice (4 risultati, 37 file), edit_block con rollback, git status/diff,
+  commit locale e reset: tutto ok. Shell spenta, sessione chiusa.
+- LIMITE rispetto a Desktop Commander: la shell non puo aprire server su localhost
+  (es. server di sviluppo, test con server locale) ne creare PTY o hard link.
+  Possibile p6 se serve: permettere bind/connessione solo su 127.0.0.1.
+
 p5 ATTIVA (04/10, cartella coordination_v012p5/, dettagli in LEGGIMI.txt)
 - ATTIVAZIONE_V012P5_MCP_COMPLETATA; list_machines: 0.12-personal-5, project_roots
   rw ~/Developer/MCPAndrea, ro ~/Developer, projects_error null.
