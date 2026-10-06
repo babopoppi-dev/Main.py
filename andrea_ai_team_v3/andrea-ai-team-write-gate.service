@@ -1,0 +1,63 @@
+[Unit]
+Description=ANDREA AI TEAM controlled MCP write gate (projects area only)
+Wants=central-mcp-gateway-test.service
+After=central-mcp-gateway-test.service
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+# Same account and hardening as andrea-ai-team-mcp-helper.service: it already holds
+# the local MCP gateway credential. The orchestrator and the providers never do.
+User=mcp-gateway
+Group=andrea-ai-team-ipc
+SupplementaryGroups=mcp-gateway
+WorkingDirectory=/opt/andrea-ai-team
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=MCP_GATEWAY_CONFIG=/etc/central-mcp-gateway/gateway-test.json
+Environment=GATE_SOCKET=/run/andrea-ai-team-gate/gate.sock
+Environment=GATE_ALLOWED_USERS=andrea-ai-team
+Environment=TEAM_PROJECTS_ROOT=/var/lib/central-mcp-vps-agent-test/workspace/team-projects
+Environment=GATE_SESSION_MINUTES=20
+Environment=GATE_LOCK_MINUTES=20
+# Optional: extra lock path required by the MCP isolated shell (set only if live smoke says LOCK_REQUIRED).
+Environment=GATE_SHELL_LOCK_PATH=
+ExecStart=/usr/bin/python3 -B /opt/andrea-ai-team/gate_server.py
+Restart=always
+RestartSec=3
+TimeoutStopSec=15
+UMask=0007
+
+RuntimeDirectory=andrea-ai-team-gate
+RuntimeDirectoryMode=0750
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictRealtime=yes
+ProtectProc=invisible
+ProcSubset=pid
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+
+# The gate never touches the filesystem directly: every file operation is an MCP call.
+ReadWritePaths=/run/andrea-ai-team-gate
+ReadOnlyPaths=/etc/central-mcp-gateway
+InaccessiblePaths=/var/lib/andrea-ai-team /var/lib/btc-readonly-export /home
+
+[Install]
+WantedBy=multi-user.target

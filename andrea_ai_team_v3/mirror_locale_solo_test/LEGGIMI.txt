@@ -1,0 +1,3 @@
+Copie ridotte dei moduli v2 live (team_core, service, ...) usate SOLO per eseguire test_v3.py
+fuori dalla VPS:  PYTHONPATH=.:mirror_locale_solo_test python3 -B test_v3.py
+Non vengono mai deployate: il deploy usa i moduli reali in /opt/andrea-ai-team.

@@ -1,0 +1,66 @@
+[Unit]
+Description=ANDREA AI TEAM Telegram orchestrator v3 (job history + project builder)
+Wants=network-online.target andrea-ai-team-provider.service andrea-ai-team-mcp-helper.service andrea-ai-team-write-gate.service
+After=network-online.target andrea-ai-team-provider.service andrea-ai-team-mcp-helper.service andrea-ai-team-write-gate.service
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=andrea-ai-team
+Group=andrea-ai-team-ipc
+WorkingDirectory=/opt/andrea-ai-team
+EnvironmentFile=/etc/andrea-ai-team/env
+
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=TEAM_HOME=/var/lib/andrea-ai-team/orchestrator-home
+Environment=STATE_FILE=/var/lib/andrea-ai-team/state/state.json
+Environment=JOBS_DB=/var/lib/andrea-ai-team/state/jobs.sqlite3
+Environment=PROVIDER_SOCKET=/run/andrea-ai-team/provider.sock
+Environment=GATE_SOCKET=/run/andrea-ai-team-gate/gate.sock
+Environment=TEAM_PROJECTS_ROOT=/var/lib/central-mcp-vps-agent-test/workspace/team-projects
+Environment=MCP_HELPER_CMD=/opt/andrea-ai-team/mcp_status_helper.py
+Environment=MCP_HELPER_PATH=/usr/bin:/bin
+Environment=DEFAULT_MODE=team
+Environment=WRITE_GATE_ENABLED=1
+Environment=TEAM_MAX_FIX_ATTEMPTS=3
+Environment=TEAM_MAX_CONCURRENT_JOBS=2
+Environment=TEAM_JOB_TIMEOUT=2400
+Environment=TEAM_TEST_TIMEOUT=180
+
+ExecStart=/usr/bin/python3 -B /opt/andrea-ai-team/service_v3.py
+Restart=always
+RestartSec=3
+TimeoutStopSec=15
+KillMode=mixed
+UMask=0077
+
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+PrivateMounts=yes
+NoNewPrivileges=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictRealtime=yes
+ProtectProc=ptraceable
+ProcSubset=pid
+RestrictAddressFamilies=AF_UNIX AF_INET
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+ReadWritePaths=/var/lib/andrea-ai-team/state /var/lib/andrea-ai-team/orchestrator-home
+# The orchestrator never reaches the workspace or provider credentials directly:
+# project files are read and written ONLY through the write gate (MCP Andrea).
+InaccessiblePaths=/var/lib/andrea-ai-team/provider /var/lib/central-mcp-vps-agent-test /var/lib/btc-readonly-export
+
+[Install]
+WantedBy=multi-user.target
