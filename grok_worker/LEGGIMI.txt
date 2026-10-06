@@ -1,0 +1,40 @@
+GROK WORKER — affidare lavori a Grok (API xAI)
+Sviluppato e testato con un finto server (8/8). NON ancora provato con la chiave vera.
+
+A COSA SERVE
+Manda a Grok un compito con alcuni file di contesto e salva la risposta in
+risultati/grok_<tipo>_<data>_<pid>.md (nome unico: nessuna sovrascrittura).
+Grok PROPONE (revisioni, diff, testi); chi lavora controlla e applica.
+Non ha accesso a MCP Andrea, PEC, posta, Mac o VPS.
+
+TIPI DI LAVORO (--tipo)
+  revisione  secondo parere su codice o documenti (problemi con gravita e correzione)
+  codice     modifiche come diff applicabile con git apply
+  testi      testi per La Marruca (schede prodotto, post, descrizioni App Store)
+  ricerca    sintesi e analisi
+  generale   tutto il resto (predefinito)
+
+PREPARAZIONE (una volta)
+1. Chiave API da console.x.ai, nella variabile d'ambiente XAI_API_KEY
+   (mai in un file del repository, mai sulla riga di comando).
+2. Rete: consentire api.x.ai.
+3. Verifica: python3 -I -B grok_worker.py modelli
+   Se "grok-4" non compare, impostare XAI_MODEL o usare --modello.
+
+ESEMPI
+  python3 -I -B grok_worker.py lavoro --tipo revisione \
+      --file ../../la-marruca-ios/APP_STORE_READINESS_2026-09-28.md \
+      "Cosa manca per la pubblicazione sull'App Store?"
+  python3 -I -B grok_worker.py lavoro --tipo codice --file mac_v014/mac_clock.py \
+      "Aggiungi la gestione del fuso orario mancante"
+  python3 -I -B grok_worker.py lavoro --tipo testi --compito compito.txt --stampa
+  --prova  mostra cosa verrebbe inviato senza chiamare l'API.
+
+RISERVATEZZA
+Rifiuta file con nomi da chiavi, segreti, token, password, PEC, posta (.eml/.mbox),
+database e configurazioni Firebase. Limite 200 KB per file, 600 KB in totale.
+Il filtro guarda il NOME del file, non il contenuto: non passare file con dati
+personali di clienti o pagamenti anche se il nome sembra innocuo.
+
+VARIABILI: XAI_API_KEY (obbligatoria), XAI_MODEL, XAI_BASE_URL, GROK_OUT_DIR.
+TEST: python3 -B -m unittest -v test_grok_worker
