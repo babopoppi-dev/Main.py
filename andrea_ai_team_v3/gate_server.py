@@ -626,6 +626,20 @@ def _peer_uid(conn: socket.socket) -> int:
 def _serve_client(core: GateCore, conn: socket.socket, allowed_uids: set[int]) -> None:
     try:
         if allowed_uids and _peer_uid(conn) not in allowed_uids:
+            # Drain the (ignored) request first, bounded, so the client reads the refusal instead of
+            # hitting a broken pipe while still sending.
+            conn.settimeout(2.0)
+            try:
+                drained = 0
+                while drained < 65536:
+                    part = conn.recv(65536)
+                    if not part:
+                        break
+                    drained += len(part)
+                    if b"\n" in part:
+                        break
+            except OSError:
+                pass
             conn.sendall(b'{"ok":false,"error":"PEER_NOT_ALLOWED"}\n')
             return
         conn.settimeout(30.0)

@@ -1262,10 +1262,12 @@ class JobManager:
     def wait_idle(self, timeout: float = 30.0) -> bool:
         deadline = time.monotonic() + timeout
         while time.monotonic() < deadline:
+            # Any unfinished build job counts as busy (not only QUEUED): otherwise a job launched
+            # between the two checks below (thread not yet seen, already ANALYZING) looks idle.
+            unfinished = [j for j in self.store.active() if j.kind == "build"]
             with self._lock:
                 alive = [t for t in self._running.values() if t.is_alive()]
-            queued = [j for j in self.store.active() if j.kind == "build" and j.state == QUEUED]
-            if not alive and not queued and not self._pending_recovery:
+            if not alive and not unfinished and not self._pending_recovery:
                 return True
             time.sleep(0.05)
         return False
