@@ -327,7 +327,9 @@ _SLUG_STOP = {
 _SUMMARY_NOISE = re.compile(
     r"test\s+non\s+(sono\s+stat[io]\s+)?eseguit|non\s+(ho\s+)?eseguit\w*\s+(i\s+)?test|"
     r"spetta\s+all'?\s*orchestratore|eseguit\w*\s+dall'?\s*orchestratore|"
-    r"non\s+posso\s+eseguire|non\s+ho\s+accesso\s+(alla\s+)?(shell|terminale)",
+    r"non\s+posso\s+eseguire|non\s+ho\s+accesso\s+(alla\s+)?(shell|terminale)|"
+    r"nessun\w*\s+(comando|test)\b[^.\n]*eseguit|nessun\s+accesso\s+a\s+(rete|file)|"
+    r"nessun\s+file\s+modificat|incluso\s+il\s+comando\s+previsto\s+per\s+i\s+test",
     re.IGNORECASE,
 )
 

@@ -308,6 +308,8 @@ class ParserTests(unittest.TestCase):
         text = ("Aggiunto il comando export.\n"
                 "Test non eseguiti: l'esecuzione spetta all'orchestratore.\n"
                 "Non ho eseguito i test.\n"
+                "Nessun comando o test eseguito; nessun accesso a rete o file.\n"
+                "Incluso il comando previsto per i test; nessun comando eseguito o file modificato.\n"
                 "README aggiornato.")
         self.assertEqual(clean_summary(text), "Aggiunto il comando export.\nREADME aggiornato.")
 

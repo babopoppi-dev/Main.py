@@ -46,10 +46,14 @@
 | 2 | Messaggio duplicato | rifiutato: "Richiesta identica gia' in corso: lavoro #2" | un solo job |
 | 3 | `/annulla` durante lo sviluppo | ANNULLATO, rollback eseguito (3 rollback_file) | progetto rimosso, nessun lock/sessione residui |
 | 4 | Lock occupato da altra chat | FALLITO dopo 3 tentativi a 20 s, "nessun lock rubato" | lock esterno intatto, 0 file toccati |
-| 5 | Riavvio `andrea-ai-team.service` in RUNNING | rollback nativo in <1 s (sessione del gate sopravvissuta), lock rilasciati, job rimesso in coda e ripreso | audit MCP |
+| 5 | Riavvio `andrea-ai-team.service` in RUNNING | rollback nativo in <1 s (sessione del gate sopravvissuta), lock rilasciati, job ripreso: COMPLETATO 58/58 PASS, 11m28s (Grok offline: review solo Claude) | audit MCP; `prova_riavvio` rimosso |
 
 Correzioni emerse dalle prove (deploy successivo):
 - dopo un riavvio il nome progetto viene mantenuto (prima un `crea` ripreso ricalcolava il nome:
   `prova_riavvio` → `temp_converter`);
 - messaggio finale: errore non piu' ripetuto; esecutore mai partito = "non avviato";
 - riepilogo: rimosse le note dell'LLM tipo "test non eseguiti / spetta all'orchestratore".
+
+Correzioni in staging (manifest aggiornato, 56 test offline verdi). Deploy con doppia conferma:
+`sudo bash /var/lib/central-mcp-vps-agent-test/workspace/andrea-ai-team/deploy_v3_root.sh preflight 2>&1 | tee ~/deploy_v3.log`
+poi `... apply <TOKEN> 2>&1 | tee -a ~/deploy_v3.log`.
