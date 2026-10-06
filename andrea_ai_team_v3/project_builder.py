@@ -323,6 +323,20 @@ _SLUG_STOP = {
 }
 
 
+# Executor notes the user does not need: the orchestrator runs the real tests itself.
+_SUMMARY_NOISE = re.compile(
+    r"test\s+non\s+(sono\s+stat[io]\s+)?eseguit|non\s+(ho\s+)?eseguit\w*\s+(i\s+)?test|"
+    r"spetta\s+all'?\s*orchestratore|eseguit\w*\s+dall'?\s*orchestratore|"
+    r"non\s+posso\s+eseguire|non\s+ho\s+accesso\s+(alla\s+)?(shell|terminale)",
+    re.IGNORECASE,
+)
+
+
+def clean_summary(text: str) -> str:
+    lines = [ln for ln in (text or "").splitlines() if not _SUMMARY_NOISE.search(ln)]
+    return "\n".join(lines).strip()
+
+
 def derive_project_name(request: str, analysis_texts: list[str], job_id: int) -> str:
     for text in analysis_texts:
         m = re.search(r"PROJECT_NAME\s*:\s*`?([A-Za-z0-9_-]{2,40})`?", text or "")
@@ -822,7 +836,7 @@ class JobRunner:
             written_ctx.append(f"=== FILE: {rel} ===\n{blocks.files[rel]}=== END FILE ===")
             if blocks.summary:
                 summaries.append(blocks.summary)
-        self.summary = "\n".join(summaries[-2:])[:1200]
+        self.summary = clean_summary("\n".join(summaries[-2:]))[:1200]
 
     def _detect_test_kind(self, files: list[str]) -> str:
         root_tests = [f for f in files if "/" not in f and f.startswith("test") and f.endswith(".py")]
@@ -877,7 +891,7 @@ class JobRunner:
             return
         self._apply(blocks)
         if blocks.summary:
-            self.summary = (self.summary + "\n" + blocks.summary).strip()[-1500:]
+            self.summary = (self.summary + "\n" + clean_summary(blocks.summary)).strip()[-1500:]
 
     def _test_and_fix(self, label: str) -> TestOutcome:
         outcome = self._test(label)
@@ -1070,8 +1084,16 @@ class JobRunner:
 
     def _finish_abort(self, exc: JobAbort) -> None:
         self.store.add_error(self.job_id, f"{exc.kind}: {exc.detail}")
-        if self.executor and self._refresh().agent_state(self.executor) in {"RUNNING", "WAITING"}:
-            self._agent(self.executor, "CANCELLED" if exc.kind == "CANCELLED" else "FAILED")
+        if self.executor:
+            cur = self._refresh()
+            exec_state = cur.agent_state(self.executor)
+            # Never started developing: work_lock not obtained (or still waiting for it).
+            never_started = cur.lock_state in {"NONE", "WAITING", "CONFLICT", "FAILED"} and not cur.files
+            if exec_state in {"RUNNING", "WAITING"}:
+                if exc.kind == "CANCELLED":
+                    self._agent(self.executor, "CANCELLED")
+                else:
+                    self._agent(self.executor, "SKIPPED" if never_started else "FAILED")
         for agent in AGENTS:
             if self._refresh().agent_state(agent) in {"WAITING", "RUNNING"}:
                 self._agent(agent, "CANCELLED" if exc.kind == "CANCELLED" else "SKIPPED")
@@ -1313,7 +1335,7 @@ class JobManager:
                 self.store.set_agent(job_id, agent, "WAITING")
             self.store.update(job_id, attempts=0, tests_run=0, tests_passed=0, tests_failed=0,
                               test_result="", lock_state="NONE", executor=None,
-                              project=job.project if job.operation == "modifica" else None)
+                              project=job.project)  # keep the name: user-given or already announced
             self.store.requeue_after_restart(job_id, "ripreso dopo riavvio")
             self._wake.set()
             what = f"rollback {rb}; ripreso dall'inizio"

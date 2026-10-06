@@ -303,6 +303,14 @@ class ParserTests(unittest.TestCase):
         to = parse_test_output({"exit_code": None, "timed_out": True, "stderr": ""})
         self.assertFalse(to.passed)
 
+    def test_summary_drops_executor_test_disclaimers(self):
+        from project_builder import clean_summary
+        text = ("Aggiunto il comando export.\n"
+                "Test non eseguiti: l'esecuzione spetta all'orchestratore.\n"
+                "Non ho eseguito i test.\n"
+                "README aggiornato.")
+        self.assertEqual(clean_summary(text), "Aggiunto il comando export.\nREADME aggiornato.")
+
     def test_verdict_and_name(self):
         self.assertEqual(parse_verdict("VERDICT: CHANGES\n- bug")[0], "CHANGES")
         self.assertEqual(parse_verdict("ok")[0], None)
@@ -416,6 +424,10 @@ class BuilderTests(Base):
         self.assertIn("work_lock non ottenuto", job.errors[-1])
         self.assertEqual(env.mcp.locks[other_lock]["sid"], other_sid)
         self.assertFalse(env.project_dir("occupato").exists())
+        from job_format import format_final
+        text = format_final(job)
+        self.assertIn("Codex: non avviato", text)
+        self.assertEqual(text.count("work_lock non ottenuto"), 1)  # error shown once
 
     def test_job_timeout_rolls_back(self):
         provs = scripted_team()
@@ -684,6 +696,7 @@ class BuilderTests(Base):
         after = env2.store.get(job.job_id)
         self.assertEqual(after.state, QUEUED)
         self.assertEqual(after.restarts, 1)
+        self.assertEqual(after.project, "mini_app")  # name kept across the restart
         self.assertFalse(env2.project_dir("mini_app").exists())  # half-applied work removed
         self.assertTrue(env2.run_all())
         done = env2.store.get(job.job_id)

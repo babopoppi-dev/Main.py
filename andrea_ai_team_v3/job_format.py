@@ -94,7 +94,7 @@ def _agent_role_text(job: Job, agent: str) -> str:
     if is_exec:
         return {"DONE": "sviluppo completato", "FAILED": "sviluppo fallito", "RUNNING": "sviluppo in corso",
                 "OFFLINE": "offline", "CANCELLED": "annullato", "WAITING": "in attesa",
-                "SKIPPED": "non usato"}.get(state, state)
+                "SKIPPED": "non avviato"}.get(state, state)
     return {"DONE": "review completata", "FAILED": "review non riuscita", "RUNNING": "review in corso",
             "OFFLINE": "review non disponibile (offline)", "SKIPPED": "review saltata",
             "CANCELLED": "annullato", "WAITING": "in attesa"}.get(state, state)
@@ -141,10 +141,17 @@ def format_final(job: Job, max_summary: int = 1500) -> str:
         for agent in ("codex", "claude", "grok"):
             lines.append(f"{AGENT_LABEL[agent]}: {_agent_role_text(job, agent)}")
     lines.append(f"Durata: {job_duration(job)}")
+    last_error = ""
     if job.state != COMPLETED and job.errors:
-        lines.append("Ultimo errore: " + job.errors[-1][:400])
+        last_error = job.errors[-1][:400]
+        lines.append("Ultimo errore: " + last_error)
     if job.result_summary:
         summary = job.result_summary.strip()
+        if last_error:  # the abort summary starts with the same error line: don't repeat it
+            first, _, rest = summary.partition("\n")
+            if first.strip() == last_error.strip() or last_error.strip().startswith(first.strip()):
+                summary = rest.strip()
+    if job.result_summary and summary:
         if len(summary) > max_summary:
             summary = summary[: max_summary - 1] + "…"
         lines.append("")
