@@ -57,3 +57,10 @@ Correzioni emerse dalle prove (deploy successivo):
 Correzioni in staging (manifest aggiornato, 56 test offline verdi). Deploy con doppia conferma:
 `sudo bash /var/lib/central-mcp-vps-agent-test/workspace/andrea-ai-team/deploy_v3_root.sh preflight 2>&1 | tee ~/deploy_v3.log`
 poi `... apply <TOKEN> 2>&1 | tee -a ~/deploy_v3.log`.
+
+## Deploy correzioni (2026-10-06, pomeriggio)
+- Primo preflight fermato da un test offline instabile sulla VPS (race in `wait_idle`); trovata e
+  corretta anche una race nel rifiuto `PEER_NOT_ALLOWED` del gate. 64/65 suite verdi sotto carico
+  (l'unica fallita precede la seconda correzione e il suo log e' andato perso), poi 40/40.
+- Preflight OK (56/56 sulla VPS), apply con token: SMOKE_V3=OK, DEPLOY_V3=OK.
+- Live ora: nome progetto mantenuto dopo riavvio, messaggio finale pulito, riepilogo senza note LLM.
