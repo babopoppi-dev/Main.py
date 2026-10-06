@@ -127,5 +127,5 @@ class WriteGateClient:
     def run_tests(self, job: str, project: str, kind: str = "unittest", timeout: int = 180) -> dict[str, Any]:
         return self._request(
             {"op": "run_tests", "job": job, "project": project, "kind": kind, "timeout": timeout},
-            timeout=float(timeout + 90),
+            timeout=float(timeout + 420),  # includes the gate's bounded wait for the workspace shell lock
         )

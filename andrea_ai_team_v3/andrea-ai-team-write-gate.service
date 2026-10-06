@@ -21,8 +21,10 @@ Environment=GATE_ALLOWED_USERS=andrea-ai-team
 Environment=TEAM_PROJECTS_ROOT=/var/lib/central-mcp-vps-agent-test/workspace/team-projects
 Environment=GATE_SESSION_MINUTES=20
 Environment=GATE_LOCK_MINUTES=20
-# Optional: extra lock path required by the MCP isolated shell (set only if live smoke says LOCK_REQUIRED).
-Environment=GATE_SHELL_LOCK_PATH=
+# The live VPS agent requires a lock covering the whole shell workspace for enable_full_shell
+# (verified 2026-10-06). Taken only for the duration of a test run; waits, never steals.
+Environment=GATE_SHELL_LOCK_PATH=/var/lib/central-mcp-vps-agent-test/workspace
+Environment=GATE_SHELL_LOCK_WAIT=300
 ExecStart=/usr/bin/python3 -B /opt/andrea-ai-team/gate_server.py
 Restart=always
 RestartSec=3

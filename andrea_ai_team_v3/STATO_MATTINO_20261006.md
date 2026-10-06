@@ -28,3 +28,13 @@
 3. Telegram: `/stato` → deve mostrare `Write Gate MCP: ON`; poi `/aiuto`
 4. Collaudo: inviare il testo del Mini Task Manager; seguire con `/incorso`, poi `/ultimo`
 5. In caso di problemi: `... deploy_v3_root.sh rollback`
+
+## Aggiornamento 09:30 — deploy eseguito
+- Primo apply: smoke FAIL su `enable_full_shell` → rollback automatico a v2 riuscito.
+- Causa (dal sorgente dell'agente VPS): la shell MCP richiede un lock che copra l'INTERO workspace;
+  il gateway nasconde il messaggio d'errore (sempre `RuntimeError`).
+- Correzioni: gate prende il lock sul workspace solo per la durata dei test (attesa max 5 min,
+  mai furto); conflitti riconosciuti tramite `who_is_working`; polling dell'output della shell
+  (risposta dopo 3 s + `has_more`); fase di scrittura/test serializzata tra lavori.
+- Secondo apply: SMOKE_V3=OK, DEPLOY_V3=OK. Bot in v3 (`service_v3.py`), gate attivo.
+- Collaudo Mini Task Manager avviato (lavoro #1, progetto `mini_task_manager`).

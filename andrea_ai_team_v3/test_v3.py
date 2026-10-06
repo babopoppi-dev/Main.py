@@ -29,7 +29,7 @@ from service_v3 import TeamServiceV3, detect_build_intent
 from team_core import AtomicState
 from team_core_v2 import CoordinatorV2
 from v3_testkit import (
-    BUGGY_APP, GOOD_APP, GOOD_TEST, VIRTUAL_ROOT, FakeMCPStatus, FakeTelegram, InProcessGate, ScriptedProvider,
+    BUGGY_APP, GOOD_APP, GOOD_TEST, VIRTUAL_ROOT, VIRTUAL_WORKSPACE, FakeMCPStatus, FakeTelegram, InProcessGate, ScriptedProvider,
     make_gate, scripted_team,
 )
 from write_gate import GateError, WriteGateClient
@@ -54,7 +54,8 @@ class Env:
             self.mcp, self.core, self.gate = make_gate(os.path.join(tmp, "ws"))
         else:
             self.mcp = mcp
-            self.core = GateCore(mcp.call, projects_root=VIRTUAL_ROOT, sleep=lambda s: None)
+            self.core = GateCore(mcp.call, projects_root=VIRTUAL_ROOT, shell_lock_path=VIRTUAL_WORKSPACE,
+                                 sleep=lambda s: None)
             self.gate = InProcessGate(self.core)
         self.store = JobStore(os.path.join(tmp, "jobs.sqlite3"))
         self.providers = providers or scripted_team()
@@ -450,6 +451,50 @@ class BuilderTests(Base):
         self.assertEqual(job.rollback, "done")
         self.assertFalse(env.project_dir("annullami").exists())
         self.assertEqual(env.mcp.locks, {})
+
+    def test_shell_needs_workspace_lock_and_waits_for_other_chats(self):
+        # Another chat holds a lock somewhere in the workspace: the gate waits, never steals.
+        env = Env(self.tmp)
+        other_sid, other_lock = env.mcp.external_lock(VIRTUAL_WORKSPACE + "/andrea-ai-team")
+        released = []
+
+        def sleep(_s):
+            if not released:
+                env.mcp.locks.pop(other_lock, None)  # the other chat finishes
+                released.append(True)
+
+        env.core._sleep = sleep
+        job = env.submit()
+        self.assertTrue(env.run_all())
+        job = env.store.get(job.job_id)
+        self.assertEqual(job.state, COMPLETED, job.errors)
+        self.assertEqual(released, [True])
+
+    def test_shell_lock_never_obtained_fails_cleanly(self):
+        env = Env(self.tmp)
+        env.core.shell_lock_wait = 30
+        other_sid, other_lock = env.mcp.external_lock(VIRTUAL_WORKSPACE + "/andrea-ai-team")
+        job = env.submit()
+        self.assertTrue(env.run_all())
+        job = env.store.get(job.job_id)
+        self.assertIn(job.state, {FAILED, ROLLED_BACK})
+        self.assertTrue(any("LOCK_CONFLICT" in e for e in job.errors), job.errors)
+        self.assertEqual(env.mcp.locks[other_lock]["sid"], other_sid)  # not stolen
+        self.assertFalse(env.project_dir("mini_app").exists())
+
+    def test_live_error_format_is_classified(self):
+        self.assertEqual(gate_server._classify_mcp_error(
+            "[-32603] Internal error for work_lock: PermissionError. Do not loop-retry"), "LOCK_CONFLICT")
+        self.assertEqual(gate_server._classify_mcp_error(
+            "[-32603] Internal error for enable_full_shell: PermissionError."), "LOCK_REQUIRED")
+        self.assertEqual(gate_server._classify_mcp_error(
+            "[-32603] Internal error for enable_full_shell: RuntimeError."), "MCP_ERROR")
+        # Live format hides the cause: the gate resolves conflicts through who_is_working.
+        mcp, core, gate = make_gate(os.path.join(self.tmp, "ws2"))
+        mcp.external_lock(VIRTUAL_ROOT + "/demo")
+        with self.assertRaises(GateError) as ctx:
+            gate.begin("f" * 32, "demo")
+        self.assertEqual(ctx.exception.code, "LOCK_CONFLICT")
 
     def test_cancel_queued_job(self):
         env = Env(self.tmp)

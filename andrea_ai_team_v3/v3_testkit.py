@@ -21,7 +21,7 @@ import uuid
 from typing import Any, Optional
 
 import gate_policy as policy
-from gate_server import GateCore, GateError
+from gate_server import GateCore, GateError, _classify_mcp_error
 from write_gate import GateError as ClientGateError, WriteGateClient
 
 VIRTUAL_WORKSPACE = "/var/lib/central-mcp-vps-agent-test/workspace"
@@ -38,6 +38,7 @@ class FakeMCP:
         self.locks: dict[str, dict[str, Any]] = {}
         self.ops: dict[str, dict[str, Any]] = {}
         self.shell_enabled: set[str] = set()
+        self.shell_jobs: dict[str, dict[str, Any]] = {}
         self.commands: list[str] = []
         self.calls: list[str] = []
         self.unreachable = False
@@ -139,7 +140,9 @@ class FakeMCP:
             self.real(path)
             for lk in self.locks.values():
                 if lk["sid"] != sid and self._overlap(lk["path"], path):
-                    raise GateError("LOCK_CONFLICT", "lock conflict: held by another session")
+                    # Live gateway hides the message and returns only the exception type.
+                    msg = "[-32603] Internal error for work_lock: RuntimeError. Do not loop-retry"
+                    raise GateError(_classify_mcp_error(msg), msg)
             lid = uuid.uuid4().hex
             self.locks[lid] = {"sid": sid, "path": path}
             return {"lock_id": lid, "path": path}
@@ -151,6 +154,10 @@ class FakeMCP:
             self.locks.pop(lid)
             return {"released": True}
         return {"renewed": True}
+
+    def t_who_is_working(self, a: dict[str, Any]) -> dict[str, Any]:
+        return {"work_locks": [{"lock_id": k, "session_id": v["sid"], "path": v["path"]}
+                               for k, v in self.locks.items()]}
 
     def _journal(self, sid: str, kind: str, **info: Any) -> str:
         op = uuid.uuid4().hex
@@ -283,6 +290,12 @@ class FakeMCP:
         sid = self._auth(a)
         if a.get("network") != "none":
             raise GateError("MCP_DENIED", "network not allowed")
+        # Live agent: a lock covering the WHOLE workspace must be held by this session.
+        if not self._covered(sid, VIRTUAL_WORKSPACE):
+            msg = "[-32603] Internal error for enable_full_shell: RuntimeError. Do not loop-retry"
+            raise GateError(_classify_mcp_error(msg), msg)
+        if self.shell_enabled - {sid}:
+            raise GateError("MCP_ERROR", "Internal error for enable_full_shell: PermissionError.")
         self.shell_enabled.add(sid)
         return {"enabled": True}
 
@@ -293,6 +306,11 @@ class FakeMCP:
 
     def t_shell_session(self, a: dict[str, Any]) -> dict[str, Any]:
         self._auth(a)
+        if a.get("action") == "read":
+            job = self.shell_jobs[a["session_id"]]
+            chunk, job["rest"] = job["rest"][:400], job["rest"][400:]
+            return {"session_id": a["session_id"], "running": False, "exit_code": job["rc"], "output": chunk,
+                    "has_more": bool(job["rest"])}
         return {"ok": True}
 
     def t_shell_exec(self, a: dict[str, Any], timeout: float) -> dict[str, Any]:
@@ -311,9 +329,15 @@ class FakeMCP:
         try:
             proc = subprocess.run(argv, cwd=cwd, env=env, capture_output=True, text=True,
                                   timeout=float(a.get("timeout", 60)))
-            return {"exit_code": proc.returncode, "stdout": proc.stdout, "stderr": proc.stderr}
         except subprocess.TimeoutExpired:
             return {"exit_code": None, "stdout": "", "stderr": "timeout", "timed_out": True}
+        # Live agent: PTY (combined output, CRLF), answers after <=3 s and the rest is read
+        # through shell_session(action=read) in chunks (has_more).
+        combined = (proc.stdout + proc.stderr).replace("\n", "\r\n")
+        jid = uuid.uuid4().hex
+        self.shell_jobs[jid] = {"rc": proc.returncode, "rest": combined[200:]}
+        return {"session_id": jid, "running": True, "exit_code": None, "output": combined[:200],
+                "has_more": False}
 
 
 class InProcessGate(WriteGateClient):
@@ -338,7 +362,8 @@ class InProcessGate(WriteGateClient):
 
 def make_gate(tmpdir: str) -> tuple[FakeMCP, GateCore, InProcessGate]:
     mcp = FakeMCP(tmpdir)
-    core = GateCore(mcp.call, projects_root=VIRTUAL_ROOT, sleep=lambda s: None)
+    core = GateCore(mcp.call, projects_root=VIRTUAL_ROOT, shell_lock_path=VIRTUAL_WORKSPACE,
+                    sleep=lambda s: None)
     return mcp, core, InProcessGate(core)
 
 

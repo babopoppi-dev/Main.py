@@ -71,6 +71,7 @@ class BuilderConfig:
     max_context_chars: int = 45000
     max_auto_resume: int = 1
     review_enabled: bool = True
+    serialize_writes: bool = True
 
 
 class JobAbort(Exception):
@@ -1124,8 +1125,11 @@ class JobManager:
     # -- project claims ----------------------------------------------------------
 
     def claim_project(self, name: str, cancel: threading.Event) -> bool:
+        # With serialize_writes (default) only one job at a time is in the locked
+        # write/test phase: the live MCP shell needs a lock on the whole workspace,
+        # which conflicts with any other session's project lock. Analysis stays parallel.
         with self._lock:
-            while name in self._busy_projects:
+            while name in self._busy_projects or (self.cfg.serialize_writes and self._busy_projects):
                 if cancel.is_set() or self._stop.is_set():
                     return False
                 self._lock.wait(timeout=0.5)

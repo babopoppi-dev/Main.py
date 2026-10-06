@@ -64,6 +64,12 @@ class GateError(RuntimeError):
 
 def _classify_mcp_error(text: str) -> str:
     low = (text or "").lower()
+    # The live gateway hides exception messages ("Internal error for <tool>: <Type>").
+    # A refused work_lock acquire is a PermissionError: path locked by another session.
+    if "for work_lock" in low and "permissionerror" in low:
+        return "LOCK_CONFLICT"
+    if "for enable_full_shell" in low and "permissionerror" in low:
+        return "LOCK_REQUIRED"
     if any(k in low for k in ("conflict", "already locked", "held by", "locked by", "lock is held")):
         return "LOCK_CONFLICT"
     if "lock" in low and any(k in low for k in ("required", "covering", "not covered", "missing")):
@@ -199,6 +205,8 @@ class GateCore:
         projects_root: str = policy.DEFAULT_PROJECTS_ROOT,
         shell_lock_path: Optional[str] = None,
         sleep: Callable[[float], None] = time.sleep,
+        shell_lock_wait: float = 300.0,
+        shell_lock_poll: float = 10.0,
     ):
         self._mcp = mcp_call
         self.root = projects_root.rstrip("/")
@@ -206,6 +214,10 @@ class GateCore:
         self._sleep = sleep
         self._sessions: dict[str, _Session] = {}
         self._lock = threading.RLock()
+        # MCP Andrea runs one isolated workspace shell at a time.
+        self._shell_mutex = threading.Lock()
+        self.shell_lock_wait = shell_lock_wait
+        self.shell_lock_poll = shell_lock_poll
 
     # -- internals ---------------------------------------------------------
 
@@ -227,8 +239,34 @@ class GateCore:
             raise GateError("PROJECT_MISMATCH")
         return s
 
+    @staticmethod
+    def _overlaps(a: str, b: str) -> bool:
+        a, b = a.rstrip("/"), b.rstrip("/")
+        return a == b or a.startswith(b + "/") or b.startswith(a + "/")
+
+    def _foreign_lock_on(self, s: _Session, path: str) -> Optional[str]:
+        """The live gateway hides why a call failed: ask who_is_working (read-only)."""
+        try:
+            info = self._call("who_is_working", {}, 20.0)
+        except GateError:
+            return None
+        for lk in info.get("work_locks") or []:
+            if not isinstance(lk, dict):
+                continue
+            other = str(lk.get("session_id", ""))
+            if other and other != s.session_id and self._overlaps(str(lk.get("path", "")), path):
+                return other
+        return None
+
     def _acquire(self, s: _Session, name: str, path: str, minutes: int = LOCK_MINUTES) -> str:
-        res = self._call("work_lock", {"action": "acquire", "path": path, "minutes": minutes, **self._auth(s)})
+        try:
+            res = self._call("work_lock", {"action": "acquire", "path": path, "minutes": minutes, **self._auth(s)})
+        except GateError as exc:
+            if exc.code in {"MCP_ERROR", "LOCK_CONFLICT"}:
+                holder = self._foreign_lock_on(s, path)
+                if holder:
+                    raise GateError("LOCK_CONFLICT", f"path locked by work session {holder[:8]}") from None
+            raise
         lock_id = str(res.get("lock_id", ""))
         if not lock_id:
             raise GateError("LOCK_FAILED")
@@ -437,9 +475,21 @@ class GateCore:
         timeout = max(10, min(int(timeout), 900))
         cwd = policy.project_path(self.root, project)
         extra_lock: Optional[str] = None
-        with s.lock:
+        with self._shell_mutex, s.lock:
             if self.shell_lock_path:
-                extra_lock = self._acquire(s, "shell", self.shell_lock_path, minutes=max(2, math.ceil(timeout / 60) + 2))
+                # The live agent requires a lock covering the whole shell workspace. Another
+                # session may hold one inside it: wait (bounded), never steal.
+                waited = 0.0
+                while True:
+                    try:
+                        extra_lock = self._acquire(s, "shell", self.shell_lock_path,
+                                                   minutes=max(2, math.ceil(timeout / 60) + 2))
+                        break
+                    except GateError as exc:
+                        if exc.code != "LOCK_CONFLICT" or waited >= self.shell_lock_wait:
+                            raise
+                        self._sleep(self.shell_lock_poll)
+                        waited += self.shell_lock_poll
             stop = threading.Event()
             hb: Optional[threading.Thread] = None
             enabled = False
@@ -463,15 +513,20 @@ class GateCore:
                 res = normalize_shell_result(raw)
                 shell_sid = raw.get("session_id")
                 deadline = started + timeout + 30
-                while res["exit_code"] is None and shell_sid and time.monotonic() < deadline:
-                    self._sleep(2.0)
+                has_more = bool(raw.get("has_more"))
+                # The live agent answers after <=3 s; longer runs continue as a session to poll.
+                while shell_sid and (res["exit_code"] is None or has_more) and time.monotonic() < deadline:
+                    if not has_more:
+                        self._sleep(2.0)
                     raw2 = self._call("shell_session", {"action": "read", "session_id": shell_sid, **self._auth(s)},
                                       30.0)
                     part = normalize_shell_result(raw2)
                     res["stdout"] += part["stdout"]
                     res["stderr"] += part["stderr"]
-                    res["exit_code"] = part["exit_code"]
-                    if not part["running"] and part["exit_code"] is None and raw2.get("done"):
+                    if part["exit_code"] is not None:
+                        res["exit_code"] = part["exit_code"]
+                    has_more = bool(raw2.get("has_more"))
+                    if not part["running"] and part["exit_code"] is None and not has_more and raw2.get("done"):
                         break
                 if res["exit_code"] is None:
                     res["timed_out"] = True
@@ -631,6 +686,7 @@ def main() -> int:
         client.call,
         projects_root=os.environ.get("TEAM_PROJECTS_ROOT", policy.DEFAULT_PROJECTS_ROOT),
         shell_lock_path=(os.environ.get("GATE_SHELL_LOCK_PATH", "").strip() or None),
+        shell_lock_wait=float(os.environ.get("GATE_SHELL_LOCK_WAIT", "300")),
     )
     allowed = _allowed_uids()
     socket_path = Path(os.environ.get("GATE_SOCKET", "/run/andrea-ai-team-gate/gate.sock"))
